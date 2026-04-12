@@ -7,6 +7,7 @@ import Projects from "./components/Projects/Projects";
 import Resume from "./components/Resume/Resume";
 import Blog from "./components/Blog/Blog";
 import Footer from "./components/Footer";
+import Preloader from "./components/Preloader";
 
 export default function App() {
   const [load, updateLoad] = useState(true);
@@ -14,13 +15,14 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       updateLoad(false);
-    }, 1200);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <Router>
+      <Preloader load={load} />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
         <Navbar />
         <Routes>

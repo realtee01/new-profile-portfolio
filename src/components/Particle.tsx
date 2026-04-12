@@ -1,17 +1,25 @@
-import { useCallback } from "react";
-import Particles from "react-tsparticles";
+import { useCallback, useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
-import type { Engine } from "tsparticles-engine";
 
 export default function Particle() {
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadFull(engine);
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadFull(engine);
+    }).then(() => {
+      setInit(true);
+    });
   }, []);
+
+  if (!init) {
+    return null;
+  }
 
   return (
     <Particles
       id="tsparticles"
-      init={particlesInit}
       className="absolute inset-0 w-full h-full z-0"
       options={{
         fullScreen: { enable: false },
