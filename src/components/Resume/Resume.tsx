@@ -14,7 +14,7 @@ export default function Resume() {
             className="btn-primary px-6 py-3 rounded text-lg flex items-center gap-2 transition-colors shadow-lg"
           >
             <AiOutlineDownload size={24} />
-            &nbsp;Download CV
+            &nbsp;View Resume
           </a>
         </div>
 
@@ -51,7 +51,7 @@ export default function Resume() {
             className="btn-primary px-6 py-3 rounded text-lg flex items-center gap-2 transition-colors shadow-lg"
           >
             <AiOutlineDownload size={24} />
-            &nbsp;Download CV
+            &nbsp;View Resume
           </a>
         </div>
       </div>
