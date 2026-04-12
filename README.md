@@ -38,3 +38,15 @@ To get a local copy up and running, follow these simple steps:
 1. Clone the repository:
    ```bash
    git clone https://github.com/realtee01/my-portfolio.git
+   
+   src/
+├── assets/          # Images, SVGs, and Resume PDF
+├── components/      # Reusable UI components
+│   ├── About/       # About me section
+│   ├── Blog/        # Blog cards and posts
+│   ├── Home/        # Hero section and introduction
+│   ├── Projects/    # Project showcase cards
+│   └── Resume/      # Resume download page
+├── App.tsx          # Main application routing
+├── index.css        # Global styles and Tailwind directives
+└── main.tsx         # React entry point
