@@ -8,7 +8,7 @@ export default function Resume() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
         <div className="mb-12">
           <a
-            href="#"
+            href="/Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary px-6 py-3 rounded text-lg flex items-center gap-2 transition-colors shadow-lg"
@@ -45,7 +45,7 @@ export default function Resume() {
 
         <div className="mt-12">
           <a
-            href="#"
+            href="/Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary px-6 py-3 rounded text-lg flex items-center gap-2 transition-colors shadow-lg"

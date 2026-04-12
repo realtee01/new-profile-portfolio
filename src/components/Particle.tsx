@@ -12,7 +12,9 @@ export default function Particle() {
     <Particles
       id="tsparticles"
       init={particlesInit}
+      className="absolute inset-0 w-full h-full z-0"
       options={{
+        fullScreen: { enable: false },
         particles: {
           number: {
             value: 160,
