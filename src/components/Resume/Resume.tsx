@@ -25,7 +25,7 @@ export default function Resume() {
              A frontend developer who spent a year grinding JavaScript before touching React. Totally worth it. I build high-performance, accessible, and visually stunning interfaces with React — clean codes, real results.
            </p>
 
-           <h3 className="text-2xl font-bold text-gradient mb-4 border-b border-[#00e5ff]/30 pb-2">Experience & Education</h3>
+           <h3 className="text-2xl font-bold text-gradient mb-4 border-b border-[#00e5ff]/30 pb-2">Education & Certification</h3>
            
            <div className="mb-6">
              <h4 className="text-xl font-semibold">Frontend Engineering</h4>

@@ -50,12 +50,18 @@ export default function Navbar() {
           </div>
 
           {/* Desktop menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             <NavItem to="/" icon={<AiOutlineHome className="mb-1" />} text="Home" />
             <NavItem to="/about" icon={<AiOutlineUser className="mb-1" />} text="About" />
             <NavItem to="/projects" icon={<AiOutlineFundProjectionScreen className="mb-1" />} text="Projects" />
             <NavItem to="/resume" icon={<CgFileDocument className="mb-1" />} text="Resume" />
             <NavItem to="/blog" icon={<ImBlog className="mb-1" />} text="Blogs" />
+            <Link 
+              to="/contact" 
+              className="bg-[#c770f0] hover:bg-[#00e5ff] text-white font-bold py-2 px-6 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(199,112,240,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)]"
+            >
+              Contact Me
+            </Link>
           </div>
         </div>
       </div>
@@ -69,6 +75,13 @@ export default function Navbar() {
             <MobileNavItem to="/projects" icon={<AiOutlineFundProjectionScreen />} text="Projects" onClick={() => updateExpanded(false)} />
             <MobileNavItem to="/resume" icon={<CgFileDocument />} text="Resume" onClick={() => updateExpanded(false)} />
             <MobileNavItem to="/blog" icon={<ImBlog />} text="Blogs" onClick={() => updateExpanded(false)} />
+            <Link 
+              to="/contact" 
+              onClick={() => updateExpanded(false)}
+              className="mt-4 bg-[#c770f0] hover:bg-[#00e5ff] text-white font-bold py-2 px-8 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(199,112,240,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)]"
+            >
+              Contact Me
+            </Link>
           </div>
         </div>
       )}
