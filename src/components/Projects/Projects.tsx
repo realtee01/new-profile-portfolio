@@ -57,7 +57,7 @@ export default function Projects() {
               title="Forzchain"
               description="A decentralized supply chain management system leveraging blockchain for transparency. Built with React, Tailwind, and Solidity."
               ghLink="https://github.com/realtee01"
-              demoLink="https://forzchain.vercel.app/"
+              demoLink="https://forzchain-v-2.vercel.app"
             />
           </motion.div>
 
