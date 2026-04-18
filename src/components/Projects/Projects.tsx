@@ -9,6 +9,7 @@ const jobBoardImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/ma
 const calcImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/calc.jpg";
 const nextcleanImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/Nextclean.jpg";
 const heritageKitchenImg = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+const trendyTransitImg = "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 export default function Projects() {
   const containerVariants = {
@@ -113,6 +114,17 @@ export default function Projects() {
               description="A premium restaurant website showcasing a fine dining experience with an elegant UI and responsive layout."
               ghLink="https://github.com/realtee01/heritage-kitchen"
               demoLink="https://heriatage-kitchen.vercel.app/"
+            />
+          </motion.div>
+
+          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
+            <ProjectCard
+              imgPath={trendyTransitImg}
+              isBlog={false}
+              title="Trendy Transit"
+              description="A modern transit and logistics platform with a focus on seamless user experience, responsive design, and smooth routing aesthetics."
+              ghLink="https://github.com/realtee01"
+              demoLink="https://trendy-transit.vercel.app/"
             />
           </motion.div>
         </motion.div>
