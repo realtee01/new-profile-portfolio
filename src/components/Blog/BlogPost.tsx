@@ -12,7 +12,7 @@ export default function BlogPost() {
       <div className="pt-32 pb-16 min-h-screen flex flex-col items-center justify-center text-white">
         <h2 className="text-3xl font-bold mb-4">Blog post not found.</h2>
         <Link to="/blog" className="text-[#00e5ff] hover:underline flex items-center">
-          <AiOutlineArrowLeft className="mr-2" /> Return to Blogs
+          <span className="mr-2 flex items-center"><AiOutlineArrowLeft /></span> Return to Blogs
         </Link>
       </div>
     );
@@ -25,7 +25,7 @@ export default function BlogPost() {
           to="/blog" 
           className="inline-flex items-center text-[#00e5ff] hover:text-white transition-colors mb-8 font-medium"
         >
-          <AiOutlineArrowLeft className="mr-2" /> Back to Blogs
+          <span className="mr-2 flex items-center"><AiOutlineArrowLeft /></span> Back to Blogs
         </Link>
         
         <motion.div

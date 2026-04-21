@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineHome, AiOutlineFundProjectionScreen, AiOutlineUser } from "react-icons/ai";
 import { CgFileDocument } from "react-icons/cg";
@@ -51,11 +51,11 @@ export default function Navbar() {
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <NavItem to="/" icon={<AiOutlineHome className="mb-1" />} text="Home" />
-            <NavItem to="/about" icon={<AiOutlineUser className="mb-1" />} text="About" />
-            <NavItem to="/projects" icon={<AiOutlineFundProjectionScreen className="mb-1" />} text="Projects" />
-            <NavItem to="/resume" icon={<CgFileDocument className="mb-1" />} text="Resume" />
-            <NavItem to="/blog" icon={<ImBlog className="mb-1" />} text="Blogs" />
+            <NavItem to="/" icon={<span className="mb-1 flex items-center"><AiOutlineHome /></span>} text="Home" />
+            <NavItem to="/about" icon={<span className="mb-1 flex items-center"><AiOutlineUser /></span>} text="About" />
+            <NavItem to="/projects" icon={<span className="mb-1 flex items-center"><AiOutlineFundProjectionScreen /></span>} text="Projects" />
+            <NavItem to="/resume" icon={<span className="mb-1 flex items-center"><CgFileDocument /></span>} text="Resume" />
+            <NavItem to="/blog" icon={<span className="mb-1 flex items-center"><ImBlog /></span>} text="Blogs" />
             <Link 
               to="/contact" 
               className="bg-[#c770f0] hover:bg-[#00e5ff] text-white font-bold py-2 px-6 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(199,112,240,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)]"
@@ -89,24 +89,23 @@ export default function Navbar() {
   );
 }
 
-function NavItem({ to, icon, text }: { to: string; icon: React.ReactNode; text: string }) {
+function NavItem({ to, icon, text }: { to: string; icon: ReactNode; text: string }) {
   return (
     <Link
       to={to}
-      className="text-white hover:text-[#00e5ff] flex items-center gap-1 text-lg font-medium transition-colors relative group"
+      className="text-white hover:text-[#00e5ff] flex items-center gap-1.5 px-4 py-2 rounded-full text-lg font-medium transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]"
     >
       {icon} {text}
-      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00e5ff] transition-all group-hover:w-full"></span>
     </Link>
   );
 }
 
-function MobileNavItem({ to, icon, text, onClick }: { to: string; icon: React.ReactNode; text: string; onClick: () => void }) {
+function MobileNavItem({ to, icon, text, onClick }: { to: string; icon: ReactNode; text: string; onClick: () => void }) {
   return (
     <Link
       to={to}
       onClick={onClick}
-      className="text-white hover:text-[#00e5ff] flex items-center gap-2 px-3 py-2 rounded-md text-base font-medium"
+      className="text-white hover:text-[#00e5ff] flex items-center gap-2 px-6 py-3 rounded-full text-base font-medium transition-all duration-300 hover:bg-white/10 w-full justify-center"
     >
       {icon} {text}
     </Link>

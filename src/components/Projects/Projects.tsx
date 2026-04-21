@@ -10,6 +10,7 @@ const calcImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/s
 const nextcleanImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/Nextclean.jpg";
 const heritageKitchenImg = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 const trendyTransitImg = "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+const relayPropertiesImg = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1073&auto=format&fit=crop";
 
 export default function Projects() {
   const containerVariants = {
@@ -125,6 +126,16 @@ export default function Projects() {
               description="A modern transit and logistics platform with a focus on seamless user experience, responsive design, and smooth routing aesthetics."
               ghLink="https://github.com/realtee01"
               demoLink="https://trendy-transit.vercel.app/"
+            />
+          </motion.div>
+          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
+            <ProjectCard
+              imgPath={relayPropertiesImg}
+              isBlog={false}
+              title="Relay Properties"
+              description="A refined real estate platform designed for seamless property discovery and management, featuring an intuitive interface and responsive design elements."
+              ghLink="https://github.com/realtee01"
+              demoLink="https://relay-properties.vercel.app/"
             />
           </motion.div>
         </motion.div>
