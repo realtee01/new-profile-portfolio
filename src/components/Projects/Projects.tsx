@@ -123,7 +123,7 @@ export default function Projects() {
               imgPath={trendyTransitImg}
               isBlog={false}
               title="Trendy Transit"
-              description="A modern transit and logistics platform with a focus on seamless user experience, responsive design, and smooth routing aesthetics."
+              description="A modern e-commerce and logistics platform offering a seamless shopping experience, featuring a dynamic product catalog, intuitive cart management, and a streamlined checkout process."
               ghLink="https://github.com/realtee01"
               demoLink="https://trendy-transit.vercel.app/"
             />
