@@ -2,6 +2,7 @@ import { AiFillGithub } from "react-icons/ai";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Tilt from "react-parallax-tilt";
+import { HashLink } from "react-router-hash-link";
 
 export default function Home2() {
   return (
@@ -79,7 +80,7 @@ export default function Home2() {
           <p className="text-white mb-8">
             Feel free to <span className="text-[#00e5ff]">connect </span>with me
           </p>
-          <ul className="flex justify-center space-x-6">
+          <ul className="flex justify-center space-x-6 mb-12">
             <li>
               <a
                 href="https://github.com/realtee01"
@@ -111,6 +112,13 @@ export default function Home2() {
               </a>
             </li>
           </ul>
+          <HashLink
+            smooth
+            to="/contact#top"
+            className="inline-block mt-4 bg-[#c770f0] hover:bg-[#00e5ff] text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(199,112,240,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)]"
+          >
+            Contact Me
+          </HashLink>
         </div>
       </div>
     </div>

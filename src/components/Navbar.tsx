@@ -1,5 +1,6 @@
 import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { AiOutlineHome, AiOutlineFundProjectionScreen, AiOutlineUser } from "react-icons/ai";
 import { CgFileDocument } from "react-icons/cg";
 import { ImBlog } from "react-icons/im";
@@ -29,9 +30,9 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold text-gradient" onClick={() => updateExpanded(false)}>
+          <HashLink smooth to="/#top" className="text-2xl font-bold text-gradient" onClick={() => updateExpanded(false)}>
             TA.
-          </Link>
+          </HashLink>
           
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -51,17 +52,18 @@ export default function Navbar() {
 
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <NavItem to="/" icon={<span className="mb-1 flex items-center"><AiOutlineHome /></span>} text="Home" />
-            <NavItem to="/about" icon={<span className="mb-1 flex items-center"><AiOutlineUser /></span>} text="About" />
-            <NavItem to="/projects" icon={<span className="mb-1 flex items-center"><AiOutlineFundProjectionScreen /></span>} text="Projects" />
-            <NavItem to="/resume" icon={<span className="mb-1 flex items-center"><CgFileDocument /></span>} text="Resume" />
-            <NavItem to="/blog" icon={<span className="mb-1 flex items-center"><ImBlog /></span>} text="Blogs" />
-            <Link 
-              to="/contact" 
+            <NavItem to="/#top" icon={<span className="mb-1 flex items-center"><AiOutlineHome /></span>} text="Home" />
+            <NavItem to="/about#top" icon={<span className="mb-1 flex items-center"><AiOutlineUser /></span>} text="About" />
+            <NavItem to="/projects#top" icon={<span className="mb-1 flex items-center"><AiOutlineFundProjectionScreen /></span>} text="Projects" />
+            <NavItem to="/resume#top" icon={<span className="mb-1 flex items-center"><CgFileDocument /></span>} text="Resume" />
+            <NavItem to="/blog#top" icon={<span className="mb-1 flex items-center"><ImBlog /></span>} text="Blogs" />
+            <HashLink 
+              smooth
+              to="/contact#top" 
               className="bg-[#c770f0] hover:bg-[#00e5ff] text-white font-bold py-2 px-6 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(199,112,240,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)]"
             >
               Contact Me
-            </Link>
+            </HashLink>
           </div>
         </div>
       </div>
@@ -70,18 +72,19 @@ export default function Navbar() {
       {expand && (
         <div className="md:hidden bg-[#1b1a2ea9] backdrop-blur-md absolute w-full">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
-            <MobileNavItem to="/" icon={<AiOutlineHome />} text="Home" onClick={() => updateExpanded(false)} />
-            <MobileNavItem to="/about" icon={<AiOutlineUser />} text="About" onClick={() => updateExpanded(false)} />
-            <MobileNavItem to="/projects" icon={<AiOutlineFundProjectionScreen />} text="Projects" onClick={() => updateExpanded(false)} />
-            <MobileNavItem to="/resume" icon={<CgFileDocument />} text="Resume" onClick={() => updateExpanded(false)} />
-            <MobileNavItem to="/blog" icon={<ImBlog />} text="Blogs" onClick={() => updateExpanded(false)} />
-            <Link 
-              to="/contact" 
+            <MobileNavItem to="/#top" icon={<AiOutlineHome />} text="Home" onClick={() => updateExpanded(false)} />
+            <MobileNavItem to="/about#top" icon={<AiOutlineUser />} text="About" onClick={() => updateExpanded(false)} />
+            <MobileNavItem to="/projects#top" icon={<AiOutlineFundProjectionScreen />} text="Projects" onClick={() => updateExpanded(false)} />
+            <MobileNavItem to="/resume#top" icon={<CgFileDocument />} text="Resume" onClick={() => updateExpanded(false)} />
+            <MobileNavItem to="/blog#top" icon={<ImBlog />} text="Blogs" onClick={() => updateExpanded(false)} />
+            <HashLink 
+              smooth
+              to="/contact#top" 
               onClick={() => updateExpanded(false)}
               className="mt-4 bg-[#c770f0] hover:bg-[#00e5ff] text-white font-bold py-2 px-8 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(199,112,240,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)]"
             >
               Contact Me
-            </Link>
+            </HashLink>
           </div>
         </div>
       )}
@@ -91,23 +94,25 @@ export default function Navbar() {
 
 function NavItem({ to, icon, text }: { to: string; icon: ReactNode; text: string }) {
   return (
-    <Link
+    <HashLink
+      smooth
       to={to}
       className="text-white hover:text-[#00e5ff] flex items-center gap-1.5 px-4 py-2 rounded-full text-lg font-medium transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]"
     >
       {icon} {text}
-    </Link>
+    </HashLink>
   );
 }
 
 function MobileNavItem({ to, icon, text, onClick }: { to: string; icon: ReactNode; text: string; onClick: () => void }) {
   return (
-    <Link
+    <HashLink
+      smooth
       to={to}
       onClick={onClick}
       className="text-white hover:text-[#00e5ff] flex items-center gap-2 px-6 py-3 rounded-full text-base font-medium transition-all duration-300 hover:bg-white/10 w-full justify-center"
     >
       {icon} {text}
-    </Link>
+    </HashLink>
   );
 }

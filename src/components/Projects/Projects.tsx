@@ -1,6 +1,9 @@
 import Particle from "../Particle";
 import ProjectCard from "./ProjectCards";
 import { motion } from "motion/react";
+import { Marquee } from "../ui/marquee";
+import { FaReact } from "react-icons/fa";
+import { SiNextdotjs, SiTailwindcss, SiTypescript, SiSupabase, SiFirebase, SiJavascript, SiNodedotjs } from "react-icons/si";
 
 // Real images for projects from user's github
 const forzchainImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/forzchain.jpg";
@@ -40,9 +43,38 @@ export default function Projects() {
           <h1 className="text-4xl font-bold text-white mb-4">
             My Recent <strong className="text-gradient">Works</strong>
           </h1>
-          <p className="text-white text-lg">
+          <p className="text-white text-lg mb-10">
             Here are a few projects I've worked on recently.
           </p>
+
+          <div className="flex items-center justify-center w-full mt-8 max-w-4xl mx-auto">
+            <Marquee pauseOnHover={true} className="py-4">
+              <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-[#00e5ff] transition-colors">
+                <span className="text-[#00e5ff] flex items-center"><FaReact /></span> <span>React</span>
+              </div>
+              <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-white transition-colors">
+                <span className="text-white flex items-center"><SiNextdotjs /></span> <span>Next.js</span>
+              </div>
+              <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-[#38bdf8] transition-colors">
+                <span className="text-[#38bdf8] flex items-center"><SiTailwindcss /></span> <span>Tailwind</span>
+              </div>
+              <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-[#3178c6] transition-colors">
+                <span className="text-[#3178c6] flex items-center"><SiTypescript /></span> <span>TypeScript</span>
+              </div>
+              <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-[#f7df1e] transition-colors">
+                <span className="text-[#f7df1e] flex items-center"><SiJavascript /></span> <span>JavaScript</span>
+              </div>
+              <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-[#339939] transition-colors">
+                <span className="text-[#339939] flex items-center"><SiNodedotjs /></span> <span>Node.js</span>
+              </div>
+              <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-[#3fcf8e] transition-colors">
+                <span className="text-[#3fcf8e] flex items-center"><SiSupabase /></span> <span>Supabase</span>
+              </div>
+              <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-[#ffca28] transition-colors">
+                <span className="text-[#ffca28] flex items-center"><SiFirebase /></span> <span>Firebase</span>
+              </div>
+            </Marquee>
+          </div>
         </motion.div>
 
         <motion.div 
