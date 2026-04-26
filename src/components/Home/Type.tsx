@@ -8,6 +8,7 @@ export default function Type() {
           strings: [
             "Frontend Engineer",
             "React Developer",
+            "Framer Motion Developer",
             "Performance-First Engineer",
           ],
           autoStart: true,

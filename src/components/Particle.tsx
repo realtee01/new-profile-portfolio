@@ -52,7 +52,7 @@ export default function Particle() {
         },
         interactivity: {
           events: {
-            onclick: {
+            onClick: {
               enable: true,
               mode: "push",
             },
@@ -64,7 +64,7 @@ export default function Particle() {
           },
         },
         retina_detect: true,
-      }}
+      } as any}
     />
   );
 }

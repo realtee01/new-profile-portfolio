@@ -1,6 +1,6 @@
 import Particle from "../Particle";
 import ProjectCard from "./ProjectCards";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 import { Marquee } from "../ui/marquee";
 import { FaReact } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss, SiTypescript, SiSupabase, SiFirebase, SiJavascript, SiNodedotjs } from "react-icons/si";
@@ -14,9 +14,10 @@ const nextcleanImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/m
 const heritageKitchenImg = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 const trendyTransitImg = "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 const relayPropertiesImg = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1073&auto=format&fit=crop";
+const nexus3Img = "https://plus.unsplash.com/premium_photo-1733342554594-102b8e2d0623?q=80&w=1131&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 export default function Projects() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -24,7 +25,7 @@ export default function Projects() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
@@ -168,6 +169,16 @@ export default function Projects() {
               description="A refined real estate platform designed for seamless property discovery and management, featuring an intuitive interface and responsive design elements."
               ghLink="https://github.com/realtee01"
               demoLink="https://relay-properties.vercel.app/"
+            />
+          </motion.div>
+          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
+            <ProjectCard
+              imgPath={nexus3Img}
+              isBlog={false}
+              title="Nexus3 Web3"
+              description="A cutting-edge Web3 chatting platform and animation website. It combines seamless real-time communication with immersive animations and decentralized features for a next-gen digital experience."
+              ghLink="https://github.com/realtee01"
+              demoLink="https://nexus3-bay.vercel.app/"
             />
           </motion.div>
         </motion.div>
