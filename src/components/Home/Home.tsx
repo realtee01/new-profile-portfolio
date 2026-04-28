@@ -24,16 +24,16 @@ export default function Home() {
               className="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left"
             >
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: [0.95, 1.05, 0.95] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-sm font-medium mb-6 backdrop-blur-sm"
               >
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00e5ff] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00e5ff]"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00e5ff] opacity-75 duration-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00e5ff] animate-[pulse_1s_ease-in-out_infinite]"></span>
                 </span>
-                Available for new opportunities
+                Available
               </motion.div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00e5ff] mb-8 sm:mb-12 tracking-tight leading-tight">
