@@ -1,0 +1,154 @@
+import { motion, AnimatePresence } from "motion/react";
+import { useInView } from "motion/react";
+import { useRef, useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import Particle from "../Particle";
+
+const testimonials = [
+  { 
+    name: "Damilola 'D-Beatz' Adeyemi", 
+    role: "Music Producer", 
+    text: "Tobiloba's ability to translate the energy of music into a digital interface is unmatched. He built my producer portfolio with a sleek, dark aesthetic that perfectly represents my sound. The performance is top-notch.", 
+    company: "Echo Chamber Studios", 
+    image: "https://images.unsplash.com/photo-1520156555841-f0b5d98e7271?q=80&w=256&auto=format&fit=crop" 
+  },
+  { 
+    name: "Olamide Bakare", 
+    role: "Founder & Creative Director", 
+    text: "As a fashion brand, aesthetics are everything. Tobiloba understood our 'Luxe Thread' vision immediately. He delivered a high-end e-commerce experience that feels as premium as our clothing line.", 
+    company: "Luxe Thread", 
+    image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=256&auto=format&fit=crop" 
+  },
+  { 
+    name: "Michael Chen", 
+    role: "CEO", 
+    text: "Collaborating with Tobiloba was seamless from start to finish. He quickly grasped our goals and delivered results that exceeded expectations. His creativity and technical skill made everything smoother. Tobiloba truly made our life easier.", 
+    company: "EMW3", 
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&auto=format&fit=crop" 
+  },
+  { 
+    name: "Axia Africa Academy", 
+    role: "Instructional Team", 
+    text: "Tobiloba consistently demonstrated a deep understanding of complex frontend concepts. His final project was a masterclass in React performance and responsive CSS. Truly one of our top-tier graduates.", 
+    company: "Academy Review", 
+    image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?q=80&w=256&auto=format&fit=crop" 
+  },
+];
+
+const commendations = [
+  { quote: "His attention to design detail is what you'd expect from a Lead Engineer.", author: "Frontend Lead @ PeakEcho" },
+  { quote: "The CineScope search engine he built is a benchmark for our students.", author: "Senior Facilitator, UNILAG" },
+  { quote: "Cleanest Git workflow and documentation I've seen from a developer this year.", author: "Open Source Contributor" },
+];
+
+export default function Testimonials() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % testimonials.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
+  const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
+  return (
+    <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
+      <Particle />
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="mb-16 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-4xl text-white font-bold mb-4"
+          >
+            Professional <span className="text-gradient">Endorsements</span>
+          </motion.h1>
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="bg-gradient-to-r from-transparent via-[#00e5ff] to-transparent mx-auto w-32 h-1"
+          ></motion.div>
+        </div>
+
+        <div ref={ref} className="relative mb-24">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, x: 50, filter: 'blur(10px)' }}
+              animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, x: -50, filter: 'blur(10px)' }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-[#1b1a2ea9] backdrop-blur-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5),0_0_40px_rgba(199,112,240,0.1)] border border-white/10 p-10 md:p-20 rounded-[2.5rem] relative"
+            >
+              <Quote className="mb-10 text-[#00e5ff]/50" size={60} />
+              
+              <p className="mb-14 text-white text-xl md:text-3xl font-light italic leading-relaxed tracking-wide">
+                "{testimonials[current].text}"
+              </p>
+              
+              <div className="flex flex-col md:flex-row items-center gap-8 border-t border-white/5 pt-10">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#c770f0] to-[#00e5ff] rounded-full blur-md opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
+                  <img 
+                    src={testimonials[current].image} 
+                    alt={testimonials[current].name}
+                    className="relative border-4 border-[#1b1a2e] rounded-full w-24 h-24 object-cover z-10 transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="text-center md:text-left">
+                  <p className="font-bold text-white text-2xl tracking-wider">{testimonials[current].name}</p>
+                  <p className="text-gray-400 text-sm mt-1 uppercase tracking-[0.2em]">{testimonials[current].role}</p>
+                  <div className="inline-block mt-3 bg-white/5 px-4 py-1 rounded-full border border-white/10">
+                    <p className="text-[#00e5ff] text-xs font-bold uppercase tracking-widest">{testimonials[current].company}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="flex justify-center items-center gap-8 mt-12">
+            <button 
+              onClick={prev} 
+              className="bg-white/5 hover:bg-white/10 border border-white/10 text-white p-5 rounded-full transition-all duration-300 hover:scale-110"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button 
+              onClick={next} 
+              className="bg-white/5 hover:bg-white/10 border border-white/10 text-white p-5 rounded-full transition-all duration-300 hover:scale-110"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+        </div>
+
+        {/* Short Commendations Masonry-like Grid */}
+        <div className="mt-32">
+          <h2 className="text-2xl text-white font-bold mb-12 text-center tracking-widest uppercase">Verified <span className="text-[#c770f0]">Referrals</span></h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {commendations.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:border-[#00e5ff]/50 transition-colors duration-500"
+              >
+                <p className="text-gray-300 italic mb-6 leading-relaxed">"{item.quote}"</p>
+                <p className="text-[#00e5ff] text-xs font-bold tracking-widest uppercase">— {item.author}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

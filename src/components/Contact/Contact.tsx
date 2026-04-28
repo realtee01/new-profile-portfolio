@@ -1,7 +1,58 @@
+import React, { useState } from "react";
 import Particle from "../Particle";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear error when user types
+    if (errors[name as keyof typeof errors]) {
+      setErrors(prev => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const validate = () => {
+    let isValid = true;
+    const newErrors = { name: "", email: "", message: "" };
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+      isValid = false;
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+      isValid = false;
+    }
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!validate()) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
       <Particle />
@@ -26,7 +77,12 @@ export default function Contact() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="bg-white/5 backdrop-blur-md border border-[rgba(200,137,230,0.3)] rounded-2xl p-8 md:p-12 shadow-2xl"
         >
-          <form action="https://formspree.io/f/xaqlbalq" method="POST" className="space-y-6">
+          <form 
+            action="https://formspree.io/f/xaqlbalq" 
+            method="POST" 
+            className="space-y-6"
+            onSubmit={handleSubmit}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
@@ -35,9 +91,11 @@ export default function Contact() {
                   id="name"
                   type="text" 
                   placeholder="Your Name" 
-                  required 
-                  className="w-full bg-[#0c0513]/50 border border-[rgba(200,137,230,0.2)] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors" 
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={`w-full bg-[#0c0513]/50 border ${errors.name ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
                 />
+                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
@@ -46,9 +104,11 @@ export default function Contact() {
                   id="email"
                   type="email" 
                   placeholder="Your Email" 
-                  required 
-                  className="w-full bg-[#0c0513]/50 border border-[rgba(200,137,230,0.2)] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors" 
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={`w-full bg-[#0c0513]/50 border ${errors.email ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
                 />
+                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
               </div>
             </div>
             <div>
@@ -58,9 +118,11 @@ export default function Contact() {
                 id="message"
                 placeholder="How can I help you?" 
                 rows={5} 
-                required 
-                className="w-full bg-[#0c0513]/50 border border-[rgba(200,137,230,0.2)] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors resize-none"
+                value={formData.message}
+                onChange={handleChange}
+                className={`w-full bg-[#0c0513]/50 border ${errors.message ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors resize-none`}
               ></textarea>
+              {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
             </div>
             <button 
               type="submit" 

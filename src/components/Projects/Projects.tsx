@@ -8,13 +8,12 @@ import { SiNextdotjs, SiTailwindcss, SiTypescript, SiSupabase, SiFirebase, SiJav
 // Real images for projects from user's github
 const forzchainImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/forzchain.jpg";
 const cinescopeImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/cinescope-thumb.jpg";
-const jobBoardImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/job-board-thumb.jpg";
 const calcImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/calc.jpg";
 const nextcleanImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/Nextclean.jpg";
 const heritageKitchenImg = "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 const trendyTransitImg = "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 const relayPropertiesImg = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1073&auto=format&fit=crop";
-const nexus3Img = "https://plus.unsplash.com/premium_photo-1733342554594-102b8e2d0623?q=80&w=1131&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+const nexchat3Img = "https://plus.unsplash.com/premium_photo-1733342554594-102b8e2d0623?q=80&w=1131&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 export default function Projects() {
   const containerVariants: Variants = {
@@ -109,17 +108,6 @@ export default function Projects() {
 
           <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
             <ProjectCard
-              imgPath={jobBoardImg}
-              isBlog={false}
-              title="Job Listing Board"
-              description="A functional board for finding tech roles with dynamic filtering and clean layout. Built with React, Tailwind, and JS."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://job-listings-board-7i6s.vercel.app"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
               imgPath={calcImg}
               isBlog={false}
               title="CGPA Calculator"
@@ -173,9 +161,9 @@ export default function Projects() {
           </motion.div>
           <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
             <ProjectCard
-              imgPath={nexus3Img}
+              imgPath={nexchat3Img}
               isBlog={false}
-              title="Nexus3 Web3"
+              title="Nexchat3"
               description="A cutting-edge Web3 chatting platform and animation website. It combines seamless real-time communication with immersive animations and decentralized features for a next-gen digital experience."
               ghLink="https://github.com/realtee01"
               demoLink="https://nexus3-bay.vercel.app/"

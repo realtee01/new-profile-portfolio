@@ -6,7 +6,10 @@ import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
 import Resume from "./components/Resume/Resume";
 import Blog from "./components/Blog/Blog";
+import BlogPost from "./components/Blog/BlogPost";
 import Contact from "./components/Contact/Contact";
+import Experience from "./components/Experience/Experience";
+import Testimonials from "./components/Testimonials/Testimonials";
 import Footer from "./components/Footer";
 import Preloader from "./components/Preloader";
 import ScrollToTop from "./components/ScrollToTop";
@@ -17,7 +20,7 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       updateLoad(false);
-    }, 2500);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -35,7 +38,10 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/testimonials" element={<Testimonials />} />
             <Route path="*" element={<Navigate to="/"/>} />
           </Routes>
           <Footer />
