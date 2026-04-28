@@ -202,3 +202,72 @@ html {
   60% { transform: rotate(0.0deg) }
   100% { transform: rotate(0.0deg) }
 }
+
+@keyframes text-flash-1 {
+  0%, 30%, 35%, 100% {
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+  }
+  31%, 34% {
+    -webkit-text-fill-color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes text-flash-2 {
+  0%, 60%, 65%, 100% {
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+  }
+  61%, 64% {
+    -webkit-text-fill-color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes text-flash-3 {
+  0%, 90%, 95%, 100% {
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+  }
+  91%, 94% {
+    -webkit-text-fill-color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.animate-text-flash-1 {
+  animation: text-flash-1 12s infinite;
+}
+
+.animate-text-flash-2 {
+  animation: text-flash-2 12s infinite;
+}
+
+.animate-text-flash-3 {
+  animation: text-flash-3 12s infinite;
+}
+
+.typewriter-gradient-flash {
+  background: linear-gradient(to right, #c770f0, #00e5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: typewriter-flash 10s infinite;
+}
+
+@keyframes typewriter-flash {
+  0%, 45%, 55%, 100% {
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+  }
+  48%, 52% {
+    -webkit-text-fill-color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.animate-updown-hue {
+  animation: updown-hue 3s ease-in-out infinite;
+}

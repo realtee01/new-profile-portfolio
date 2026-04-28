@@ -16,8 +16,8 @@ export default function Type() {
           ],
           autoStart: true,
           loop: true,
-          deleteSpeed: 30,
-          delay: 45,
+          deleteSpeed: 20,
+          delay: 80,
         }}
       />
     </div>

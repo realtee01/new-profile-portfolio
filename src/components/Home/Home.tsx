@@ -10,8 +10,8 @@ export default function Home() {
       <div className="relative pt-24 pb-8 md:pt-40 md:pb-20 min-h-screen flex items-center" id="home">
         
         {/* Advanced Background Gradients */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#c770f0]/20 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#00e5ff]/20 rounded-full blur-[120px] animate-pulse delay-700"></div>
+        <div className="absolute top-1/4 -left-20 w-64 h-64 md:w-96 md:h-96 bg-[#c770f0]/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-1/4 -right-20 w-64 h-64 md:w-96 md:h-96 bg-[#00e5ff]/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse delay-700"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-[-5vh]">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-16 xl:gap-24 w-full">
@@ -36,17 +36,25 @@ export default function Home() {
                 Available for new opportunities
               </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-12 tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00e5ff] mb-8 sm:mb-12 tracking-tight leading-tight">
                 Hi There! <span className="wave" role="img" aria-labelledby="wave">👋🏻</span>
               </h1>
 
-              <h1 className="text-[2.5rem] leading-[1.2] sm:text-5xl md:text-6xl xl:text-7xl font-extrabold text-white mb-8 tracking-tighter break-words">
-                <span className="block mb-4 text-[#c770f0] font-medium text-3xl sm:text-4xl md:text-5xl">I'm</span>
-                <span className="text-gradient block">TOBILOBA</span>
-                <span className="text-gradient block">AKALA</span>
+              <h1 className="text-4xl leading-[1.1] sm:leading-[1.2] sm:text-5xl md:text-6xl xl:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter break-words">
+                <span className="text-gradient animate-text-flash-1 block mb-6 sm:mb-10 font-medium text-2xl sm:text-4xl md:text-5xl">
+                  I'm
+                </span>
+                
+                <span className="text-gradient animate-text-flash-2 block mb-3 sm:mb-5">
+                  TOBILOBA
+                </span>
+                
+                <span className="text-gradient animate-text-flash-3 block">
+                  AKALA
+                </span>
               </h1>
 
-              <div className="text-xl sm:text-3xl md:text-4xl font-mono font-medium text-[#00e5ff] min-h-[60px] sm:min-h-[80px] md:min-h-[5rem] w-full flex justify-center lg:justify-start">
+              <div className="text-lg sm:text-3xl md:text-4xl font-mono font-medium text-[#00e5ff] min-h-[50px] sm:min-h-[80px] md:min-h-[5rem] w-full flex justify-center lg:justify-start mt-4 sm:mt-8 mb-10 md:mb-8">
                 <Type />
               </div>
 
@@ -63,7 +71,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
-                className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6 mt-4"
+                className="flex flex-wrap justify-center lg:justify-start gap-5 md:gap-8 mt-6 md:mt-10"
               >
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <HashLink 
@@ -71,7 +79,7 @@ export default function Home() {
                     to="/projects#top" 
                     className="inline-block bg-gradient-to-r from-[#c770f0] to-[#a24ed3] text-white font-bold py-3 md:py-3.5 px-8 rounded-2xl shadow-[0_10px_20px_-5px_rgba(199,112,240,0.4)]"
                   >
-                    View My Work
+                    View My Works
                   </HashLink>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

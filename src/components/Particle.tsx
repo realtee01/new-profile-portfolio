@@ -7,7 +7,9 @@ export default function Particle() {
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
-      await loadFull(engine);
+      // Import slim version for better performance
+      const { loadSlim } = await import("@tsparticles/slim");
+      await loadSlim(engine);
     }).then(() => {
       setInit(true);
     });
@@ -23,30 +25,33 @@ export default function Particle() {
       className="fixed inset-0 w-full h-full z-[-1]"
       options={{
         fullScreen: { enable: false },
+        fpsLimit: 60,
         particles: {
           number: {
-            value: 160,
+            value: window.innerWidth < 768 ? 100 : 250, // More particles for "plenty" stars
             density: {
               enable: true,
-              value_area: 1500,
+              value_area: 1200,
             },
           },
-          line_linked: {
+          links: {
             enable: false,
             opacity: 0.03,
           },
           move: {
-            direction: "right",
-            speed: 0.05,
+            enable: true,
+            direction: "none",
+            speed: 0.1, // Slower for stars
           },
           size: {
-            value: 1,
+            value: { min: 0.5, max: 2 },
           },
           opacity: {
+            value: { min: 0.1, max: 0.8 },
             anim: {
               enable: true,
               speed: 1,
-              opacity_min: 0.05,
+              opacity_min: 0.1,
             },
           },
         },
@@ -59,11 +64,11 @@ export default function Particle() {
           },
           modes: {
             push: {
-              particles_nb: 1,
+              quantity: 1,
             },
           },
         },
-        retina_detect: true,
+        detectRetina: true,
       } as any}
     />
   );
