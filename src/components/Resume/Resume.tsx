@@ -1,10 +1,8 @@
-import Particle from "../Particle";
 import { AiOutlineDownload } from "react-icons/ai";
 
 export default function Resume() {
   return (
     <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
-      <Particle />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
         
         <div className="mb-12 text-center">

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Particle from "../Particle";
 import { motion } from "motion/react";
 
 export default function Contact() {
@@ -55,7 +54,6 @@ export default function Contact() {
 
   return (
     <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
-      <Particle />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

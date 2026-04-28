@@ -1,4 +1,3 @@
-import Particle from "../Particle";
 import ProjectCard from "./ProjectCards";
 import { motion, Variants } from "motion/react";
 import { Marquee } from "../ui/marquee";
@@ -31,7 +30,6 @@ export default function Projects() {
 
   return (
     <div className="relative pt-32 pb-16 min-h-screen">
-      <Particle />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}

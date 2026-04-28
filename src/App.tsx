@@ -13,6 +13,7 @@ import Testimonials from "./components/Testimonials/Testimonials";
 import Footer from "./components/Footer";
 import Preloader from "./components/Preloader";
 import ScrollToTop from "./components/ScrollToTop";
+import Particle from "./components/Particle";
 
 export default function App() {
   const [load, updateLoad] = useState(true);
@@ -29,6 +30,7 @@ export default function App() {
     <Router>
       <Preloader load={load} />
       <div className="App" id="top">
+        <Particle />
         <div id={load ? "no-scroll" : "scroll"}>
           <Navbar />
           <ScrollToTop />

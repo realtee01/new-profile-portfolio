@@ -7,13 +7,17 @@ export default function Type() {
         options={{
           strings: [
             "Frontend Engineer",
+            "Software Engineer",
+            "Building Fast Web Experiences",
+            "I Build Modern Websites That Convert",
             "React Developer",
-            "Framer Motion Developer",
-            "Performance-First Engineer",
+            "Design to Code Expert",
+            "Framer Developer",
           ],
           autoStart: true,
           loop: true,
-          deleteSpeed: 50,
+          deleteSpeed: 30,
+          delay: 45,
         }}
       />
     </div>

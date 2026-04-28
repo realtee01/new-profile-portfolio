@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import Particle from "../Particle";
 
 const testimonials = [
   { 
@@ -58,7 +57,6 @@ export default function Testimonials() {
 
   return (
     <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
-      <Particle />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="mb-16 text-center">
           <motion.h1

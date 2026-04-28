@@ -1,11 +1,9 @@
-import Particle from "../Particle";
 import Techstack from "./Techstack";
 import Toolstack from "./Toolstack";
 
 export default function About() {
   return (
     <div className="relative pt-32 pb-16 min-h-screen">
-      <Particle />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12 mb-24">
           <div className="md:w-1/2 text-white text-lg">

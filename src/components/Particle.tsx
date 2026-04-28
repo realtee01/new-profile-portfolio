@@ -20,7 +20,7 @@ export default function Particle() {
   return (
     <Particles
       id="tsparticles"
-      className="absolute inset-0 w-full h-full z-0"
+      className="fixed inset-0 w-full h-full z-[-1]"
       options={{
         fullScreen: { enable: false },
         particles: {
