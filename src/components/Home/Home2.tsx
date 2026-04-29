@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -5,6 +6,8 @@ import Tilt from "react-parallax-tilt";
 import { HashLink } from "react-router-hash-link";
 
 export default function Home2() {
+  const [revealed, setRevealed] = useState(false);
+
   return (
     <div className="py-16 relative z-10" id="about">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,6 +100,15 @@ export default function Home2() {
                     <div className="w-2 h-2 rounded-full bg-green-400"></div>
                     Available
                   </span>
+                </div>
+
+                {/* Floating Card Click-to-Reveal */}
+                <div 
+                  onClick={() => setRevealed(!revealed)}
+                  className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/40 backdrop-blur-md border border-white/10 text-white/90 text-[10px] sm:text-xs px-3 py-1.5 rounded-full cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-white/30 z-30 whitespace-nowrap shadow-xl flex items-center gap-2"
+                >
+                  <div className={`w-1.5 h-1.5 rounded-full ${revealed ? 'bg-[#c770f0]' : 'bg-[#00e5ff] animate-[pulse_2s_ease-in-out_infinite]'}`}></div>
+                  {revealed ? "Web developer" : "Click me to reveal what I am"}
                 </div>
               </div>
             </Tilt>
