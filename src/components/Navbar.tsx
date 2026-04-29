@@ -49,7 +49,7 @@ export default function Navbar() {
           </motion.div>
           
           {/* Mobile menu button */}
-          <div className="xl:hidden z-[60]">
+          <div className="lg:hidden z-[60]">
             <button
               onClick={() => updateExpanded(!expand)}
               className="text-white hover:text-[#00e5ff] focus:outline-none transition-colors"
@@ -65,7 +65,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop menu */}
-          <div className="hidden xl:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center lg:space-x-1 xl:space-x-4">
             <NavItem to="/#top" icon={<Home size={18} />} text="Home" />
             <NavItem to="/about#top" icon={<User size={18} />} text="About" />
             <NavItem to="/projects#top" icon={<LayoutGrid size={18} />} text="Projects" />
@@ -80,7 +80,7 @@ export default function Navbar() {
               <HashLink 
                 smooth
                 to="/contact#top" 
-                className="bg-[#c770f0] hover:bg-[#00e5ff] text-white font-bold py-2.5 px-6 xl:px-8 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(199,112,240,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)] ml-4"
+                className="bg-[#c770f0] hover:bg-[#00e5ff] text-white font-bold py-2.5 px-4 xl:px-6 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(199,112,240,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)] lg:ml-2 xl:ml-4 text-sm xl:text-base whitespace-nowrap"
               >
                 Contact Me
               </HashLink>
@@ -99,7 +99,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] xl:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] lg:hidden"
               onClick={() => updateExpanded(false)}
             />
             
@@ -156,9 +156,9 @@ function NavItem({ to, icon, text }: { to: string; icon: ReactNode; text: string
       <HashLink
         smooth
         to={to}
-        className="text-white hover:text-[#00e5ff] flex items-center gap-1.5 px-3 py-2 rounded-full text-base lg:text-lg font-medium transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(0,229,255,0.1)] group"
+        className="text-white hover:text-[#00e5ff] flex items-center gap-1.5 px-2 xl:px-3 py-2 rounded-full text-sm xl:text-base font-medium transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(0,229,255,0.1)] group whitespace-nowrap"
       >
-        <span className="group-hover:rotate-12 transition-transform duration-300">{icon}</span>
+        <span className="group-hover:rotate-12 transition-transform duration-300 scale-90 xl:scale-100">{icon}</span>
         {text}
       </HashLink>
     </motion.div>

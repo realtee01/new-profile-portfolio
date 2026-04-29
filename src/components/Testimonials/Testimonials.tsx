@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, Play, Pause } from "lucide-react";
 
 const testimonials = [
   { 
@@ -9,7 +9,7 @@ const testimonials = [
     role: "Music Producer", 
     text: "Tobiloba's ability to translate the energy of music into a digital interface is unmatched. He built my producer portfolio with a sleek, dark aesthetic that perfectly represents my sound. The performance is top-notch.", 
     company: "Echo Chamber Studios", 
-    image: "https://images.unsplash.com/photo-1520156555841-f0b5d98e7271?q=80&w=256&auto=format&fit=crop" 
+    image: "https://images.unsplash.com/photo-1606459431839-90b942dc3754?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
   },
   { 
     name: "Olamide Bakare", 
@@ -19,38 +19,42 @@ const testimonials = [
     image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=256&auto=format&fit=crop" 
   },
   { 
-    name: "Michael Chen", 
+    name: "Micheal Cheng", 
     role: "CEO", 
     text: "Collaborating with Tobiloba was seamless from start to finish. He quickly grasped our goals and delivered results that exceeded expectations. His creativity and technical skill made everything smoother. Tobiloba truly made our life easier.", 
-    company: "EMW3", 
+    company: "Relay group of company", 
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&auto=format&fit=crop" 
   },
   { 
     name: "Axia Africa Academy", 
-    role: "Instructional Team", 
+    role: "Lead tutor", 
     text: "Tobiloba consistently demonstrated a deep understanding of complex frontend concepts. His final project was a masterclass in React performance and responsive CSS. Truly one of our top-tier graduates.", 
     company: "Academy Review", 
-    image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?q=80&w=256&auto=format&fit=crop" 
+    image: "https://images.unsplash.com/photo-1566165335512-bb5ba58365b4?q=80&w=410&auto=format&fit=crop&ixlib=rb-4.1.0" 
   },
 ];
 
 const commendations = [
   { quote: "His attention to design detail is what you'd expect from a Lead Engineer.", author: "Frontend Lead @ PeakEcho" },
-  { quote: "The CineScope search engine he built is a benchmark for our students.", author: "Senior Facilitator, UNILAG" },
-  { quote: "Cleanest Git workflow and documentation I've seen from a developer this year.", author: "Open Source Contributor" },
+  { quote: "The CineScope search engine he built is a benchmark for our students.", author: "Senior Facilitator, Unique Groups" },
+  { quote: "one of the cleanest Git workflow and documentation I've seen from a developer this year.", author: "Lead Tutor,Axia" },
 ];
 
 export default function Testimonials() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [current, setCurrent] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
+    let interval: any;
+    if (isAutoPlay) {
+      interval = setInterval(() => {
+        setCurrent((prev) => (prev + 1) % testimonials.length);
+      }, 6000);
+    }
     return () => clearInterval(interval);
-  }, []);
+  }, [isAutoPlay]);
 
   const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
   const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
@@ -71,8 +75,30 @@ export default function Testimonials() {
             initial={{ opacity: 0, scaleX: 0 }}
             animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="bg-gradient-to-r from-transparent via-[#00e5ff] to-transparent mx-auto w-32 h-1"
+            className="bg-gradient-to-r from-transparent via-[#00e5ff] to-transparent mx-auto w-32 h-1 mb-8"
           ></motion.div>
+
+          {/* Slideshow Control */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4 }}
+            className="flex justify-center"
+          >
+            <button
+              onClick={() => setIsAutoPlay(!isAutoPlay)}
+              className={`flex items-center gap-2 px-6 py-2 rounded-full border transition-all duration-300 ${
+                isAutoPlay 
+                  ? "bg-[#00e5ff] text-[#1b1a2e] border-[#00e5ff] shadow-[0_0_20px_rgba(0,229,255,0.4)]" 
+                  : "bg-white/5 text-white border-white/10 hover:bg-white/10"
+              }`}
+            >
+              {isAutoPlay ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}
+              <span className="text-xs font-bold uppercase tracking-widest">
+                {isAutoPlay ? "Pause Slideshow" : "Start Slideshow"}
+              </span>
+            </button>
+          </motion.div>
         </div>
 
         <div ref={ref} className="relative mb-24">
@@ -144,6 +170,9 @@ export default function Testimonials() {
                 <p className="text-[#00e5ff] text-xs font-bold tracking-widest uppercase">— {item.author}</p>
               </motion.div>
             ))}
+          </div>
+          <div className="text-center mt-12">
+            <p className="text-white text-lg italic tracking-wider">and many more.....</p>
           </div>
         </div>
       </div>

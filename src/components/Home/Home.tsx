@@ -175,6 +175,7 @@ export default function Home() {
                   src="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/src/Assets/home-main.svg"
                   alt="Developer Illustration"
                   className="w-full object-contain animate-[updown-hue_3s_ease-in-out_infinite]"
+                  referrerPolicy="no-referrer"
                 />
               </div>
             </motion.div>

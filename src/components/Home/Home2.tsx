@@ -65,12 +65,18 @@ export default function Home2() {
             </div>
           </div>
           <div className="md:w-1/3 flex justify-center">
-            <Tilt>
-              <img 
-                src="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/src/Assets/avatar.svg" 
-                className="w-64 h-64 object-contain rounded-full" 
-                alt="avatar" 
-              />
+            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.05} transitionSpeed={2500}>
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#00e5ff] to-[#c770f0] rounded-2xl blur opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.5)]">
+                  <img 
+                    src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.1.0"
+                    alt="Developer Headshot"
+                    className="w-72 h-80 object-cover transform transition duration-700 hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
             </Tilt>
           </div>
         </div>
