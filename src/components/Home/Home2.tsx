@@ -81,23 +81,23 @@ export default function Home2() {
                 </div>
                 
                 {/* Floating Cards on Hover */}
-                <div className="absolute -left-10 top-16 bg-[#1b1a2ea9] backdrop-blur-md px-4 py-2 rounded-xl border border-[#00e5ff]/30 shadow-[0_0_15px_rgba(0,229,255,0.2)] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 translate-y-4 group-hover:translate-y-0 hidden sm:block z-20 pointer-events-none">
-                  <span className="text-white text-sm font-semibold flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[#00e5ff] animate-pulse"></div>
+                <div className="absolute -left-2 sm:-left-10 top-12 sm:top-16 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#00e5ff]/30 shadow-[0_0_15px_rgba(0,229,255,0.2)] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
+                  <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#00e5ff] animate-pulse"></div>
                     Frontend Dev
                   </span>
                 </div>
                 
-                <div className="absolute -right-8 bottom-24 bg-[#1b1a2ea9] backdrop-blur-md px-4 py-2 rounded-xl border border-[#c770f0]/30 shadow-[0_0_15px_rgba(199,112,240,0.2)] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 translate-y-4 group-hover:translate-y-0 hidden sm:block z-20 pointer-events-none">
-                  <span className="text-white text-sm font-semibold flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[#c770f0] animate-[pulse_2s_ease-in-out_infinite]"></div>
+                <div className="absolute -right-2 sm:-right-8 bottom-20 sm:bottom-24 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#c770f0]/30 shadow-[0_0_15px_rgba(199,112,240,0.2)] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
+                  <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#c770f0] animate-[pulse_2s_ease-in-out_infinite]"></div>
                     Creative Engine
                   </span>
                 </div>
 
-                <div className="absolute left-[10%] -bottom-4 bg-[#1b1a2ea9] backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300 translate-y-4 group-hover:translate-y-0 hidden sm:block z-20 pointer-events-none">
-                  <span className="text-white text-sm font-semibold flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                <div className="absolute left-[5%] sm:left-[10%] -bottom-2 sm:-bottom-4 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-white/20 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
+                  <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-400"></div>
                     Available
                   </span>
                 </div>

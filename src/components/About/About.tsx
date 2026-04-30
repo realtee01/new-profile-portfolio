@@ -1,5 +1,6 @@
 import Techstack from "./Techstack";
 import Toolstack from "./Toolstack";
+import { FaSpotify } from "react-icons/fa";
 
 export default function About() {
   return (
@@ -21,7 +22,7 @@ export default function About() {
               <br />
               Apart from coding, some other activities that I love to do!
             </p>
-            <ul className="list-none space-y-2 mb-6">
+            <ul className="list-none space-y-2 mb-8">
               <li className="flex items-center gap-2">
                 <span className="text-[#c770f0]">👉</span> Playing Games
               </li>
@@ -31,7 +32,35 @@ export default function About() {
               <li className="flex items-center gap-2">
                 <span className="text-[#c770f0]">👉</span> Travelling
               </li>
+              <li className="flex items-center gap-2">
+                <span className="text-[#c770f0]">👉</span> listening and vibing to music
+            
+            </li>
             </ul>
+
+            <div className="mb-8">
+              <a 
+                href="https://open.spotify.com/playlist/0Ymw2v0SbK6btauZEL9lRz?si=a1dfa08a37954282" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="flex items-center gap-4 bg-[#1b1a2ea9] border border-[#1DB954]/30 hover:border-[#1DB954]/80 p-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(29,185,84,0.15)] hover:shadow-[0_0_20px_rgba(29,185,84,0.3)] group max-w-sm backdrop-blur-sm"
+              >
+                <div className="relative flex-shrink-0">
+                  <div className="absolute inset-0 bg-[#1DB954] blur-md opacity-20 group-hover:opacity-40 transition-opacity rounded-full"></div>
+                  <FaSpotify className="relative text-[#1DB954] text-5xl group-hover:scale-105 transition-transform duration-300" />
+                </div>
+                <div>
+                  <h3 className="text-white font-bold group-hover:text-[#1DB954] transition-colors line-clamp-1">Coding & Focus Mode</h3>
+                  <p className="text-gray-400 text-sm mt-0.5 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#1DB954] animate-[pulse_2s_ease-in-out_infinite]"></span>
+                    My favorite playlist
+                  </p>
+                </div>
+                <div className="ml-auto text-gray-500 group-hover:text-white transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </div>
+              </a>
+            </div>
 
             <p className="text-[#c770f0] italic opacity-80">
               "Build. Ship. Repeat."
