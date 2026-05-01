@@ -36,7 +36,7 @@ export default function Home() {
                 Available
               </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#00e5ff] mb-8 sm:mb-12 tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 sm:mb-12 tracking-tight leading-tight">
                 Hi There! <span className="wave" role="img" aria-labelledby="wave">👋🏻</span>
               </h1>
 
