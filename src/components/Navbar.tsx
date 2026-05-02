@@ -99,7 +99,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] lg:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-lg z-[55] lg:hidden"
               onClick={() => updateExpanded(false)}
             />
             
@@ -109,7 +109,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="fixed top-0 right-0 h-screen w-4/5 max-w-sm bg-[#0f0a1ae6] backdrop-blur-xl border-l border-white/5 shadow-[-10px_0_30px_rgba(0,0,0,0.5)] z-[60] flex flex-col pt-24 px-6 pb-12 overflow-y-auto"
+              className="fixed top-0 right-0 h-screen w-4/5 max-w-sm bg-[#0f0a1a] border-l border-white/5 shadow-[-10px_0_30px_rgba(0,0,0,0.5)] z-[60] flex flex-col pt-24 px-6 pb-12 overflow-y-auto"
             >
               <button 
                 onClick={() => updateExpanded(false)}

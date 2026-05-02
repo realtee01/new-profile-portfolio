@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Tilt from "react-parallax-tilt";
 import { HashLink } from "react-router-hash-link";
+import MagneticDock from "../ui/magnetic-dock";
 
 export default function Home2() {
   const [revealed, setRevealed] = useState(false);
@@ -11,9 +12,9 @@ export default function Home2() {
   return (
     <div className="py-16 relative z-10" id="about">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-          <div className="md:w-2/3 text-white">
-            <h1 className="text-4xl font-bold mb-8 text-center md:text-left uppercase">
+        <div className="flex flex-col lg:flex-row gap-12 items-center">
+          <div className="lg:w-2/3 text-white">
+            <h1 className="text-4xl font-bold mb-8 text-center lg:text-left uppercase">
               LET ME <span className="text-gradient"> INTRODUCE </span> MYSELF
             </h1>
             <div className="text-xl leading-relaxed mb-6 space-y-6">
@@ -67,7 +68,7 @@ export default function Home2() {
               </div>
             </div>
           </div>
-          <div className="md:w-1/3 flex justify-center">
+          <div className="lg:w-1/3 flex justify-center">
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.05} transitionSpeed={2500}>
               <div className="relative group animate-[updown_2.5s_ease-in-out_infinite]">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#00e5ff] to-[#c770f0] rounded-2xl blur opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
@@ -120,38 +121,16 @@ export default function Home2() {
           <p className="text-white mb-8">
             Feel free to <span className="text-[#00e5ff]">connect </span>with me
           </p>
-          <ul className="flex justify-center space-x-6 mb-12">
-            <li>
-              <a
-                href="https://github.com/realtee01"
-                target="_blank"
-                rel="noreferrer"
-                className="home-about-social-icon"
-              >
-                <AiFillGithub />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://x.com/realtee1111101"
-                target="_blank"
-                rel="noreferrer"
-                className="home-about-social-icon"
-              >
-                <FaXTwitter />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://wa.me/2347032533869"
-                target="_blank"
-                rel="noreferrer"
-                className="home-about-social-icon"
-              >
-                <FaWhatsapp />
-              </a>
-            </li>
-          </ul>
+          <div className="mb-12">
+            <MagneticDock 
+              links={[
+                { href: "https://github.com/realtee01", icon: <AiFillGithub className="w-8 h-8" color="white" /> },
+                { href: "https://x.com/realtee1111101", icon: <FaXTwitter className="w-7 h-7" color="#00e5ff" /> },
+                { href: "https://wa.me/2347032533869", icon: <FaWhatsapp className="w-8 h-8" color="#c770f0" /> },
+                { href: "tel:+2347032533869", icon: <FaPhone className="w-7 h-7" color="#00e5ff" /> }
+              ]} 
+            />
+          </div>
           <HashLink
             smooth
             to="/contact#top"

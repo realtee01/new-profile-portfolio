@@ -6,9 +6,9 @@ export default function About() {
   return (
     <div className="relative pt-32 pb-16 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12 mb-24">
-          <div className="md:w-1/2 text-white text-lg">
-            <h1 className="text-4xl font-bold mb-8 text-center md:text-left">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-24">
+          <div className="lg:w-1/2 text-white text-lg">
+            <h1 className="text-4xl font-bold mb-8 text-center lg:text-left">
               Know Who <strong className="text-gradient">I'M</strong>
             </h1>
             <p className="text-justify leading-relaxed mb-4">
@@ -67,7 +67,7 @@ export default function About() {
             </p>
             <footer className="text-[#c770f0] mt-2">— Tobiloba</footer>
           </div>
-          <div className="md:w-1/2 flex justify-center">
+          <div className="lg:w-1/2 flex justify-center">
             <img
               src="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/src/Assets/about.png"
               alt="about"

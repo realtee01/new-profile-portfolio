@@ -36,20 +36,20 @@ export default function Home() {
                 Available
               </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 sm:mb-12 tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 sm:mb-12 tracking-tight leading-tight drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.6)]">
                 Hi There! <span className="wave" role="img" aria-labelledby="wave">👋🏻</span>
               </h1>
 
               <h1 className="text-4xl leading-[1.1] sm:leading-[1.2] sm:text-5xl md:text-6xl xl:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter break-words">
-                <span className="text-gradient animate-text-flash-1 block mb-6 sm:mb-10 font-medium text-2xl sm:text-4xl md:text-5xl">
+                <span className="text-gradient animate-text-flash-1 block mb-6 sm:mb-10 font-medium text-2xl sm:text-4xl md:text-5xl drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.8)]">
                   I'm
                 </span>
                 
-                <span className="text-gradient animate-text-flash-2 block mb-3 sm:mb-5">
+                <span className="text-gradient animate-text-flash-2 block mb-3 sm:mb-5 drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.8)]">
                   TOBILOBA
                 </span>
                 
-                <span className="text-gradient animate-text-flash-3 block">
+                <span className="text-gradient animate-text-flash-3 block drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.8)]">
                   AKALA
                 </span>
               </h1>
@@ -62,7 +62,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
-                className="text-gray-400 text-lg md:text-xl max-w-xl leading-relaxed mb-10 hidden md:block"
+                className="text-gray-400 text-lg md:text-xl max-w-xl leading-relaxed mb-10 hidden lg:block"
               >
                 Engineering high-performance, pixel-perfect digital experiences with a focus on modern aesthetics and technical excellence.
               </motion.p>

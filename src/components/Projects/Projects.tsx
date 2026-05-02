@@ -15,6 +15,45 @@ const relayPropertiesImg = "https://images.unsplash.com/photo-1560518883-ce09059
 const nexchat3Img = "https://plus.unsplash.com/premium_photo-1733342554594-102b8e2d0623?q=80&w=1131&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 import NotesCover from "./NotesCover";
+import React, { useState } from "react";
+
+const RoitechDescription = () => {
+  const [showTechStack, setShowTechStack] = useState(false);
+
+  return (
+    <div className="flex flex-col gap-2 max-h-[160px] overflow-y-auto custom-scrollbar pr-2 text-xs sm:text-sm">
+      <p>
+        <strong className="text-[#00e5ff]">Status:</strong> In Development (2026 - Present)
+      </p>
+      <p className="leading-relaxed">
+        Collaborating with backend engineers, product managers, and the Roitech AI team to architect and build scalable web and mobile applications from the ground up. My primary focus is ensuring a premium user experience through modern frontend patterns and fluid UI transitions.
+      </p>
+      <p className="leading-relaxed">
+        Additionally, leading the frontend architecture for LearnIQ, an accessible learning platform featuring AI-driven summarization and audio transcription to bridge educational gaps.
+      </p>
+      {showTechStack ? (
+        <div className="mt-1 flex flex-col gap-2 animate-in fade-in slide-in-from-top-2 duration-300">
+          <p className="text-[#c770f0]">
+            <strong>Tech Stack:</strong> React (Vite), Tailwind CSS, Framer Motion, Vercel
+          </p>
+          <button 
+            onClick={() => setShowTechStack(false)}
+            className="self-start text-[#00e5ff] hover:text-white transition-colors text-xs font-semibold"
+          >
+            Hide Tech Stack
+          </button>
+        </div>
+      ) : (
+        <button 
+          onClick={() => setShowTechStack(true)}
+          className="self-start mt-1 bg-transparent border border-[#00e5ff]/30 text-[#00e5ff] hover:bg-[#00e5ff]/10 px-3 py-1 rounded transition-colors text-xs font-semibold"
+        >
+          View Tech Stack
+        </button>
+      )}
+    </div>
+  );
+};
 
 export default function Projects() {
   const containerVariants: Variants = {
@@ -82,7 +121,7 @@ export default function Projects() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8"
         >
           <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
             <ProjectCard
@@ -175,22 +214,7 @@ export default function Projects() {
               customCover={<NotesCover />}
               isBlog={false}
               title="Roitech AI & LearnIQ"
-              description={
-                <div className="flex flex-col gap-2 max-h-[160px] overflow-y-auto custom-scrollbar pr-2 text-xs sm:text-sm">
-                  <p>
-                    <strong className="text-[#00e5ff]">Status:</strong> In Development (2026 - Present)
-                  </p>
-                  <p className="leading-relaxed">
-                    Collaborating with backend engineers, product managers, and the Roitech AI team to architect and build scalable web and mobile applications from the ground up. My primary focus is ensuring a premium user experience through modern frontend patterns and fluid UI transitions.
-                  </p>
-                  <p className="leading-relaxed">
-                    Additionally, leading the frontend architecture for LearnIQ, an accessible learning platform featuring AI-driven summarization and audio transcription to bridge educational gaps.
-                  </p>
-                  <p className="text-[#c770f0] mt-1">
-                    <strong>Tech Stack:</strong> React (Vite), Tailwind CSS, Framer Motion, Vercel
-                  </p>
-                </div>
-              }
+              description={<RoitechDescription />}
               inProgress={true}
             />
           </motion.div>

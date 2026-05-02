@@ -85,7 +85,7 @@ export default function Experience() {
         </div>
 
         <div ref={ref} className="relative">
-          <div className="left-1/2 absolute bg-[#c770f0]/30 w-[2px] h-full -translate-x-1/2 transform hidden md:block"></div>
+          <div className="left-1/2 absolute bg-[#c770f0]/30 w-[2px] h-full -translate-x-1/2 transform hidden lg:block"></div>
 
           {experiences.map((exp, index) => (
             <motion.div
@@ -94,32 +94,32 @@ export default function Experience() {
               animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
               transition={{ delay: index * 0.2, duration: 0.6, ease: "easeOut" }}
               className={`relative mb-12 ${
-                index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12 md:ml-auto"
-              } md:w-1/2`}
+                index % 2 === 0 ? "lg:pr-12 lg:text-right" : "lg:pl-12 lg:ml-auto"
+              } lg:w-1/2`}
             >
               {/* Timeline dot */}
               <div
-                className={`hidden md:block top-6 absolute bg-[#1b1a2ea9] border-2 border-[#00e5ff] shadow-[0_0_10px_rgba(0,229,255,0.6)] rounded-full w-5 h-5 -translate-y-1/2 transform ${
+                className={`hidden lg:block top-6 absolute bg-[#1b1a2ea9] border-2 border-[#00e5ff] shadow-[0_0_10px_rgba(0,229,255,0.6)] rounded-full w-5 h-5 -translate-y-1/2 transform ${
                   index % 2 === 0 ? "right-0 translate-x-[11px]" : "left-0 -translate-x-[11px]"
                 }`}
               ></div>
 
               <div className="bg-white/5 backdrop-blur-md border border-[rgba(200,137,230,0.3)] shadow-2xl p-8 rounded-2xl transition-all duration-300 hover:border-[#00e5ff] hover:shadow-[0_0_20px_rgba(0,229,255,0.15)] group">
-                <div className={`flex items-center gap-3 mb-4 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
+                <div className={`flex items-center gap-3 mb-4 ${index % 2 === 0 ? "lg:justify-end" : ""}`}>
                   <div className="bg-[#c770f0]/20 p-3 rounded-xl text-[#c770f0] group-hover:text-[#00e5ff] group-hover:bg-[#00e5ff]/20 transition-colors">
                     <Briefcase size={24} />
                   </div>
-                  <h3 className="font-bold text-white text-xl md:text-2xl">{exp.role}</h3>
+                  <h3 className="font-bold text-white text-xl lg:text-2xl">{exp.role}</h3>
                 </div>
                 <p className="mb-2 font-semibold text-[#00e5ff] text-lg">
                   {exp.company}
                 </p>
                 <p className="mb-6 text-gray-400 font-mono text-sm">{exp.period}</p>
-                <ul className={`space-y-3 ${index % 2 === 0 ? "md:items-end flex flex-col" : ""}`}>
+                <ul className={`space-y-3 ${index % 2 === 0 ? "lg:items-end flex flex-col" : ""}`}>
                   {exp.achievements.map((achievement, i) => (
                     <li
                       key={i}
-                      className={`flex items-start gap-3 text-gray-300 ${index % 2 === 0 ? "md:flex-row-reverse md:text-right" : ""}`}
+                      className={`flex items-start gap-3 text-gray-300 ${index % 2 === 0 ? "lg:flex-row-reverse lg:text-right" : ""}`}
                     >
                       <span className="mt-1 text-[#c770f0] text-sm group-hover:text-[#00e5ff] transition-colors">✦</span>
                       <span className="leading-relaxed">{achievement}</span>

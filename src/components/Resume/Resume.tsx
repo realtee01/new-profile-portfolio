@@ -44,7 +44,7 @@ export default function Resume() {
            {/* SKILLS */}
            <div className="mb-10">
              <h3 className="text-2xl font-bold text-gradient mb-4 uppercase tracking-wider">Skills</h3>
-             <ul className="grid grid-cols-2 md:grid-cols-3 gap-2 text-gray-300 list-disc list-inside text-lg">
+             <ul className="grid grid-cols-2 lg:grid-cols-3 gap-2 text-gray-300 list-disc list-inside text-lg">
                <li>React.js & Vite</li>
                <li>JavaScript (ES6+)</li>
                <li>Tailwind CSS</li>
@@ -74,7 +74,7 @@ export default function Resume() {
              <h3 className="text-2xl font-bold text-gradient mb-4 uppercase tracking-wider border-b border-white/10 pb-2">Work Experience & Projects</h3>
              
              <div className="mb-8">
-               <h4 className="text-xl font-bold text-white content-start flex flex-col md:flex-row md:items-center md:justify-between">
+               <h4 className="text-xl font-bold text-white content-start flex flex-col lg:flex-row lg:items-center lg:justify-between">
                  <span>CineScope — <span className="text-gray-300 font-medium">Movie Discovery Platform</span></span>
                </h4>
                <p className="text-[#00e5ff] font-medium mb-3">React.js, Tailwind CSS, TMDB API <span className="text-gray-400 font-normal ml-2">• 2026</span></p>
@@ -86,7 +86,7 @@ export default function Resume() {
              </div>
 
              <div className="mb-8">
-               <h4 className="text-xl font-bold text-white content-start flex flex-col md:flex-row md:items-center md:justify-between">
+               <h4 className="text-xl font-bold text-white content-start flex flex-col lg:flex-row lg:items-center lg:justify-between">
                  <span>Content Marketer — <span className="text-gray-300 font-medium">PeakEcho Digitals</span></span>
                </h4>
                <p className="text-[#00e5ff] font-medium mb-3">Lagos, Nigeria <span className="text-gray-400 font-normal ml-2">• 2025 – Present</span></p>
@@ -97,7 +97,7 @@ export default function Resume() {
              </div>
 
              <div className="mb-4">
-               <h4 className="text-xl font-bold text-white content-start flex flex-col md:flex-row md:items-center md:justify-between">
+               <h4 className="text-xl font-bold text-white content-start flex flex-col lg:flex-row lg:items-center lg:justify-between">
                  <span>Frontend Development Immersive — <span className="text-gray-300 font-medium">Axia Africa</span></span>
                </h4>
                <p className="text-[#00e5ff] font-medium mb-3">October 2025 – March 2026</p>
