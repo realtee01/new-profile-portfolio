@@ -13,6 +13,7 @@ const heritageKitchenImg = "https://images.unsplash.com/photo-1517248135467-4c7e
 const trendyTransitImg = "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 const relayPropertiesImg = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1073&auto=format&fit=crop";
 const nexchat3Img = "https://plus.unsplash.com/premium_photo-1733342554594-102b8e2d0623?q=80&w=1131&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+const kotiImg = "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop";
 
 import NotesCover from "./NotesCover";
 import React, { useState } from "react";
@@ -212,6 +213,17 @@ export default function Projects() {
               description="A cutting-edge Web3 chatting platform and animation website. It combines seamless real-time communication with immersive animations and decentralized features for a next-gen digital experience."
               ghLink="https://github.com/realtee01"
               demoLink="https://nexus3-bay.vercel.app/"
+            />
+          </motion.div>
+
+          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
+            <ProjectCard
+              imgPath={kotiImg}
+              isBlog={false}
+              title="Koti Restaurant"
+              description="A sophisticated website for a premium foreign restaurant, showcasing an exotic culinary experience with an elegant design and seamless reservation system."
+              ghLink="https://github.com/realtee01"
+              demoLink="https://koti-gray.vercel.app/"
             />
           </motion.div>
 
