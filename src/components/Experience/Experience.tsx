@@ -5,6 +5,30 @@ import { Briefcase } from "lucide-react";
 
 const experiences = [
   {
+    company: "Roitech AI",
+    role: "Frontend Engineering Intern (Siwes and contract)",
+    period: "2026 - Present",
+    achievements: [
+      "Collaborating with the Roitech AI engineering team to architect and build a high-performance, scalable web application from the ground up.",
+      "Designing modular components to ensure consistency across the Roitech AI platform.",
+      "Implementing fluid UI transitions using Framer Motion to match a high-fidelity 'vibe coding' aesthetic.",
+      "Managing complex Git repositories and deployments via iOS to maintain 100% responsiveness.",
+      "Leading the frontend roadmap from MVP toward a full-scale production launch over a 24-week timeline."
+    ],
+  },
+  {
+    company: "LearnIQ",
+    role: "Lead Frontend Engineer",
+    period: "2026 - Present",
+    achievements: [
+      "An accessible learning platform designed to bridge the gap in education through AI-driven summarization and inclusive UX.",
+      "Building the frontend environment that allows students to interact with complex data through simplified, high-performance interfaces.",
+      "Engineered a responsive 'Notes' ecosystem and grid layout prioritized for intuitive navigation.",
+      "Developed the UI for audio transcription and automated summarization tools to enhance student learning workflows.",
+      "Successfully managed the redesign of core platform pages to improve visual clarity and user engagement."
+    ],
+  },
+  {
     company: "PeakEcho Digitals",
     role: "Content Marketer",
     period: "2025 - Present",

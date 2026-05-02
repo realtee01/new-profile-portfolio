@@ -14,6 +14,8 @@ const trendyTransitImg = "https://images.unsplash.com/photo-1560769629-975ec94e6
 const relayPropertiesImg = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1073&auto=format&fit=crop";
 const nexchat3Img = "https://plus.unsplash.com/premium_photo-1733342554594-102b8e2d0623?q=80&w=1131&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
+import NotesCover from "./NotesCover";
+
 export default function Projects() {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -165,6 +167,31 @@ export default function Projects() {
               description="A cutting-edge Web3 chatting platform and animation website. It combines seamless real-time communication with immersive animations and decentralized features for a next-gen digital experience."
               ghLink="https://github.com/realtee01"
               demoLink="https://nexus3-bay.vercel.app/"
+            />
+          </motion.div>
+
+          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
+            <ProjectCard
+              customCover={<NotesCover />}
+              isBlog={false}
+              title="Roitech AI & LearnIQ"
+              description={
+                <div className="flex flex-col gap-2 max-h-[160px] overflow-y-auto custom-scrollbar pr-2 text-xs sm:text-sm">
+                  <p>
+                    <strong className="text-[#00e5ff]">Status:</strong> In Development (2026 - Present)
+                  </p>
+                  <p className="leading-relaxed">
+                    Collaborating with backend engineers, product managers, and the Roitech AI team to architect and build scalable web and mobile applications from the ground up. My primary focus is ensuring a premium user experience through modern frontend patterns and fluid UI transitions.
+                  </p>
+                  <p className="leading-relaxed">
+                    Additionally, leading the frontend architecture for LearnIQ, an accessible learning platform featuring AI-driven summarization and audio transcription to bridge educational gaps.
+                  </p>
+                  <p className="text-[#c770f0] mt-1">
+                    <strong>Tech Stack:</strong> React (Vite), Tailwind CSS, Framer Motion, Vercel
+                  </p>
+                </div>
+              }
+              inProgress={true}
             />
           </motion.div>
         </motion.div>
