@@ -1,7 +1,7 @@
 import ProjectCard from "./ProjectCards";
 import { motion, Variants } from "motion/react";
 import { Marquee } from "../ui/marquee";
-import { FaReact } from "react-icons/fa";
+import { FaReact, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss, SiTypescript, SiSupabase, SiFirebase, SiJavascript, SiNodedotjs } from "react-icons/si";
 
 // Real images for projects from user's github
@@ -111,6 +111,12 @@ export default function Projects() {
               </div>
               <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-[#ffca28] transition-colors">
                 <span className="text-[#ffca28] flex items-center"><SiFirebase /></span> <span>Firebase</span>
+              </div>
+              <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-[#e34f26] transition-colors">
+                <span className="text-[#e34f26] flex items-center"><FaHtml5 /></span> <span>HTML5</span>
+              </div>
+              <div className="flex items-center gap-3 mx-8 text-2xl font-medium text-white/80 hover:text-[#1572b6] transition-colors">
+                <span className="text-[#1572b6] flex items-center"><FaCss3Alt /></span> <span>CSS3</span>
               </div>
             </Marquee>
           </div>
