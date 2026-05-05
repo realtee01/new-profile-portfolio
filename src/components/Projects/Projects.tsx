@@ -58,7 +58,128 @@ const RoitechDescription = () => {
   );
 };
 
+const projectsData = [
+  {
+    id: 1,
+    title: "Roitech AI & LearnIQ",
+    description: <RoitechDescription />,
+    customCover: <NotesCover />,
+    inProgress: true,
+    ghLink: "",
+    demoLink: "",
+    category: "Web App"
+  },
+  {
+    id: 2,
+    title: "Pixel Clean AI",
+    description: "An AI-powered application offering intelligent image enhancement and background removal features with a modern and intuitive user interface.",
+    imgPath: pixelCleanImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://pixel-clean-ai-pi.vercel.app/",
+    category: "Web App"
+  },
+  {
+    id: 3,
+    title: "Nexchat3",
+    description: "A cutting-edge Web3 chatting platform and animation website. It combines seamless real-time communication with immersive animations and decentralized features for a next-gen digital experience.",
+    imgPath: nexchat3Img,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://nexus3-bay.vercel.app/",
+    category: "Web3"
+  },
+  {
+    id: 4,
+    title: "Forzchain",
+    description: "A decentralized supply chain management system leveraging blockchain for transparency. Built with React, Tailwind, and Solidity.",
+    imgPath: forzchainImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://forzchain-v-2.vercel.app",
+    category: "Web3"
+  },
+  {
+    id: 5,
+    title: "Trendy Transit",
+    description: "A modern e-commerce and logistics platform offering a seamless shopping experience, featuring a dynamic product catalog, intuitive cart management, and a streamlined checkout process.",
+    imgPath: trendyTransitImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://trendy-transit.vercel.app/",
+    category: "E-commerce"
+  },
+  {
+    id: 6,
+    title: "Tribe Fitness",
+    description: "A dynamic and engaging fitness platform featuring comprehensive workout plans, class schedules, and a vibrant community interface.",
+    imgPath: tribeFitnessImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://tribe-fitness-six.vercel.app/",
+    category: "Landing Page"
+  },
+  {
+    id: 7,
+    title: "Cinescope",
+    description: "A premium movie discovery platform showing real-time data and polished UI. Built with React, Tailwind, and Vite.",
+    imgPath: cinescopeImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://cinescope-tobiloba-niad.vercel.app",
+    category: "Web App"
+  },
+  {
+    id: 8,
+    title: "Relay Properties",
+    description: "A refined real estate platform designed for seamless property discovery and management, featuring an intuitive interface and responsive design elements.",
+    imgPath: relayPropertiesImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://relay-properties.vercel.app/",
+    category: "Landing Page"
+  },
+  {
+    id: 9,
+    title: "Koti Restaurant",
+    description: "A sophisticated website for a premium foreign restaurant, showcasing an exotic culinary experience with an elegant design and seamless reservation system.",
+    imgPath: kotiImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://koti-gray.vercel.app/",
+    category: "Landing Page"
+  },
+  {
+    id: 10,
+    title: "Heritage Kitchen",
+    description: "A premium restaurant website showcasing a fine dining experience with an elegant UI and responsive layout.",
+    imgPath: heritageKitchenImg,
+    ghLink: "https://github.com/realtee01/heritage-kitchen",
+    demoLink: "https://heriatage-kitchen.vercel.app/",
+    category: "Landing Page"
+  },
+  {
+    id: 11,
+    title: "Nextclean",
+    description: "A Lagos-based cleaning service landing page built to convert. Sharp copy, filterable services, and a mobile-first layout.",
+    imgPath: nextcleanImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://nextclean.vercel.app",
+    category: "Landing Page"
+  },
+  {
+    id: 12,
+    title: "CGPA Calculator",
+    description: "A practical tool for University of Lagos students to track and calculate grades. Built with JavaScript, CSS, and HTML.",
+    imgPath: calcImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://cgpa-calculator-tobiloba.vercel.app",
+    category: "Web App"
+  }
+];
+
 export default function Projects() {
+  const [filter, setFilter] = useState("All");
+
+  const categories = ["All", "Web App", "Landing Page", "Web3", "E-commerce"];
+
+  const filteredProjects = projectsData.filter(project => {
+    if (filter === "All") return true;
+    return project.category === filter;
+  });
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -123,145 +244,46 @@ export default function Projects() {
               </div>
             </Marquee>
           </div>
+
+          <div className="flex flex-wrap justify-center gap-3 mt-12 mb-4">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  filter === cat
+                    ? "bg-[#00e5ff] text-[#0f0c29] shadow-[0_0_15px_rgba(0,229,255,0.4)]"
+                    : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white border border-white/10 hover:border-white/20"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         <motion.div 
+          key={filter} // Add key to force re-animation when filter changes
           variants={containerVariants}
           initial="hidden"
-          whileInView="show"
+          animate="show"
           viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8"
         >
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              customCover={<NotesCover />}
-              isBlog={false}
-              title="Roitech AI & LearnIQ"
-              description={<RoitechDescription />}
-              inProgress={true}
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={pixelCleanImg}
-              isBlog={false}
-              title="Pixel Clean AI"
-              description="An AI-powered application offering intelligent image enhancement and background removal features with a modern and intuitive user interface."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://pixel-clean-ai-pi.vercel.app/"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={nexchat3Img}
-              isBlog={false}
-              title="Nexchat3"
-              description="A cutting-edge Web3 chatting platform and animation website. It combines seamless real-time communication with immersive animations and decentralized features for a next-gen digital experience."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://nexus3-bay.vercel.app/"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={forzchainImg}
-              isBlog={false}
-              title="Forzchain"
-              description="A decentralized supply chain management system leveraging blockchain for transparency. Built with React, Tailwind, and Solidity."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://forzchain-v-2.vercel.app"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={trendyTransitImg}
-              isBlog={false}
-              title="Trendy Transit"
-              description="A modern e-commerce and logistics platform offering a seamless shopping experience, featuring a dynamic product catalog, intuitive cart management, and a streamlined checkout process."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://trendy-transit.vercel.app/"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={tribeFitnessImg}
-              isBlog={false}
-              title="Tribe Fitness"
-              description="A dynamic and engaging fitness platform featuring comprehensive workout plans, class schedules, and a vibrant community interface."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://tribe-fitness-six.vercel.app/"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={cinescopeImg}
-              isBlog={false}
-              title="Cinescope"
-              description="A premium movie discovery platform showing real-time data and polished UI. Built with React, Tailwind, and Vite."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://cinescope-tobiloba-niad.vercel.app"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={relayPropertiesImg}
-              isBlog={false}
-              title="Relay Properties"
-              description="A refined real estate platform designed for seamless property discovery and management, featuring an intuitive interface and responsive design elements."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://relay-properties.vercel.app/"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={kotiImg}
-              isBlog={false}
-              title="Koti Restaurant"
-              description="A sophisticated website for a premium foreign restaurant, showcasing an exotic culinary experience with an elegant design and seamless reservation system."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://koti-gray.vercel.app/"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={heritageKitchenImg}
-              isBlog={false}
-              title="Heritage Kitchen"
-              description="A premium restaurant website showcasing a fine dining experience with an elegant UI and responsive layout."
-              ghLink="https://github.com/realtee01/heritage-kitchen"
-              demoLink="https://heriatage-kitchen.vercel.app/"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={nextcleanImg}
-              isBlog={false}
-              title="Nextclean"
-              description="A Lagos-based cleaning service landing page built to convert. Sharp copy, filterable services, and a mobile-first layout."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://nextclean.vercel.app"
-            />
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-            <ProjectCard
-              imgPath={calcImg}
-              isBlog={false}
-              title="CGPA Calculator"
-              description="A practical tool for University of Lagos students to track and calculate grades. Built with JavaScript, CSS, and HTML."
-              ghLink="https://github.com/realtee01"
-              demoLink="https://cgpa-calculator-tobiloba.vercel.app"
-            />
-          </motion.div>
+          {filteredProjects.map((project) => (
+            <motion.div key={project.id} variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
+              <ProjectCard
+                imgPath={project.imgPath}
+                customCover={project.customCover}
+                isBlog={false}
+                title={project.title}
+                description={project.description}
+                ghLink={project.ghLink}
+                demoLink={project.demoLink}
+                inProgress={project.inProgress}
+              />
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </div>
