@@ -24,7 +24,7 @@ export default function App() {
     }, 2500);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, []); 
 
   return (
     <Router>
