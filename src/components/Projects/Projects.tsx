@@ -1,5 +1,5 @@
 import ProjectCard from "./ProjectCards";
-import { motion, Variants } from "motion/react";
+import { motion, Variants, AnimatePresence } from "motion/react";
 import { Marquee } from "../ui/marquee";
 import { FaReact, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss, SiTypescript, SiSupabase, SiFirebase, SiJavascript, SiNodedotjs } from "react-icons/si";
@@ -70,13 +70,67 @@ const projectsData = [
     category: "Web App"
   },
   {
-    id: 2,
-    title: "Pixel Clean AI",
-    description: "An AI-powered application offering intelligent image enhancement and background removal features with a modern and intuitive user interface.",
-    imgPath: pixelCleanImg,
+    id: 6,
+    title: "Tribe Fitness",
+    description: "A dynamic and engaging fitness platform featuring comprehensive workout plans, class schedules, and a vibrant community interface.",
+    imgPath: tribeFitnessImg,
     ghLink: "https://github.com/realtee01",
-    demoLink: "https://pixel-clean-ai-pi.vercel.app/",
+    demoLink: "https://tribe-fitness-six.vercel.app/",
+    category: "Landing Page"
+  },
+  {
+    id: 7,
+    title: "Cinescope",
+    description: "A premium movie discovery platform showing real-time data and polished UI. Built with React, Tailwind, and Vite.",
+    imgPath: cinescopeImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://cinescope-tobiloba-niad.vercel.app",
     category: "Web App"
+  },
+  {
+    id: 11,
+    title: "Nextclean",
+    description: "A Lagos-based cleaning service landing page built to convert. Sharp copy, filterable services, and a mobile-first layout.",
+    imgPath: nextcleanImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://nextclean.vercel.app",
+    category: "Landing Page"
+  },
+  {
+    id: 9,
+    title: "Koti Restaurant",
+    description: "A sophisticated website for a premium foreign restaurant, showcasing an exotic culinary experience with an elegant design and seamless reservation system.",
+    imgPath: kotiImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://koti-gray.vercel.app/",
+    category: "Landing Page"
+  },
+  {
+    id: 8,
+    title: "Relay Properties",
+    description: "A refined real estate platform designed for seamless property discovery and management, featuring an intuitive interface and responsive design elements.",
+    imgPath: relayPropertiesImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://relay-properties.vercel.app/",
+    category: "Landing Page"
+  },
+  {
+    id: 10,
+    title: "Heritage Kitchen",
+    description: "A premium restaurant website showcasing a fine dining experience with an elegant UI and responsive layout.",
+    imgPath: heritageKitchenImg,
+    ghLink: "https://github.com/realtee01/heritage-kitchen",
+    demoLink: "https://heriatage-kitchen.vercel.app/",
+    category: "Landing Page"
+  },
+  {
+    id: 5,
+    title: "Trendy Transit",
+    description: "A modern e-commerce and logistics platform offering a seamless shopping experience, featuring a dynamic product catalog, intuitive cart management, and a streamlined checkout process.",
+    imgPath: trendyTransitImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://trendy-transit.vercel.app/",
+    category: "E-commerce"
   },
   {
     id: 3,
@@ -97,67 +151,13 @@ const projectsData = [
     category: "Web3"
   },
   {
-    id: 5,
-    title: "Trendy Transit",
-    description: "A modern e-commerce and logistics platform offering a seamless shopping experience, featuring a dynamic product catalog, intuitive cart management, and a streamlined checkout process.",
-    imgPath: trendyTransitImg,
+    id: 2,
+    title: "Pixel Clean AI",
+    description: "An AI-powered application offering intelligent image enhancement and background removal features with a modern and intuitive user interface.",
+    imgPath: pixelCleanImg,
     ghLink: "https://github.com/realtee01",
-    demoLink: "https://trendy-transit.vercel.app/",
-    category: "E-commerce"
-  },
-  {
-    id: 6,
-    title: "Tribe Fitness",
-    description: "A dynamic and engaging fitness platform featuring comprehensive workout plans, class schedules, and a vibrant community interface.",
-    imgPath: tribeFitnessImg,
-    ghLink: "https://github.com/realtee01",
-    demoLink: "https://tribe-fitness-six.vercel.app/",
-    category: "Landing Page"
-  },
-  {
-    id: 7,
-    title: "Cinescope",
-    description: "A premium movie discovery platform showing real-time data and polished UI. Built with React, Tailwind, and Vite.",
-    imgPath: cinescopeImg,
-    ghLink: "https://github.com/realtee01",
-    demoLink: "https://cinescope-tobiloba-niad.vercel.app",
+    demoLink: "https://pixel-clean-ai-pi.vercel.app/",
     category: "Web App"
-  },
-  {
-    id: 8,
-    title: "Relay Properties",
-    description: "A refined real estate platform designed for seamless property discovery and management, featuring an intuitive interface and responsive design elements.",
-    imgPath: relayPropertiesImg,
-    ghLink: "https://github.com/realtee01",
-    demoLink: "https://relay-properties.vercel.app/",
-    category: "Landing Page"
-  },
-  {
-    id: 9,
-    title: "Koti Restaurant",
-    description: "A sophisticated website for a premium foreign restaurant, showcasing an exotic culinary experience with an elegant design and seamless reservation system.",
-    imgPath: kotiImg,
-    ghLink: "https://github.com/realtee01",
-    demoLink: "https://koti-gray.vercel.app/",
-    category: "Landing Page"
-  },
-  {
-    id: 10,
-    title: "Heritage Kitchen",
-    description: "A premium restaurant website showcasing a fine dining experience with an elegant UI and responsive layout.",
-    imgPath: heritageKitchenImg,
-    ghLink: "https://github.com/realtee01/heritage-kitchen",
-    demoLink: "https://heriatage-kitchen.vercel.app/",
-    category: "Landing Page"
-  },
-  {
-    id: 11,
-    title: "Nextclean",
-    description: "A Lagos-based cleaning service landing page built to convert. Sharp copy, filterable services, and a mobile-first layout.",
-    imgPath: nextcleanImg,
-    ghLink: "https://github.com/realtee01",
-    demoLink: "https://nextclean.vercel.app",
-    category: "Landing Page"
   },
   {
     id: 12,
@@ -189,8 +189,9 @@ export default function Projects() {
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    hidden: { opacity: 0, scale: 0.9, y: 30 },
+    show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+    exit: { opacity: 0, scale: 0.9, y: 30, transition: { duration: 0.3 } }
   };
 
   return (
@@ -263,27 +264,37 @@ export default function Projects() {
         </motion.div>
 
         <motion.div 
-          key={filter} // Add key to force re-animation when filter changes
           variants={containerVariants}
           initial="hidden"
           animate="show"
           viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8"
         >
-          {filteredProjects.map((project) => (
-            <motion.div key={project.id} variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.3 } }} className="h-full">
-              <ProjectCard
-                imgPath={project.imgPath}
-                customCover={project.customCover}
-                isBlog={false}
-                title={project.title}
-                description={project.description}
-                ghLink={project.ghLink}
-                demoLink={project.demoLink}
-                inProgress={project.inProgress}
-              />
-            </motion.div>
-          ))}
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <motion.div 
+                layout
+                key={project.id} 
+                variants={itemVariants} 
+                initial="hidden"
+                animate="show"
+                exit="exit"
+                whileHover={{ y: -10, transition: { duration: 0.3 } }} 
+                className="h-full"
+              >
+                <ProjectCard
+                  imgPath={project.imgPath}
+                  customCover={project.customCover}
+                  isBlog={false}
+                  title={project.title}
+                  description={project.description}
+                  ghLink={project.ghLink}
+                  demoLink={project.demoLink}
+                  inProgress={project.inProgress}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
       </div>
     </div>

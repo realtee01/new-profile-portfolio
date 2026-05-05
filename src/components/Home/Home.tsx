@@ -40,17 +40,22 @@ export default function Home() {
                 Hi There! <span className="wave" role="img" aria-labelledby="wave">👋🏻</span>
               </h1>
 
-              <h1 className="text-4xl leading-[1.1] sm:leading-[1.2] sm:text-5xl md:text-6xl xl:text-7xl font-extrabold mb-12 sm:mb-16 tracking-tighter break-words">
-                <span className="text-gradient animate-text-flash-1 block mb-6 sm:mb-10 font-medium text-2xl sm:text-4xl md:text-5xl drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.8)]">
+              <h1 className="flex flex-col text-[14vw] leading-[0.9] sm:leading-[0.9] sm:text-8xl md:text-[8rem] lg:text-9xl font-black mb-8 sm:mb-16 tracking-tighter uppercase text-white font-sans overflow-hidden py-2" style={{wordBreak: "break-word"}}>
+                <span className="block mb-2 sm:mb-4 font-bold text-2xl sm:text-4xl md:text-5xl text-gray-300 tracking-normal normal-case">
                   I'm
                 </span>
                 
-                <span className="text-gradient animate-text-flash-2 block mb-3 sm:mb-5 drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.8)]">
+                <span className="block z-10 text-white">
                   TOBILOBA
                 </span>
                 
-                <span className="text-gradient animate-text-flash-3 block drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.8)]">
-                  AKALA
+                <span className="relative inline-block w-fit self-center lg:self-start">
+                  <span className="absolute left-[0.06em] top-[0.06em] text-transparent [-webkit-text-stroke:1px_#c770f0] sm:[-webkit-text-stroke:2px_#c770f0] -z-10 select-none whitespace-nowrap">
+                    AKALA
+                  </span>
+                  <span className="text-[#00e5ff] relative z-10 whitespace-nowrap">
+                    AKALA
+                  </span>
                 </span>
               </h1>
 
