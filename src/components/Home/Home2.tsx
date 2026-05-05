@@ -74,7 +74,7 @@ export default function Home2() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#00e5ff] to-[#c770f0] rounded-2xl blur opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
                 <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.5)]">
                   <img 
-                    src="https://i.ibb.co/gbnR8T2Y/IMG-8573.png"
+                    src="https://i.ibb.co/B5RCXtCR/5-B28-DA34-EA09-4686-9-B0-C-2-AA1-ED644-BC5.png"
                     alt="Developer Headshot"
                     className="w-72 h-80 object-cover transform transition duration-700 hover:scale-105 object-top"
                     referrerPolicy="no-referrer"
