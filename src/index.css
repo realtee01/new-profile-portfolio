@@ -87,6 +87,7 @@ html {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  display: inline-block;
 }
 
 .project-card-view {
