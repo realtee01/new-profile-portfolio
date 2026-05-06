@@ -2,8 +2,7 @@
 A high-performance, minimalist portfolio designed to showcase software engineering
 projects and technical expertise with a focus on clean UI and smooth user experience.
 ## 🚀 Live Demo
-Check out the live site: [https://new-profile-portfolio.vercel.app](https://new-
-profile-portfolio.vercel.app)
+Check out the live site: [https://new-profile-portfolio.vercel.app](https://new-profile-portfolio.vercel.app)
 ## 🛠 Tech Stack
 - **Frontend Framework:** React.js
 - **Styling:** Tailwind CSS
@@ -28,4 +27,4 @@ npm install
 npm run dev
 ```
 ## 📄 License
-This project is open-source and available under the [MIT License](LICENSE
+This project is open-source and available under the [MIT License](LICENSE)

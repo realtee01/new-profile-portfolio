@@ -1,12 +1,39 @@
 import Techstack from "./Techstack";
 import Toolstack from "./Toolstack";
-import { FaSpotify } from "react-icons/fa";
+import { FaSpotify, FaGithub, FaLaptopCode } from "react-icons/fa";
+import { useEffect, useState, useRef } from "react";
+import { useInView } from "motion/react";
+
+const AnimatedCounter = ({ end, duration = 2 }: { end: number, duration?: number }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+
+  useEffect(() => {
+    if (isInView) {
+      let startTimestamp: number | null = null;
+      const step = (timestamp: number) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        // Easing function for smoother animation (easeOutExpo)
+        const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+        const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        setCount(Math.floor(easeProgress * end));
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+  }, [isInView, end, duration]);
+
+  return <span ref={ref}>{count}</span>;
+};
 
 export default function About() {
   return (
     <div className="relative pt-32 pb-16 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-24">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-16">
           <div className="lg:w-1/2 text-white text-lg">
             <h1 className="text-4xl font-bold mb-8 text-center lg:text-left">
               Know Who <strong className="text-gradient">I'M</strong>
@@ -73,6 +100,29 @@ export default function About() {
               alt="about"
               className="w-full max-w-md object-contain"
             />
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-24 px-4">
+          <div className="bg-[#151421] border border-white/5 backdrop-blur-sm p-6 rounded-2xl w-full md:w-64 flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-[#00e5ff]/30 hover:shadow-[0_10px_30px_-10px_rgba(0,229,255,0.2)]">
+            <div className="bg-[#00e5ff]/10 p-4 rounded-full text-[#00e5ff]">
+              <FaLaptopCode className="text-3xl" />
+            </div>
+            <div className="text-4xl font-bold text-white flex items-center">
+              <AnimatedCounter end={10} duration={2} />+
+            </div>
+            <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">Projects Completed</p>
+          </div>
+          
+          <div className="bg-[#151421] border border-white/5 backdrop-blur-sm p-6 rounded-2xl w-full md:w-64 flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-[#c770f0]/30 hover:shadow-[0_10px_30px_-10px_rgba(199,112,240,0.2)]">
+            <div className="bg-[#c770f0]/10 p-4 rounded-full text-[#c770f0]">
+              <FaGithub className="text-3xl" />
+            </div>
+            <div className="text-4xl font-bold text-white flex items-center">
+              <AnimatedCounter end={500} duration={2.5} />+
+            </div>
+            <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">GitHub Commits This Year</p>
           </div>
         </div>
 
