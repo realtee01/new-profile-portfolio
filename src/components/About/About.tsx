@@ -135,6 +135,10 @@ export default function About() {
           <strong className="text-gradient">Tools</strong> I use
         </h1>
         <Toolstack />
+        
+        <div className="text-center mt-8 text-gray-400 font-medium text-lg">
+          And many more...
+        </div>
       </div>
     </div>
   );
