@@ -43,8 +43,29 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <HashLink smooth to="/#top" className="text-2xl font-bold text-gradient px-2" onClick={() => updateExpanded(false)}>
-              TA.
+            <HashLink smooth to="/#top" className="flex items-center gap-3 px-2" onClick={() => updateExpanded(false)}>
+              <svg viewBox="0 0 100 100" className="w-10 h-10 xl:w-12 xl:h-12 drop-shadow-[0_0_10px_rgba(0,229,255,0.3)] transition-all duration-300 group-hover:drop-shadow-[0_0_15px_rgba(199,112,240,0.5)]" aria-label="TA Logo">
+                <defs>
+                  <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#c770f0" />
+                    <stop offset="100%" stopColor="#00e5ff" />
+                  </linearGradient>
+                  <clipPath id="circle-clip">
+                    <circle cx="50" cy="50" r="50" />
+                  </clipPath>
+                  <mask id="logo-mask">
+                    <rect x="0" y="0" width="100" height="100" fill="black" />
+                    <circle cx="50" cy="50" r="50" fill="white" />
+                    <circle cx="50" cy="50" r="32" fill="black" />
+                    <rect x="0" y="0" width="71" height="100" fill="black" />
+                    <rect x="53" y="0" width="18" height="100" fill="white" />
+                    <rect x="71" y="42" width="29" height="16" fill="white" />
+                    <rect x="29" y="30" width="18" height="70" fill="white" />
+                    <rect x="0" y="0" width="47" height="30" fill="white" />
+                  </mask>
+                </defs>
+                <rect x="0" y="0" width="100" height="100" fill="url(#logo-grad)" clipPath="url(#circle-clip)" mask="url(#logo-mask)" />
+              </svg>
             </HashLink>
           </motion.div>
           
