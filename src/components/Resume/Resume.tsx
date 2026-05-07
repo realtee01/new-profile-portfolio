@@ -1,4 +1,5 @@
 import { AiOutlineDownload } from "react-icons/ai";
+import resumeFile from "../../assets/Resume.pdf";
 
 export default function Resume() {
   return (
@@ -8,7 +9,7 @@ export default function Resume() {
         <div className="mb-12 text-center">
           <h1 className="text-4xl text-white font-bold mb-4">My <span className="text-gradient">Resume</span></h1>
           <a
-            href="/Resume.pdf"
+            href={resumeFile}
             target="_blank"
             rel="noopener noreferrer"
             download="Tobiloba_Akala_Resume.pdf"
@@ -115,6 +116,8 @@ export default function Resume() {
              <ul className="list-disc list-outside ml-5 text-gray-300 space-y-2 text-lg">
                <li>Top 5% Faculty Recognition for CineScope Project (2026)</li>
                <li>Certified Frontend Developer, Axia Africa (2026)</li>
+               <li>GitHub Pull Shark Award</li>
+               <li>GitHub Quickdraw Award</li>
              </ul>
            </div>
 
