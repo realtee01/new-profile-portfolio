@@ -2,9 +2,48 @@ import { useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { AppWindow, Palette, Search, Zap, LayoutDashboard, MonitorSmartphone, ShoppingCart } from "lucide-react";
 import Tilt from "react-parallax-tilt";
 import { HashLink } from "react-router-hash-link";
 import MagneticDock from "../ui/magnetic-dock";
+
+const services = [
+  {
+    icon: <AppWindow className="text-[#00e5ff] w-6 h-6" />,
+    title: "Code to Launch",
+    desc: "Building complete, production-ready websites and web apps."
+  },
+  {
+    icon: <Palette className="text-[#c770f0] w-6 h-6" />,
+    title: "Brand Identity",
+    desc: "Designing unique logos and integrating them seamlessly."
+  },
+  {
+    icon: <Search className="text-[#00e5ff] w-6 h-6" />,
+    title: "AI & SEO Visibility",
+    desc: "Optimizing for Google and AI engines like Gemini & ChatGPT."
+  },
+  {
+    icon: <Zap className="text-[#c770f0] w-6 h-6" />,
+    title: "High Performance",
+    desc: "Guaranteeing lightning-fast load times and 90+ speed scores."
+  },
+  {
+    icon: <LayoutDashboard className="text-[#00e5ff] w-6 h-6" />,
+    title: "Secure Portals",
+    desc: "Creating safe login systems and real-time management dashboards."
+  },
+  {
+    icon: <MonitorSmartphone className="text-[#c770f0] w-6 h-6" />,
+    title: "Responsive Design",
+    desc: "Crafting flawless experiences for mobile, tablet, and desktop."
+  },
+  {
+    icon: <ShoppingCart className="text-[#00e5ff] w-6 h-6" />,
+    title: "Custom E-Commerce",
+    desc: "Developing high-converting, uniquely branded Shopify stores."
+  }
+];
 
 export default function Home2() {
   const [revealed, setRevealed] = useState(false);
@@ -22,49 +61,33 @@ export default function Home2() {
                 I am a Frontend Engineer and Computer Science student at the University of Lagos, dedicated to bridging the gap between complex technical logic and high-end visual aesthetics.
               </p>
               <p>
-                My approach to development is rooted in <b className="text-[#00e5ff]">performance-first engineering</b> — building applications that are not just visually appealing, but fast, scalable, and reliable.
+                My approach is rooted in <b className="text-[#00e5ff]">Performance-First Engineering</b> — architecting applications that are not just visually premium, but hyper-fast, scalable, and optimized for the modern web.
               </p>
               <p>
-                I’m not the developer who jumped straight into frameworks. I took the long road — mastering <b className="text-[#c770f0]">vanilla JavaScript</b> and understanding how things work under the hood. Today, I build with modern tools like <b className="text-[#00e5ff]">React and Tailwind</b>, with a deep understanding of system behavior and performance.
+                I didn’t take the shortcut through frameworks; I mastered the core of <b className="text-[#c770f0]">Vanilla JavaScript</b> to understand exactly how the web behaves under the hood. Today, I leverage <b className="text-[#00e5ff]">React, Next.js, and Tailwind CSS</b> to build production-ready systems that consistently achieve 95+ Lighthouse scores for performance and technical SEO.
               </p>
               <p>
-                Beyond interfaces, I develop complete, production-ready applications with secure authentication, user dashboards, and dynamic data handling. I build secure, scalable backend systems using modern technologies, enabling businesses and startups to launch fast and efficiently without unnecessary complexity.
+                Beyond the interface, I focus on <b className="text-[#c770f0]">Visibility Engineering</b>. In the age of AI, a website must be both human-readable and "AI-Readable." I specialize in AEO (Answer Engine Optimization) and Schema Integration (JSON-LD), ensuring that the brands I build aren't just seen on Google, but are cited as top answers by AI engines like Gemini and ChatGPT.
               </p>
               <p>
-                I help businesses launch faster by delivering production-ready applications without the overhead of large development teams.
-              </p>
-              <p>
-                My focus is simple: creating clean, scalable solutions that not only function seamlessly but are intuitive and enjoyable for users.
+                I help startups and businesses launch faster by delivering high-authority web applications without the overhead of massive teams.
               </p>
 
-              <div className="mt-12">
-                <h2 className="text-2xl font-bold text-gradient mb-6">⚙️ What I Do</h2>
-                <ul className="space-y-3 list-none">
-                  <li className="flex items-start">
-                    <span className="text-[#00e5ff] mr-3">•</span>
-                    <span>I build complete websites and web apps from idea to launch</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#00e5ff] mr-3">•</span>
-                    <span>I create secure login systems and manage user accounts</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#00e5ff] mr-3">•</span>
-                    <span>I design simple, easy-to-use dashboards and admin panels</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#00e5ff] mr-3">•</span>
-                    <span>I connect apps to real-time data so everything stays updated</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#00e5ff] mr-3">•</span>
-                    <span>I make sure websites work smoothly on all devices (mobile, tablet, desktop)</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#00e5ff] mr-3">•</span>
-                    <span>I improve speed, performance, and overall user experience</span>
-                  </li>
-                </ul>
+              <div className="mt-16 mb-8 pt-8 border-t border-white/10">
+                <h2 className="text-3xl font-bold text-gradient mb-8 tracking-wide">⚙️ Services & Capabilities</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+                  {services.map((s, i) => (
+                    <div key={i} className={`bg-[#151421]/60 backdrop-blur-md p-6 rounded-2xl border border-white/5 hover:-translate-y-1 hover:border-[#00e5ff]/30 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,229,255,0.1)] group ${i === services.length - 1 ? 'md:col-span-2' : ''}`}>
+                      <div className="bg-white/5 w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#00e5ff]/10 transition-colors">
+                        {s.icon}
+                      </div>
+                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#00e5ff] group-hover:to-[#c770f0] transition-colors">{s.title}</h3>
+                      <p className="text-sm text-gray-400 leading-relaxed font-medium">
+                        {s.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
