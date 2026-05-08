@@ -181,6 +181,7 @@ export default function Home() {
                   alt="Developer Illustration"
                   className="w-full object-contain animate-[updown-hue_3s_ease-in-out_infinite]"
                   referrerPolicy="no-referrer"
+                  fetchPriority="high"
                 />
               </div>
             </motion.div>

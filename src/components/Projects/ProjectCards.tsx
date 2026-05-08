@@ -25,6 +25,8 @@ export default function ProjectCards(props: ProjectCardProps) {
               src={props.imgPath} 
               alt={props.title} 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              loading="lazy"
+              decoding="async"
             />
           )
         )}

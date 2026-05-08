@@ -99,6 +99,8 @@ export default function About() {
               src="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/src/Assets/about.png"
               alt="about"
               className="w-full max-w-md object-contain"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>

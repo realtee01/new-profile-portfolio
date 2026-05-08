@@ -101,6 +101,8 @@ export default function Home2() {
                     alt="Developer Headshot"
                     className="w-72 h-80 object-cover transform transition duration-700 hover:scale-105 object-top"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 
