@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { AppWindow, Palette, Search, Zap, LayoutDashboard, MonitorSmartphone, ShoppingCart } from "lucide-react";
+import { AppWindow, Palette, Search, Zap, LayoutDashboard, MonitorSmartphone, ShoppingCart, Cuboid, Sparkles } from "lucide-react";
 import Tilt from "react-parallax-tilt";
 import { HashLink } from "react-router-hash-link";
 import MagneticDock from "../ui/magnetic-dock";
@@ -12,6 +12,16 @@ const services = [
     icon: <AppWindow className="text-[#00e5ff] w-6 h-6" />,
     title: "Code to Launch",
     desc: "Building complete, production-ready websites and web apps."
+  },
+  {
+    icon: <Cuboid className="text-[#c770f0] w-6 h-6" />,
+    title: "3D Websites",
+    desc: "Crafting immersive 3D websites using modern web technologies."
+  },
+  {
+    icon: <Sparkles className="text-[#00e5ff] w-6 h-6" />,
+    title: "Animation Websites",
+    desc: "Developing highly interactive, fluid animation websites that captivate users."
   },
   {
     icon: <Palette className="text-[#c770f0] w-6 h-6" />,
@@ -61,7 +71,7 @@ export default function Home2() {
                 I am a Frontend Engineer and Computer Science student at the University of Lagos, dedicated to bridging the gap between complex technical logic and high-end visual aesthetics.
               </p>
               <p>
-                My approach is rooted in <b className="text-[#00e5ff]">Performance-First Engineering</b> — architecting applications that are not just visually premium, but hyper-fast, scalable, and optimized for the modern web.
+                My approach is rooted in <b className="text-[#00e5ff]">Performance-First Engineering</b> — architecting applications that are not just visually premium, but hyper-fast, scalable, and optimized for the modern web. I also specialize in building immersive <b className="text-[#c770f0]">3D websites</b> and highly engaging <b className="text-[#00e5ff]">animation websites</b>.
               </p>
               <p>
                 I didn’t take the shortcut through frameworks; I mastered the core of <b className="text-[#c770f0]">Vanilla JavaScript</b> to understand exactly how the web behaves under the hood. Today, I leverage <b className="text-[#00e5ff]">React, Next.js, and Tailwind CSS</b> to build production-ready systems that consistently achieve 95+ Lighthouse scores for performance and technical SEO.
