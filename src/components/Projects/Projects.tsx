@@ -1,6 +1,7 @@
 import ProjectCard from "./ProjectCards";
 import { motion, Variants, AnimatePresence } from "motion/react";
 import { Marquee } from "../ui/marquee";
+import { Lock } from "lucide-react";
 import { FaReact, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss, SiTypescript, SiSupabase, SiFirebase, SiJavascript, SiNodedotjs } from "react-icons/si";
 
@@ -207,9 +208,15 @@ export default function Projects() {
           <h1 className="text-4xl font-bold text-white mb-4">
             My Recent <strong className="text-gradient">Works</strong>
           </h1>
-          <p className="text-white text-lg mb-10">
+          <p className="text-white text-lg mb-4">
             Here are a few projects I've worked on recently.
           </p>
+          <div className="flex justify-center mb-10">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[13px] text-gray-400 font-medium">
+              <Lock className="w-3.5 h-3.5 text-[#00e5ff]" />
+              <span>Some projects are hidden under NDA</span>
+            </div>
+          </div>
 
           <div className="flex items-center justify-center w-full mt-8 max-w-4xl mx-auto">
             <Marquee pauseOnHover={true} className="py-4">
