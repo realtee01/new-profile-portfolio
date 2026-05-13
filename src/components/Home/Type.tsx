@@ -8,6 +8,7 @@ export default function Type() {
           strings: [
             "Frontend Engineer",
             "Software Engineer",
+            "Product-focused Frontend Engineer",
             "Building Fast Web Experiences",
             "I Build Modern Websites That Convert",
             "React Developer",
