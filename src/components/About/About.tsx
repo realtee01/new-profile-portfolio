@@ -35,19 +35,15 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-16">
           <div className="lg:w-1/2 text-white text-lg">
-            <h1 className="text-4xl font-bold mb-8 text-center lg:text-left">
-              Know Who <strong className="text-gradient">I'M</strong>
+            <h1 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center lg:text-left tracking-wide">
+              Beyond the <strong className="text-gradient">Screen</strong>
             </h1>
-            <p className="text-justify leading-relaxed mb-4">
-              Hi Everyone, I am <span className="text-[#c770f0]">Tobiloba Akala </span>
-              from <span className="text-[#c770f0]"> Lagos, Nigeria.</span>
-              <br />
-              I am currently a frontend developer open to freelance work and full-time roles.
-              <br />
-              I am pursuing a B.Sc. in Computer Science at the University of Lagos.
-              <br />
-              <br />
-              Apart from coding, some other activities that I love to do!
+            <p className="text-justify leading-relaxed mb-4 text-gray-200 font-light">
+              I'm <span className="text-white font-medium">Tobiloba Akala</span>, a frontend engineer based in <span className="text-white font-medium">Lagos, Nigeria.</span>
+              <br /><br />
+              Currently pursuing a B.Sc. in Computer Science at the University of Lagos, I balance theoretical knowledge with practical, production-level engineering. I'm actively building tools, open-source projects, and client applications.
+              <br /><br />
+              When I'm not writing code or optimizing web performance, you can usually find me:
             </p>
             <ul className="list-none space-y-2 mb-8">
               <li className="flex items-center gap-2">
@@ -128,12 +124,12 @@ export default function About() {
           </div>
         </div>
 
-        <h1 className="text-4xl font-bold text-white text-center mb-12">
+        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white text-center mb-12 tracking-wide">
           Professional <strong className="text-gradient">Skillset</strong>
         </h1>
         <Techstack />
 
-        <h1 className="text-4xl font-bold text-white text-center mt-24 mb-12">
+        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white text-center mt-24 mb-12 tracking-wide">
           <strong className="text-gradient">Tools</strong> I use
         </h1>
         <Toolstack />

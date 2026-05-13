@@ -101,7 +101,7 @@ export default function Navbar() {
               <HashLink 
                 smooth
                 to="/contact#top" 
-                className="bg-[#c770f0] hover:bg-[#00e5ff] text-white font-bold py-2.5 px-4 xl:px-6 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(199,112,240,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)] lg:ml-2 xl:ml-4 text-sm xl:text-base whitespace-nowrap"
+                className="bg-white hover:bg-gray-200 text-[#0d0d12] font-semibold py-2.5 px-4 xl:px-6 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] lg:ml-2 xl:ml-4 text-xs tracking-widest uppercase whitespace-nowrap"
               >
                 Contact Me
               </HashLink>
@@ -155,7 +155,7 @@ export default function Navbar() {
                   smooth
                   to="/contact#top" 
                   onClick={() => updateExpanded(false)}
-                  className="bg-gradient-to-r from-[#c770f0] to-[#00e5ff] text-white font-bold py-3.5 px-12 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(199,112,240,0.3)] hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] w-full text-center text-lg"
+                  className="bg-white hover:bg-gray-200 text-[#0d0d12] font-semibold py-3.5 px-12 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] w-full text-center text-sm tracking-widest uppercase"
                 >
                   Contact Me
                 </HashLink>
@@ -177,7 +177,7 @@ function NavItem({ to, icon, text }: { to: string; icon: ReactNode; text: string
       <HashLink
         smooth
         to={to}
-        className="text-white hover:text-[#00e5ff] flex items-center gap-1.5 px-2 xl:px-3 py-2 rounded-full text-sm xl:text-base font-medium transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(0,229,255,0.1)] group whitespace-nowrap"
+        className="text-white hover:text-[#00e5ff] flex items-center gap-1.5 px-2 xl:px-3 py-2 rounded-full text-sm xl:text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(0,229,255,0.1)] group whitespace-nowrap font-sans"
       >
         <span className="group-hover:rotate-12 transition-transform duration-300 scale-90 xl:scale-100">{icon}</span>
         {text}

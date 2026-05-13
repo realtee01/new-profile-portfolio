@@ -36,7 +36,7 @@ export default function ProjectCards(props: ProjectCardProps) {
 
       {/* Content Container */}
       <div className="relative p-6 sm:p-8 flex flex-col flex-grow z-10 -mt-6">
-        <h3 className="text-2xl font-bold mb-3 text-white transition-colors duration-300 group-hover:text-[#00e5ff]">
+        <h3 className="text-2xl font-serif font-bold mb-3 text-white transition-colors duration-300 group-hover:text-[#00e5ff] tracking-wide">
           {props.title}
         </h3>
         

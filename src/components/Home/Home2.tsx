@@ -63,28 +63,32 @@ export default function Home2() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className="lg:w-2/3 text-white">
-            <h1 className="text-4xl font-bold mb-8 text-center lg:text-left uppercase">
-              LET ME <span className="text-gradient"> INTRODUCE </span> MYSELF
-            </h1>
-            <div className="text-xl leading-relaxed mb-6 space-y-6">
+            <h2 className="text-sm font-sans tracking-widest text-[#00e5ff] uppercase mb-4 text-center lg:text-left font-semibold">
+              A Bit About Me
+            </h2>
+            <h3 className="text-3xl md:text-5xl font-serif font-bold mb-8 text-white leading-tight text-center lg:text-left">
+              Building products that look premium and perform flawlessly.
+            </h3>
+            <div className="text-lg leading-relaxed mb-6 space-y-6 text-gray-300 font-light max-w-3xl">
               <p>
-                I am a Frontend Engineer and Computer Science student at the University of Lagos, dedicated to bridging the gap between complex technical logic and high-end visual aesthetics.
+                I'm a Frontend Engineer and Computer Science student at the University of Lagos. I bridge the gap between rigorous engineering principles and thoughtful, polished design.
               </p>
               <p>
-                My approach is rooted in <b className="text-[#00e5ff]">Performance-First Engineering</b> — architecting applications that are not just visually premium, but hyper-fast, scalable, and optimized for the modern web. I also specialize in building immersive <b className="text-[#c770f0]">3D websites</b> and highly engaging <b className="text-[#00e5ff]">animation websites</b>.
+                I don't just write code—I focus on the entire product experience. From architecting scalable React systems to crafting immersive <span className="text-white font-medium">3D experiences</span> and <span className="text-white font-medium">fluid animations</span>, every detail matters.
               </p>
               <p>
-                I didn’t take the shortcut through frameworks; I mastered the core of <b className="text-[#c770f0]">Vanilla JavaScript</b> to understand exactly how the web behaves under the hood. Today, I leverage <b className="text-[#00e5ff]">React, Next.js, and Tailwind CSS</b> to build production-ready systems that consistently achieve 95+ Lighthouse scores for performance and technical SEO.
+                Instead of just learning frameworks, I learned the platform. My foundation in core web APIs and JavaScript allows me to build robust applications with React, Next.js, and Tailwind that consistently hit 95+ performance scores.
               </p>
               <p>
-                Beyond the interface, I focus on <b className="text-[#c770f0]">Visibility Engineering</b>. In the age of AI, a website must be both human-readable and "AI-Readable." I specialize in AEO (Answer Engine Optimization) and Schema Integration (JSON-LD), ensuring that the brands I build aren't just seen on Google, but are cited as top answers by AI engines like Gemini and ChatGPT.
+                Beyond the interface, I focus on building <span className="text-[#c770f0] font-medium">AI-Readable</span> applications—utilizing semantic HTML and structured data to ensure products are cited and surfaced correctly by modern answer engines.
               </p>
               <p>
-                I help startups and businesses launch faster by delivering high-authority web applications without the overhead of massive teams.
+                Whether you're an early-stage startup or scaling a complex SaaS tool, I design and write code to get you to market faster, without sacrificing quality.
               </p>
+            </div>
 
-              <div className="mt-16 mb-8 pt-8 border-t border-white/10">
-                <h2 className="text-3xl font-bold text-gradient mb-8 tracking-wide">⚙️ Services & Capabilities</h2>
+            <div className="mt-16 mb-8 pt-10 border-t border-white/5">
+                <h2 className="text-3xl font-serif font-bold text-gradient mb-8 tracking-wide">⚙️ Services & Capabilities</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
                   {services.map((s, i) => (
                     <div key={i} className={`bg-[#151421]/60 backdrop-blur-md p-6 rounded-2xl border border-white/5 hover:-translate-y-1 hover:border-[#00e5ff]/30 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,229,255,0.1)] group ${i === services.length - 1 ? 'md:col-span-2' : ''}`}>
@@ -100,7 +104,6 @@ export default function Home2() {
                 </div>
               </div>
             </div>
-          </div>
           <div className="lg:w-1/3 flex justify-center">
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.05} transitionSpeed={2500}>
               <div className="relative group animate-[updown_2.5s_ease-in-out_infinite]">
@@ -152,9 +155,9 @@ export default function Home2() {
         </div>
 
         <div className="mt-24 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">FIND ME ON</h1>
-          <p className="text-white mb-8">
-            Feel free to <span className="text-[#00e5ff]">connect </span>with me
+          <h1 className="text-4xl font-serif font-bold text-white mb-4 tracking-wider">FIND ME ON</h1>
+          <p className="text-white mb-8 text-lg font-light tracking-wide">
+            Feel free to <span className="text-[#00e5ff] font-medium">connect</span> with me
           </p>
           <div className="mb-12">
             <MagneticDock 
@@ -169,7 +172,7 @@ export default function Home2() {
           <HashLink
             smooth
             to="/contact#top"
-            className="inline-block mt-4 bg-[#c770f0] hover:bg-[#00e5ff] text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(199,112,240,0.5)] hover:shadow-[0_0_20px_rgba(0,229,255,0.6)]"
+            className="inline-block mt-4 bg-white hover:bg-gray-200 text-[#0d0d12] font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] uppercase tracking-widest text-sm"
           >
             Contact Me
           </HashLink>

@@ -67,7 +67,7 @@ export default function Testimonials() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-4xl text-white font-bold mb-4"
+            className="text-4xl sm:text-5xl font-serif text-white font-bold mb-6 tracking-wide uppercase"
           >
             Professional <span className="text-gradient">Endorsements</span>
           </motion.h1>
@@ -155,7 +155,7 @@ export default function Testimonials() {
 
         {/* Short Commendations Masonry-like Grid */}
         <div className="mt-32">
-          <h2 className="text-2xl text-white font-bold mb-12 text-center tracking-widest uppercase">Verified <span className="text-[#c770f0]">Referrals</span></h2>
+          <h2 className="text-2xl text-white font-serif font-bold mb-12 text-center tracking-widest uppercase">Verified <span className="text-[#c770f0]">Referrals</span></h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {commendations.map((item, idx) => (
               <motion.div

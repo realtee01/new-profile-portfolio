@@ -36,16 +36,16 @@ export default function Home() {
                 Available
               </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8 sm:mb-12 tracking-tight leading-tight drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.6)]">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-8 sm:mb-12 tracking-tight leading-tight drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.6)]">
                 Hi There! <span className="wave" role="img" aria-labelledby="wave">👋🏻</span>
               </h1>
 
-              <h1 className="flex flex-col text-[14vw] leading-[0.9] sm:leading-[0.9] sm:text-8xl md:text-[8rem] lg:text-9xl font-black mb-8 sm:mb-16 tracking-tighter uppercase text-white font-sans overflow-hidden py-2" style={{wordBreak: "break-word"}}>
-                <span className="block mb-2 sm:mb-4 font-bold text-2xl sm:text-4xl md:text-5xl text-gray-300 tracking-normal normal-case">
+              <h1 className="flex flex-col text-[14vw] leading-[0.9] sm:leading-[0.9] sm:text-8xl md:text-[8rem] lg:text-9xl font-black mb-8 sm:mb-16 tracking-tighter uppercase text-white font-serif overflow-hidden py-2" style={{wordBreak: "break-word"}}>
+                <span className="block mb-2 sm:mb-4 font-bold text-2xl sm:text-4xl md:text-5xl text-gray-300 tracking-normal normal-case font-sans">
                   I'm
                 </span>
                 
-                <span className="block z-10 text-white">
+                <span className="block z-10 text-white drop-shadow-[0_4px_24px_rgba(0,229,255,0.4)] relative">
                   TOBILOBA
                 </span>
                 
@@ -67,9 +67,9 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
-                className="text-gray-400 text-lg md:text-xl max-w-xl leading-relaxed mb-10 hidden lg:block"
+                className="text-gray-300 text-lg md:text-xl max-w-xl leading-relaxed mb-10 hidden lg:block font-light tracking-wide font-sans"
               >
-                Engineering high-performance, pixel-perfect digital experiences with a focus on modern aesthetics and technical excellence.
+                I build fast, polished, and highly interactive digital products—focusing on clean architecture and intentional design.
               </motion.p>
 
               <motion.div 
@@ -82,7 +82,7 @@ export default function Home() {
                   <HashLink 
                     smooth
                     to="/projects#top" 
-                    className="inline-block bg-gradient-to-r from-[#c770f0] to-[#a24ed3] text-white font-bold py-3 md:py-3.5 px-8 rounded-2xl shadow-[0_10px_20px_-5px_rgba(199,112,240,0.4)]"
+                    className="inline-block bg-white text-[#0d0d12] hover:bg-gray-200 font-semibold py-3 md:py-3.5 px-8 rounded-full shadow-[0_10px_20px_-5px_rgba(255,255,255,0.2)] uppercase tracking-widest text-sm transition-colors"
                   >
                     View My Works
                   </HashLink>
@@ -91,7 +91,7 @@ export default function Home() {
                   <HashLink 
                     smooth
                     to="/contact#top" 
-                    className="inline-block bg-white/5 hover:bg-white/10 text-white font-bold py-3 md:py-3.5 px-8 rounded-2xl border border-white/10 backdrop-blur-md transition-colors"
+                    className="inline-block bg-transparent text-white font-semibold py-3 md:py-3.5 px-8 rounded-full border border-white/30 backdrop-blur-md hover:bg-white/10 transition-colors uppercase tracking-widest text-sm"
                   >
                     Let's Talk
                   </HashLink>

@@ -28,10 +28,10 @@ export default function Blog() {
     <section className="pt-32 pb-16 min-h-screen relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6 tracking-wide">
             My <strong className="text-gradient">Blog & News</strong>
           </h1>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto font-light tracking-wide">
             Thoughts, tutorials, and insights on frontend engineering, design, and the modern web.
           </p>
         </div>

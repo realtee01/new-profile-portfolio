@@ -42,8 +42,8 @@ export default function BlogPost() {
             />
           </div>
           
-          <p className="text-[#00e5ff] font-medium mb-4">{blog.date}</p>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-8 leading-tight">{blog.title}</h1>
+          <p className="text-[#00e5ff] font-medium mb-4 tracking-widest uppercase text-sm border-b border-[#00e5ff]/20 inline-block pb-1">{blog.date}</p>
+          <h1 className="text-3xl md:text-5xl font-serif font-bold text-white mb-8 leading-tight tracking-wide">{blog.title}</h1>
           
           <div className="bg-white/5 backdrop-blur-md border border-[rgba(200,137,230,0.3)] rounded-xl p-6 md:p-10 shadow-lg">
             {blog.content.map((paragraph, index) => (

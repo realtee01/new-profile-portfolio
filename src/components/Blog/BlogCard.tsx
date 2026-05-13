@@ -25,7 +25,7 @@ export default function BlogCard({ title, date, excerpt, image, link }: BlogCard
       </div>
       <div className="p-6 flex flex-col flex-grow">
         <p className="text-[#00e5ff] text-sm font-medium mb-2">{date}</p>
-        <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">{title}</h3>
+        <h3 className="text-xl font-serif font-bold text-white mb-3 line-clamp-2 tracking-wide group-hover:text-[#00e5ff] transition-colors">{title}</h3>
         <p className="text-gray-300 text-sm mb-6 flex-grow line-clamp-3">{excerpt}</p>
         <Link
           to={link}

@@ -61,10 +61,10 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6 tracking-wide">
             Let's build <span className="text-gradient">something real.</span>
           </h1>
-          <p className="text-gray-300 text-lg">
+          <p className="text-gray-300 text-lg font-light tracking-wide max-w-xl mx-auto">
             Got a project? A brief? Just want to talk code? I'm here.
           </p>
         </motion.div>
@@ -124,7 +124,7 @@ export default function Contact() {
             </div>
             <button 
               type="submit" 
-              className="w-full btn-primary py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-2 group transition-all"
+              className="w-full bg-white text-[#0d0d12] hover:bg-gray-200 py-4 rounded-xl text-sm tracking-widest uppercase font-bold flex items-center justify-center gap-2 group transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)]"
             >
               Send Message 
               <span className="group-hover:translate-x-1 transition-transform">→</span>

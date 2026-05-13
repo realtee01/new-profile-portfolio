@@ -7,7 +7,7 @@ export default function Resume() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
         
         <div className="mb-12 text-center">
-          <h1 className="text-4xl text-white font-bold mb-4">My <span className="text-gradient">Resume</span></h1>
+          <h1 className="text-4xl sm:text-5xl font-serif text-white font-bold mb-4 tracking-wide">My <span className="text-gradient">Resume</span></h1>
           <a
             href={resumeFile}
             target="_blank"
@@ -23,9 +23,9 @@ export default function Resume() {
         <div className="w-full bg-white/5 backdrop-blur-md border border-[rgba(200,137,230,0.3)] rounded-2xl p-8 md:p-12 text-white shadow-2xl text-left">
            {/* HEADER */}
            <div className="border-b border-[#00e5ff]/30 pb-8 mb-8 text-center md:text-left">
-             <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-2 uppercase tracking-wide">Tobiloba Akala</h2>
-             <p className="text-2xl text-[#00e5ff] font-medium mb-4">Web Developer</p>
-             <p className="text-gray-400 text-sm md:text-base flex flex-wrap justify-center md:justify-start gap-3">
+             <h2 className="text-4xl md:text-5xl font-serif font-bold text-gradient mb-2 uppercase tracking-widest">Tobiloba Akala</h2>
+             <p className="text-2xl text-[#00e5ff] font-serif font-medium mb-4 italic">Web Developer</p>
+             <p className="text-gray-400 text-sm md:text-base flex flex-wrap justify-center md:justify-start gap-3 tracking-wide">
                <span>📍 Lagos, Nigeria</span>
                <span className="hidden md:inline">•</span>
                <span>✉️ tobilobaakala@gmail.com</span>
@@ -36,16 +36,16 @@ export default function Resume() {
 
            {/* PROFILE */}
            <div className="mb-10">
-             <h3 className="text-2xl font-bold text-gradient mb-4 uppercase tracking-wider">Profile</h3>
-             <p className="text-gray-300 leading-relaxed text-lg">
+             <h3 className="text-2xl font-serif font-bold text-gradient mb-4 uppercase tracking-widest border-b-2 border-transparent w-max">Profile</h3>
+             <p className="text-gray-300 leading-relaxed text-lg font-light">
                Data-driven Frontend Developer and Computer Science undergraduate at the University of Lagos. Proficient in building responsive, API-integrated web applications using React.js and Tailwind CSS. Passionate about leveraging AI and modern web technologies to solve real-world problems.
              </p>
            </div>
 
            {/* SKILLS */}
            <div className="mb-10">
-             <h3 className="text-2xl font-bold text-gradient mb-4 uppercase tracking-wider">Skills</h3>
-             <ul className="grid grid-cols-2 lg:grid-cols-3 gap-2 text-gray-300 list-disc list-inside text-lg">
+             <h3 className="text-2xl font-serif font-bold text-gradient mb-4 uppercase tracking-widest border-b-2 border-transparent w-max">Skills</h3>
+             <ul className="grid grid-cols-2 lg:grid-cols-3 gap-2 text-gray-300 list-disc list-inside text-lg font-light tracking-wide">
                <li>React.js & Vite</li>
                <li>JavaScript (ES6+)</li>
                <li>Tailwind CSS</li>
@@ -57,7 +57,7 @@ export default function Resume() {
 
            {/* EDUCATION */}
            <div className="mb-10">
-             <h3 className="text-2xl font-bold text-gradient mb-4 uppercase tracking-wider border-b border-white/10 pb-2">Education</h3>
+             <h3 className="text-2xl font-serif font-bold text-gradient mb-6 uppercase tracking-widest border-b border-white/10 pb-3">Education</h3>
              
              <div className="mb-6">
                <h4 className="text-xl font-bold text-white">Bachelor of Science, Computer Science</h4>
@@ -72,7 +72,7 @@ export default function Resume() {
 
            {/* WORK EXPERIENCE & PROJECTS */}
            <div className="mb-10">
-             <h3 className="text-2xl font-bold text-gradient mb-4 uppercase tracking-wider border-b border-white/10 pb-2">Work Experience & Projects</h3>
+             <h3 className="text-2xl font-serif font-bold text-gradient mb-6 uppercase tracking-widest border-b border-white/10 pb-3">Work Experience & Projects</h3>
              
              <div className="mb-8">
                <h4 className="text-xl font-bold text-white content-start flex flex-col lg:flex-row lg:items-center lg:justify-between">
@@ -112,8 +112,8 @@ export default function Resume() {
 
            {/* AWARDS & RECOGNITION */}
            <div className="mb-10">
-             <h3 className="text-2xl font-bold text-gradient mb-4 uppercase tracking-wider border-b border-white/10 pb-2">Awards & Recognition</h3>
-             <ul className="list-disc list-outside ml-5 text-gray-300 space-y-2 text-lg">
+             <h3 className="text-2xl font-serif font-bold text-gradient mb-6 uppercase tracking-widest border-b border-white/10 pb-3">Awards & Recognition</h3>
+             <ul className="list-disc list-outside ml-5 text-gray-300 space-y-2 text-lg font-light">
                <li>Top 5% Faculty Recognition for CineScope Project (2026)</li>
                <li>Certified Frontend Developer, Axia Africa (2026)</li>
                <li>GitHub Pull Shark Award</li>
@@ -123,8 +123,8 @@ export default function Resume() {
 
            {/* ADDITIONAL INFORMATION */}
            <div className="mb-4">
-             <h3 className="text-2xl font-bold text-gradient mb-4 uppercase tracking-wider border-b border-white/10 pb-2">Additional Information</h3>
-             <p className="text-gray-300 text-lg">
+             <h3 className="text-2xl font-serif font-bold text-gradient mb-6 uppercase tracking-widest border-b border-white/10 pb-3">Additional Information</h3>
+             <p className="text-gray-300 text-lg font-light tracking-wide">
                <strong className="text-white">Languages:</strong> English, Yoruba
              </p>
            </div>

@@ -205,10 +205,10 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl font-bold text-white mb-4">
+          <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-6 tracking-wide">
             My Recent <strong className="text-gradient">Works</strong>
           </h1>
-          <p className="text-white text-lg mb-4">
+          <p className="text-gray-300 text-lg mb-6 font-light tracking-wide max-w-2xl mx-auto">
             Here are a few projects I've worked on recently.
           </p>
           <div className="flex justify-center mb-10">
