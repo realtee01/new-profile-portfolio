@@ -73,12 +73,13 @@ export default function Contact() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-white/5 backdrop-blur-md border border-[rgba(200,137,230,0.3)] rounded-2xl p-8 md:p-12 shadow-2xl"
+          className="bg-black/40 backdrop-blur-3xl border border-white/5 rounded-[2.5rem] p-8 md:p-12 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] relative"
         >
+          <div className="absolute inset-0 bg-gradient-to-br from-[#c770f0]/5 to-[#00e5ff]/5 rounded-[2.5rem] pointer-events-none"></div>
           <form 
             action="https://formspree.io/f/xaqlbalq" 
             method="POST" 
-            className="space-y-6"
+            className="space-y-8 relative z-10"
             onSubmit={handleSubmit}
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -91,7 +92,7 @@ export default function Contact() {
                   placeholder="Your Name" 
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full bg-[#0c0513]/50 border ${errors.name ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
+                  className={`w-full bg-black/50 border ${errors.name ? 'border-red-500' : 'border-white/10'} rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-white/30 transition-all font-light placeholder:text-gray-600`} 
                 />
                 {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
               </div>
@@ -104,7 +105,7 @@ export default function Contact() {
                   placeholder="Your Email" 
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full bg-[#0c0513]/50 border ${errors.email ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
+                  className={`w-full bg-black/50 border ${errors.email ? 'border-red-500' : 'border-white/10'} rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-white/30 transition-all font-light placeholder:text-gray-600`} 
                 />
                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
               </div>
@@ -118,7 +119,7 @@ export default function Contact() {
                 rows={5} 
                 value={formData.message}
                 onChange={handleChange}
-                className={`w-full bg-[#0c0513]/50 border ${errors.message ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors resize-none`}
+                className={`w-full bg-black/50 border ${errors.message ? 'border-red-500' : 'border-white/10'} rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-white/30 transition-all resize-none font-light placeholder:text-gray-600`}
               ></textarea>
               {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
             </div>

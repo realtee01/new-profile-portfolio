@@ -34,7 +34,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
-        navColour ? "bg-[#1b1a2ea9] backdrop-blur-md shadow-lg py-3" : "bg-transparent py-5"
+        navColour ? "bg-[#030108]/80 backdrop-blur-md shadow-lg border-b border-white/5 py-3" : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -130,7 +130,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="fixed top-0 right-0 h-screen w-4/5 max-w-sm bg-[#0f0a1a] border-l border-white/5 shadow-[-10px_0_30px_rgba(0,0,0,0.5)] z-[60] flex flex-col pt-24 px-6 pb-12 overflow-y-auto"
+              className="fixed top-0 right-0 h-screen w-4/5 max-w-sm bg-black/60 backdrop-blur-2xl border-l border-white/5 shadow-[-20px_0_40px_rgba(0,0,0,0.8)] z-[60] flex flex-col pt-24 px-6 pb-12 overflow-y-auto"
             >
               <button 
                 onClick={() => updateExpanded(false)}

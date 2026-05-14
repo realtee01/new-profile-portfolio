@@ -91,12 +91,13 @@ export default function Home2() {
                 <h2 className="text-3xl font-serif font-bold text-gradient mb-8 tracking-wide">⚙️ Services & Capabilities</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
                   {services.map((s, i) => (
-                    <div key={i} className={`bg-[#151421]/60 backdrop-blur-md p-6 rounded-2xl border border-white/5 hover:-translate-y-1 hover:border-[#00e5ff]/30 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,229,255,0.1)] group ${i === services.length - 1 ? 'md:col-span-2' : ''}`}>
-                      <div className="bg-white/5 w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#00e5ff]/10 transition-colors">
+                    <div key={i} className={`bg-black/30 backdrop-blur-2xl p-8 rounded-3xl border border-white/5 hover:-translate-y-1 hover:border-white/10 transition-all duration-500 hover:bg-black/50 hover:shadow-[0_20px_40px_-20px_rgba(199,112,240,0.15)] group relative overflow-hidden ${i === services.length - 1 ? 'md:col-span-2' : ''}`}>
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="bg-white/5 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-white/5 group-hover:bg-white/10 transition-colors relative z-10">
                         {s.icon}
                       </div>
-                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#00e5ff] group-hover:to-[#c770f0] transition-colors">{s.title}</h3>
-                      <p className="text-sm text-gray-400 leading-relaxed font-medium">
+                      <h3 className="text-xl font-serif font-bold text-white mb-3 group-hover:text-[#c770f0] transition-colors relative z-10">{s.title}</h3>
+                      <p className="text-sm text-gray-400 font-light leading-relaxed relative z-10">
                         {s.desc}
                       </p>
                     </div>
@@ -120,23 +121,23 @@ export default function Home2() {
                 </div>
                 
                 {/* Floating Cards on Hover */}
-                <div className="absolute -left-2 sm:-left-10 top-12 sm:top-16 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#00e5ff]/30 shadow-[0_0_15px_rgba(0,229,255,0.2)] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
+                <div className="absolute -left-2 sm:-left-10 top-12 sm:top-16 bg-black/60 backdrop-blur-xl px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-white/10 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.8)] opacity-0 group-hover:opacity-100 transition-all duration-700 delay-100 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
                   <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#00e5ff] animate-pulse"></div>
                     Frontend Dev
                   </span>
                 </div>
                 
-                <div className="absolute -right-2 sm:-right-8 bottom-20 sm:bottom-24 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#c770f0]/30 shadow-[0_0_15px_rgba(199,112,240,0.2)] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
+                <div className="absolute -right-2 sm:-right-8 bottom-20 sm:bottom-24 bg-black/60 backdrop-blur-xl px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-white/10 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.8)] opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
                   <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#c770f0] animate-[pulse_2s_ease-in-out_infinite]"></div>
                     Creative Engine
                   </span>
                 </div>
 
-                <div className="absolute left-[5%] sm:left-[10%] -bottom-2 sm:-bottom-4 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-white/20 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
+                <div className="absolute left-[5%] sm:left-[10%] -bottom-2 sm:-bottom-4 bg-black/60 backdrop-blur-xl px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-white/10 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.8)] opacity-0 group-hover:opacity-100 transition-all duration-700 delay-300 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
                   <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-400"></div>
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-400 border border-green-300/30"></div>
                     Available
                   </span>
                 </div>

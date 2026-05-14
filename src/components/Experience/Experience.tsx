@@ -99,7 +99,7 @@ export default function Experience() {
             >
               {/* Timeline dot */}
               <div
-                className={`hidden lg:block top-6 absolute bg-[#1b1a2ea9] border-2 border-[#00e5ff] shadow-[0_0_10px_rgba(0,229,255,0.6)] rounded-full w-5 h-5 -translate-y-1/2 transform ${
+                className={`hidden lg:block top-6 absolute bg-black/60 border-2 border-[#00e5ff] shadow-[0_0_10px_rgba(0,229,255,0.6)] rounded-full w-5 h-5 -translate-y-1/2 transform ${
                   index % 2 === 0 ? "right-0 translate-x-[11px]" : "left-0 -translate-x-[11px]"
                 }`}
               ></div>

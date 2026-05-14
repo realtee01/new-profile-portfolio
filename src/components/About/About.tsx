@@ -66,7 +66,7 @@ export default function About() {
                 href="https://open.spotify.com/playlist/0Ymw2v0SbK6btauZEL9lRz?si=a1dfa08a37954282" 
                 target="_blank" 
                 rel="noreferrer" 
-                className="flex items-center gap-4 bg-[#1b1a2ea9] border border-[#1DB954]/30 hover:border-[#1DB954]/80 p-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(29,185,84,0.15)] hover:shadow-[0_0_20px_rgba(29,185,84,0.3)] group max-w-sm backdrop-blur-sm"
+                className="flex items-center gap-4 bg-black/40 border border-white/5 hover:border-[#1DB954]/50 p-4 rounded-2xl transition-all duration-500 hover:shadow-[0_20px_40px_-10px_rgba(29,185,84,0.3)] group max-w-sm backdrop-blur-2xl"
               >
                 <div className="relative flex-shrink-0">
                   <div className="absolute inset-0 bg-[#1DB954] blur-md opacity-20 group-hover:opacity-40 transition-opacity rounded-full"></div>
@@ -103,24 +103,24 @@ export default function About() {
 
         {/* Stats Section */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-24 px-4">
-          <div className="bg-[#151421] border border-white/5 backdrop-blur-sm p-6 rounded-2xl w-full md:w-64 flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-[#00e5ff]/30 hover:shadow-[0_10px_30px_-10px_rgba(0,229,255,0.2)]">
-            <div className="bg-[#00e5ff]/10 p-4 rounded-full text-[#00e5ff]">
+          <div className="bg-black/40 border border-white/5 backdrop-blur-2xl p-6 rounded-3xl w-full md:w-64 flex flex-col items-center justify-center gap-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#00e5ff]/30 hover:shadow-[0_20px_40px_-10px_rgba(0,229,255,0.2)]">
+            <div className="bg-[#00e5ff]/10 p-4 rounded-full text-[#00e5ff] border border-[#00e5ff]/20">
               <FaLaptopCode className="text-3xl" />
             </div>
             <div className="text-4xl font-bold text-white flex items-center">
               <AnimatedCounter end={10} duration={2} />+
             </div>
-            <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">Projects Completed</p>
+            <p className="text-xs text-gray-400 font-semibold tracking-widest uppercase">Projects Completed</p>
           </div>
           
-          <div className="bg-[#151421] border border-white/5 backdrop-blur-sm p-6 rounded-2xl w-full md:w-64 flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-[#c770f0]/30 hover:shadow-[0_10px_30px_-10px_rgba(199,112,240,0.2)]">
-            <div className="bg-[#c770f0]/10 p-4 rounded-full text-[#c770f0]">
+          <div className="bg-black/40 border border-white/5 backdrop-blur-2xl p-6 rounded-3xl w-full md:w-64 flex flex-col items-center justify-center gap-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#c770f0]/30 hover:shadow-[0_20px_40px_-10px_rgba(199,112,240,0.2)]">
+            <div className="bg-[#c770f0]/10 p-4 rounded-full text-[#c770f0] border border-[#c770f0]/20">
               <FaGithub className="text-3xl" />
             </div>
             <div className="text-4xl font-bold text-white flex items-center">
               <AnimatedCounter end={500} duration={2.5} />+
             </div>
-            <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">GitHub Commits This Year</p>
+            <p className="text-xs text-gray-400 font-semibold tracking-widest uppercase text-center">GitHub Commits This Year</p>
           </div>
         </div>
 

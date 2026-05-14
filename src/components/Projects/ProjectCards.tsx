@@ -14,9 +14,9 @@ interface ProjectCardProps {
 
 export default function ProjectCards(props: ProjectCardProps) {
   return (
-    <div className="group relative flex flex-col rounded-2xl overflow-hidden bg-[#151421] border border-white/5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-[#00e5ff]/30 hover:shadow-[0_10px_40px_-10px_rgba(0,229,255,0.2)] h-full">
+    <div className="group relative flex flex-col rounded-3xl overflow-hidden bg-black/40 border border-white/5 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-2 hover:border-white/10 hover:shadow-[0_20px_40px_-10px_rgba(0,229,255,0.15)] h-full">
       {/* Image Container */}
-      <div className="relative w-full h-52 sm:h-60 overflow-hidden bg-[#1a1927]">
+      <div className="relative w-full h-52 sm:h-60 overflow-hidden bg-black/50">
         {props.customCover ? (
           props.customCover
         ) : (
