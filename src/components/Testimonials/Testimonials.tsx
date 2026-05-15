@@ -109,7 +109,7 @@ export default function Testimonials() {
               animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
               exit={{ opacity: 0, x: -50, filter: 'blur(10px)' }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-black/40 backdrop-blur-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(199,112,240,0.05)] border border-white/5 p-10 md:p-20 rounded-[2.5rem] relative"
+              className="bg-[#1b1a2ea9] backdrop-blur-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5),0_0_40px_rgba(199,112,240,0.1)] border border-white/10 p-10 md:p-20 rounded-[2.5rem] relative"
             >
               <Quote className="mb-10 text-[#00e5ff]/50" size={60} />
               

@@ -84,7 +84,7 @@ export default function MagneticDock({ links }: MagneticDockProps) {
         <div
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
-          className="flex h-24 items-end gap-4 rounded-2xl bg-black/40 backdrop-blur-2xl px-6 pb-4 border border-white/5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.8)]"
+          className="flex h-24 items-end gap-4 rounded-2xl bg-[#1b1a2ea9] backdrop-blur-md px-6 pb-4 border border-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.5)]"
         >
           {items.map((item, idx) => (
             <DockIcon key={idx} href={item.href} icon={item.icon} />

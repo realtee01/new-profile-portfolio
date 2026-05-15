@@ -9,10 +9,9 @@ export default function Home() {
     <section className="overflow-hidden">
       <div className="relative pt-24 pb-8 md:pt-40 md:pb-20 min-h-screen flex items-center" id="home">
         
-        {/* Premium Cinematic Ambient Lighting */}
-        <div className="absolute top-0 -left-20 w-[40rem] h-[40rem] bg-[#c770f0]/10 rounded-full blur-[120px] md:blur-[150px] animate-pulse pointer-events-none"></div>
-        <div className="absolute bottom-1/4 -right-20 w-[40rem] h-[40rem] bg-[#00e5ff]/5 rounded-full blur-[120px] md:blur-[150px] animate-pulse delay-1000 pointer-events-none"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[50rem] bg-[#4200FF]/5 rounded-full blur-[150px] pointer-events-none z-[-1]"></div>
+        {/* Advanced Background Gradients */}
+        <div className="absolute top-1/4 -left-20 w-64 h-64 md:w-96 md:h-96 bg-[#c770f0]/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-1/4 -right-20 w-64 h-64 md:w-96 md:h-96 bg-[#00e5ff]/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse delay-700"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-[-5vh]">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-16 xl:gap-24 w-full">
@@ -121,14 +120,14 @@ export default function Home() {
                 <motion.div 
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-0 sm:top-[10%] left-0 sm:-left-[10%] w-56 sm:w-72 bg-black/40 backdrop-blur-2xl border border-white/5 rounded-2xl p-4 sm:p-5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)] z-30"
+                  className="absolute top-0 sm:top-[10%] left-0 sm:-left-[10%] w-56 sm:w-72 bg-[#1b1a2ea9] backdrop-blur-xl border border-white/10 rounded-2xl p-4 sm:p-5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] z-30"
                 >
                   <div className="flex gap-1.5 mb-3 sm:mb-4">
-                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]/80"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e]/80"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#27c93f]/80"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
                   </div>
-                  <div className="font-mono text-[10px] sm:text-sm space-y-2 font-light">
+                  <div className="font-mono text-[10px] sm:text-sm space-y-2">
                     <p className="text-[#c770f0]">const <span className="text-white">Profile</span> = () =&gt; &#123;</p>
                     <p className="pl-3 sm:pl-4 text-gray-400 lowercase">return (</p>
                     <p className="pl-6 sm:pl-8 text-[#00e5ff]">&lt;Hero name="Tobiloba" /&gt;</p>
@@ -141,33 +140,33 @@ export default function Home() {
                 <motion.div 
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-4 sm:bottom-[10%] right-0 sm:-right-[5%] w-44 sm:w-56 bg-black/40 backdrop-blur-2xl border border-white/5 rounded-2xl p-4 sm:p-6 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)] z-40"
+                  className="absolute bottom-4 sm:bottom-[10%] right-0 sm:-right-[5%] w-44 sm:w-56 bg-[#1b1a2ea9] sm:bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 sm:p-6 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] z-40"
                 >
                   <div className="flex items-center gap-3 mb-2 sm:mb-3">
-                    <div className="p-1.5 sm:p-2 bg-[#00e5ff]/10 rounded-lg text-[#00e5ff] border border-[rgba(0,229,255,0.2)]">
+                    <div className="p-1.5 sm:p-2 bg-[#00e5ff]/20 rounded-lg text-[#00e5ff]">
                       <Zap size={20} />
                     </div>
                     <span className="text-white font-bold text-base sm:text-lg tracking-wide">100%</span>
                   </div>
-                  <p className="text-gray-400 text-[10px] sm:text-xs uppercase font-semibold tracking-widest">Core Web Vitals</p>
+                  <p className="text-gray-400 text-[10px] sm:text-xs uppercase font-bold tracking-widest">Core Web Vitals</p>
                 </motion.div>
 
                 {/* Tech Icons orbiting */}
                 <motion.div 
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                   className="absolute inset-4 sm:inset-0 pointer-events-none z-20"
                 >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/40 border border-white/5 rounded-xl backdrop-blur-xl text-[#c770f0] shadow-lg">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#1b1a2ea9] sm:bg-white/5 border border-white/10 rounded-xl backdrop-blur-md text-[#c770f0] shadow-lg">
                     <Code2 size={20} className="sm:w-6 sm:h-6" />
                   </div>
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 p-2 sm:p-3 bg-black/40 border border-white/5 rounded-xl backdrop-blur-xl text-[#00e5ff] shadow-lg">
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 p-2 sm:p-3 bg-[#1b1a2ea9] sm:bg-white/5 border border-white/10 rounded-xl backdrop-blur-md text-[#00e5ff] shadow-lg">
                     <Cpu size={20} className="sm:w-6 sm:h-6" />
                   </div>
-                  <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/40 border border-white/5 rounded-xl backdrop-blur-xl text-white/50 shadow-lg">
+                  <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#1b1a2ea9] sm:bg-white/5 border border-white/10 rounded-xl backdrop-blur-md text-white/50 shadow-lg">
                     <Globe size={20} className="sm:w-6 sm:h-6" />
                   </div>
-                  <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/40 border border-white/5 rounded-xl backdrop-blur-xl text-[#c770f0]/70 shadow-lg">
+                  <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#1b1a2ea9] sm:bg-white/5 border border-white/10 rounded-xl backdrop-blur-md text-[#c770f0]/70 shadow-lg">
                     <Rocket size={20} className="sm:w-6 sm:h-6" />
                   </div>
                 </motion.div>

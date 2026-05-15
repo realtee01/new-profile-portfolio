@@ -6,7 +6,7 @@ export default function Footer() {
   let date = new Date();
   let year = date.getFullYear();
   return (
-    <div className="bg-black/60 backdrop-blur-md border-t border-white/5 py-8 mt-10 relative z-10">
+    <div className="bg-[#0a0410] py-6 mt-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="text-white text-sm md:text-base">
           Designed and Developed by Tobiloba Akala

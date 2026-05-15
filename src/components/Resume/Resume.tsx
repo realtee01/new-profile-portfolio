@@ -20,9 +20,7 @@ export default function Resume() {
           </a>
         </div>
 
-        <div className="w-full bg-black/40 backdrop-blur-3xl border border-white/5 rounded-[2.5rem] p-8 md:p-12 text-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] text-left relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#c770f0]/5 to-[#00e5ff]/5 pointer-events-none"></div>
-          <div className="relative z-10">
+        <div className="w-full bg-white/5 backdrop-blur-md border border-[rgba(200,137,230,0.3)] rounded-2xl p-8 md:p-12 text-white shadow-2xl text-left">
            {/* HEADER */}
            <div className="border-b border-[#00e5ff]/30 pb-8 mb-8 text-center md:text-left">
              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gradient mb-2 uppercase tracking-widest">Tobiloba Akala</h2>
@@ -130,7 +128,6 @@ export default function Resume() {
                <strong className="text-white">Languages:</strong> English, Yoruba
              </p>
            </div>
-          </div>
         </div>
       </div>
     </div>

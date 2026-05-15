@@ -23,7 +23,7 @@ const SkillIcon = ({ icon: Icon, name, proficiency, projects }: { icon: React.El
       </div>
       
       {/* Tooltip */}
-      <div className={`transition-opacity duration-300 pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 sm:w-56 bg-black/60 backdrop-blur-2xl border border-[#c770f0]/30 shadow-[0_20px_40px_-10px_rgba(199,112,240,0.3)] rounded-2xl p-4 z-50 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`transition-opacity duration-300 pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 sm:w-56 bg-[#151421] border border-[#c770f0]/30 shadow-[0_10px_30px_-10px_rgba(199,112,240,0.3)] rounded-xl p-4 z-50 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
         <div className="text-center">
           <h4 className="text-white font-bold text-lg mb-1">{name}</h4>
           <div className="w-full bg-gray-700 h-1.5 rounded-full mb-3 overflow-hidden">
