@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 
 export default function Contact() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,6 +14,7 @@ export default function Contact() {
     email: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -46,9 +49,33 @@ export default function Contact() {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!validate()) {
-      e.preventDefault();
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch("https://formspree.io/f/xaqlbalq", {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        navigate("/thank-you");
+      } else {
+        // Handle error if needed or assume user can try again
+        setIsSubmitting(false);
+      }
+    } catch (error) {
+      console.error("Form submission error", error);
+      setIsSubmitting(false);
     }
   };
 
@@ -76,8 +103,6 @@ export default function Contact() {
           className="bg-white/5 backdrop-blur-md border border-[rgba(200,137,230,0.3)] rounded-2xl p-8 md:p-12 shadow-2xl"
         >
           <form 
-            action="https://formspree.io/f/xaqlbalq" 
-            method="POST" 
             className="space-y-6"
             onSubmit={handleSubmit}
           >
@@ -124,10 +149,11 @@ export default function Contact() {
             </div>
             <button 
               type="submit" 
-              className="w-full bg-white text-[#0d0d12] hover:bg-gray-200 py-4 rounded-xl text-sm tracking-widest uppercase font-bold flex items-center justify-center gap-2 group transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+              disabled={isSubmitting}
+              className={`w-full bg-white text-[#0d0d12] hover:bg-gray-200 py-4 rounded-xl text-sm tracking-widest uppercase font-bold flex items-center justify-center gap-2 group transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
-              Send Message 
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
+              {isSubmitting ? 'Sending...' : 'Send Message'} 
+              {!isSubmitting && <span className="group-hover:translate-x-1 transition-transform">→</span>}
             </button>
           </form>
         </motion.div>

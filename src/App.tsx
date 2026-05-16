@@ -13,6 +13,7 @@ const Resume = lazy(() => import("./components/Resume/Resume"));
 const Blog = lazy(() => import("./components/Blog/Blog"));
 const BlogPost = lazy(() => import("./components/Blog/BlogPost"));
 const Contact = lazy(() => import("./components/Contact/Contact"));
+const ThankYou = lazy(() => import("./components/Contact/ThankYou"));
 const Experience = lazy(() => import("./components/Experience/Experience"));
 const Testimonials = lazy(() => import("./components/Testimonials/Testimonials"));
 
@@ -52,6 +53,7 @@ export default function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/thank-you" element={<ThankYou />} />
               <Route path="/experience" element={<Experience />} />
               <Route path="/testimonials" element={<Testimonials />} />
               <Route path="*" element={<Navigate to="/"/>} />
