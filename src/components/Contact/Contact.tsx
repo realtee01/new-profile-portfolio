@@ -108,12 +108,12 @@ export default function Contact() {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
                 <input 
                   name="name" 
                   id="name"
                   type="text" 
-                  placeholder="Your Name" 
+                  placeholder="Enter your Full name" 
                   value={formData.name}
                   onChange={handleChange}
                   className={`w-full bg-[#0c0513]/50 border ${errors.name ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
@@ -126,7 +126,7 @@ export default function Contact() {
                   name="email" 
                   id="email"
                   type="email" 
-                  placeholder="Your Email" 
+                  placeholder="example@email.com" 
                   value={formData.email}
                   onChange={handleChange}
                   className={`w-full bg-[#0c0513]/50 border ${errors.email ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
@@ -135,7 +135,7 @@ export default function Contact() {
               </div>
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message</label>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Brief Overview</label>
               <textarea 
                 name="message" 
                 id="message"
@@ -143,9 +143,54 @@ export default function Contact() {
                 rows={5} 
                 value={formData.message}
                 onChange={handleChange}
-                className={`w-full bg-[#0c0513]/50 border ${errors.message ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors resize-none`}
+                className={`w-full bg-[#0c0513]/50 border ${errors.message ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors resize-none mb-4`}
               ></textarea>
-              {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
+              {errors.message && <p className="text-red-500 text-xs mt-1 mb-2">{errors.message}</p>}
+              
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <span className="text-sm font-medium text-gray-300">Quick start with a template:</span>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData(prev => ({ 
+                        ...prev, 
+                        message: "Hi! I'm looking to build a new mobile app. Here is a bit about what I need: [brief context].\nMy budget is around [budget], and my target launch date is [timeline]." 
+                      }));
+                      if (errors.message) setErrors(prev => ({ ...prev, message: "" }));
+                    }}
+                    className="flex items-center gap-2 text-xs bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 py-1.5 px-3 rounded-full transition-colors"
+                  >
+                    <span>📱</span> Mobile App
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData(prev => ({ 
+                        ...prev, 
+                        message: "Hi! I'm looking to build a new website. Here is a bit about what I need: [brief context].\nMy budget is around [budget], and my target launch date is [timeline]." 
+                      }));
+                      if (errors.message) setErrors(prev => ({ ...prev, message: "" }));
+                    }}
+                    className="flex items-center gap-2 text-xs bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 py-1.5 px-3 rounded-full transition-colors"
+                  >
+                    <span>💻</span> Website
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData(prev => ({ 
+                        ...prev, 
+                        message: "Hi! I'm looking to build a custom project. Here is a bit about what I need: [brief context].\nMy budget is around [budget], and my target launch date is [timeline]." 
+                      }));
+                      if (errors.message) setErrors(prev => ({ ...prev, message: "" }));
+                    }}
+                    className="flex items-center gap-2 text-xs bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 py-1.5 px-3 rounded-full transition-colors"
+                  >
+                    <span>✨</span> Custom Project
+                  </button>
+                </div>
+              </div>
             </div>
             <button 
               type="submit" 
