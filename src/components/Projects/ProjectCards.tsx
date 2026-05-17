@@ -10,6 +10,8 @@ interface ProjectCardProps {
   demoLink?: string;
   inProgress?: boolean;
   customCover?: React.ReactNode;
+  hasDetails?: boolean;
+  onViewDetails?: () => void;
 }
 
 export default function ProjectCards(props: ProjectCardProps) {
@@ -78,6 +80,14 @@ export default function ProjectCards(props: ProjectCardProps) {
                   <CgWebsite className="text-lg" />
                   <span>Live Demo</span>
                 </a>
+              )}
+              {props.hasDetails && (
+                <button
+                  onClick={props.onViewDetails}
+                  className="w-full mt-2 bg-white/5 hover:bg-white/10 border border-[#00e5ff]/30 text-[#00e5ff] px-4 py-2.5 rounded-xl flex justify-center items-center gap-2 transition-all duration-300 text-sm font-medium"
+                >
+                  View Case Study
+                </button>
               )}
             </>
           )}

@@ -4,6 +4,7 @@ import { Marquee } from "../ui/marquee";
 import { Lock } from "lucide-react";
 import { FaReact, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss, SiTypescript, SiSupabase, SiFirebase, SiJavascript, SiNodedotjs } from "react-icons/si";
+import ProjectModal, { ProjectDetailsData } from "./ProjectModal";
 
 // Real images for projects from user's github
 const forzchainImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/forzchain.jpg";
@@ -17,6 +18,8 @@ const nexchat3Img = "https://plus.unsplash.com/premium_photo-1733342554594-102b8
 const kotiImg = "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1074&auto=format&fit=crop";
 const pixelCleanImg = "https://plus.unsplash.com/premium_photo-1726079247228-993af4c05db8?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 const tribeFitnessImg = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1170&auto=format&fit=crop";
+const blankCanvasImg = "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=1171&auto=format&fit=crop";
+const makeupBookingImg = "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1171&auto=format&fit=crop";
 
 import NotesCover from "./NotesCover";
 import React, { useState } from "react";
@@ -61,6 +64,63 @@ const RoitechDescription = () => {
 
 const projectsData = [
   {
+    id: 6,
+    title: "Tribe Fitness",
+    description: "A dynamic and engaging fitness platform featuring comprehensive workout plans, class schedules, and a vibrant community interface.",
+    imgPath: tribeFitnessImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://tribe-fitness-six.vercel.app/",
+    category: "Landing Page",
+    details: {
+      problem: "Local gyms struggle to maintain an engaging online presence where users can easily view schedules and book classes.",
+      solution: "A vibrant landing page and platform that centralizes class schedules, workout plans, and community interaction.",
+      role: "Frontend Developer",
+      toolsUsed: ["React", "Tailwind CSS", "Firebase"],
+      whyTools: "React for component-based UI, Tailwind for rapid styling to match the energetic brand vibe, Firebase for storing dynamic class schedules.",
+      features: ["Dynamic class scheduling", "Member dashboard", "Community forum", "Responsive design"],
+      challenges: "Designing an interface that is highly energetic but doesn't overwhelm the user with too much information at once.",
+      result: "Improved class attendance and user engagement through a much more accessible and mobile-friendly scheduling interface."
+    }
+  },
+  {
+    id: 13,
+    title: "Make-Up Booking Platform",
+    description: "A seamless online booking system designed for makeup artists to manage appointments, showcase portfolios, and offer a smooth scheduling experience for clients.",
+    imgPath: makeupBookingImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://make-up-online-booking.vercel.app/",
+    category: "Landing Page",
+    details: {
+      problem: "Makeup professionals often struggle to manage appointments manually across different apps (WhatsApp, Instagram, Notebooks), leading to double bookings and lost clients.",
+      solution: "A full-stack digital booking platform acting as a centralized hub. It handles schedule availability, portfolio display, and direct client bookings from a single link, while providing a robust CMS for staff to manage the site.",
+      role: "Full-Stack Engineer",
+      toolsUsed: ["React", "Tailwind CSS", "Supabase", "Vite", "Motion"],
+      whyTools: "React allows for rapid creation of interactive forms. Tailwind CSS accelerates styling with utility classes keeping the user interface cohesive, while Motion provides polished transitions. Supabase was integrated to power the backend and provide seamless data management.",
+      features: ["Interactive Calendar Integration", "Dynamic Service Selection", "Real-time cost estimation", "Admin Dashboard & Calendar View", "CMS for easy editing of services, pictures, and website content by staff"],
+      challenges: "Creating an intuitive user flow that wasn't overwhelming despite having multiple step-by-step selections, and simultaneously building a backend using Supabase to allow admins and staff to easily edit services, pictures, and almost everything on the website without coding.",
+      result: "A professional, fast, and accessible scheduling solution providing a 30% reduction in booking friction and enabling artists to securely showcase their portfolio while driving conversions."
+    }
+  },
+  {
+    id: 14,
+    title: "Photography Portfolio",
+    description: "An elegant and visually immersive portfolio showcasing professional photography with smooth animations and minimal design.",
+    imgPath: blankCanvasImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://blank-canvas-spark-7410.vercel.app/",
+    category: "Web App",
+    details: {
+      problem: "Photographers need a minimalist digital space that highlights high-resolution images without distracting UI elements.",
+      solution: "A beautifully crafted portfolio website focused on visual storytelling, utilizing large imagery and fluid transitions.",
+      role: "Frontend Developer",
+      toolsUsed: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
+      whyTools: "React and Vite for fast performance, Tailwind for quick and custom responsive layouts, Framer Motion for elegant image reveal animations.",
+      features: ["High-res image gallery", "Image lightbox", "Smooth page transitions", "Responsive grid layouts"],
+      challenges: "Optimizing the loading speed and performance of high-resolution images without compromising on quality.",
+      result: "A sleek, professional portfolio that effectively showcases the photographer's work and improves client engagement."
+    }
+  },
+  {
     id: 1,
     title: "Roitech AI & LearnIQ",
     description: <RoitechDescription />,
@@ -68,16 +128,17 @@ const projectsData = [
     inProgress: true,
     ghLink: "",
     demoLink: "",
-    category: "Web App"
-  },
-  {
-    id: 6,
-    title: "Tribe Fitness",
-    description: "A dynamic and engaging fitness platform featuring comprehensive workout plans, class schedules, and a vibrant community interface.",
-    imgPath: tribeFitnessImg,
-    ghLink: "https://github.com/realtee01",
-    demoLink: "https://tribe-fitness-six.vercel.app/",
-    category: "Landing Page"
+    category: "Web App",
+    details: {
+      problem: "Students struggle to extract key points from long lectures and organize them into actionable study materials effectively.",
+      solution: "An AI-driven educational tool that automatically generates notes, flashcards, and quizzes from raw input.",
+      role: "Full-Stack Developer",
+      toolsUsed: ["Next.js", "Tailwind CSS", "OpenAI API", "Supabase"],
+      whyTools: "Next.js for SSR and fast routing, OpenAI for intelligent text parsing, Supabase for authentication and real-time database to sync studying materials.",
+      features: ["Automatic note generation", "AI-powered flashcards", "Adaptive quizzes", "Progress tracking"],
+      challenges: "Managing state for complex AI responses and ensuring the generated study materials are accurately formatted and saved to the database without delay.",
+      result: "Increased student engagement by providing instant, high-quality study resources, saving hours of manual note-taking."
+    }
   },
   {
     id: 7,
@@ -86,7 +147,17 @@ const projectsData = [
     imgPath: cinescopeImg,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://cinescope-tobiloba-niad.vercel.app",
-    category: "Web App"
+    category: "Web App",
+    details: {
+      problem: "Movie enthusiasts need a fast, visually appealing way to discover new films and view detailed metadata without clutter.",
+      solution: "A sleek movie discovery app pulling real-time data with a focus on high-quality visuals and smooth interactions.",
+      role: "Frontend Engineer",
+      toolsUsed: ["React", "Tailwind CSS", "TMDB API", "Vite"],
+      whyTools: "React and Vite for blazing fast development and rendering, TMDB API for robust movie data, Tailwind for building a cinematic UI.",
+      features: ["Real-time search", "Categorized movie lists", "Detailed movie pages with trailers", "Responsive grid layouts"],
+      challenges: "Handling API rate limits and optimizing the loading of high-resolution movie posters to ensure a smooth scrolling experience.",
+      result: "A highly performant and immersive movie browsing experience that keeps users engaged."
+    }
   },
   {
     id: 11,
@@ -95,7 +166,17 @@ const projectsData = [
     imgPath: nextcleanImg,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://nextclean.vercel.app",
-    category: "Landing Page"
+    category: "Landing Page",
+    details: {
+      problem: "A local cleaning service needed a digital storefront to convert visitors into booked appointments efficiently.",
+      solution: "A conversion-focused landing page with transparent service filters, sharp copy, and an easy booking flow.",
+      role: "Frontend Developer",
+      toolsUsed: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      whyTools: "Next.js for SEO optimization to rank high locally, Tailwind for quick custom styling, and Framer Motion for subtle trust-building micro-interactions.",
+      features: ["Filterable service list", "Pricing calculator", "Mobile-optimized booking form", "Client testimonials"],
+      challenges: "Ensuring the mobile experience was completely frictionless, as the majority of users would be booking from their phones.",
+      result: "A significant increase in online booking inquiries and a stronger brand presence in the local market."
+    }
   },
   {
     id: 9,
@@ -104,7 +185,17 @@ const projectsData = [
     imgPath: kotiImg,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://koti-gray.vercel.app/",
-    category: "Landing Page"
+    category: "Landing Page",
+    details: {
+      problem: "A high-end restaurant needed a digital presence that matched their premium dining experience and allowed for easy reservations.",
+      solution: "An elegant, sophisticated website showcasing high-quality culinary imagery and integrating a seamless reservation system.",
+      role: "Web Developer",
+      toolsUsed: ["Next.js", "Tailwind CSS", "Supabase"],
+      whyTools: "Next.js for a smooth SPA experience and SEO, Tailwind for precise, elegant styling, and Supabase to handle reservation data.",
+      features: ["Interactive menu", "Image gallery", "Real-time reservation booking", "Contact management"],
+      challenges: "Balancing high-resolution imagery with fast load times to ensure the premium feel wasn't compromised by performance issues.",
+      result: "Elevated the restaurant's digital brand and streamlined their table booking process."
+    }
   },
   {
     id: 8,
@@ -113,7 +204,17 @@ const projectsData = [
     imgPath: relayPropertiesImg,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://relay-properties.vercel.app/",
-    category: "Landing Page"
+    category: "Landing Page",
+    details: {
+      problem: "Finding and managing properties was cumbersome due to cluttered interfaces and lack of mobile optimization on existing platforms.",
+      solution: "A refined real estate platform focused on intuitive property discovery and clean presentation.",
+      role: "Full-Stack Developer",
+      toolsUsed: ["Next.js", "Tailwind CSS", "Firebase"],
+      whyTools: "Next.js for fast page loads and SEO, Firebase for robust backend real-time database to manage property listings and user authentication.",
+      features: ["Advanced property search and filtering", "Image carousels", "Agent contact forms", "Save favorite properties"],
+      challenges: "Implementing complex, multi-parameter search filters while keeping the UI clean and responsive.",
+      result: "A user-friendly platform that simplified property hunting and increased lead generation for agents."
+    }
   },
   {
     id: 10,
@@ -122,7 +223,17 @@ const projectsData = [
     imgPath: heritageKitchenImg,
     ghLink: "https://github.com/realtee01/heritage-kitchen",
     demoLink: "https://heriatage-kitchen.vercel.app/",
-    category: "Landing Page"
+    category: "Landing Page",
+    details: {
+      problem: "A fine dining establishment lacked an online presence that accurately reflected its heritage and upscale ambiance.",
+      solution: "An elegant website with a responsive layout designed to showcase a visually rich menu and fine dining experience.",
+      role: "Frontend Developer",
+      toolsUsed: ["Next.js", "Tailwind CSS"],
+      whyTools: "Next.js provided excellent SEO for local discovery, and Tailwind allowed for the rapid development of a custom, luxurious design system.",
+      features: ["Digital menu display", "Heritage storytelling section", "Location and hours", "Reservation integration"],
+      challenges: "Creating a design language that felt both traditional and modern.",
+      result: "A visually striking digital storefront that improved local visibility and brand prestige."
+    }
   },
   {
     id: 5,
@@ -131,7 +242,17 @@ const projectsData = [
     imgPath: trendyTransitImg,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://trendy-transit.vercel.app/",
-    category: "E-commerce"
+    category: "E-commerce",
+    details: {
+      problem: "The logistics of managing an e-commerce catalog and providing a smooth checkout process were disjointed and slow.",
+      solution: "A modern e-commerce platform with a dynamic catalog, intuitive cart, and streamlined checkout.",
+      role: "Full-Stack Developer",
+      toolsUsed: ["Next.js", "Tailwind CSS", "Supabase"],
+      whyTools: "Next.js for storefront performance, Supabase for managing the product catalog, user carts, and order history securely.",
+      features: ["Dynamic product filtering", "Shopping cart management", "Secure checkout flow", "Order tracking"],
+      challenges: "Synchronizing cart state across the application and handling secure backend transactions with Supabase.",
+      result: "A highly performant shopping experience that reduced cart abandonment and simplified product management."
+    }
   },
   {
     id: 3,
@@ -140,7 +261,17 @@ const projectsData = [
     imgPath: nexchat3Img,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://nexus3-bay.vercel.app/",
-    category: "Web3"
+    category: "Web3",
+    details: {
+      problem: "Traditional chatting apps lack integrations with Web3 identities and often have stagnant, non-immersive interfaces.",
+      solution: "A cutting-edge Web3 chat platform combining real-time communication with rich animations and decentralized identity.",
+      role: "Frontend Engineer / Web3 Integrator",
+      toolsUsed: ["React", "Firebase", "Ethers.js", "Framer Motion"],
+      whyTools: "Firebase for real-time messaging infrastructure, Ethers.js for wallet connection, and Framer Motion for immersive UI animations.",
+      features: ["Wallet authentication", "Real-time messaging", "Decentralized profiles", "Interactive animated UI"],
+      challenges: "Integrating wallet authentication seamlessly with traditional real-time messaging flows without confusing the user.",
+      result: "An innovative communication platform tailored for the Web3 community with a visually stunning interface."
+    }
   },
   {
     id: 4,
@@ -149,7 +280,17 @@ const projectsData = [
     imgPath: forzchainImg,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://forzchain-v-2.vercel.app",
-    category: "Web3"
+    category: "Web3",
+    details: {
+      problem: "Supply chains suffer from a lack of transparency and trust between parties.",
+      solution: "A decentralized supply chain management system utilizing blockchain to ensure immutable tracking and transparency.",
+      role: "Blockchain & Frontend Developer",
+      toolsUsed: ["Next.js", "Solidity", "Tailwind CSS", "Web3.js"],
+      whyTools: "Solidity for writing secure smart contracts on the blockchain, Next.js to build a user-friendly dashboard to interact with the chain.",
+      features: ["Product tracking", "Smart contract interaction", "Dashboard analytics", "Role-based access"],
+      challenges: "Translating complex blockchain transactions into clear, understandable UI feedback for non-technical users.",
+      result: "A transparent, tamper-proof tracking system that increases trust among supply chain stakeholders."
+    }
   },
   {
     id: 2,
@@ -158,7 +299,17 @@ const projectsData = [
     imgPath: pixelCleanImg,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://pixel-clean-ai-pi.vercel.app/",
-    category: "Web App"
+    category: "Web App",
+    details: {
+      problem: "High-quality image enhancement and background removal tools are often expensive and require complex software.",
+      solution: "An accessible AI-powered web app offering intelligent image processing with a modern, simple UI.",
+      role: "Full-Stack Developer",
+      toolsUsed: ["Next.js", "Tailwind CSS", "Supabase", "Python APIs"],
+      whyTools: "Next.js for a robust full-stack foundation, Supabase to manage user credits and processed image storage.",
+      features: ["AI background removal", "Image upscaling", "User dashboard", "Credit system"],
+      challenges: "Handling large file uploads efficiently and providing real-time feedback while the AI models processed images in the background.",
+      result: "A reliable, easy-to-use tool that democratizes professional image enhancement for everyday users."
+    }
   },
   {
     id: 12,
@@ -167,12 +318,23 @@ const projectsData = [
     imgPath: calcImg,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://cgpa-calculator-tobiloba.vercel.app",
-    category: "Web App"
+    category: "Web App",
+    details: {
+      problem: "Students struggled with accurately calculating and tracking their cumulative grades across semesters using their university's specific system.",
+      solution: "A dedicated, localized tool designed specifically for the grading system to help students easily track their academic performance.",
+      role: "Frontend Developer",
+      toolsUsed: ["React", "Vite", "Tailwind CSS", "LocalStorage"],
+      whyTools: "React for dynamic state management, Tailwind for quick styling, with LocalStorage used to save student data without needing an account.",
+      features: ["Semester grade input", "Instant CGPA calculation", "Data persistence", "Mobile-optimized layout"],
+      challenges: "Ensuring the calculation logic perfectly matched the complex university grading rules, including edge cases for extra credits.",
+      result: "A highly useful utility application adopted by numerous students to effortlessly monitor their academic progress."
+    }
   }
 ];
 
 export default function Projects() {
   const [filter, setFilter] = useState("All");
+  const [selectedProject, setSelectedProject] = useState<{title: string, details: ProjectDetailsData} | null>(null);
 
   const categories = ["All", "Web App", "Landing Page", "Web3", "E-commerce"];
 
@@ -298,12 +460,25 @@ export default function Projects() {
                   ghLink={project.ghLink}
                   demoLink={project.demoLink}
                   inProgress={project.inProgress}
+                  hasDetails={!!project.details}
+                  onViewDetails={() => {
+                    if (project.details) {
+                      setSelectedProject({ title: project.title, details: project.details });
+                    }
+                  }}
                 />
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
       </div>
+
+      <ProjectModal 
+        isOpen={selectedProject !== null} 
+        onClose={() => setSelectedProject(null)} 
+        title={selectedProject?.title || ""} 
+        details={selectedProject?.details || null} 
+      />
     </div>
   );
 }
