@@ -8,7 +8,8 @@ import {
   SiNextdotjs,
   SiSolidity,
   SiTailwindcss,
-  SiTypescript
+  SiTypescript,
+  SiOpenai
 } from "react-icons/si";
 import { motion } from "motion/react";
 import React, { useState } from "react";
@@ -53,6 +54,7 @@ export default function Techstack() {
     { icon: SiTypescript, name: "TypeScript", proficiency: "85%", projects: "Forzchain, Pixel Clean AI" },
     { icon: DiNodejs, name: "Node.js", proficiency: "80%", projects: "Relay Properties" },
     { icon: SiNextdotjs, name: "Next.js", proficiency: "85%", projects: "Trendy Transit, Nexchat3" },
+    { icon: SiOpenai, name: "OpenAI / AI Agents", proficiency: "90%", projects: "Roitech AI, AI Receptionists" },
     { icon: DiGit, name: "Git", proficiency: "90%", projects: "All Projects" },
     { icon: SiSolidity, name: "Solidity", proficiency: "70%", projects: "Forzchain" },
   ];

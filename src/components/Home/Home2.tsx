@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { AppWindow, Palette, Search, Zap, LayoutDashboard, MonitorSmartphone, ShoppingCart, Cuboid, Sparkles } from "lucide-react";
+import { AppWindow, Palette, Search, Zap, LayoutDashboard, MonitorSmartphone, ShoppingCart, Cuboid, Sparkles, Bot, Mic } from "lucide-react";
 import Tilt from "react-parallax-tilt";
 import { HashLink } from "react-router-hash-link";
 import MagneticDock from "../ui/magnetic-dock";
@@ -12,6 +12,16 @@ const services = [
     icon: <AppWindow className="text-[#00e5ff] w-6 h-6" />,
     title: "Code to Launch",
     desc: "Building complete, production-ready websites and web apps."
+  },
+  {
+    icon: <Bot className="text-[#c770f0] w-6 h-6" />,
+    title: "AI Agents",
+    desc: "Automating workflows by building intelligent AI agents tailored for your business."
+  },
+  {
+    icon: <Mic className="text-[#00e5ff] w-6 h-6" />,
+    title: "Voice Agents & Receptionists",
+    desc: "Integrating conversational voice agents and AI receptionists into modern websites."
   },
   {
     icon: <Cuboid className="text-[#c770f0] w-6 h-6" />,

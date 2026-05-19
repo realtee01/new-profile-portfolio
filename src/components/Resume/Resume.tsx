@@ -47,8 +47,10 @@ export default function Resume() {
              <h3 className="text-2xl font-serif font-bold text-gradient mb-4 uppercase tracking-widest border-b-2 border-transparent w-max">Skills</h3>
              <ul className="grid grid-cols-2 lg:grid-cols-3 gap-2 text-gray-300 list-disc list-inside text-lg font-light tracking-wide">
                <li>React.js & Vite</li>
-               <li>JavaScript (ES6+)</li>
+               <li>JavaScript & TypeScript</li>
                <li>Tailwind CSS</li>
+               <li>Building AI Agents</li>
+               <li>Voice & AI Receptionists</li>
                <li>REST API Integration</li>
                <li>Git & Version Control</li>
                <li>Problem-Solving</li>
