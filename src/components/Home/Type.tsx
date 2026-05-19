@@ -12,6 +12,7 @@ export default function Type() {
             "Building Fast Web Experiences",
             "I Build Modern Websites That Convert",
             "React Developer",
+            "Mobile App Developer",
             "Design to Code Expert",
             "Framer Developer",
           ],

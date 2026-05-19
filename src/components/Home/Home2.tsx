@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FaWhatsapp, FaPhone } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { AppWindow, Palette, Search, Zap, LayoutDashboard, MonitorSmartphone, ShoppingCart, Cuboid, Sparkles, Bot, Mic } from "lucide-react";
+import { AppWindow, Palette, Search, Zap, LayoutDashboard, MonitorSmartphone, ShoppingCart, Cuboid, Sparkles, Bot, Mic, Smartphone } from "lucide-react";
 import Tilt from "react-parallax-tilt";
 import { HashLink } from "react-router-hash-link";
 import MagneticDock from "../ui/magnetic-dock";
@@ -14,17 +14,22 @@ const services = [
     desc: "Building complete, production-ready websites and web apps."
   },
   {
-    icon: <Bot className="text-[#c770f0] w-6 h-6" />,
+    icon: <Smartphone className="text-[#c770f0] w-6 h-6" />,
+    title: "Mobile App Development",
+    desc: "Developing fast, scalable, and intuitive mobile applications for iOS and Android."
+  },
+  {
+    icon: <Bot className="text-[#00e5ff] w-6 h-6" />,
     title: "AI Agents",
     desc: "Automating workflows by building intelligent AI agents tailored for your business."
   },
   {
-    icon: <Mic className="text-[#00e5ff] w-6 h-6" />,
+    icon: <Mic className="text-[#c770f0] w-6 h-6" />,
     title: "Voice Agents & Receptionists",
     desc: "Integrating conversational voice agents and AI receptionists into modern websites."
   },
   {
-    icon: <Cuboid className="text-[#c770f0] w-6 h-6" />,
+    icon: <Cuboid className="text-[#00e5ff] w-6 h-6" />,
     title: "3D Websites",
     desc: "Crafting immersive 3D websites using modern web technologies."
   },

@@ -49,6 +49,7 @@ export default function Resume() {
                <li>React.js & Vite</li>
                <li>JavaScript & TypeScript</li>
                <li>Tailwind CSS</li>
+               <li>Mobile App Development (React Native)</li>
                <li>Building AI Agents</li>
                <li>Voice & AI Receptionists</li>
                <li>REST API Integration</li>
