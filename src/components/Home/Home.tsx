@@ -45,16 +45,18 @@ export default function Home() {
                   I'm
                 </span>
                 
-                <span className="block z-10 text-white drop-shadow-[0_4px_24px_rgba(0,229,255,0.4)] relative">
-                  TOBILOBA
-                </span>
-                
-                <span className="relative inline-block w-fit self-center lg:self-start">
-                  <span className="absolute left-[0.06em] top-[0.06em] text-transparent [-webkit-text-stroke:1px_#c770f0] sm:[-webkit-text-stroke:2px_#c770f0] -z-10 select-none whitespace-nowrap">
-                    AKALA
+                <span className="flex flex-wrap items-center justify-center lg:justify-start gap-x-4 sm:gap-x-6 z-10">
+                  <span className="block text-white drop-shadow-[0_4px_24px_rgba(0,229,255,0.4)] relative whitespace-nowrap">
+                    TOBILOBA
                   </span>
-                  <span className="text-[#00e5ff] relative z-10 whitespace-nowrap">
-                    AKALA
+                  
+                  <span className="relative inline-block w-fit whitespace-nowrap">
+                    <span className="absolute left-[0.06em] top-[0.06em] text-transparent [-webkit-text-stroke:1px_#c770f0] sm:[-webkit-text-stroke:2px_#c770f0] -z-10 select-none">
+                      AKALA
+                    </span>
+                    <span className="text-[#00e5ff] relative z-10">
+                      AKALA
+                    </span>
                   </span>
                 </span>
               </h1>
