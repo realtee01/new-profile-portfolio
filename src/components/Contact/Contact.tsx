@@ -116,7 +116,7 @@ export default function Contact() {
                   placeholder="Enter your Full name" 
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full bg-[#0c0513]/50 border ${errors.name ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
+                  className={`w-full bg-[#06020c]/50 border ${errors.name ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
                 />
                 {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
               </div>
@@ -129,7 +129,7 @@ export default function Contact() {
                   placeholder="example@email.com" 
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full bg-[#0c0513]/50 border ${errors.email ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
+                  className={`w-full bg-[#06020c]/50 border ${errors.email ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
                 />
                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
               </div>
@@ -143,7 +143,7 @@ export default function Contact() {
                 rows={5} 
                 value={formData.message}
                 onChange={handleChange}
-                className={`w-full bg-[#0c0513]/50 border ${errors.message ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors resize-none mb-4`}
+                className={`w-full bg-[#06020c]/50 border ${errors.message ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors resize-none mb-4`}
               ></textarea>
               {errors.message && <p className="text-red-500 text-xs mt-1 mb-2">{errors.message}</p>}
               

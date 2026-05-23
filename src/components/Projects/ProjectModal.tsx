@@ -44,7 +44,7 @@ export default function ProjectModal({ isOpen, onClose, title, details }: Projec
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[#0c0513]/80 backdrop-blur-sm"
+            className="fixed inset-0 bg-[#06020c]/80 backdrop-blur-sm"
           />
 
           {/* Modal Content */}
