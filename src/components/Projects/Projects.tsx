@@ -314,7 +314,7 @@ const projectsData = [
   {
     id: 12,
     title: "CGPA Calculator",
-    description: "A practical tool for University of Lagos students to track and calculate grades. Built with JavaScript, CSS, and HTML.",
+    description: "A practical tool for university students to track and calculate grades. Built with JavaScript, CSS, and HTML.",
     imgPath: calcImg,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://cgpa-calculator-tobiloba.vercel.app",
