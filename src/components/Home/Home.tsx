@@ -69,9 +69,9 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
-                className="text-gray-300 text-lg md:text-xl max-w-xl leading-relaxed mb-10 hidden lg:block font-light tracking-wide font-sans"
+                className="text-gray-300 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mb-10 block font-light tracking-wide font-sans md:px-4 lg:px-0"
               >
-                I build fast, polished, and highly interactive digital products—focusing on clean architecture and intentional design.
+                I create solutions to businesses brand and organizations building fast, polished, and highly interactive digital products—focusing on clean architecture and intentional design.
               </motion.p>
 
               <motion.div 

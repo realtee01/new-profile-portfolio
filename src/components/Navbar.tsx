@@ -42,9 +42,10 @@ export default function Navbar() {
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            className="navbar-logo-wrapper"
           >
             <HashLink smooth to="/#top" className="flex items-center gap-3 px-2" onClick={() => updateExpanded(false)}>
-              <svg viewBox="0 0 100 100" className="w-10 h-10 xl:w-12 xl:h-12 drop-shadow-[0_0_10px_rgba(0,229,255,0.3)] transition-all duration-300 group-hover:drop-shadow-[0_0_15px_rgba(199,112,240,0.5)]" aria-label="TA Logo">
+              <svg viewBox="0 0 100 100" className="navbar-logo-svg drop-shadow-[0_0_10px_rgba(0,229,255,0.3)] transition-all duration-300 group-hover:drop-shadow-[0_0_15px_rgba(199,112,240,0.5)]" aria-label="TA Logo">
                 <defs>
                   <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#c770f0" />

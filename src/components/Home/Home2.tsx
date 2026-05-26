@@ -86,7 +86,7 @@ export default function Home2() {
             </h3>
             <div className="text-lg leading-relaxed mb-6 space-y-6 text-gray-300 font-light max-w-3xl">
               <p>
-                I'm a Frontend Engineer and Computer Science student at the University of Lagos. I bridge the gap between rigorous engineering principles and thoughtful, polished design.
+                I'm Tobiloba Akala, a Frontend Engineer and Computer Science student at the University of Lagos. I create solutions to businesses and brands by bridging the gap between rigorous engineering principles and thoughtful, polished design.
               </p>
               <p>
                 I don't just write code—I focus on the entire product experience. From architecting scalable React systems to crafting immersive <span className="text-white font-medium">3D experiences</span> and <span className="text-white font-medium">fluid animations</span>, every detail matters.

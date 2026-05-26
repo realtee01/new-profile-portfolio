@@ -273,3 +273,43 @@ html {
 .animate-updown-hue {
   animation: updown-hue 3s ease-in-out infinite;
 }
+
+/* Navbar logo responsive max-width adjustments using media queries */
+.navbar-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-logo-svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Default/fallback on smallest mobile viewport */
+@media (max-width: 380px) {
+  .navbar-logo-wrapper {
+    max-width: 2.25rem; /* 36px */
+  }
+}
+
+/* Small mobile screen to standard mobile */
+@media (min-width: 381px) and (max-width: 639px) {
+  .navbar-logo-wrapper {
+    max-width: 2.5rem; /* 40px */
+  }
+}
+
+/* Medium viewport (Tablet/Small Laptop) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .navbar-logo-wrapper {
+    max-width: 2.75rem; /* 44px */
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .navbar-logo-wrapper {
+    max-width: 3rem; /* 48px */
+  }
+}

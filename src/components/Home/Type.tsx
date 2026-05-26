@@ -6,6 +6,7 @@ export default function Type() {
       <Typewriter
         options={{
           strings: [
+            "I Create Solutions to Businesses & Brands",
             "Frontend Engineer",
             "Software Engineer",
             "Product-focused Frontend Engineer",

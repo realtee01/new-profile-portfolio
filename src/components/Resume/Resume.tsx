@@ -38,7 +38,7 @@ export default function Resume() {
            <div className="mb-10">
              <h3 className="text-2xl font-serif font-bold text-gradient mb-4 uppercase tracking-widest border-b-2 border-transparent w-max">Profile</h3>
              <p className="text-gray-300 leading-relaxed text-lg font-light">
-               Data-driven Frontend Developer and Computer Science undergraduate at the University of Lagos. Proficient in building responsive, API-integrated web applications using React.js and Tailwind CSS. Passionate about leveraging AI and modern web technologies to solve real-world problems.
+               Data-driven Frontend Developer and Computer Science undergraduate at the University of Lagos. Proficient in building responsive, API-integrated web applications using React.js and Tailwind CSS. Passionate about creating premium digital solutions to businesses and brands, and leveraging AI and modern web technologies to solve real-world problems.
              </p>
            </div>
 

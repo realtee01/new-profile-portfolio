@@ -39,9 +39,9 @@ export default function About() {
               Beyond the <strong className="text-gradient">Screen</strong>
             </h1>
             <p className="text-justify leading-relaxed mb-4 text-gray-200 font-light">
-              I'm <span className="text-white font-medium">Tobiloba Akala</span>, a frontend engineer based in <span className="text-white font-medium">Lagos, Nigeria.</span>
+              I'm <span className="text-white font-medium">Tobiloba Akala</span>, a frontend engineer based in <span className="text-white font-medium">Lagos, Nigeria.</span> I focus on creating polished, high-performance digital solutions to businesses and brands worldwide.
               <br /><br />
-              Currently pursuing a B.Sc. in Computer Science at the University of Lagos, I balance theoretical knowledge with practical, production-level engineering. I'm actively building tools, open-source projects, and client applications.
+              Currently pursuing a B.Sc. in Computer Science at the University of Lagos, I balance theoretical knowledge with practical, production-level engineering. I use these principles to actively build modern tools, open-source projects, and client applications.
               <br /><br />
               When I'm not writing code or optimizing web performance, you can usually find me:
             </p>
