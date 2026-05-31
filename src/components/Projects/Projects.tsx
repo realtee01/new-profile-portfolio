@@ -20,6 +20,7 @@ const pixelCleanImg = "https://plus.unsplash.com/premium_photo-1726079247228-993
 const tribeFitnessImg = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1170&auto=format&fit=crop";
 const blankCanvasImg = "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=1171&auto=format&fit=crop";
 const makeupBookingImg = "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1171&auto=format&fit=crop";
+const dentistImg = "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1170&auto=format&fit=crop";
 
 import NotesCover from "./NotesCover";
 import React, { useState } from "react";
@@ -63,6 +64,25 @@ const RoitechDescription = () => {
 };
 
 const projectsData = [
+  {
+    id: 15,
+    title: "Riad Dentist Care",
+    description: "A comprehensive digital platform for a modern dental clinic, featuring online booking, service showcases, and patient resources.",
+    imgPath: dentistImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://riad-dentist-care.vercel.app/",
+    category: "Landing Page",
+    details: {
+      problem: "A modern dental clinic needed a professional online presence to attract patients and streamline the appointment booking process.",
+      solution: "A responsive website that provides clear information about dental services, staff profiles, and an integrated booking system.",
+      role: "Frontend Developer",
+      toolsUsed: ["Next.js", "Tailwind CSS"],
+      whyTools: "Next.js for performance and SEO, and Tailwind CSS for creating a reassuring, clean, and professional visual aesthetic.",
+      features: ["Online appointment booking", "Detailed service descriptions", "Patient testimonials", "Responsive design"],
+      challenges: "Creating a completely seamless booking flow that accommodates different types of dental procedures without confusing the user.",
+      result: "Improved patient acquisition through a trustworthy online experience and reduced administrative load with automated bookings."
+    }
+  },
   {
     id: 6,
     title: "Tribe Fitness",

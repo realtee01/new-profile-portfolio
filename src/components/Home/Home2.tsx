@@ -6,6 +6,7 @@ import { AppWindow, Palette, Search, Zap, LayoutDashboard, MonitorSmartphone, Sh
 import Tilt from "react-parallax-tilt";
 import { HashLink } from "react-router-hash-link";
 import MagneticDock from "../ui/magnetic-dock";
+import ChromeButton from "../ui/chrome-button";
 
 const services = [
   {
@@ -184,13 +185,12 @@ export default function Home2() {
               ]} 
             />
           </div>
-          <HashLink
-            smooth
+          <ChromeButton
             to="/contact#top"
-            className="inline-block mt-4 bg-white hover:bg-gray-200 text-[#0d0d12] font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] uppercase tracking-widest text-sm"
+            className="mt-4"
           >
             Contact Me
-          </HashLink>
+          </ChromeButton>
         </div>
       </div>
     </div>

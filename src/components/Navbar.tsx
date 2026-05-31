@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { Home, User, Briefcase, MessageSquareQuote, FileText, LayoutGrid, Newspaper, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import ChromeButton from "./ui/chrome-button";
 
 export default function Navbar() {
   const [expand, updateExpanded] = useState(false);
@@ -99,13 +100,9 @@ export default function Navbar() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <HashLink 
-                smooth
-                to="/contact#top" 
-                className="bg-white hover:bg-gray-200 text-[#0d0d12] font-semibold py-2.5 px-4 xl:px-6 rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] lg:ml-2 xl:ml-4 text-xs tracking-widest uppercase whitespace-nowrap"
-              >
+              <ChromeButton to="/contact#top" className="lg:ml-2 xl:ml-4 whitespace-nowrap !py-2.5 !px-4 xl:!py-3 xl:!px-6">
                 Contact Me
-              </HashLink>
+              </ChromeButton>
             </motion.div>
           </div>
         </div>
@@ -152,14 +149,13 @@ export default function Navbar() {
               </div>
 
               <div className="mt-8 flex justify-center">
-                <HashLink 
-                  smooth
+                <ChromeButton
                   to="/contact#top" 
                   onClick={() => updateExpanded(false)}
-                  className="bg-white hover:bg-gray-200 text-[#0d0d12] font-semibold py-3.5 px-12 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] w-full text-center text-sm tracking-widest uppercase"
+                  className="w-full text-center"
                 >
                   Contact Me
-                </HashLink>
+                </ChromeButton>
               </div>
             </motion.div>
           </>
