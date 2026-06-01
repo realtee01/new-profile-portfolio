@@ -123,34 +123,34 @@ export default function Home2() {
           <div className="lg:w-1/3 flex justify-center">
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.05} transitionSpeed={2500}>
               <div className="relative group animate-[updown_2.5s_ease-in-out_infinite]">
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#00e5ff] to-[#c770f0] rounded-2xl blur opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#00e5ff] to-[#c770f0] rounded-2xl blur opacity-60 transition duration-1000"></div>
                 <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.5)]">
                   <img 
-                    src="https://i.ibb.co/gbnR8T2Y/IMG-8573.png"
+                    src="https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
                     alt="Developer Headshot"
-                    className="w-72 h-80 object-cover transform transition duration-700 hover:scale-105 object-top"
+                    className="w-72 h-80 object-cover transform transition duration-700 scale-100 hover:scale-105 object-top"
                     referrerPolicy="no-referrer"
                     loading="lazy"
                     decoding="async"
                   />
                 </div>
                 
-                {/* Floating Cards on Hover */}
-                <div className="absolute -left-2 sm:-left-10 top-12 sm:top-16 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#00e5ff]/30 shadow-[0_0_15px_rgba(0,229,255,0.2)] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
+                {/* Floating Cards */}
+                <div className="absolute -left-2 sm:-left-10 top-12 sm:top-16 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#00e5ff]/30 shadow-[0_0_15px_rgba(0,229,255,0.2)] opacity-100 transition-all duration-500 delay-100 translate-y-0 z-20 pointer-events-none">
                   <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#00e5ff] animate-pulse"></div>
                     Frontend Dev
                   </span>
                 </div>
                 
-                <div className="absolute -right-2 sm:-right-8 bottom-20 sm:bottom-24 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#c770f0]/30 shadow-[0_0_15px_rgba(199,112,240,0.2)] opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
+                <div className="absolute -right-2 sm:-right-8 bottom-20 sm:bottom-24 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#c770f0]/30 shadow-[0_0_15px_rgba(199,112,240,0.2)] opacity-100 transition-all duration-500 delay-200 translate-y-0 z-20 pointer-events-none">
                   <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#c770f0] animate-[pulse_2s_ease-in-out_infinite]"></div>
                     Creative Engine
                   </span>
                 </div>
 
-                <div className="absolute left-[5%] sm:left-[10%] -bottom-2 sm:-bottom-4 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-white/20 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-500 delay-300 translate-y-4 group-hover:translate-y-0 z-20 pointer-events-none">
+                <div className="absolute left-[5%] sm:left-[10%] -bottom-2 sm:-bottom-4 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-white/20 shadow-lg opacity-100 transition-all duration-500 delay-300 translate-y-0 z-20 pointer-events-none">
                   <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-400"></div>
                     Available
