@@ -6,23 +6,23 @@ import { Briefcase } from "lucide-react";
 const experiences = [
   {
     company: "Roitech AI",
-    role: "Frontend Engineering Intern (Siwes and contract)",
+    role: "Full-stack Engineering Intern (Siwes and contract)",
     period: "2026 - Present",
     achievements: [
       "Collaborating with the Roitech AI engineering team to architect and build a high-performance, scalable web application from the ground up.",
       "Designing modular components to ensure consistency across the Roitech AI platform.",
       "Implementing fluid UI transitions using Framer Motion to match a high-fidelity 'vibe coding' aesthetic.",
       "Managing complex Git repositories and deployments via iOS to maintain 100% responsiveness.",
-      "Leading the frontend roadmap from MVP toward a full-scale production launch over a 24-week timeline."
+      "Leading the full-stack roadmap from MVP toward a full-scale production launch over a 24-week timeline."
     ],
   },
   {
     company: "LearnIQ",
-    role: "Lead Frontend Engineer",
+    role: "Lead Full-stack Engineer",
     period: "2026 - Present",
     achievements: [
       "An accessible learning platform designed to bridge the gap in education through AI-driven summarization and inclusive UX.",
-      "Building the frontend environment that allows students to interact with complex data through simplified, high-performance interfaces.",
+      "Building the full-stack environment that allows students to interact with complex data through simplified, high-performance interfaces.",
       "Engineered a responsive 'Notes' ecosystem and grid layout prioritized for intuitive navigation.",
       "Developed the UI for audio transcription and automated summarization tools to enhance student learning workflows.",
       "Successfully managed the redesign of core platform pages to improve visual clarity and user engagement."
@@ -42,7 +42,7 @@ const experiences = [
     role: "Frontend Development Immersive",
     period: "Oct 2025 - March 2026",
     achievements: [
-      "Completed a rigorous 6-month specialized track in modern frontend architectures focusing on React.js and state management",
+      "Completed a rigorous 6-month specialized track in modern full-stack architectures focusing on React.js, Node.js, MongoDB, and state management",
       "Commended by instructors for technical precision, React.js mastery, and high-performance code architecture",
       "Mastered the transition from static web design to dynamic, data driven applications using Vite and Tailwind CSS",
       "Collaborated on version-controlled projects using Git/GitHub, ensuring clean, maintainable code and professional documentation",
@@ -50,7 +50,7 @@ const experiences = [
   },
   {
     company: "University of Lagos",
-    role: "Frontend Engineer - CineScope",
+    role: "Front End Engineer - CineScope",
     period: "2026",
     achievements: [
       "Engineered a high-performance movie search engine featuring a mobile-first UI and custom skeleton loading states",

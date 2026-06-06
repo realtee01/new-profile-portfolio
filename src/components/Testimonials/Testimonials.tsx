@@ -28,14 +28,14 @@ const testimonials = [
   { 
     name: "Axia Africa Academy", 
     role: "Lead tutor", 
-    text: "Tobiloba consistently demonstrated a deep understanding of complex frontend concepts. His final project was a masterclass in React performance and responsive CSS. Truly one of our top-tier graduates.", 
+    text: "Tobiloba consistently demonstrated a deep understanding of complex full-stack concepts. His final project was a masterclass in React performance and responsive CSS. Truly one of our top-tier graduates.", 
     company: "Academy Review", 
     image: "https://images.unsplash.com/photo-1566165335512-bb5ba58365b4?q=80&w=410&auto=format&fit=crop&ixlib=rb-4.1.0" 
   },
 ];
 
 const commendations = [
-  { quote: "His attention to design detail is what you'd expect from a Lead Engineer.", author: "Frontend Lead @ PeakEcho" },
+  { quote: "His attention to design detail is what you'd expect from a Lead Engineer.", author: "Engineering Lead @ PeakEcho" },
   { quote: "The CineScope search engine he built is a benchmark for our students.", author: "Senior Facilitator, Unique Groups" },
   { quote: "one of the cleanest Git workflow and documentation I've seen from a developer this year.", author: "Lead Tutor,Axia" },
 ];

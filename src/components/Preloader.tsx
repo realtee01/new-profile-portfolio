@@ -78,7 +78,7 @@ export default function Preloader({ load }: { load: boolean }) {
           transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
           className="text-white/70 text-xs md:text-sm font-light text-center tracking-[0.4em] uppercase"
         >
-          FRONTEND DEVELOPER
+          FULL-STACK DEVELOPER
         </motion.p>
       </div>
 

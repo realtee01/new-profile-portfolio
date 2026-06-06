@@ -34,10 +34,10 @@ const RoitechDescription = () => {
         <strong className="text-[#00e5ff]">Status:</strong> In Development (2026 - Present)
       </p>
       <p className="leading-relaxed">
-        Collaborating with backend engineers, product managers, and the Roitech AI team to architect and build scalable web and mobile applications from the ground up. My primary focus is ensuring a premium user experience through modern frontend patterns and fluid UI transitions.
+        Collaborating with backend engineers, product managers, and the Roitech AI team to architect and build scalable web and mobile applications from the ground up. My primary focus is ensuring a premium user experience through modern full-stack patterns and fluid UI transitions.
       </p>
       <p className="leading-relaxed">
-        Additionally, leading the frontend architecture for LearnIQ, an accessible learning platform featuring AI-driven summarization and audio transcription to bridge educational gaps.
+        Additionally, leading the full-stack architecture for LearnIQ, an accessible learning platform featuring AI-driven summarization and audio transcription to bridge educational gaps.
       </p>
       {showTechStack ? (
         <div className="mt-1 flex flex-col gap-2 animate-in fade-in slide-in-from-top-2 duration-300">
@@ -75,7 +75,7 @@ const projectsData = [
     details: {
       problem: "A modern dental clinic needed a professional online presence to attract patients and streamline the appointment booking process.",
       solution: "A responsive website that provides clear information about dental services, staff profiles, and an integrated booking system.",
-      role: "Frontend Developer",
+      role: "Full-stack Developer",
       toolsUsed: ["Next.js", "Tailwind CSS"],
       whyTools: "Next.js for performance and SEO, and Tailwind CSS for creating a reassuring, clean, and professional visual aesthetic.",
       features: ["Online appointment booking", "Detailed service descriptions", "Patient testimonials", "Responsive design"],
@@ -94,7 +94,7 @@ const projectsData = [
     details: {
       problem: "Local gyms struggle to maintain an engaging online presence where users can easily view schedules and book classes.",
       solution: "A vibrant landing page and platform that centralizes class schedules, workout plans, and community interaction.",
-      role: "Frontend Developer",
+      role: "Full-stack Developer",
       toolsUsed: ["React", "Tailwind CSS", "Firebase"],
       whyTools: "React for component-based UI, Tailwind for rapid styling to match the energetic brand vibe, Firebase for storing dynamic class schedules.",
       features: ["Dynamic class scheduling", "Member dashboard", "Community forum", "Responsive design"],
@@ -132,7 +132,7 @@ const projectsData = [
     details: {
       problem: "Photographers need a minimalist digital space that highlights high-resolution images without distracting UI elements.",
       solution: "A beautifully crafted portfolio website focused on visual storytelling, utilizing large imagery and fluid transitions.",
-      role: "Frontend Developer",
+      role: "Full-stack Developer",
       toolsUsed: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
       whyTools: "React and Vite for fast performance, Tailwind for quick and custom responsive layouts, Framer Motion for elegant image reveal animations.",
       features: ["High-res image gallery", "Image lightbox", "Smooth page transitions", "Responsive grid layouts"],
@@ -153,8 +153,8 @@ const projectsData = [
       problem: "Students struggle to extract key points from long lectures and organize them into actionable study materials effectively.",
       solution: "An AI-driven educational tool that automatically generates notes, flashcards, and quizzes from raw input.",
       role: "Full-Stack Developer",
-      toolsUsed: ["Next.js", "Tailwind CSS", "OpenAI API", "Supabase"],
-      whyTools: "Next.js for SSR and fast routing, OpenAI for intelligent text parsing, Supabase for authentication and real-time database to sync studying materials.",
+      toolsUsed: ["Next.js", "Tailwind CSS", "OpenAI API", "PostgreSQL"],
+      whyTools: "Next.js for SSR and fast routing, OpenAI for intelligent text parsing, PostgreSQL for robust relational data modeling and syncing studying materials.",
       features: ["Automatic note generation", "AI-powered flashcards", "Adaptive quizzes", "Progress tracking"],
       challenges: "Managing state for complex AI responses and ensuring the generated study materials are accurately formatted and saved to the database without delay.",
       result: "Increased student engagement by providing instant, high-quality study resources, saving hours of manual note-taking."
@@ -171,7 +171,7 @@ const projectsData = [
     details: {
       problem: "Movie enthusiasts need a fast, visually appealing way to discover new films and view detailed metadata without clutter.",
       solution: "A sleek movie discovery app pulling real-time data with a focus on high-quality visuals and smooth interactions.",
-      role: "Frontend Engineer",
+      role: "Full-stack Engineer",
       toolsUsed: ["React", "Tailwind CSS", "TMDB API", "Vite"],
       whyTools: "React and Vite for blazing fast development and rendering, TMDB API for robust movie data, Tailwind for building a cinematic UI.",
       features: ["Real-time search", "Categorized movie lists", "Detailed movie pages with trailers", "Responsive grid layouts"],
@@ -190,7 +190,7 @@ const projectsData = [
     details: {
       problem: "A local cleaning service needed a digital storefront to convert visitors into booked appointments efficiently.",
       solution: "A conversion-focused landing page with transparent service filters, sharp copy, and an easy booking flow.",
-      role: "Frontend Developer",
+      role: "Full-stack Developer",
       toolsUsed: ["Next.js", "Tailwind CSS", "Framer Motion"],
       whyTools: "Next.js for SEO optimization to rank high locally, Tailwind for quick custom styling, and Framer Motion for subtle trust-building micro-interactions.",
       features: ["Filterable service list", "Pricing calculator", "Mobile-optimized booking form", "Client testimonials"],
@@ -229,8 +229,8 @@ const projectsData = [
       problem: "Finding and managing properties was cumbersome due to cluttered interfaces and lack of mobile optimization on existing platforms.",
       solution: "A refined real estate platform focused on intuitive property discovery and clean presentation.",
       role: "Full-Stack Developer",
-      toolsUsed: ["Next.js", "Tailwind CSS", "Firebase"],
-      whyTools: "Next.js for fast page loads and SEO, Firebase for robust backend real-time database to manage property listings and user authentication.",
+      toolsUsed: ["Next.js", "Tailwind CSS", "MongoDB"],
+      whyTools: "Next.js for fast page loads and SEO, MongoDB for a flexible, robust backend document database to manage property listings and user authentication.",
       features: ["Advanced property search and filtering", "Image carousels", "Agent contact forms", "Save favorite properties"],
       challenges: "Implementing complex, multi-parameter search filters while keeping the UI clean and responsive.",
       result: "A user-friendly platform that simplified property hunting and increased lead generation for agents."
@@ -247,7 +247,7 @@ const projectsData = [
     details: {
       problem: "A fine dining establishment lacked an online presence that accurately reflected its heritage and upscale ambiance.",
       solution: "An elegant website with a responsive layout designed to showcase a visually rich menu and fine dining experience.",
-      role: "Frontend Developer",
+      role: "Full-stack Developer",
       toolsUsed: ["Next.js", "Tailwind CSS"],
       whyTools: "Next.js provided excellent SEO for local discovery, and Tailwind allowed for the rapid development of a custom, luxurious design system.",
       features: ["Digital menu display", "Heritage storytelling section", "Location and hours", "Reservation integration"],
@@ -285,7 +285,7 @@ const projectsData = [
     details: {
       problem: "Traditional chatting apps lack integrations with Web3 identities and often have stagnant, non-immersive interfaces.",
       solution: "A cutting-edge Web3 chat platform combining real-time communication with rich animations and decentralized identity.",
-      role: "Frontend Engineer / Web3 Integrator",
+      role: "Full-stack Engineer / Web3 Integrator",
       toolsUsed: ["React", "Firebase", "Ethers.js", "Framer Motion"],
       whyTools: "Firebase for real-time messaging infrastructure, Ethers.js for wallet connection, and Framer Motion for immersive UI animations.",
       features: ["Wallet authentication", "Real-time messaging", "Decentralized profiles", "Interactive animated UI"],
@@ -304,7 +304,7 @@ const projectsData = [
     details: {
       problem: "Supply chains suffer from a lack of transparency and trust between parties.",
       solution: "A decentralized supply chain management system utilizing blockchain to ensure immutable tracking and transparency.",
-      role: "Blockchain & Frontend Developer",
+      role: "Blockchain & Full-stack Developer",
       toolsUsed: ["Next.js", "Solidity", "Tailwind CSS", "Web3.js"],
       whyTools: "Solidity for writing secure smart contracts on the blockchain, Next.js to build a user-friendly dashboard to interact with the chain.",
       features: ["Product tracking", "Smart contract interaction", "Dashboard analytics", "Role-based access"],
@@ -342,7 +342,7 @@ const projectsData = [
     details: {
       problem: "Students struggled with accurately calculating and tracking their cumulative grades across semesters using their university's specific system.",
       solution: "A dedicated, localized tool designed specifically for the grading system to help students easily track their academic performance.",
-      role: "Frontend Developer",
+      role: "Full-stack Developer",
       toolsUsed: ["React", "Vite", "Tailwind CSS", "LocalStorage"],
       whyTools: "React for dynamic state management, Tailwind for quick styling, with LocalStorage used to save student data without needing an account.",
       features: ["Semester grade input", "Instant CGPA calculation", "Data persistence", "Mobile-optimized layout"],

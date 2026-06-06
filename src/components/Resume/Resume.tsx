@@ -38,7 +38,7 @@ export default function Resume() {
            <div className="mb-10">
              <h3 className="text-2xl font-serif font-bold text-gradient mb-4 uppercase tracking-widest border-b-2 border-transparent w-max">Profile</h3>
              <p className="text-gray-300 leading-relaxed text-lg font-light">
-               Data-driven Frontend Developer and Computer Science undergraduate at the University of Lagos. Proficient in building responsive, API-integrated web applications using React.js and Tailwind CSS. Passionate about creating premium digital solutions to businesses and brands, and leveraging AI and modern web technologies to solve real-world problems.
+               Data-driven Full-stack Developer (Frontend-focused) and Computer Science undergraduate at the University of Lagos. Proficient in building responsive web applications using React.js, Tailwind CSS, alongside backend technologies like Node.js, MongoDB, and PostgreSQL. Passionate about creating premium digital solutions to businesses and brands, and leveraging AI and modern web technologies to solve real-world problems.
              </p>
            </div>
 
@@ -68,7 +68,7 @@ export default function Resume() {
              </div>
 
              <div className="mb-4">
-               <h4 className="text-xl font-bold text-white">Professional Certificate in Frontend Development</h4>
+               <h4 className="text-xl font-bold text-white">Professional Certificate in Full-stack Development</h4>
                <p className="text-[#c770f0] font-medium mb-1">Axia Africa (Cohort 9) <span className="text-gray-400 font-normal ml-2">• Completed 2026</span></p>
              </div>
            </div>
@@ -102,11 +102,11 @@ export default function Resume() {
 
              <div className="mb-4">
                <h4 className="text-xl font-bold text-white content-start flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                 <span>Frontend Development Immersive — <span className="text-gray-300 font-medium">Axia Africa</span></span>
+                 <span>Full-stack Development Immersive — <span className="text-gray-300 font-medium">Axia Africa</span></span>
                </h4>
                <p className="text-[#00e5ff] font-medium mb-3">October 2025 – March 2026</p>
                <ul className="list-disc list-outside ml-5 text-gray-300 space-y-2 text-lg">
-                 <li>Completed a rigorous 6-month specialized track in modern frontend architectures focusing on React.js and state management</li>
+                 <li>Completed a rigorous 6-month specialized track in modern full-stack architectures focusing on React.js, Node.js, and state management</li>
                  <li>Mastered the transition from static web design to dynamic, data driven applications using Vite and Tailwind CSS</li>
                  <li>Collaborated on version-controlled projects using Git/GitHub, ensuring clean, maintainable code and professional documentation</li>
                </ul>
@@ -118,7 +118,7 @@ export default function Resume() {
              <h3 className="text-2xl font-serif font-bold text-gradient mb-6 uppercase tracking-widest border-b border-white/10 pb-3">Awards & Recognition</h3>
              <ul className="list-disc list-outside ml-5 text-gray-300 space-y-2 text-lg font-light">
                <li>Top 5% Faculty Recognition for CineScope Project (2026)</li>
-               <li>Certified Frontend Developer, Axia Africa (2026)</li>
+               <li>Certified Full-stack Developer, Axia Africa (2026)</li>
                <li>GitHub Pull Shark Award</li>
                <li>GitHub Quickdraw Award</li>
              </ul>

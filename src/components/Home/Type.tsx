@@ -7,9 +7,9 @@ export default function Type() {
         options={{
           strings: [
             "I Create Solutions to Businesses & Brands",
-            "Frontend Engineer",
+            "Full-stack Developer",
             "Software Engineer",
-            "Product-focused Frontend Engineer",
+            "Product-focused Full-stack Developer",
             "Building Fast Web Experiences",
             "I Build Modern Websites That Convert",
             "React Developer",

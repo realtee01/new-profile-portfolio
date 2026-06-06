@@ -32,7 +32,7 @@ export default function Blog() {
             My <strong className="text-gradient">Blog & News</strong>
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto font-light tracking-wide">
-            Thoughts, tutorials, and insights on frontend engineering, design, and the modern web.
+            Thoughts, tutorials, and insights on full-stack engineering, design, and the modern web.
           </p>
         </div>
 

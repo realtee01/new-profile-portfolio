@@ -87,7 +87,7 @@ export default function Home2() {
             </h3>
             <div className="text-lg leading-relaxed mb-6 space-y-6 text-gray-300 font-light max-w-3xl">
               <p>
-                I'm Tobiloba Akala, a Frontend Engineer and Computer Science student at the University of Lagos. I create solutions to businesses and brands by bridging the gap between rigorous engineering principles and thoughtful, polished design.
+                I'm Tobiloba Akala, a Full-stack Developer and Computer Science student at the University of Lagos. I create solutions to businesses and brands by bridging the gap between rigorous engineering principles and thoughtful, polished design.
               </p>
               <p>
                 I don't just write code—I focus on the entire product experience. From architecting scalable React systems to crafting immersive <span className="text-white font-medium">3D experiences</span> and <span className="text-white font-medium">fluid animations</span>, every detail matters.
@@ -139,7 +139,7 @@ export default function Home2() {
                 <div className="absolute -left-2 sm:-left-10 top-12 sm:top-16 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#00e5ff]/30 shadow-[0_0_15px_rgba(0,229,255,0.2)] opacity-100 transition-all duration-500 delay-100 translate-y-0 z-20 pointer-events-none">
                   <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
                     <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#00e5ff] animate-pulse"></div>
-                    Frontend Dev
+                    Full-stack Dev
                   </span>
                 </div>
                 
