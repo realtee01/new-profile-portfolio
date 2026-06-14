@@ -3,8 +3,10 @@ import Type from "./Type";
 import Home2 from "./Home2";
 import { Code2, Cpu, Globe, Rocket, Zap } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Home() {
+  const { t } = useLanguage();
   return (
     <section className="overflow-hidden">
       <div className="relative pt-24 pb-8 md:pt-40 md:pb-20 min-h-screen flex items-center" id="home">
@@ -37,12 +39,12 @@ export default function Home() {
               </motion.div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-8 sm:mb-12 tracking-tight leading-tight drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.6)]">
-                Hi There! <span className="wave" role="img" aria-labelledby="wave">👋🏻</span>
+                {t('home.greeting')} <span className="wave" role="img" aria-labelledby="wave">👋🏻</span>
               </h1>
 
               <h1 className="flex flex-col text-[14vw] leading-[0.9] sm:leading-[0.9] sm:text-8xl md:text-[8rem] lg:text-9xl font-black mb-8 sm:mb-16 tracking-tighter uppercase text-white font-serif overflow-hidden py-2" style={{wordBreak: "break-word"}}>
                 <span className="block mb-2 sm:mb-4 font-bold text-2xl sm:text-4xl md:text-5xl text-gray-300 tracking-normal normal-case font-sans">
-                  I'm
+                  {t('home.im')}
                 </span>
                 
                 <span className="flex flex-wrap items-center justify-center lg:justify-start gap-x-4 sm:gap-x-6 z-10">
@@ -71,7 +73,7 @@ export default function Home() {
                 transition={{ delay: 0.5, duration: 1 }}
                 className="text-gray-300 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mb-10 block font-light tracking-wide font-sans md:px-4 lg:px-0"
               >
-                I create solutions to businesses brand and organizations building fast, polished, and highly interactive digital products—focusing on clean architecture and intentional design.
+                {t('home.description')}
               </motion.p>
 
               <motion.div 
@@ -95,7 +97,7 @@ export default function Home() {
                     to="/contact#top" 
                     className="inline-block bg-transparent text-white font-semibold py-3 md:py-3.5 px-8 rounded-full border border-white/30 backdrop-blur-md hover:bg-white/10 transition-colors uppercase tracking-widest text-sm"
                   >
-                    Let's Talk
+                    {t('home.connect')}
                   </HashLink>
                 </motion.div>
               </motion.div>

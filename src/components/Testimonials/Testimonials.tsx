@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Quote, Play, Pause } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 const testimonials = [
   { 
@@ -45,6 +46,7 @@ export default function Testimonials() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [current, setCurrent] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     let interval: any;
@@ -69,7 +71,7 @@ export default function Testimonials() {
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-serif text-white font-bold mb-6 tracking-wide uppercase"
           >
-            Professional <span className="text-gradient">Endorsements</span>
+            {t('testimonials.title1')} <span className="text-gradient">{t('testimonials.title2')}</span>
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}

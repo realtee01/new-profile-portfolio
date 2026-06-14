@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Contact() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Contact() {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { t } = useLanguage();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -89,7 +91,7 @@ export default function Contact() {
           className="text-center mb-12"
         >
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6 tracking-wide">
-            Let's build <span className="text-gradient">something real.</span>
+            {t('contact.title1')} <span className="text-gradient">{t('contact.title2')}</span>
           </h1>
           <p className="text-gray-300 text-lg font-light tracking-wide max-w-xl mx-auto">
             Got a project? A brief? Just want to talk code? I'm here.

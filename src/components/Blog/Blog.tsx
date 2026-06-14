@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import BlogCard from "./BlogCard";
 import { blogData } from "./blogData";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Blog() {
+  const { t } = useLanguage();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -29,7 +31,7 @@ export default function Blog() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6 tracking-wide">
-            My <strong className="text-gradient">Blog & News</strong>
+            {t('blogs.title1')} <strong className="text-gradient">{t('blogs.title2')}</strong>
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto font-light tracking-wide">
             Thoughts, tutorials, and insights on full-stack engineering, design, and the modern web.

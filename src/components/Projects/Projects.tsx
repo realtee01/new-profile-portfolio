@@ -5,6 +5,7 @@ import { Lock } from "lucide-react";
 import { FaReact, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss, SiTypescript, SiSupabase, SiFirebase, SiJavascript, SiNodedotjs } from "react-icons/si";
 import ProjectModal, { ProjectDetailsData } from "./ProjectModal";
+import { useLanguage } from "../../context/LanguageContext";
 
 // Real images for projects from user's github
 const forzchainImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/forzchain.jpg";
@@ -355,6 +356,7 @@ const projectsData = [
 export default function Projects() {
   const [filter, setFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState<{title: string, details: ProjectDetailsData} | null>(null);
+  const { t } = useLanguage();
 
   const categories = ["All", "Web App", "Landing Page", "Web3", "E-commerce"];
 
@@ -388,10 +390,10 @@ export default function Projects() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white mb-6 tracking-wide">
-            My Recent <strong className="text-gradient">Works</strong>
+            {t('projects.title1')} <strong className="text-gradient">{t('projects.title2')}</strong>
           </h1>
           <p className="text-gray-300 text-lg mb-6 font-light tracking-wide max-w-2xl mx-auto">
-            Here are a few projects I've worked on recently.
+            {t('projects.desc')}
           </p>
           <div className="flex justify-center mb-10">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[13px] text-gray-400 font-medium">

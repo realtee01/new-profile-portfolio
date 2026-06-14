@@ -6,6 +6,7 @@ import {
   Link as LinkIcon, // Renamed to avoid conflict with standard Link
   Send, // Could represent sending a message
   Feather, // Could be an abstract representation for a post/social link
+  Linkedin, // Official LinkedIn icon
 } from "lucide-react";
 
 const links = [
@@ -129,6 +130,17 @@ export default function FooterSection() {
               className="text-gray-400 hover:text-[#00e5ff] hover:scale-110 duration-200 block"
             >
               <Globe className="size-6" />
+            </a>
+
+            {/* LinkedIn Link */}
+            <a
+              href="https://ng.linkedin.com/in/tobiloba-akala-35448a38b"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+              className="text-gray-400 hover:text-[#c770f0] hover:scale-110 duration-200 block"
+            >
+              <Linkedin className="size-6" />
             </a>
 
             {/* Social Link 2: Twitter / X (using feather/post/write icon) */}

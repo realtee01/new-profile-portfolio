@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
-import { FaWhatsapp, FaPhone } from "react-icons/fa";
+import { FaWhatsapp, FaPhone, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { AppWindow, Palette, Search, Zap, LayoutDashboard, MonitorSmartphone, ShoppingCart, Cuboid, Sparkles, Bot, Mic, Smartphone } from "lucide-react";
 import Tilt from "react-parallax-tilt";
@@ -179,6 +179,7 @@ export default function Home2() {
             <MagneticDock 
               links={[
                 { href: "https://github.com/realtee01", icon: <AiFillGithub className="w-8 h-8" color="white" /> },
+                { href: "https://ng.linkedin.com/in/tobiloba-akala-35448a38b", icon: <FaLinkedin className="w-7 h-7" color="#c770f0" /> },
                 { href: "https://x.com/realtee1111101", icon: <FaXTwitter className="w-7 h-7" color="#00e5ff" /> },
                 { href: "https://wa.me/2347032533869", icon: <FaWhatsapp className="w-8 h-8" color="#c770f0" /> },
                 { href: "tel:+2347032533869", icon: <FaPhone className="w-7 h-7" color="#00e5ff" /> }

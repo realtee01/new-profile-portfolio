@@ -1,13 +1,15 @@
 import { useState, useEffect, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import { Home, User, Briefcase, MessageSquareQuote, FileText, LayoutGrid, Newspaper, X } from "lucide-react";
+import { Home, User, Briefcase, MessageSquareQuote, FileText, LayoutGrid, Newspaper, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import ChromeButton from "./ui/chrome-button";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Navbar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
+  const { language, toggleLanguage, t } = useLanguage();
 
   function scrollHandler() {
     if (window.scrollY >= 20) {
@@ -71,8 +73,15 @@ export default function Navbar() {
             </HashLink>
           </motion.div>
           
-          {/* Mobile menu button */}
-          <div className="lg:hidden z-[60]">
+          {/* Mobile menu button & Language Toggle */}
+          <div className="flex items-center gap-3 lg:hidden z-[60]">
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center justify-center gap-1.5 text-white hover:text-[#00e5ff] px-2 py-1 rounded-md border border-white/10"
+            >
+              <Globe size={18} />
+              <span className="text-xs font-bold uppercase">{language}</span>
+            </button>
             <button
               onClick={() => updateExpanded(!expand)}
               className="text-white hover:text-[#00e5ff] focus:outline-none transition-colors"
@@ -89,19 +98,34 @@ export default function Navbar() {
 
           {/* Desktop menu */}
           <div className="hidden lg:flex items-center lg:space-x-1 xl:space-x-4">
-            <NavItem to="/#top" icon={<Home size={18} />} text="Home" />
-            <NavItem to="/about#top" icon={<User size={18} />} text="About" />
-            <NavItem to="/projects#top" icon={<LayoutGrid size={18} />} text="Projects" />
+            <NavItem to="/#top" icon={<Home size={18} />} text={t('nav.home')} />
+            <NavItem to="/about#top" icon={<User size={18} />} text={t('nav.about')} />
+            <NavItem to="/projects#top" icon={<LayoutGrid size={18} />} text={t('nav.projects')} />
             <NavItem to="/experience#top" icon={<Briefcase size={18} />} text="Experience" />
             <NavItem to="/testimonials#top" icon={<MessageSquareQuote size={18} />} text="Testimonials" />
-            <NavItem to="/resume#top" icon={<FileText size={18} />} text="Resume" />
-            <NavItem to="/blog#top" icon={<Newspaper size={18} />} text="Blogs" />
+            <NavItem to="/resume#top" icon={<FileText size={18} />} text={t('nav.resume')} />
+            <NavItem to="/blog#top" icon={<Newspaper size={18} />} text={t('nav.blogs')} />
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <button
+                onClick={toggleLanguage}
+                className="ml-2 flex items-center justify-center gap-1.5 text-white hover:text-[#00e5ff] px-3 py-1.5 rounded border border-white/20 transition-colors"
+                title="Toggle Language"
+              >
+                <Globe size={16} />
+                <span className="text-xs font-bold uppercase">{language}</span>
+              </button>
+            </motion.div>
+
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <ChromeButton to="/contact#top" className="lg:ml-2 xl:ml-4 whitespace-nowrap !py-2.5 !px-4 xl:!py-3 xl:!px-6">
-                Contact Me
+                {t('nav.contact')}
               </ChromeButton>
             </motion.div>
           </div>
@@ -139,13 +163,13 @@ export default function Navbar() {
               </button>
 
               <div className="flex flex-col space-y-2 mt-4 flex-1">
-                <MobileNavItem to="/#top" icon={<Home size={22} />} text="Home" onClick={() => updateExpanded(false)} delay={0.1} />
-                <MobileNavItem to="/about#top" icon={<User size={22} />} text="About" onClick={() => updateExpanded(false)} delay={0.15} />
-                <MobileNavItem to="/projects#top" icon={<LayoutGrid size={22} />} text="Projects" onClick={() => updateExpanded(false)} delay={0.2} />
+                <MobileNavItem to="/#top" icon={<Home size={22} />} text={t('nav.home')} onClick={() => updateExpanded(false)} delay={0.1} />
+                <MobileNavItem to="/about#top" icon={<User size={22} />} text={t('nav.about')} onClick={() => updateExpanded(false)} delay={0.15} />
+                <MobileNavItem to="/projects#top" icon={<LayoutGrid size={22} />} text={t('nav.projects')} onClick={() => updateExpanded(false)} delay={0.2} />
                 <MobileNavItem to="/experience#top" icon={<Briefcase size={22} />} text="Experience" onClick={() => updateExpanded(false)} delay={0.25} />
                 <MobileNavItem to="/testimonials#top" icon={<MessageSquareQuote size={22} />} text="Testimonials" onClick={() => updateExpanded(false)} delay={0.3} />
-                <MobileNavItem to="/resume#top" icon={<FileText size={22} />} text="Resume" onClick={() => updateExpanded(false)} delay={0.35} />
-                <MobileNavItem to="/blog#top" icon={<Newspaper size={22} />} text="Blogs" onClick={() => updateExpanded(false)} delay={0.4} />
+                <MobileNavItem to="/resume#top" icon={<FileText size={22} />} text={t('nav.resume')} onClick={() => updateExpanded(false)} delay={0.35} />
+                <MobileNavItem to="/blog#top" icon={<Newspaper size={22} />} text={t('nav.blogs')} onClick={() => updateExpanded(false)} delay={0.4} />
               </div>
 
               <div className="mt-8 flex justify-center">
@@ -154,7 +178,7 @@ export default function Navbar() {
                   onClick={() => updateExpanded(false)}
                   className="w-full text-center"
                 >
-                  Contact Me
+                  {t('nav.contact')}
                 </ChromeButton>
               </div>
             </motion.div>

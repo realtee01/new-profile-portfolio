@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useInView } from "motion/react";
 import { useRef } from "react";
 import { Briefcase } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 const experiences = [
   {
@@ -63,6 +64,7 @@ const experiences = [
 export default function Experience() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { t } = useLanguage();
 
   return (
     <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
@@ -74,7 +76,7 @@ export default function Experience() {
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl font-serif text-white font-bold mb-6 tracking-wide"
           >
-            My <span className="text-gradient">Experience</span>
+            {t('experience.title1')} <span className="text-gradient">{t('experience.title2')}</span>
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}

@@ -70,10 +70,10 @@ export default function MagneticDock({ links }: MagneticDockProps) {
   };
 
   const defaultLinks = [
-    { href: "#", icon: <Github className="w-6 h-6" /> },
-    { href: "#", icon: <Linkedin className="w-6 h-6" /> },
-    { href: "#", icon: <Twitter className="w-6 h-6" /> },
-    { href: "#", icon: <Mail className="w-6 h-6" /> },
+    { href: "https://github.com/realtee01", icon: <Github className="w-6 h-6" /> },
+    { href: "https://ng.linkedin.com/in/tobiloba-akala-35448a38b", icon: <Linkedin className="w-6 h-6" /> },
+    { href: "https://x.com/realtee1111101", icon: <Twitter className="w-6 h-6" /> },
+    { href: "mailto:tobilobaakala@gmail.com", icon: <Mail className="w-6 h-6" /> },
   ];
 
   const items = links || defaultLinks;

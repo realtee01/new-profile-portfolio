@@ -3,6 +3,7 @@ import Toolstack from "./Toolstack";
 import { FaSpotify, FaGithub, FaLaptopCode } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
 import { useInView } from "motion/react";
+import { useLanguage } from "../../context/LanguageContext";
 
 const AnimatedCounter = ({ end, duration = 2 }: { end: number, duration?: number }) => {
   const [count, setCount] = useState(0);
@@ -30,13 +31,14 @@ const AnimatedCounter = ({ end, duration = 2 }: { end: number, duration?: number
 };
 
 export default function About() {
+  const { t } = useLanguage();
   return (
     <div className="relative pt-32 pb-16 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-16">
           <div className="lg:w-1/2 text-white text-lg">
             <h1 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center lg:text-left tracking-wide">
-              Beyond the <strong className="text-gradient">Screen</strong>
+              {t('about.title1')} <strong className="text-gradient">{t('about.title2')}</strong>
             </h1>
             <p className="text-justify leading-relaxed mb-4 text-gray-200 font-light">
               I'm <span className="text-white font-medium">Tobiloba Akala</span>, a full-stack developer based in <span className="text-white font-medium">Lagos, Nigeria.</span> I focus on creating polished, high-performance digital solutions to businesses and brands worldwide.
@@ -110,7 +112,7 @@ export default function About() {
             <div className="text-4xl font-bold text-white flex items-center">
               <AnimatedCounter end={30} duration={2} />+
             </div>
-            <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">Projects Completed</p>
+            <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">{t('about.projects')}</p>
           </div>
           
           <div className="bg-[#151421] border border-white/5 backdrop-blur-sm p-6 rounded-2xl w-full md:w-64 flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-[#c770f0]/30 hover:shadow-[0_10px_30px_-10px_rgba(199,112,240,0.2)]">
@@ -120,7 +122,7 @@ export default function About() {
             <div className="text-4xl font-bold text-white flex items-center">
               <AnimatedCounter end={500} duration={2.5} />+
             </div>
-            <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">GitHub Commits This Year</p>
+            <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">{t('about.contributions')}</p>
           </div>
         </div>
 
