@@ -1,5 +1,6 @@
 import Techstack from "./Techstack";
 import Toolstack from "./Toolstack";
+import LaptopTerminal from "./LaptopTerminal";
 import { FaSpotify, FaGithub, FaLaptopCode } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
 import { useInView } from "motion/react";
@@ -129,6 +130,7 @@ export default function About() {
         <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white text-center mb-12 tracking-wide">
           Professional <strong className="text-gradient">Skillset</strong>
         </h1>
+        <LaptopTerminal />
         <Techstack />
 
         <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white text-center mt-24 mb-12 tracking-wide">

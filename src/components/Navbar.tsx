@@ -35,13 +35,14 @@ export default function Navbar() {
   }, [expand]);
 
   return (
-    <nav
-      className={`fixed top-4 left-1/2 -translate-x-1/2 w-[94%] sm:w-[92%] max-w-7xl z-50 transition-all duration-300 rounded-full bg-[#1b1a2e]/70 backdrop-blur-md border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.3)] ${
-        navColour ? "py-1.5 px-3 sm:px-4 lg:px-5 xl:px-6 shadow-[0_15px_40px_rgba(0,0,0,0.5)] border-white/20 bg-[#151421]/90" : "py-2.5 px-4 sm:px-5 lg:px-6 xl:px-8"
-      }`}
-    >
-      <div className="w-full">
-        <div className="flex justify-between items-center">
+    <>
+      <nav
+        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[94%] sm:w-[92%] max-w-7xl z-50 transition-all duration-300 rounded-full bg-[#1b1a2e]/70 backdrop-blur-md border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.3)] ${
+          navColour ? "py-1.5 px-3 sm:px-4 lg:px-5 xl:px-6 shadow-[0_15px_40px_rgba(0,0,0,0.5)] border-white/20 bg-[#151421]/90" : "py-2.5 px-4 sm:px-5 lg:px-6 xl:px-8"
+        }`}
+      >
+        <div className="w-full">
+          <div className="flex justify-between items-center">
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -135,62 +136,76 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+    </nav>
 
-      {/* Premium Mobile Slide-out Menu */}
-      <AnimatePresence>
-        {expand && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-lg z-[55] lg:hidden"
-              onClick={() => updateExpanded(false)}
-            />
-            
-            {/* Sidebar */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="fixed top-0 right-0 h-screen w-4/5 max-w-sm bg-[#0f0a1a] border-l border-white/5 shadow-[-10px_0_30px_rgba(0,0,0,0.5)] z-[60] flex flex-col pt-24 px-6 pb-12 overflow-y-auto"
-            >
+    {/* Mobile Slide-out Menu - Rendered completely outside the transformed nav to prevent containment bugs */}
+    <AnimatePresence>
+      {expand && (
+        <div className="fixed inset-0 z-[100] lg:hidden">
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="fixed inset-0 bg-[#06020c]/80 backdrop-blur-sm"
+            onClick={() => updateExpanded(false)}
+          />
+          
+          {/* Sidebar */}
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="fixed top-0 right-0 h-screen w-[85%] max-w-[400px] bg-[#0c0518]/95 backdrop-blur-xl border-l border-white/10 shadow-[-20px_0_50px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden"
+          >
+            {/* Sidebar Header */}
+            <div className="flex items-center justify-between p-6 border-b border-white/5">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#c770f0] to-[#00e5ff] p-[1px]">
+                  <div className="w-full h-full rounded-full bg-[#0c0518] flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">TA</span>
+                  </div>
+                </div>
+                <span className="text-white font-bold tracking-wide text-sm uppercase">Menu</span>
+              </div>
               <button 
                 onClick={() => updateExpanded(false)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-[#c770f0]/20 text-gray-300 hover:text-[#00e5ff] transition-all duration-300 border border-white/10 hover:border-[#00e5ff]/50 hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] z-50 hover:rotate-90"
+                className="p-2.5 rounded-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all duration-300"
                 aria-label="Close Menu"
               >
-                <X size={24} />
+                <X size={20} />
               </button>
+            </div>
 
-              <div className="flex flex-col space-y-2 mt-4 flex-1">
-                <MobileNavItem to="/#top" icon={<Home size={22} />} text={t('nav.home')} onClick={() => updateExpanded(false)} delay={0.1} />
-                <MobileNavItem to="/about#top" icon={<User size={22} />} text={t('nav.about')} onClick={() => updateExpanded(false)} delay={0.15} />
-                <MobileNavItem to="/projects#top" icon={<LayoutGrid size={22} />} text={t('nav.projects')} onClick={() => updateExpanded(false)} delay={0.2} />
-                <MobileNavItem to="/experience#top" icon={<Briefcase size={22} />} text="Experience" onClick={() => updateExpanded(false)} delay={0.25} />
-                <MobileNavItem to="/testimonials#top" icon={<MessageSquareQuote size={22} />} text="Testimonials" onClick={() => updateExpanded(false)} delay={0.3} />
-                <MobileNavItem to="/resume#top" icon={<FileText size={22} />} text={t('nav.resume')} onClick={() => updateExpanded(false)} delay={0.35} />
-                <MobileNavItem to="/blog#top" icon={<Newspaper size={22} />} text={t('nav.blogs')} onClick={() => updateExpanded(false)} delay={0.4} />
-              </div>
+            {/* Sidebar Links */}
+            <div className="flex-1 overflow-y-auto py-8 px-6 flex flex-col gap-2">
+              <MobileNavItem to="/#top" icon={<Home size={24} />} text={t('nav.home')} onClick={() => updateExpanded(false)} delay={0.1} />
+              <MobileNavItem to="/about#top" icon={<User size={24} />} text={t('nav.about')} onClick={() => updateExpanded(false)} delay={0.15} />
+              <MobileNavItem to="/projects#top" icon={<LayoutGrid size={24} />} text={t('nav.projects')} onClick={() => updateExpanded(false)} delay={0.2} />
+              <MobileNavItem to="/experience#top" icon={<Briefcase size={24} />} text="Experience" onClick={() => updateExpanded(false)} delay={0.25} />
+              <MobileNavItem to="/testimonials#top" icon={<MessageSquareQuote size={24} />} text="Testimonials" onClick={() => updateExpanded(false)} delay={0.3} />
+              <MobileNavItem to="/resume#top" icon={<FileText size={24} />} text={t('nav.resume')} onClick={() => updateExpanded(false)} delay={0.35} />
+              <MobileNavItem to="/blog#top" icon={<Newspaper size={24} />} text={t('nav.blogs')} onClick={() => updateExpanded(false)} delay={0.4} />
+            </div>
 
-              <div className="mt-8 flex justify-center">
-                <ChromeButton
-                  to="/contact#top" 
-                  onClick={() => updateExpanded(false)}
-                  className="w-full text-center"
-                >
-                  {t('nav.contact')}
-                </ChromeButton>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
+            {/* Sidebar Footer */}
+            <div className="p-6 border-t border-white/5 bg-white/5">
+              <ChromeButton
+                to="/contact#top" 
+                onClick={() => updateExpanded(false)}
+                className="w-full flex justify-center !py-3.5 !text-sm tracking-widest shadow-[0_0_20px_rgba(199,112,240,0.2)]"
+              >
+                {t('nav.contact')}
+              </ChromeButton>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  </>
+);
 }
 
 function NavItem({ to, icon, text }: { to: string; icon: ReactNode; text: string }) {
