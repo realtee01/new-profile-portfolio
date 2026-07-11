@@ -12,13 +12,23 @@ interface ProjectCardProps {
   customCover?: React.ReactNode;
   hasDetails?: boolean;
   onViewDetails?: () => void;
+  featured?: boolean;
 }
 
 export default function ProjectCards(props: ProjectCardProps) {
   return (
-    <div className="group relative flex flex-col rounded-2xl overflow-hidden bg-[#151421] border border-white/5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-[#00e5ff]/30 hover:shadow-[0_10px_40px_-10px_rgba(0,229,255,0.2)] h-full">
+    <div className={`group relative flex flex-col rounded-2xl overflow-hidden backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 h-full ${
+      props.featured 
+        ? "bg-gradient-to-b from-[#1c1530] to-[#110c1c] border border-[#c770f0]/40 shadow-[0_0_30px_-5px_rgba(199,112,240,0.15)] hover:border-[#c770f0]/70 hover:shadow-[0_10px_40px_-5px_rgba(199,112,240,0.3)]" 
+        : "bg-[#151421] border border-white/5 hover:border-[#00e5ff]/30 hover:shadow-[0_10px_40px_-10px_rgba(0,229,255,0.2)]"
+    }`}>
       {/* Image Container */}
       <div className="relative w-full h-52 sm:h-60 overflow-hidden bg-[#1a1927]">
+        {props.featured && (
+          <div className="absolute top-4 right-4 z-20 bg-[#c770f0]/20 border border-[#c770f0]/50 text-[#c770f0] px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md shadow-[0_0_15px_rgba(199,112,240,0.3)]">
+            Featured
+          </div>
+        )}
         {props.customCover ? (
           props.customCover
         ) : (

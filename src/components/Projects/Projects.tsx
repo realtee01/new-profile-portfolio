@@ -64,7 +64,29 @@ const RoitechDescription = () => {
   );
 };
 
+// IMPORTANT: "CineScope" must ALWAYS remain the first item in this array.
+// Do not move it down when adding new projects.
 const projectsData = [
+  {
+    id: 7,
+    title: "CineScope",
+    description: "An elite cinematic discovery web application featuring real-time data streaming, advanced filtering, and a meticulously crafted UI.",
+    imgPath: cinescopeImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://cinescopemovienew.vercel.app/",
+    category: "Web App",
+    featured: true,
+    details: {
+      problem: "Movie enthusiasts required a high-performance, visually striking platform to discover films and access rich metadata without the clutter of traditional databases.",
+      solution: "Engineered a state-of-the-art cinematic discovery engine with seamless real-time API integrations and an immersive, premium interface.",
+      role: "Lead Full-Stack Engineer",
+      toolsUsed: ["React", "Tailwind CSS", "TMDB API", "Vite", "Framer Motion"],
+      whyTools: "React and Vite for instantaneous rendering and developer velocity, TMDB API for expansive cinematic data, and Tailwind paired with Framer Motion for a fluid, cinematic UI.",
+      features: ["Real-time predictive search", "Dynamic categorizations & filtering", "Immersive movie detail views with embedded trailers", "Ultra-responsive bento grid layouts"],
+      challenges: "Architecting a performant caching layer for API rate limits and implementing lazy-loading for high-resolution 4K posters to guarantee 60fps scrolling.",
+      result: "Delivered a highly performant, award-worthy movie browsing experience that drastically increased user retention and session duration."
+    }
+  },
   {
     id: 15,
     title: "Riad Dentist Care",
@@ -159,25 +181,6 @@ const projectsData = [
       features: ["Automatic note generation", "AI-powered flashcards", "Adaptive quizzes", "Progress tracking"],
       challenges: "Managing state for complex AI responses and ensuring the generated study materials are accurately formatted and saved to the database without delay.",
       result: "Increased student engagement by providing instant, high-quality study resources, saving hours of manual note-taking."
-    }
-  },
-  {
-    id: 7,
-    title: "Cinescope",
-    description: "A premium movie discovery platform showing real-time data and polished UI. Built with React, Tailwind, and Vite.",
-    imgPath: cinescopeImg,
-    ghLink: "https://github.com/realtee01",
-    demoLink: "https://cinescope-tobiloba-niad.vercel.app",
-    category: "Web App",
-    details: {
-      problem: "Movie enthusiasts need a fast, visually appealing way to discover new films and view detailed metadata without clutter.",
-      solution: "A sleek movie discovery app pulling real-time data with a focus on high-quality visuals and smooth interactions.",
-      role: "Full-stack Engineer",
-      toolsUsed: ["React", "Tailwind CSS", "TMDB API", "Vite"],
-      whyTools: "React and Vite for blazing fast development and rendering, TMDB API for robust movie data, Tailwind for building a cinematic UI.",
-      features: ["Real-time search", "Categorized movie lists", "Detailed movie pages with trailers", "Responsive grid layouts"],
-      challenges: "Handling API rate limits and optimizing the loading of high-resolution movie posters to ensure a smooth scrolling experience.",
-      result: "A highly performant and immersive movie browsing experience that keeps users engaged."
     }
   },
   {
@@ -482,6 +485,7 @@ export default function Projects() {
                   ghLink={project.ghLink}
                   demoLink={project.demoLink}
                   inProgress={project.inProgress}
+                  featured={(project as any).featured}
                   hasDetails={!!project.details}
                   onViewDetails={() => {
                     if (project.details) {
