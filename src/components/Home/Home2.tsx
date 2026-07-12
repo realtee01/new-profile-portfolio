@@ -36,8 +36,8 @@ const services = [
   },
   {
     icon: <Sparkles className="text-[#00e5ff] w-6 h-6" />,
-    title: "GSAP Animations",
-    desc: "Developing highly interactive, fluid scroll-based animation websites using GSAP that captivate users."
+    title: "Animation Websites",
+    desc: "Developing highly interactive, fluid animation websites that captivate users."
   },
   {
     icon: <Palette className="text-[#c770f0] w-6 h-6" />,

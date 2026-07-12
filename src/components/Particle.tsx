@@ -23,6 +23,29 @@ export default function Particle() {
     const starTexture = textureLoader.load("/textures/star.png");
     starTexture.colorSpace = THREE.SRGBColorSpace;
 
+    const material = new THREE.MeshStandardMaterial({
+      color: "#ffeded",
+      roughness: 0.6,
+      metalness: 0.2,
+    });
+
+    const homeMesh = new THREE.Mesh(
+      new THREE.DodecahedronGeometry(1, 0),
+      material
+    );
+    const aboutMeMesh = new THREE.Mesh(
+      new THREE.TorusGeometry(0.75, 0.35, 30),
+      material
+    );
+    const contactMesh = new THREE.Mesh(
+      new THREE.ConeGeometry(0.85, 1.5),
+      material
+    );
+
+    scene.add(homeMesh, aboutMeMesh, contactMesh);
+
+    const objectsContainer = [homeMesh, aboutMeMesh, contactMesh];
+
     // Particles
     const createParticlePositions = (count: number) => {
       const positions = new Float32Array(count * 3);
@@ -67,6 +90,7 @@ export default function Particle() {
         sizeAttenuation: true,
         map: texture,
         depthWrite: false,
+        transparent: true,
         blending: THREE.AdditiveBlending,
       });
     };
@@ -80,14 +104,41 @@ export default function Particle() {
 
     const adjustObjectsAndParticles = (w: number) => {
       if (w <= 480) {
+        homeMesh.scale.set(0.4, 0.4, 0.4);
+        aboutMeMesh.scale.set(0.45, 0.45, 0.45);
+        contactMesh.scale.set(0.55, 0.55, 0.55);
+        homeMesh.position.y = objectDistance * 0.35;
+        aboutMeMesh.position.y = -objectDistance * 0.75;
+        contactMesh.position.y = -objectDistance * 2.4;
+        homeMesh.position.x = 0.65;
+        aboutMeMesh.position.x = 0.5;
+        contactMesh.position.x = -0.5;
         triangleMaterial.size = 0.7;
         starMaterial.size = 0.25;
       } else if (w <= 768) {
-        triangleMaterial.size = 0.6;
-        starMaterial.size = 0.2;
+        homeMesh.scale.set(0.55, 0.55, 0.55);
+        aboutMeMesh.scale.set(0.6, 0.6, 0.6);
+        contactMesh.scale.set(0.6, 0.6, 0.6);
+        homeMesh.position.y = objectDistance * 0.2;
+        aboutMeMesh.position.y = -objectDistance * 0.85;
+        contactMesh.position.y = -objectDistance * 2.5;
+        homeMesh.position.x = 1;
+        aboutMeMesh.position.x = 0.5;
+        contactMesh.position.x = -0.5;
+        triangleMaterial.size = 0.8;
+        starMaterial.size = 0.3;
       } else {
-        triangleMaterial.size = 0.5;
-        starMaterial.size = 0.15;
+        homeMesh.scale.set(0.85, 0.85, 0.85);
+        aboutMeMesh.scale.set(0.9, 0.9, 0.9);
+        contactMesh.scale.set(0.9, 0.9, 0.9);
+        homeMesh.position.y = objectDistance * 0.15;
+        aboutMeMesh.position.y = -objectDistance * 0.85;
+        contactMesh.position.y = -objectDistance * 2;
+        homeMesh.position.x = 1.55;
+        aboutMeMesh.position.x = -2.3;
+        contactMesh.position.x = 1;
+        triangleMaterial.size = 1.0;
+        starMaterial.size = 0.3;
       }
     };
     adjustObjectsAndParticles(width);
@@ -138,8 +189,9 @@ export default function Particle() {
     window.addEventListener("resize", handleResize);
 
     let scrollY = window.scrollY;
+    let targetScrollY = window.scrollY;
     const handleScroll = () => {
-      scrollY = window.scrollY;
+      targetScrollY = window.scrollY;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -160,6 +212,8 @@ export default function Particle() {
       const deltaTime = elapsedTime - prevTime;
       prevTime = elapsedTime;
 
+      // Smooth scroll lerp
+      scrollY += (targetScrollY - scrollY) * Math.min(deltaTime * 8, 1.0);
       camera.position.y = (-scrollY / height) * objectDistance;
 
       const parallaxX = cursor.x * 0.5;
@@ -169,6 +223,12 @@ export default function Particle() {
         (parallaxX - cameraGroup.position.x) * 3 * deltaTime;
       cameraGroup.position.y +=
         (parallaxY - cameraGroup.position.y) * 5 * deltaTime;
+
+      for (const obj of objectsContainer) {
+        obj.rotation.x += deltaTime * 0.18;
+        obj.rotation.y += deltaTime * 0.15;
+        obj.rotation.z += deltaTime * 0.11;
+      }
 
       for (let i = 0; i < trianglesCount; i++) {
         const i3 = i * 3;
@@ -189,7 +249,7 @@ export default function Particle() {
       triangleGeometry.attributes.position.needsUpdate = true;
       starGeometry.attributes.position.needsUpdate = true;
 
-      const hue = Math.sin(elapsedTime * 0.3) % 1;
+      const hue = (Math.sin(elapsedTime * 0.1) * 0.5 + 0.5) % 1;
       triangleMaterial.color.setHSL(hue, 0.5, 0.5);
 
       renderer.render(scene, camera);
@@ -220,6 +280,6 @@ export default function Particle() {
     };
   }, []);
 
-  return <div ref={mountRef} className="fixed inset-0 w-full h-full z-[-1] pointer-events-none" />;
+  return <div ref={mountRef} className="fixed inset-0 w-full h-full z-0 pointer-events-none" />;
 }
 

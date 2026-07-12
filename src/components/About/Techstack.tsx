@@ -11,8 +11,7 @@ import {
   SiTailwindcss,
   SiTypescript,
   SiOpenai,
-  SiPostgresql,
-  SiGreensock
+  SiPostgresql
 } from "react-icons/si";
 import { motion } from "motion/react";
 import React, { useState } from "react";
@@ -60,7 +59,6 @@ export default function Techstack() {
     { icon: SiPostgresql, name: "PostgreSQL", proficiency: "70%", projects: "Nexchat3" },
     { icon: SiNextdotjs, name: "Next.js", proficiency: "85%", projects: "Trendy Transit, Nexchat3" },
     { icon: SiOpenai, name: "OpenAI / AI Agents", proficiency: "90%", projects: "Roitech AI, AI Receptionists" },
-    { icon: SiGreensock, name: "GSAP", proficiency: "85%", projects: "Animation Websites" },
     { icon: DiGit, name: "Git", proficiency: "90%", projects: "All Projects" },
     { icon: SiSolidity, name: "Solidity", proficiency: "70%", projects: "Forzchain" },
   ];

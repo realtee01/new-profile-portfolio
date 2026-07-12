@@ -41,7 +41,7 @@ export default function App() {
       <Preloader load={load} />
       <div className="App" id="top">
         <Particle />
-        <div id={load ? "no-scroll" : "scroll"}>
+        <div id={load ? "no-scroll" : "scroll"} className="relative z-10">
           <Navbar />
           <ScrollToTop />
           <Suspense fallback={<SuspenseFallback />}>
