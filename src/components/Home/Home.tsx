@@ -9,13 +9,13 @@ export default function Home() {
   const { t } = useLanguage();
   return (
     <section className="overflow-hidden">
-      <div className="relative pt-24 pb-8 md:pt-40 md:pb-20 min-h-screen flex items-center" id="home">
+      <div className="relative pt-32 pb-8 md:pt-48 md:pb-20 min-h-screen flex items-center" id="home">
         
         {/* Advanced Background Gradients */}
         <div className="absolute top-1/4 -left-20 w-64 h-64 md:w-96 md:h-96 bg-[#c770f0]/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse"></div>
         <div className="absolute bottom-1/4 -right-20 w-64 h-64 md:w-96 md:h-96 bg-[#00e5ff]/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse delay-700"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-[-5vh]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-8 lg:mt-0">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-16 xl:gap-24 w-full">
             
             {/* Left Content - Text */}
@@ -26,10 +26,10 @@ export default function Home() {
               className="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left"
             >
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 1, scale: 0.8 }}
                 animate={{ opacity: 1, scale: [0.95, 1.05, 0.95] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-sm font-medium mb-6 backdrop-blur-sm"
+                className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-sm font-bold mb-6 backdrop-blur-sm shadow-[0_0_15px_rgba(0,229,255,0.3)] z-50 relative"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00e5ff] opacity-75 duration-75"></span>
