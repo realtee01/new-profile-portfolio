@@ -22,6 +22,7 @@ const tribeFitnessImg = "https://images.unsplash.com/photo-1534438327276-14e5300
 const blankCanvasImg = "https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=1171&auto=format&fit=crop";
 const makeupBookingImg = "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1171&auto=format&fit=crop";
 const dentistImg = "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1170&auto=format&fit=crop";
+const julioPizzaImg = "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1170&auto=format&fit=crop";
 
 import NotesCover from "./NotesCover";
 import React, { useState } from "react";
@@ -85,6 +86,25 @@ const projectsData = [
       features: ["Real-time predictive search", "Dynamic categorizations & filtering", "Immersive movie detail views with embedded trailers", "Ultra-responsive bento grid layouts"],
       challenges: "Architecting a performant caching layer for API rate limits and implementing lazy-loading for high-resolution 4K posters to guarantee 60fps scrolling.",
       result: "Delivered a highly performant, award-worthy movie browsing experience that drastically increased user retention and session duration."
+    }
+  },
+  {
+    id: 16,
+    title: "Julio's Pizza",
+    description: "A mouth-watering pizza ordering web application featuring a dynamic menu, responsive layout, and seamless cart management.",
+    imgPath: julioPizzaImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://juliopizzat.vercel.app",
+    category: "Web App",
+    details: {
+      problem: "A local pizzeria needed a fast and reliable online ordering system to handle high customer volume without delays.",
+      solution: "Developed an interactive web application with a streamlined ordering process and visually appealing product displays.",
+      role: "Full-Stack Developer",
+      toolsUsed: ["React", "Tailwind CSS", "Vite", "Framer Motion"],
+      whyTools: "React for dynamic state management of orders, and Tailwind CSS for rapid styling of appetizing food layouts.",
+      features: ["Dynamic menu with categories", "Real-time cart updates", "Smooth page transitions", "Mobile-first responsive design"],
+      challenges: "Ensuring smooth performance and fast image loading for high-resolution pizza photos on mobile devices.",
+      result: "Significantly increased online order volume by providing a frictionless and enjoyable customer experience."
     }
   },
   {
