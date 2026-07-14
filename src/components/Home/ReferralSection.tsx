@@ -102,37 +102,74 @@ export default function ReferralSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
               {[
                 {
-                  icon: <Users className="w-8 h-8 text-[#00e5ff]" />,
+                  step: "01",
+                  icon: <Users className="w-6 h-6 transition-transform duration-300 group-hover:scale-110 text-[#00e5ff]" />,
                   title: "Simple Referral",
                   desc: "Introduce a business owner who needs a website or redesign.",
-                  delay: 0.3
+                  delay: 0.3,
+                  color: "#00e5ff",
+                  glowClass: "hover:shadow-[0_0_30px_rgba(0,229,255,0.15)] hover:border-[#00e5ff]/30",
+                  iconBg: "bg-[#00e5ff]/10 border-[#00e5ff]/20 text-[#00e5ff]"
                 },
                 {
-                  icon: <Briefcase className="w-8 h-8 text-[#c770f0]" />,
+                  step: "02",
+                  icon: <Briefcase className="w-6 h-6 transition-transform duration-300 group-hover:scale-110 text-[#c770f0]" />,
                   title: "We Handle Everything",
                   desc: "I'll take care of the consultation, design, development, revisions, and launch.",
-                  delay: 0.4
+                  delay: 0.4,
+                  color: "#c770f0",
+                  glowClass: "hover:shadow-[0_0_30px_rgba(199,112,240,0.15)] hover:border-[#c770f0]/30",
+                  iconBg: "bg-[#c770f0]/10 border-[#c770f0]/20 text-[#c770f0]"
                 },
                 {
-                  icon: <Gift className="w-8 h-8 text-[#00e5ff]" />,
+                  step: "03",
+                  icon: <Gift className="w-6 h-6 transition-transform duration-300 group-hover:scale-110 text-[#00e5ff]" />,
                   title: "Get Rewarded",
                   desc: "Once the project is completed and fully paid, you'll receive your referral reward.",
-                  delay: 0.5
+                  delay: 0.5,
+                  color: "#00e5ff",
+                  glowClass: "hover:shadow-[0_0_30px_rgba(0,229,255,0.15)] hover:border-[#00e5ff]/30",
+                  iconBg: "bg-[#00e5ff]/10 border-[#00e5ff]/20 text-[#00e5ff]"
                 }
               ].map((card, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: card.delay }}
-                  className="bg-white/5 border border-white/5 rounded-2xl p-6 lg:p-8 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 400, 
+                    damping: 25, 
+                    delay: card.delay 
+                  }}
+                  className={`bg-white/[0.03] backdrop-blur-md border border-white/5 rounded-[2rem] p-8 hover:bg-white/[0.07] transition-all duration-300 relative group flex flex-col justify-between overflow-hidden shadow-xl ${card.glowClass}`}
                 >
-                  <div className="bg-[#1b1a2ea9] border border-white/5 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    {card.icon}
+                  <div className="absolute -inset-px bg-gradient-to-br from-white/0 via-white/0 to-white/5 rounded-[2rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div>
+                    <div className="flex items-center justify-between mb-8 relative z-10">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-300 shadow-md ${card.iconBg}`}>
+                        {card.icon}
+                      </div>
+                      <span className="text-xs font-mono tracking-widest text-gray-500 group-hover:text-white/60 transition-colors uppercase">
+                        Phase {card.step}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-white mb-3 tracking-wide group-hover:text-[#00e5ff] transition-colors duration-300 relative z-10">
+                      {card.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed relative z-10">
+                      {card.desc}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 tracking-wide">{card.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{card.desc}</p>
+                  
+                  <div 
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] transition-all duration-500 group-hover:w-[80%]" 
+                    style={{ backgroundColor: card.color }}
+                  />
                 </motion.div>
               ))}
             </div>
