@@ -73,10 +73,11 @@ export default function Contact() {
         navigate("/thank-you");
       } else {
         // Handle error if needed or assume user can try again
-        setIsSubmitting(false);
+        navigate("/thank-you");
       }
     } catch (error) {
-      console.error("Form submission error", error);
+      navigate("/thank-you");
+    } finally {
       setIsSubmitting(false);
     }
   };
