@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
+import AppointmentBooking from "../Booking/AppointmentBooking";
 
 export default function Contact() {
   const navigate = useNavigate();
@@ -84,7 +85,47 @@ export default function Contact() {
 
   return (
     <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <AppointmentBooking />
+      
+      {/* FINAL CTA SECTION */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mb-24">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-gradient-to-br from-[#c770f0]/10 to-[#00e5ff]/10 border border-white/10 rounded-3xl p-10 md:p-16 text-center relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-[#06020c]/60 backdrop-blur-md -z-10" />
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6 tracking-wide">
+            Ready to Turn More Visitors Into Customers?
+          </h2>
+          <p className="text-gray-300 text-lg font-light tracking-wide max-w-2xl mx-auto mb-10 leading-relaxed">
+            Whether you're launching a new business or upgrading an existing website, I'll help you create an experience that builds trust, attracts customers, and grows your business.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <button
+              onClick={() => {
+                const form = document.getElementById('contact-form');
+                if (form) {
+                  form.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="w-full sm:w-auto bg-gradient-to-r from-[#c770f0] to-[#00e5ff] text-[#0c0513] hover:opacity-90 px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all shadow-[0_0_20px_rgba(0,229,255,0.2)] hover:shadow-[0_0_30px_rgba(0,229,255,0.4)]"
+            >
+              Start a Project
+            </button>
+            <button
+              onClick={() => navigate('/projects')}
+              className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all"
+            >
+              View Portfolio
+            </button>
+          </div>
+        </motion.div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full" id="contact-form">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

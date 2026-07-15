@@ -1,5 +1,7 @@
 import { BsGithub } from "react-icons/bs";
 import { CgWebsite } from "react-icons/cg";
+import { ProjectDetailsData } from "./ProjectModal";
+import { HashLink } from "react-router-hash-link";
 
 interface ProjectCardProps {
   imgPath?: string;
@@ -13,6 +15,7 @@ interface ProjectCardProps {
   hasDetails?: boolean;
   onViewDetails?: () => void;
   featured?: boolean;
+  details?: ProjectDetailsData;
 }
 
 export default function ProjectCards(props: ProjectCardProps) {
@@ -43,21 +46,62 @@ export default function ProjectCards(props: ProjectCardProps) {
           )
         )}
         {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#151421] via-[#151421]/20 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#151421] via-[#151421]/60 to-transparent opacity-90 transition-opacity duration-500" />
       </div>
 
       {/* Content Container */}
-      <div className="relative p-6 sm:p-8 flex flex-col flex-grow z-10 -mt-6">
-        <h3 className="text-2xl font-serif font-bold mb-3 text-white transition-colors duration-300 group-hover:text-[#00e5ff] tracking-wide">
+      <div className="relative p-6 sm:p-8 flex flex-col flex-grow z-10 -mt-8">
+        {props.details?.industry && (
+          <span className="text-xs font-semibold tracking-widest uppercase text-[#c770f0] mb-2 block">
+            {props.details.industry}
+          </span>
+        )}
+        
+        <h3 className="text-2xl font-serif font-bold mb-4 text-white transition-colors duration-300 group-hover:text-[#00e5ff] tracking-wide">
           {props.title}
         </h3>
         
-        <div className="text-gray-400 text-sm sm:text-base mb-8 flex-grow leading-relaxed">
-          {props.description}
-        </div>
+        {props.details ? (
+          <div className="flex-grow space-y-4 mb-8">
+            <div>
+              <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-1">Business Problem</h4>
+              <p className="text-gray-300 text-sm line-clamp-2 leading-relaxed">{props.details.problem}</p>
+            </div>
+            <div>
+              <h4 className="text-xs font-semibold text-[#00e5ff] uppercase tracking-widest mb-1">Solution Provided</h4>
+              <p className="text-gray-300 text-sm line-clamp-2 leading-relaxed">{props.details.solution}</p>
+            </div>
+            
+            {props.details.businessValue && (
+              <div>
+                <h4 className="text-xs font-semibold text-[#27c93f] uppercase tracking-widest mb-1">Business Value</h4>
+                <p className="text-gray-300 text-sm line-clamp-2 leading-relaxed">{props.details.businessValue}</p>
+              </div>
+            )}
+
+            <div className="pt-2">
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {props.details.toolsUsed.slice(0, 4).map((tool, idx) => (
+                  <span key={idx} className="bg-white/5 border border-white/10 px-2 py-1 rounded text-[10px] text-gray-400">
+                    {tool}
+                  </span>
+                ))}
+                {props.details.toolsUsed.length > 4 && (
+                  <span className="bg-white/5 border border-white/10 px-2 py-1 rounded text-[10px] text-gray-400">
+                    +{props.details.toolsUsed.length - 4}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="text-gray-400 text-sm sm:text-base mb-8 flex-grow leading-relaxed">
+            {props.description}
+          </div>
+        )}
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center gap-4 mt-auto">
+        <div className="flex flex-wrap items-center gap-3 mt-auto">
           {props.inProgress ? (
             <span className="w-full justify-center bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/20 px-6 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
               <span className="relative flex h-2.5 w-2.5">
@@ -67,39 +111,36 @@ export default function ProjectCards(props: ProjectCardProps) {
               In Progress
             </span>
           ) : (
-            <>
-              {props.ghLink && (
-                <a
-                  href={props.ghLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white px-4 py-2.5 rounded-xl flex justify-center items-center gap-2 transition-all duration-300 text-sm font-medium group/btn"
-                >
-                  <BsGithub className="text-lg group-hover/btn:text-white text-gray-300 transition-colors" />
-                  <span>{props.isBlog ? "Read Post" : "Repository"}</span>
-                </a>
-              )}
-
-              {!props.isBlog && props.demoLink && (
-                <a
-                  href={props.demoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-gradient-to-r from-[#c770f0] to-[#00e5ff] opacity-90 hover:opacity-100 text-[#0c0513] px-4 py-2.5 rounded-xl flex justify-center items-center gap-2 transition-all duration-300 text-sm font-bold shadow-[0_0_20px_rgba(0,229,255,0.2)] hover:shadow-[0_0_25px_rgba(0,229,255,0.4)]"
-                >
-                  <CgWebsite className="text-lg" />
-                  <span>Live Demo</span>
-                </a>
-              )}
-              {props.hasDetails && (
-                <button
-                  onClick={props.onViewDetails}
-                  className="w-full mt-2 bg-white/5 hover:bg-white/10 border border-[#00e5ff]/30 text-[#00e5ff] px-4 py-2.5 rounded-xl flex justify-center items-center gap-2 transition-all duration-300 text-sm font-medium"
-                >
-                  View Case Study
-                </button>
-              )}
-            </>
+            <div className="flex flex-col gap-3 w-full">
+              <div className="flex gap-3">
+                {props.hasDetails && (
+                  <button
+                    onClick={props.onViewDetails}
+                    className="flex-1 bg-white/5 hover:bg-white/10 border border-[#c770f0]/30 text-white px-4 py-2.5 rounded-xl flex justify-center items-center transition-all duration-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(199,112,240,0.1)] hover:shadow-[0_0_20px_rgba(199,112,240,0.25)]"
+                  >
+                    View Case Study
+                  </button>
+                )}
+                {!props.isBlog && props.demoLink && (
+                  <a
+                    href={props.demoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 bg-gradient-to-r from-[#c770f0] to-[#00e5ff] opacity-90 hover:opacity-100 text-[#0c0513] px-4 py-2.5 rounded-xl flex justify-center items-center gap-2 transition-all duration-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(0,229,255,0.2)] hover:shadow-[0_0_25px_rgba(0,229,255,0.4)]"
+                  >
+                    <CgWebsite className="text-base" />
+                    <span>Live Demo</span>
+                  </a>
+                )}
+              </div>
+              <HashLink 
+                smooth
+                to="/contact#top" 
+                className="w-full bg-transparent hover:bg-white/5 border border-white/20 text-gray-300 hover:text-white px-4 py-2.5 rounded-xl flex justify-center items-center transition-all duration-300 text-xs font-medium uppercase tracking-wider"
+              >
+                Book Something Similar
+              </HashLink>
+            </div>
           )}
         </div>
       </div>

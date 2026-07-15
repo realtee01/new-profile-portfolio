@@ -507,6 +507,7 @@ export default function Projects() {
                   inProgress={project.inProgress}
                   featured={(project as any).featured}
                   hasDetails={!!project.details}
+                  details={project.details}
                   onViewDetails={() => {
                     if (project.details) {
                       setSelectedProject({ title: project.title, details: project.details });

@@ -2,6 +2,9 @@ import { motion } from "motion/react";
 import Type from "./Type";
 import Home2 from "./Home2";
 import ReferralSection from "./ReferralSection";
+import ProcessSection from "./ProcessSection";
+import SocialProof from "./SocialProof";
+import WhyWorkWithMe from "./WhyWorkWithMe";
 import { Code2, Cpu, Globe, Rocket, Zap } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
 import { useLanguage } from "../../context/LanguageContext";
@@ -195,6 +198,9 @@ export default function Home() {
         </div>
       </div>
       <Home2 />
+      <SocialProof />
+      <ProcessSection />
+      <WhyWorkWithMe />
       <ReferralSection />
     </section>
   );

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FaWhatsapp, FaPhone, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { AppWindow, Palette, Search, Zap, LayoutDashboard, MonitorSmartphone, ShoppingCart, Cuboid, Sparkles, Bot, Mic, Smartphone } from "lucide-react";
+import { MousePointerClick, ShoppingBag, CalendarDays, Blocks, LineChart, BrainCircuit, TabletSmartphone, TrendingUp, Maximize, RefreshCw, Server } from "lucide-react";
 import Tilt from "react-parallax-tilt";
 import { HashLink } from "react-router-hash-link";
 import MagneticDock from "../ui/magnetic-dock";
@@ -10,64 +10,70 @@ import ChromeButton from "../ui/chrome-button";
 
 const services = [
   {
-    icon: <AppWindow className="text-[#00e5ff] w-6 h-6" />,
-    title: "Code to Launch",
-    desc: "Building complete, production-ready websites and web apps."
+    icon: <MousePointerClick className="text-[#00e5ff] w-6 h-6" />,
+    title: "High-Converting Websites",
+    desc: "Modern, responsive websites built to attract more customers and convert visitors into leads.",
+    perfectFor: "Service businesses, contractors, dentists, agencies, etc.",
   },
   {
-    icon: <Smartphone className="text-[#c770f0] w-6 h-6" />,
+    icon: <ShoppingBag className="text-[#c770f0] w-6 h-6" />,
+    title: "E-commerce Websites & Growth Engines",
+    desc: "Custom storefronts designed to maximize average order value and automate sales 24/7.",
+    perfectFor: "DTC brands, online retailers, local business owners, etc.",
+  },
+  {
+    icon: <CalendarDays className="text-[#00e5ff] w-6 h-6" />,
+    title: "Booking & Appointment Sites",
+    desc: "Seamless booking platforms to easily manage schedules, client appointments, and payments.",
+    perfectFor: "Clinics, consultants, salons, dentists, etc.",
+  },
+  {
+    icon: <Blocks className="text-[#c770f0] w-6 h-6" />,
+    title: "Custom Web Applications",
+    desc: "Scalable SaaS platforms and internal tools to streamline operations and save hundreds of hours.",
+    perfectFor: "Startups, growing enterprises, etc.",
+  },
+  {
+    icon: <LineChart className="text-[#00e5ff] w-6 h-6" />,
+    title: "Admin Dashboards",
+    desc: "Powerful, secure administrative panels to manage users, content, and visualize business data.",
+    perfectFor: "Business owners, platform managers, etc.",
+  },
+  {
+    icon: <BrainCircuit className="text-[#c770f0] w-6 h-6" />,
+    title: "AI Automation & Agents",
+    desc: "Intelligent workflows and receptionists that capture leads and handle customer support automatically.",
+    perfectFor: "Agencies, real estate, clinics, contractors, etc.",
+  },
+  {
+    icon: <TabletSmartphone className="text-[#00e5ff] w-6 h-6" />,
     title: "Mobile App Development",
-    desc: "Developing fast, scalable, and intuitive mobile applications for iOS and Android."
+    desc: "Fast, scalable, and intuitive mobile applications built for both iOS and Android platforms.",
+    perfectFor: "Product-led companies, startups, etc.",
   },
   {
-    icon: <Bot className="text-[#00e5ff] w-6 h-6" />,
-    title: "AI Agents",
-    desc: "Automating workflows by building intelligent AI agents tailored for your business."
+    icon: <TrendingUp className="text-[#c770f0] w-6 h-6" />,
+    title: "SEO & AEO Visibility",
+    desc: "Optimizing your platform for Google and Answer Engines (like ChatGPT & Gemini) to maximize organic reach.",
+    perfectFor: "Content-driven brands, local businesses, etc.",
   },
   {
-    icon: <Mic className="text-[#c770f0] w-6 h-6" />,
-    title: "Voice Agents & Receptionists",
-    desc: "Integrating conversational voice agents and AI receptionists into modern websites."
+    icon: <Maximize className="text-[#00e5ff] w-6 h-6" />,
+    title: "Mobile Responsive Design",
+    desc: "Crafting flawless user experiences that adapt perfectly across phones, tablets, and desktop displays.",
+    perfectFor: "Any modern web application, etc.",
   },
   {
-    icon: <Cuboid className="text-[#00e5ff] w-6 h-6" />,
-    title: "3D Websites",
-    desc: "Crafting immersive 3D websites using modern web technologies."
+    icon: <RefreshCw className="text-[#c770f0] w-6 h-6" />,
+    title: "Website Redesign & Rebuild",
+    desc: "Transforming outdated interfaces into premium, modern platforms with an emphasis on conversion optimization.",
+    perfectFor: "Established businesses, local business owners, etc.",
   },
   {
-    icon: <Sparkles className="text-[#00e5ff] w-6 h-6" />,
-    title: "Animation Websites",
-    desc: "Developing highly interactive, fluid animation websites that captivate users."
-  },
-  {
-    icon: <Palette className="text-[#c770f0] w-6 h-6" />,
-    title: "Brand Identity",
-    desc: "Designing unique logos and integrating them seamlessly."
-  },
-  {
-    icon: <Search className="text-[#00e5ff] w-6 h-6" />,
-    title: "AI & SEO Visibility",
-    desc: "Optimizing for Google and AI engines like Gemini & ChatGPT."
-  },
-  {
-    icon: <Zap className="text-[#c770f0] w-6 h-6" />,
-    title: "High Performance",
-    desc: "Guaranteeing lightning-fast load times and 90+ speed scores."
-  },
-  {
-    icon: <LayoutDashboard className="text-[#00e5ff] w-6 h-6" />,
-    title: "Secure Portals",
-    desc: "Creating safe login systems and real-time management dashboards."
-  },
-  {
-    icon: <MonitorSmartphone className="text-[#c770f0] w-6 h-6" />,
-    title: "Responsive Design",
-    desc: "Crafting flawless experiences for mobile, tablet, and desktop."
-  },
-  {
-    icon: <ShoppingCart className="text-[#00e5ff] w-6 h-6" />,
-    title: "Custom E-Commerce",
-    desc: "Developing high-converting, uniquely branded Shopify stores."
+    icon: <Server className="text-[#00e5ff] w-6 h-6" />,
+    title: "Domain & Hosting Services",
+    desc: "End-to-end setup of custom domains, secure SSL certificates, and high-performance cloud hosting architecture.",
+    perfectFor: "New projects, migrations, etc.",
   }
 ];
 
@@ -107,14 +113,25 @@ export default function Home2() {
                 <h2 className="text-3xl font-serif font-bold text-gradient mb-8 tracking-wide">⚙️ Services & Capabilities</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
                   {services.map((s, i) => (
-                    <div key={i} className={`bg-[#151421]/60 backdrop-blur-md p-6 rounded-2xl border border-white/5 hover:-translate-y-1 hover:border-[#00e5ff]/30 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,229,255,0.1)] group ${i === services.length - 1 ? 'md:col-span-2' : ''}`}>
-                      <div className="bg-white/5 w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#00e5ff]/10 transition-colors">
+                    <div key={i} className="bg-[#151421]/60 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/5 hover:-translate-y-1 hover:border-[#00e5ff]/30 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,229,255,0.1)] group flex flex-col h-full">
+                      <div className="bg-white/5 w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#00e5ff]/10 transition-colors">
                         {s.icon}
                       </div>
-                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#00e5ff] group-hover:to-[#c770f0] transition-colors">{s.title}</h3>
-                      <p className="text-sm text-gray-400 leading-relaxed font-medium">
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#00e5ff] group-hover:to-[#c770f0] transition-colors">{s.title}</h3>
+                      <p className="text-gray-300 leading-relaxed font-light mb-6 flex-grow">
                         {s.desc}
                       </p>
+                      
+                      <div className="space-y-3 mb-8 pt-4 border-t border-white/5">
+                        <div className="flex justify-between items-center text-sm">
+                          <span className="text-gray-400">Perfect for</span>
+                          <span className="text-[#00e5ff] font-medium text-right max-w-[60%]">{s.perfectFor}</span>
+                        </div>
+                      </div>
+
+                      <HashLink smooth to="/contact#top" className="w-full text-center bg-white/5 hover:bg-white/10 text-white font-medium py-3 rounded-xl transition-colors border border-white/10 text-sm uppercase tracking-wider group-hover:border-[#c770f0]/30 group-hover:text-[#c770f0]">
+                        Get a Custom Quote
+                      </HashLink>
                     </div>
                   ))}
                 </div>
