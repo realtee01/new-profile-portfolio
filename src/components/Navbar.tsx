@@ -158,44 +158,68 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed top-0 right-0 h-screen w-[85%] max-w-[400px] bg-[#0c0518]/95 backdrop-blur-xl border-l border-white/10 shadow-[-20px_0_50px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden"
+            className="fixed top-0 right-0 h-screen w-[85%] max-w-[400px] bg-[#06020c]/95 backdrop-blur-2xl border-l border-white/10 shadow-[-20px_0_50px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden"
           >
+            {/* Ambient background glows */}
+            <div className="absolute top-[-10%] right-[-10%] w-[250px] h-[250px] rounded-full bg-[#00e5ff]/10 blur-[80px] pointer-events-none" />
+            <div className="absolute bottom-[5%] left-[-10%] w-[200px] h-[200px] rounded-full bg-[#c770f0]/10 blur-[70px] pointer-events-none" />
+
             {/* Sidebar Header */}
-            <div className="flex items-center justify-between p-6 border-b border-white/5">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#c770f0] to-[#00e5ff] p-[1px]">
-                  <div className="w-full h-full rounded-full bg-[#0c0518] flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">TA</span>
-                  </div>
+            <div className="relative flex items-center justify-between p-6 border-b border-white/5 bg-[#06020c]/50 backdrop-blur-md z-10">
+              <div className="flex items-center gap-2.5">
+                <svg viewBox="0 0 100 100" className="w-10 h-10 drop-shadow-[0_0_15px_rgba(0,229,255,0.35)] transition-all duration-300" aria-label="TA Logo">
+                  <defs>
+                    <linearGradient id="logo-grad-sidebar" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#c770f0" />
+                      <stop offset="100%" stopColor="#00e5ff" />
+                    </linearGradient>
+                    <clipPath id="circle-clip-sidebar">
+                      <circle cx="50" cy="50" r="50" />
+                    </clipPath>
+                    <mask id="logo-mask-sidebar">
+                      <rect x="0" y="0" width="100" height="100" fill="black" />
+                      <circle cx="50" cy="50" r="50" fill="white" />
+                      <circle cx="50" cy="50" r="32" fill="black" />
+                      <rect x="0" y="0" width="71" height="100" fill="black" />
+                      <rect x="53" y="0" width="18" height="100" fill="white" />
+                      <rect x="71" y="42" width="29" height="16" fill="white" />
+                      <rect x="29" y="30" width="18" height="70" fill="white" />
+                      <rect x="0" y="0" width="47" height="30" fill="white" />
+                    </mask>
+                  </defs>
+                  <rect x="0" y="0" width="100" height="100" fill="url(#logo-grad-sidebar)" clipPath="url(#circle-clip-sidebar)" mask="url(#logo-mask-sidebar)" />
+                </svg>
+                <div>
+                  <span className="text-white font-bold tracking-wider text-sm uppercase block">Navigation</span>
+                  <span className="text-[10px] text-gray-400 font-mono tracking-widest uppercase">Portfolio</span>
                 </div>
-                <span className="text-white font-bold tracking-wide text-sm uppercase">Menu</span>
               </div>
               <button 
                 onClick={() => updateExpanded(false)}
-                className="p-2.5 rounded-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all duration-300"
+                className="p-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 text-gray-300 hover:text-white transition-all duration-300 group"
                 aria-label="Close Menu"
               >
-                <X size={20} />
+                <X size={18} className="transition-transform duration-300 group-hover:rotate-90" />
               </button>
             </div>
 
             {/* Sidebar Links */}
-            <div className="flex-1 overflow-y-auto py-8 px-6 flex flex-col gap-2">
-              <MobileNavItem to="/#top" icon={<Home size={24} />} text={t('nav.home')} onClick={() => updateExpanded(false)} delay={0.1} />
-              <MobileNavItem to="/about#top" icon={<User size={24} />} text={t('nav.about')} onClick={() => updateExpanded(false)} delay={0.15} />
-              <MobileNavItem to="/projects#top" icon={<LayoutGrid size={24} />} text={t('nav.projects')} onClick={() => updateExpanded(false)} delay={0.2} />
-              <MobileNavItem to="/experience#top" icon={<Briefcase size={24} />} text="Experience" onClick={() => updateExpanded(false)} delay={0.25} />
-              <MobileNavItem to="/testimonials#top" icon={<MessageSquareQuote size={24} />} text="Testimonials" onClick={() => updateExpanded(false)} delay={0.3} />
-              <MobileNavItem to="/resume#top" icon={<FileText size={24} />} text={t('nav.resume')} onClick={() => updateExpanded(false)} delay={0.35} />
-              <MobileNavItem to="/blog#top" icon={<Newspaper size={24} />} text={t('nav.blogs')} onClick={() => updateExpanded(false)} delay={0.4} />
+            <div className="flex-1 overflow-y-auto py-8 px-6 flex flex-col gap-3.5 z-10 scrollbar-thin scrollbar-thumb-white/10">
+              <MobileNavItem index="01" to="/#top" icon={<Home size={18} />} text={t('nav.home')} onClick={() => updateExpanded(false)} delay={0.05} />
+              <MobileNavItem index="02" to="/about#top" icon={<User size={18} />} text={t('nav.about')} onClick={() => updateExpanded(false)} delay={0.1} />
+              <MobileNavItem index="03" to="/projects#top" icon={<LayoutGrid size={18} />} text={t('nav.projects')} onClick={() => updateExpanded(false)} delay={0.15} />
+              <MobileNavItem index="04" to="/experience#top" icon={<Briefcase size={18} />} text="Experience" onClick={() => updateExpanded(false)} delay={0.2} />
+              <MobileNavItem index="05" to="/testimonials#top" icon={<MessageSquareQuote size={18} />} text="Testimonials" onClick={() => updateExpanded(false)} delay={0.25} />
+              <MobileNavItem index="06" to="/resume#top" icon={<FileText size={18} />} text={t('nav.resume')} onClick={() => updateExpanded(false)} delay={0.3} />
+              <MobileNavItem index="07" to="/blog#top" icon={<Newspaper size={18} />} text={t('nav.blogs')} onClick={() => updateExpanded(false)} delay={0.35} />
             </div>
 
             {/* Sidebar Footer */}
-            <div className="p-6 border-t border-white/5 bg-white/5">
+            <div className="p-6 border-t border-white/5 bg-white/5 z-10 relative">
               <ChromeButton
                 to="/contact#top" 
                 onClick={() => updateExpanded(false)}
-                className="w-full flex justify-center !py-3.5 !text-sm tracking-widest shadow-[0_0_20px_rgba(199,112,240,0.2)]"
+                className="w-full flex justify-center !py-3.5 !text-sm tracking-widest shadow-[0_0_20px_rgba(199,112,240,0.25)]"
               >
                 {t('nav.contact')}
               </ChromeButton>
@@ -226,22 +250,51 @@ function NavItem({ to, icon, text }: { to: string; icon: ReactNode; text: string
   );
 }
 
-function MobileNavItem({ to, icon, text, onClick, delay }: { to: string; icon: ReactNode; text: string; onClick: () => void; delay: number }) {
+function MobileNavItem({ 
+  to, 
+  icon, 
+  text, 
+  onClick, 
+  delay, 
+  index 
+}: { 
+  to: string; 
+  icon: ReactNode; 
+  text: string; 
+  onClick: () => void; 
+  delay: number;
+  index: string;
+}) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
+      initial={{ opacity: 0, x: 25 }}
       animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 15 }}
       whileTap={{ scale: 0.98 }}
-      transition={{ delay, duration: 0.4 }}
+      transition={{ delay, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
       <HashLink
         smooth
         to={to}
         onClick={onClick}
-        className="text-gray-200 hover:text-white flex items-center gap-4 px-6 py-4 rounded-2xl text-xl font-medium transition-all duration-300 hover:bg-white/5 group border border-transparent hover:border-white/5 w-full"
+        className="group relative flex items-center justify-between w-full p-3.5 rounded-2xl bg-white/[0.02] hover:bg-gradient-to-r hover:from-white/[0.06] hover:to-transparent border border-white/5 hover:border-white/10 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_30px_rgba(0,229,255,0.05)]"
       >
-        <span className="text-[#c770f0] group-hover:text-[#00e5ff] transition-colors">{icon}</span>
-        {text}
+        <div className="flex items-center gap-4">
+          <span className="font-mono text-xs font-semibold tracking-wider text-[#00e5ff]/50 group-hover:text-[#00e5ff] transition-colors duration-300">
+            {index}
+          </span>
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/5 text-[#c770f0] group-hover:bg-[#00e5ff]/10 group-hover:text-[#00e5ff] group-hover:border-[#00e5ff]/30 transition-all duration-300 shadow-inner">
+            {icon}
+          </div>
+          <span className="text-base font-semibold tracking-wide text-white/90 group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
+            {text}
+          </span>
+        </div>
+        <div className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 text-[#00e5ff]">
+          <svg className="w-5 h-5 stroke-[2.5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
       </HashLink>
     </motion.div>
   );

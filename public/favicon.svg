@@ -1,10 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
     <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00e5ff" />
-      <stop offset="100%" stop-color="#c770f0" />
+      <stop offset="0%" stop-color="#c770f0" />
+      <stop offset="100%" stop-color="#00e5ff" />
     </linearGradient>
   </defs>
-  <rect width="100" height="100" rx="25" fill="#151421" />
-  <text x="50" y="54" font-family="system-ui, sans-serif" font-size="46" font-weight="bold" fill="url(#grad)" text-anchor="middle" dominant-baseline="middle" letter-spacing="-1">TA</text>
+  <rect width="100" height="100" rx="24" fill="#06020c" />
+  <g>
+    <!-- Left Part (T / 1) -->
+    <path d="M 47.5,30 L 15.36,30 A 40,40 0 0,0 11.85,38 L 37.5,38 L 37.5,88 A 40,40 0 0,0 47.5,89.92 Z" fill="url(#grad)" />
+    <!-- Right Part (A / B) -->
+    <path d="M 52.5,10.08 A 40,40 0 0,1 52.5,89.92 L 52.5,10.08 Z M 62.5,22 A 28,28 0 0,1 79.39,44 L 62.5,44 Z M 62.5,78 A 28,28 0 0,0 79.39,56 L 62.5,56 Z" fill-rule="evenodd" fill="url(#grad)" />
+  </g>
 </svg>
