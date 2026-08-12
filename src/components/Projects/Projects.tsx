@@ -23,6 +23,7 @@ const blankCanvasImg = "https://images.unsplash.com/photo-1513364776144-60967b0f
 const makeupBookingImg = "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1171&auto=format&fit=crop";
 const dentistImg = "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1170&auto=format&fit=crop";
 const julioPizzaImg = "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1170&auto=format&fit=crop";
+const peakEchoImg = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop";
 
 import NotesCover from "./NotesCover";
 import React, { useState } from "react";
@@ -86,6 +87,26 @@ const projectsData = [
       features: ["Real-time predictive search", "Dynamic categorizations & filtering", "Immersive movie detail views with embedded trailers", "Ultra-responsive bento grid layouts"],
       challenges: "Architecting a performant caching layer for API rate limits and implementing lazy-loading for high-resolution 4K posters to guarantee 60fps scrolling.",
       result: "Delivered a highly performant, award-worthy movie browsing experience that drastically increased user retention and session duration."
+    }
+  },
+  {
+    id: 17,
+    title: "Peak Echo Digitals",
+    description: "A modern digital agency platform designed to amplify brand presence with dynamic showcases and robust service offerings.",
+    imgPath: peakEchoImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://peak-echo-digitals.vercel.app",
+    category: "Landing Page",
+    featured: true,
+    details: {
+      problem: "A growing digital agency needed a striking online presence to showcase their portfolio and services to prospective clients.",
+      solution: "Developed a sleek, high-performance landing page that highlights their expertise, past work, and core digital marketing services.",
+      role: "Frontend Developer",
+      toolsUsed: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
+      whyTools: "React and Vite for fast development and rendering, Tailwind for scalable responsive design, and Framer Motion for engaging entry animations.",
+      features: ["Dynamic service showcases", "Interactive portfolio gallery", "Contact and consultation forms", "Mobile-optimized responsive design"],
+      challenges: "Balancing high-quality visual assets with fast load times to ensure an optimal user experience across all devices.",
+      result: "Created a highly professional and engaging agency platform that successfully drove an increase in client inquiries."
     }
   },
   {
