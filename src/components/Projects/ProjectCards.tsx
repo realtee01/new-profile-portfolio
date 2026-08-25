@@ -1,9 +1,13 @@
+import React from "react";
 import { BsGithub } from "react-icons/bs";
 import { CgWebsite } from "react-icons/cg";
+import { ArrowRight, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ProjectDetailsData } from "./ProjectModal";
 import { HashLink } from "react-router-hash-link";
 
 interface ProjectCardProps {
+  slug?: string;
   imgPath?: string;
   title: string;
   description: React.ReactNode;
@@ -113,14 +117,23 @@ export default function ProjectCards(props: ProjectCardProps) {
           ) : (
             <div className="flex flex-col gap-3 w-full">
               <div className="flex gap-3">
-                {props.hasDetails && (
+                {props.slug ? (
+                  <Link
+                    to={`/projects/${props.slug}`}
+                    className="flex-1 bg-white/5 hover:bg-white/10 border border-[#c770f0]/30 text-white px-4 py-2.5 rounded-xl flex justify-center items-center gap-1.5 transition-all duration-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(199,112,240,0.1)] hover:shadow-[0_0_20px_rgba(199,112,240,0.25)]"
+                  >
+                    <BookOpen size={14} className="text-[#c770f0]" />
+                    <span>Case Study</span>
+                  </Link>
+                ) : props.hasDetails ? (
                   <button
                     onClick={props.onViewDetails}
                     className="flex-1 bg-white/5 hover:bg-white/10 border border-[#c770f0]/30 text-white px-4 py-2.5 rounded-xl flex justify-center items-center transition-all duration-300 text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(199,112,240,0.1)] hover:shadow-[0_0_20px_rgba(199,112,240,0.25)]"
                   >
-                    View Case Study
+                    Case Study
                   </button>
-                )}
+                ) : null}
+
                 {!props.isBlog && props.demoLink && (
                   <a
                     href={props.demoLink}
@@ -133,13 +146,27 @@ export default function ProjectCards(props: ProjectCardProps) {
                   </a>
                 )}
               </div>
-              <HashLink 
-                smooth
-                to="/contact#top" 
-                className="w-full bg-transparent hover:bg-white/5 border border-white/20 text-gray-300 hover:text-white px-4 py-2.5 rounded-xl flex justify-center items-center transition-all duration-300 text-xs font-medium uppercase tracking-wider"
-              >
-                Book Something Similar
-              </HashLink>
+
+              <div className="flex items-center gap-2">
+                <HashLink 
+                  smooth
+                  to="/contact#top" 
+                  className="flex-1 bg-transparent hover:bg-white/5 border border-white/20 text-gray-300 hover:text-white px-4 py-2 rounded-xl flex justify-center items-center transition-all duration-300 text-xs font-medium uppercase tracking-wider"
+                >
+                  Hire Tobi
+                </HashLink>
+                {props.ghLink && (
+                  <a
+                    href={props.ghLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl border border-white/10 bg-white/5 text-gray-400 hover:text-white transition-colors"
+                    aria-label="View source code"
+                  >
+                    <BsGithub className="text-base" />
+                  </a>
+                )}
+              </div>
             </div>
           )}
         </div>

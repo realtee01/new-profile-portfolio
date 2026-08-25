@@ -3,6 +3,7 @@ import { useInView } from "motion/react";
 import { useRef } from "react";
 import { Briefcase } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
+import SEOHead from "../SEO/SEOHead";
 
 const experiences = [
   {
@@ -66,8 +67,47 @@ export default function Experience() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { t } = useLanguage();
 
+  const experienceSchema = [
+    {
+      "@type": "ItemList",
+      "@id": "https://www.buildwithtobi.online/experience#timeline",
+      "name": "Professional Engineering Experience - Tobiloba Akala",
+      "description": "Work history, internships, and lead frontend roles held by Tobiloba Akala (BuildWithTobi).",
+      "itemListElement": experiences.map((exp, idx) => ({
+        "@type": "ListItem",
+        "position": idx + 1,
+        "name": `${exp.role} at ${exp.company} (${exp.period})`
+      }))
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.buildwithtobi.online/experience#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.buildwithtobi.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Experience",
+          "item": "https://www.buildwithtobi.online/experience"
+        }
+      ]
+    }
+  ];
+
   return (
     <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
+      <SEOHead
+        title="Professional Experience & Career History | Tobiloba Akala"
+        description="Review the software engineering experience, internships (Roitech AI, LearnIQ, Axia Africa), and frontend roles of Tobiloba Akala (BuildWithTobi)."
+        canonicalPath="/experience"
+        keywords="Tobiloba Akala experience, Roitech AI engineer, LearnIQ lead engineer, Axia Africa, frontend developer experience Nigeria"
+        jsonLd={experienceSchema}
+      />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="mb-16 text-center">
           <motion.h1

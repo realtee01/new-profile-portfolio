@@ -15,12 +15,20 @@ const links = [
     href: "/#top",
   },
   {
+    title: "Services",
+    href: "/services#top",
+  },
+  {
     title: "About",
     href: "/about#top",
   },
   {
     title: "Projects",
     href: "/projects#top",
+  },
+  {
+    title: "Nigeria Dev",
+    href: "/web-developer-nigeria#top",
   },
   {
     title: "Experience",

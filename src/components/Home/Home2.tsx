@@ -143,8 +143,10 @@ export default function Home2() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#00e5ff] to-[#c770f0] rounded-2xl blur opacity-60 transition duration-1000"></div>
                 <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.5)]">
                   <img 
-                    src="https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
-                    alt="Developer Headshot"
+                    src="https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_600/v1780309581/refined_profile_picture_keiybp.png"
+                    alt="Tobiloba Akala - Web Developer"
+                    width={288}
+                    height={320}
                     className="w-72 h-80 object-cover transform transition duration-700 scale-100 hover:scale-105 object-top"
                     referrerPolicy="no-referrer"
                     loading="lazy"

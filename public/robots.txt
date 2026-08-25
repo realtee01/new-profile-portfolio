@@ -1,0 +1,10 @@
+# Robots.txt for BuildWithTobi - Tobiloba Akala Portfolio
+# https://www.buildwithtobi.online
+
+User-agent: *
+Allow: /
+Disallow: /thank-you
+
+# Host and Sitemap Declarations
+Host: https://www.buildwithtobi.online
+Sitemap: https://www.buildwithtobi.online/sitemap.xml

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { HashLink } from "react-router-hash-link";
-import { X, ArrowRight, Home, User, Briefcase, MessageSquareQuote, FileText, LayoutGrid, Newspaper, Globe } from "lucide-react";
+import { X, ArrowRight, Home, User, Briefcase, MessageSquareQuote, FileText, LayoutGrid, Newspaper, Globe, Layers, MapPin } from "lucide-react";
 import ChromeButton from "./chrome-button";
 
 if (typeof window !== "undefined") {
@@ -35,12 +35,14 @@ export function SterlingGateKineticNavigation({
 
   const menuItems: NavItemType[] = [
     { index: "01", to: "/#top", text: t("nav.home"), icon: <Home size={18} /> },
-    { index: "02", to: "/about#top", text: t("nav.about"), icon: <User size={18} /> },
-    { index: "03", to: "/projects#top", text: t("nav.projects"), icon: <LayoutGrid size={18} /> },
-    { index: "04", to: "/experience#top", text: "Experience", icon: <Briefcase size={18} /> },
-    { index: "05", to: "/testimonials#top", text: "Testimonials", icon: <MessageSquareQuote size={18} /> },
-    { index: "06", to: "/resume#top", text: t("nav.resume"), icon: <FileText size={18} /> },
-    { index: "07", to: "/blog#top", text: t("nav.blogs"), icon: <Newspaper size={18} /> },
+    { index: "02", to: "/services#top", text: "Services", icon: <Layers size={18} /> },
+    { index: "03", to: "/about#top", text: t("nav.about"), icon: <User size={18} /> },
+    { index: "04", to: "/projects#top", text: t("nav.projects"), icon: <LayoutGrid size={18} /> },
+    { index: "05", to: "/web-developer-nigeria#top", text: "Nigeria Dev", icon: <MapPin size={18} /> },
+    { index: "06", to: "/experience#top", text: "Experience", icon: <Briefcase size={18} /> },
+    { index: "07", to: "/testimonials#top", text: "Testimonials", icon: <MessageSquareQuote size={18} /> },
+    { index: "08", to: "/resume#top", text: t("nav.resume"), icon: <FileText size={18} /> },
+    { index: "09", to: "/blog#top", text: t("nav.blogs"), icon: <Newspaper size={18} /> },
   ];
 
   // Initial Setup & Hover Effects for Kinetic Abstract Shapes

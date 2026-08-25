@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
 import AppointmentBooking from "../Booking/AppointmentBooking";
+import SEOHead from "../SEO/SEOHead";
 
 export default function Contact() {
   const navigate = useNavigate();
@@ -18,6 +19,45 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { t } = useLanguage();
+
+  const contactSchema = [
+    {
+      "@type": "ContactPage",
+      "@id": "https://www.buildwithtobi.online/contact#contact",
+      "name": "Contact Tobiloba Akala (BuildWithTobi)",
+      "url": "https://www.buildwithtobi.online/contact",
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://www.buildwithtobi.online/#person",
+        "name": "Tobiloba Akala",
+        "email": "tobilobaakala@gmail.com",
+        "telephone": "+2347032533869",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lagos",
+          "addressCountry": "NG"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.buildwithtobi.online/contact#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.buildwithtobi.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://www.buildwithtobi.online/contact"
+        }
+      ]
+    }
+  ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -85,6 +125,13 @@ export default function Contact() {
 
   return (
     <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
+      <SEOHead
+        title="Contact Tobiloba Akala | Hire Web Developer in Nigeria"
+        description="Get in touch with Tobiloba Akala (BuildWithTobi) for frontend development, custom React web applications, and web performance optimization."
+        canonicalPath="/contact"
+        keywords="Contact Tobiloba Akala, Hire Web Developer Nigeria, BuildWithTobi contact, frontend consultant Lagos"
+        jsonLd={contactSchema}
+      />
       <AppointmentBooking />
       
       {/* FINAL CTA SECTION */}

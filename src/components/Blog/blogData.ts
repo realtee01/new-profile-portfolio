@@ -1,80 +1,137 @@
-export const blogData = [
+export interface BlogPostItem {
+  id: string;
+  title: string;
+  date: string;
+  readTime: string;
+  tags: string[];
+  excerpt: string;
+  image: string;
+  author: {
+    name: string;
+    role: string;
+    avatar: string;
+  };
+  content: string[];
+}
+
+export const blogData: BlogPostItem[] = [
+  {
+    id: "optimizing-react-performance-nigerian-networks",
+    title: "Optimizing React Web Applications for Variable Bandwidth Networks in Nigeria: Practical Strategies",
+    date: "February 20, 2026",
+    readTime: "6 min read",
+    tags: ["Performance", "React", "Web Development Nigeria", "Core Web Vitals"],
+    excerpt: "Discover practical frontend techniques to ensure your React applications load in under 1.5 seconds on 3G/4G cellular networks across Lagos and beyond.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+    },
+    content: [
+      "When building web applications in Nigeria, developer laptops connected to high-speed fiber rarely represent the real conditions of end users. The average visitor in Lagos, Abuja, or Ibadan accesses the web via mobile devices on fluctuating 3G or 4G connections. If an e-commerce platform or SaaS app takes 6 seconds to become interactive, bounce rates skyrocket above 60%.",
+      "The first pillar of optimizing for variable networks is ruthless bundle splitting. By taking advantage of React's dynamic imports (React.lazy and Suspense) paired with modern bundlers like Vite, we can isolate route-specific vendor code. Instead of serving a massive 400KB monolithic bundle upfront, our initial JavaScript payload stays below 65KB, allowing the browser to parse and execute code in milliseconds.",
+      "The second pillar is intelligent asset budgeting and progressive decoding. High-resolution uncompressed hero images can easily consume 4MB of user cellular data. By converting assets to modern AVIF/WebP formats, applying srcset responsive sizing, and utilizing CSS aspect-ratio skeletons, we prevent Cumulative Layout Shift (CLS) while minimizing network requests.",
+      "Finally, client-side caching strategies and optimistic UI updates make user interactions feel instantaneous. When a user adds an item to a cart or triggers a search query, debounce timers and LocalStorage fallbacks ensure that the UI responds instantly at 60fps without waiting for high-latency network roundtrips.",
+      "Building high-performance applications isn't just about scoring 95+ on Google Lighthouse—it's about creating accessible, respectful user experiences that convert visitors into loyal customers regardless of their connection speed."
+    ]
+  },
+  {
+    id: "react-vs-wordpress-nigeria",
+    title: "React vs WordPress for Growing Businesses in Nigeria: Choosing the Right Architecture",
+    date: "January 14, 2026",
+    readTime: "7 min read",
+    tags: ["Architecture", "WordPress", "React", "Business Strategy"],
+    excerpt: "An objective comparison of custom React web applications vs WordPress templates for Nigerian startups, SMEs, and digital businesses looking to scale.",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+    },
+    content: [
+      "One of the most frequent questions business owners and founders in Nigeria ask is: 'Should we build our business website on WordPress or invest in a custom React application?' The truth is that both tools have their place, but selecting the wrong one can lead to expensive rebuilds and missed revenue.",
+      "WordPress remains a popular choice for simple blogs, news portals, and companies with non-technical teams who need to publish daily articles with zero developer intervention. However, as Nigerian businesses add plugins for bookings, live chat, multi-currency payment gateways (like Paystack/Flutterwave), and security guards, WordPress often degrades into a slow, fragile codebase vulnerable to plugin conflicts and database bottlenecks.",
+      "Custom React development (powered by Vite, Next.js, or headless CMS backends) shines when your business requires custom workflows, interactive calculators, bespoke booking flows, or sub-second mobile page loads. A custom frontend gives you complete control over brand aesthetics, security, Core Web Vitals, and API integrations without recurring plugin bloat.",
+      "For early-stage startups and established brands looking to build authoritative digital assets, a hybrid approach is often optimal: a bespoke, razor-fast React frontend paired with a headless backend or Supabase database. This delivers unmatched speed and security while retaining intuitive content management."
+    ]
+  },
+  {
+    id: "figma-to-production-code",
+    title: "From Figma to Production: My High-Performance Frontend Workflow",
+    date: "December 05, 2025",
+    readTime: "5 min read",
+    tags: ["UI/UX", "Tailwind CSS", "Frontend Engineering", "Workflow"],
+    excerpt: "Step-by-step breakdown of transforming complex UI/UX design mockups into pixel-perfect, accessible, and responsive code.",
+    image: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+    },
+    content: [
+      "There is often a significant disconnect between a static Figma artboard and a living, responsive web application. A design file shows the ideal desktop screen at 1440px, but production code must gracefully scale across 360px budget phones, 768px tablets, and 4K ultra-wide monitors.",
+      "My frontend engineering process begins with architectural tokenization. Before writing component markup, I extract design tokens: typography scales (fluid clamp formulas), spacing increments (mathematical 4px/8px rhythm), color palettes, and surface elevations into Tailwind utility presets.",
+      "Next, I structure component trees around semantic HTML landmarks (`<header>`, `<main>`, `<section>`, `<article>`, `<nav>`). This guarantees out-of-the-box keyboard accessibility (WCAG AA standards) and establishes clean document structures that search engine crawlers and screen readers navigate effortlessly.",
+      "Finally, micro-interactions and transition easing are added. Using Framer Motion or lightweight CSS GPU transforms, buttons gain responsive active states and scroll-driven entry reveals without causing layout thrashing or battery drain on mobile devices."
+    ]
+  },
+  {
+    id: "conversion-centered-frontend",
+    title: "Why Most Business Websites Fail to Convert: A Frontend Engineer's Perspective",
+    date: "November 18, 2025",
+    readTime: "6 min read",
+    tags: ["Conversion Rate", "UX Design", "Business Growth"],
+    excerpt: "Analyzing the most common UX pitfalls that kill website conversions and how intentional engineering turns passive visitors into paying clients.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+    },
+    content: [
+      "A stunning visual design means nothing if prospective clients cannot figure out what you do within five seconds of landing on your page. Many business websites suffer from high bounce rates not because their services are inadequate, but because their frontend architecture introduces cognitive friction.",
+      "Common culprits include: ambiguous hero headlines packed with vague marketing buzzwords, sluggish load times exceeding three seconds, overwhelming form fields demanding unnecessary personal information, and buried call-to-action buttons that disappear on mobile screens.",
+      "Conversion-centered frontend engineering solves this by implementing visual hierarchy math. The primary value proposition and immediate action trigger (e.g. 'Get a Quote', 'Book an Appointment', 'Explore Case Studies') must always sit within the initial viewport with high contrast and zero visual ambiguity.",
+      "Furthermore, incorporating real client proof, verified project metrics, and frictionless WhatsApp or calendar booking flows directly inside service modules creates psychological safety for prospective clients to take action immediately."
+    ]
+  },
+  {
+    id: "building-reliable-booking-systems",
+    title: "Architecting Scalable Appointment & Booking Systems: Lessons from Real-World Deployments",
+    date: "October 22, 2025",
+    readTime: "6 min read",
+    tags: ["Full-Stack", "Supabase", "React", "Case Study"],
+    excerpt: "Key architectural takeaways from developing customized online appointment platforms for clinics, salons, and professional service providers.",
+    image: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+    },
+    content: [
+      "Scheduling and appointment management is the lifeblood of service-based businesses. When building custom booking solutions (like the Make-Up Booking Platform and Dental Care systems), the core challenge lies in synchronizing real-time availability while maintaining a dead-simple booking flow for clients.",
+      "Handling appointment slots requires strict concurrency control. By utilizing PostgreSQL Row-Level Security and transactional availability locks in Supabase, we prevent conflicting bookings even when multiple users attempt to reserve the same time slot simultaneously.",
+      "On the client side, multi-step date and service pickers must provide immediate visual feedback, dynamic pricing tallies, and instant automated summaries. When clients can book in under 45 seconds without calling or waiting for manual confirmation, booking completion rates increase dramatically."
+    ]
+  },
   {
     id: "future-of-react",
-    title: "The Future of React: What to Expect in React 19",
-    date: "October 15, 2023",
-    excerpt: "Explore the upcoming features in React 19, including the new compiler, improved server components, and how it will change the way we build full-stack applications.",
+    title: "The Future of React: What to Expect in React 19 & Modern Web Architecture",
+    date: "September 15, 2025",
+    readTime: "5 min read",
+    tags: ["React 19", "JavaScript", "Frontend Trends"],
+    excerpt: "Explore key features in modern React, including the React Compiler, Actions, and how modern full-stack workflows empower developers.",
     image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+    },
     content: [
-      "React 19 is shaping up to be one of the most significant updates to the library in years. With the introduction of the React Compiler, developers can expect out-of-the-box performance improvements without the need for manual memoization using useMemo or useCallback.",
-      "Server Components are also getting a major boost, making it easier to build hybrid applications that leverage the best of both client and server rendering. This shift will allow for faster initial page loads, reduced bundle sizes, and better SEO capabilities.",
-      "Another exciting feature is the introduction of Actions, which will simplify data mutations and form handling. By integrating these features directly into the core library, React is reducing the reliance on third-party state management tools and making standard web forms powerful again.",
-      "As we look towards the future, it's clear that React is evolving to meet the demands of modern web development, focusing heavily on developer experience and end-user performance. The ecosystem is shifting, and staying ahead of these changes will be crucial for full-stack engineers."
-    ]
-  },
-  {
-    id: "mastering-tailwind",
-    title: "Mastering Tailwind CSS: Tips for Cleaner Code",
-    date: "September 28, 2023",
-    excerpt: "Tailwind CSS is powerful, but it can lead to cluttered HTML. Learn advanced techniques to keep your utility classes organized and your codebase maintainable.",
-    image: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?q=80&w=1000&auto=format&fit=crop",
-    content: [
-      "Tailwind CSS has revolutionized how we style web applications by providing a utility-first approach. However, one of the most common complaints is that it leads to long, unreadable class strings in your HTML or JSX.",
-      "To combat this, mastering tools like 'clsx' and 'tailwind-merge' is essential. These libraries allow you to conditionally apply classes and merge conflicting utility classes safely, which is especially useful when building reusable UI components.",
-      "Another great practice is extracting highly repetitive patterns into component files rather than using the @apply directive in your CSS. Keeping the styling within the React component maintains the collocation benefits of Tailwind while keeping your global CSS lean.",
-      "Finally, organizing your classes in a consistent order (e.g., layout, spacing, typography, colors, effects) can drastically improve readability. Tools like the Prettier plugin for Tailwind CSS can automate this sorting for you, ensuring a clean and professional codebase."
-    ]
-  },
-  {
-    id: "high-performance-web",
-    title: "Building High-Performance Web Applications",
-    date: "August 10, 2023",
-    excerpt: "Performance is a feature. Discover the key strategies for optimizing your React applications, from code splitting to efficient state management.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
-    content: [
-      "In today's fast-paced digital world, performance is not just an afterthought—it is a core feature. Users expect web applications to load instantly and respond smoothly. A delay of even a few seconds can lead to significant drop-offs in user engagement.",
-      "One of the most effective ways to improve load times in a React application is through code splitting. By using React.lazy and Suspense, you can break your bundle into smaller chunks and only load the code necessary for the current route.",
-      "Image optimization is another critical area. Serving properly sized, modern image formats (like WebP or AVIF) and implementing lazy loading for off-screen images can drastically reduce the amount of data transferred over the network.",
-      "Lastly, efficient state management prevents unnecessary re-renders. Keeping your state as close to where it's needed as possible, and avoiding massive global stores for local UI state, ensures that your application remains snappy and responsive."
-    ]
-  },
-  {
-    id: "why-full-stack",
-    title: "Why I Chose Full-stack Engineering",
-    date: "July 22, 2023",
-    excerpt: "A personal journey into the world of full-stack development. Why the intersection of design and logic is the perfect place for creative problem solvers.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop",
-    content: [
-      "Full-stack engineering is a unique discipline that sits right at the intersection of logic and creativity. For me, the decision to specialize in the full-stack was driven by the desire to build things that people can see, touch, and interact with directly.",
-      "There is an immediate satisfaction in writing a piece of code and instantly seeing the visual result on the screen. It's a highly iterative and rewarding process that appeals to creative problem solvers.",
-      "Furthermore, the full-stack ecosystem is incredibly dynamic. From the evolution of JavaScript frameworks like React and Vue, to the advancements in CSS capabilities, there is always something new to learn and master.",
-      "Ultimately, full-stack engineering is about empathy. It's about understanding the user's needs, ensuring accessibility, and crafting interfaces that are not only beautiful but also intuitive and highly functional. It's a challenging but deeply fulfilling career path."
-    ]
-  },
-  {
-    id: "rise-of-web3",
-    title: "The Rise of Web3 and Decentralized Apps",
-    date: "June 05, 2023",
-    excerpt: "Understanding the shift towards Web3. How blockchain technology is influencing modern web development and what it means for full-stack engineers.",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f4fc8ea?q=80&w=1000&auto=format&fit=crop",
-    content: [
-      "Web3 represents the next evolution of the internet, moving away from centralized platforms towards decentralized networks built on blockchain technology. For full-stack engineers, this paradigm shift introduces new challenges and opportunities.",
-      "Building Decentralized Applications (dApps) requires a different mental model. Instead of communicating with a traditional REST API and a centralized database, full-stack clients interact directly with smart contracts on the blockchain using libraries like ethers.js or web3.js.",
-      "Wallet integration is a crucial part of the Web3 user experience. Handling connections to wallets like MetaMask, managing network switching, and dealing with transaction states (pending, success, failure) are new UX patterns that full-stack developers must master.",
-      "While the backend infrastructure is radically different, the full-stack remains the bridge between complex blockchain protocols and the end-user. Crafting seamless, trustworthy, and intuitive interfaces is more important than ever in the Web3 space."
-    ]
-  },
-  {
-    id: "glassmorphism-2024",
-    title: "Designing with Glassmorphism in 2024",
-    date: "May 18, 2023",
-    excerpt: "Glassmorphism continues to be a popular design trend. Learn how to implement it effectively using CSS backdrop-filter and subtle gradients.",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1000&auto=format&fit=crop",
-    content: [
-      "Glassmorphism is a UI design trend characterized by semi-transparent backgrounds, subtle borders, and a frosted-glass effect. It creates a sense of depth and hierarchy, allowing vibrant background elements to shine through.",
-      "The core of this effect is the CSS 'backdrop-filter: blur()' property. By applying a blur to the area behind an element, combined with a slightly transparent white or dark background color, you achieve the signature frosted look.",
-      "To make glassmorphism truly pop, it needs to be placed over a colorful, dynamic background. Abstract shapes, gradients, or even moving particles (like the ones used in this portfolio) provide the necessary contrast to make the glass effect visible.",
-      "However, accessibility must be considered. Ensure that text placed on glassmorphic cards has sufficient contrast against the background. Using subtle, semi-transparent borders can also help define the edges of the element and improve overall readability."
+      "React continues to advance at a rapid pace. With the introduction of the React Compiler, developers gain out-of-the-box performance optimizations without manual `useMemo` or `useCallback` boilerplate.",
+      "Modern React also standardizes data mutations and form actions, reducing reliance on bloated external state libraries for everyday form handling and submission feedback states.",
+      "By staying closely aligned with modern ECMAScript standards and Vite-powered toolchains, developers can build applications that are both faster to write and significantly faster for users to run."
     ]
   }
 ];

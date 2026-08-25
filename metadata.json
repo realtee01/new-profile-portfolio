@@ -1,5 +1,6 @@
 {
-  "name": "portfolio recreation ",
-  "description": "portfolio recreation from github from soymyajit",
-  "requestFramePermissions": []
+  "name": "BuildWithTobi - Tobiloba Akala Portfolio",
+  "description": "Official personal-brand portfolio, case studies, and engineering insights of Tobiloba Akala (BuildWithTobi) – Web Developer & Frontend Specialist based in Lagos, Nigeria.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

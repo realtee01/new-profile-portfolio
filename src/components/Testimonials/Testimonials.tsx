@@ -3,6 +3,7 @@ import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Quote, Play, Pause } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
+import SEOHead from "../SEO/SEOHead";
 
 const testimonials = [
   { 
@@ -48,6 +49,52 @@ export default function Testimonials() {
   const [isAutoPlay, setIsAutoPlay] = useState(false);
   const { t } = useLanguage();
 
+  const testimonialsSchema = [
+    {
+      "@type": "ItemList",
+      "@id": "https://www.buildwithtobi.online/testimonials#reviews",
+      "name": "Client Reviews & Endorsements for Tobiloba Akala",
+      "itemListElement": testimonials.map((testi, idx) => ({
+        "@type": "Review",
+        "position": idx + 1,
+        "author": {
+          "@type": "Person",
+          "name": testi.name,
+          "jobTitle": `${testi.role} at ${testi.company}`
+        },
+        "reviewBody": testi.text,
+        "itemReviewed": {
+          "@type": "Person",
+          "name": "Tobiloba Akala",
+          "url": "https://www.buildwithtobi.online/"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      }))
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.buildwithtobi.online/testimonials#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.buildwithtobi.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Testimonials",
+          "item": "https://www.buildwithtobi.online/testimonials"
+        }
+      ]
+    }
+  ];
+
   useEffect(() => {
     let interval: any;
     if (isAutoPlay) {
@@ -63,6 +110,13 @@ export default function Testimonials() {
 
   return (
     <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
+      <SEOHead
+        title="Client Testimonials & Industry Reviews | Tobiloba Akala"
+        description="Read verified client reviews, endorsements, and commendations from founders, CEOs, and engineering leads who have worked with Tobiloba Akala (BuildWithTobi)."
+        canonicalPath="/testimonials"
+        keywords="Tobiloba Akala reviews, BuildWithTobi testimonials, client feedback, web developer recommendations Nigeria"
+        jsonLd={testimonialsSchema}
+      />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="mb-16 text-center">
           <motion.h1

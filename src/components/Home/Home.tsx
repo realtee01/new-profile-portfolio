@@ -8,11 +8,67 @@ import WhyWorkWithMe from "./WhyWorkWithMe";
 import { Code2, Cpu, Globe, Rocket, Zap } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
 import { useLanguage } from "../../context/LanguageContext";
+import SEOHead from "../SEO/SEOHead";
 
 export default function Home() {
   const { t } = useLanguage();
+
+  const homeSchema = [
+    {
+      "@type": "Person",
+      "@id": "https://www.buildwithtobi.online/#person",
+      "name": "Tobiloba Akala",
+      "alternateName": ["BuildWithTobi", "Tobi Akala"],
+      "url": "https://www.buildwithtobi.online/",
+      "image": "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png",
+      "jobTitle": "Web Developer & Frontend Specialist",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "BuildWithTobi",
+        "url": "https://www.buildwithtobi.online/"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lagos",
+        "addressCountry": "NG"
+      },
+      "sameAs": [
+        "https://github.com/realtee01",
+        "https://twitter.com/realtee1111101",
+        "https://linkedin.com/in/tobiloba-akala-027581242"
+      ],
+      "knowsAbout": [
+        "React",
+        "TypeScript",
+        "Next.js",
+        "Tailwind CSS",
+        "Web Performance",
+        "Core Web Vitals",
+        "Supabase",
+        "Frontend Engineering"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.buildwithtobi.online/#website",
+      "url": "https://www.buildwithtobi.online/",
+      "name": "BuildWithTobi | Tobiloba Akala Portfolio",
+      "author": {
+        "@id": "https://www.buildwithtobi.online/#person"
+      },
+      "inLanguage": "en-US"
+    }
+  ];
+
   return (
     <section className="overflow-hidden">
+      <SEOHead
+        title="Tobiloba Akala | Web Developer & Frontend Specialist (BuildWithTobi)"
+        description="Official portfolio of Tobiloba Akala (BuildWithTobi) - Web Developer & Frontend Specialist in Nigeria. Engineering high-converting websites and scalable React web applications."
+        canonicalPath="/"
+        keywords="Tobiloba Akala, BuildWithTobi, Web Developer Nigeria, Frontend Developer Lagos, React Developer Nigeria, Software Engineer Nigeria, Portfolio"
+        jsonLd={homeSchema}
+      />
       <div className="relative pt-32 pb-8 md:pt-48 md:pb-20 min-h-screen flex items-center" id="home">
         
         {/* Advanced Background Gradients */}
@@ -178,19 +234,6 @@ export default function Home() {
                     <Rocket size={20} className="sm:w-6 sm:h-6" />
                   </div>
                 </motion.div>
-              </div>
-
-              {/* Developer Illustration (Secondary Visual) */}
-              <div
-                className="w-full max-w-[350px] mt-24 md:mt-32 flex justify-center relative z-10"
-              >
-                <img 
-                  src="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/src/Assets/home-main.svg"
-                  alt="Developer Illustration"
-                  className="w-full object-contain animate-[updown-hue_3s_ease-in-out_infinite]"
-                  referrerPolicy="no-referrer"
-                  fetchPriority="high"
-                />
               </div>
             </motion.div>
 

@@ -1,9 +1,48 @@
 import { AiOutlineDownload } from "react-icons/ai";
 import resumeFile from "../../assets/Resume.pdf";
+import SEOHead from "../SEO/SEOHead";
 
 export default function Resume() {
+  const resumeSchema = [
+    {
+      "@type": "DigitalDocument",
+      "@id": "https://www.buildwithtobi.online/resume#doc",
+      "name": "Tobiloba Akala - Professional Web Developer Resume",
+      "url": "https://www.buildwithtobi.online/resume",
+      "author": {
+        "@id": "https://www.buildwithtobi.online/#person"
+      },
+      "fileFormat": "application/pdf"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.buildwithtobi.online/resume#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.buildwithtobi.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Resume",
+          "item": "https://www.buildwithtobi.online/resume"
+        }
+      ]
+    }
+  ];
+
   return (
     <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
+      <SEOHead
+        title="Resume & Technical Qualifications | Tobiloba Akala"
+        description="View and download the professional resume of Tobiloba Akala (BuildWithTobi) - Web Developer & Frontend Specialist based in Lagos, Nigeria."
+        canonicalPath="/resume"
+        keywords="Tobiloba Akala resume, BuildWithTobi CV, Web Developer CV Nigeria, frontend developer resume, UNILAG Computer Science resume"
+        jsonLd={resumeSchema}
+      />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
         
         <div className="mb-12 text-center">

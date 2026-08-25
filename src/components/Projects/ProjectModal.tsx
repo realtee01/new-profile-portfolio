@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, ArrowRight, ExternalLink, Github } from "lucide-react";
+import { X, ArrowRight, ExternalLink, Github, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
 export interface ProjectDetailsData {
@@ -28,9 +29,10 @@ interface ProjectModalProps {
   onClose: () => void;
   title: string;
   details: ProjectDetailsData | null;
+  slug?: string;
 }
 
-export default function ProjectModal({ isOpen, onClose, title, details }: ProjectModalProps) {
+export default function ProjectModal({ isOpen, onClose, title, details, slug }: ProjectModalProps) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -103,46 +105,45 @@ export default function ProjectModal({ isOpen, onClose, title, details }: Projec
                   )}
                 </div>
                 <div className="space-y-4">
-                  <h3 className="text-[#00e5ff] font-semibold text-xl border-b border-white/10 pb-2">The Solution</h3>
+                  <h3 className="text-white font-semibold text-xl border-b border-white/10 pb-2">The Solution</h3>
                   <p className="text-gray-300 text-lg">{details.solution}</p>
                   {details.businessValue && (
-                    <div className="mt-4 p-4 bg-[#00e5ff]/5 rounded-xl border border-[#00e5ff]/20">
-                      <h4 className="text-[#00e5ff] font-semibold text-sm tracking-widest uppercase mb-2">Business Value</h4>
-                      <p className="text-sm">{details.businessValue}</p>
+                    <div className="mt-4 p-4 bg-[#27c93f]/10 border border-[#27c93f]/20 rounded-xl">
+                      <h4 className="text-[#27c93f] font-semibold text-sm tracking-widest uppercase mb-2">Business Impact</h4>
+                      <p className="text-sm text-gray-200">{details.businessValue}</p>
                     </div>
                   )}
                 </div>
               </section>
 
-              {/* Research & Design (if provided) */}
+              {/* Research & Design */}
               {(details.research || details.designProcess) && (
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 bg-white/[0.02] border border-white/5 p-6 sm:p-8 rounded-2xl">
                   {details.research && (
-                    <div className="space-y-3">
-                      <h3 className="text-white font-semibold text-lg">Research & Strategy</h3>
-                      <p className="text-gray-400">{details.research}</p>
+                    <div>
+                      <h3 className="text-white font-semibold text-lg mb-3">User Research</h3>
+                      <p className="text-gray-400 text-sm leading-relaxed">{details.research}</p>
                     </div>
                   )}
                   {details.designProcess && (
-                    <div className="space-y-3">
-                      <h3 className="text-white font-semibold text-lg">Design Process</h3>
-                      <p className="text-gray-400">{details.designProcess}</p>
+                    <div>
+                      <h3 className="text-white font-semibold text-lg mb-3">Design Process</h3>
+                      <p className="text-gray-400 text-sm leading-relaxed">{details.designProcess}</p>
                     </div>
                   )}
                 </section>
               )}
 
-              {/* Development & Tech */}
+              {/* Role & Tech Stack */}
               <section className="bg-white/5 border border-white/10 p-6 sm:p-8 rounded-2xl">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div>
-                    <h3 className="text-white font-semibold mb-3">My Role</h3>
-                    <p className="text-[#c770f0] font-medium">{details.role}</p>
-                    
+                    <h3 className="text-white font-semibold mb-2">My Role</h3>
+                    <p className="text-gray-400">{details.role}</p>
                     {details.development && (
-                      <div className="mt-6">
-                        <h3 className="text-white font-semibold mb-2 text-sm uppercase tracking-wider">Development</h3>
-                        <p className="text-sm text-gray-400">{details.development}</p>
+                      <div className="mt-4">
+                        <h4 className="text-white/70 font-semibold mb-1 text-sm uppercase tracking-wider">Implementation</h4>
+                        <p className="text-xs text-gray-400 leading-relaxed">{details.development}</p>
                       </div>
                     )}
                   </div>
@@ -199,15 +200,25 @@ export default function ProjectModal({ isOpen, onClose, title, details }: Projec
 
               {/* CTA Section */}
               <section className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div className="flex flex-wrap gap-4 w-full sm:w-auto">
+                <div className="flex flex-wrap gap-3 w-full sm:w-auto">
+                  {slug && (
+                    <Link
+                      to={`/projects/${slug}`}
+                      onClick={onClose}
+                      className="flex-1 sm:flex-none bg-white/10 hover:bg-white/20 border border-[#00e5ff]/40 text-white px-5 py-3 rounded-xl flex justify-center items-center gap-2 transition-all duration-300 font-bold text-xs uppercase tracking-wider"
+                    >
+                      <BookOpen size={16} className="text-[#00e5ff]" />
+                      <span>Dedicated Page</span>
+                    </Link>
+                  )}
                   {details.demoLink && (
                     <a
                       href={details.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 sm:flex-none bg-gradient-to-r from-[#c770f0] to-[#00e5ff] text-[#0c0513] px-6 py-3 rounded-xl flex justify-center items-center gap-2 transition-all duration-300 font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(0,229,255,0.2)] hover:shadow-[0_0_30px_rgba(0,229,255,0.4)] hover:scale-105"
+                      className="flex-1 sm:flex-none bg-gradient-to-r from-[#c770f0] to-[#00e5ff] text-[#0c0513] px-6 py-3 rounded-xl flex justify-center items-center gap-2 transition-all duration-300 font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(0,229,255,0.2)] hover:shadow-[0_0_30px_rgba(0,229,255,0.4)]"
                     >
-                      <ExternalLink size={18} />
+                      <ExternalLink size={16} />
                       <span>Live Demo</span>
                     </a>
                   )}
@@ -216,10 +227,10 @@ export default function ProjectModal({ isOpen, onClose, title, details }: Projec
                       href={details.ghLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 sm:flex-none bg-white/5 hover:bg-white/10 border border-white/20 text-white px-6 py-3 rounded-xl flex justify-center items-center gap-2 transition-all duration-300 font-bold uppercase tracking-wider"
+                      className="flex-1 sm:flex-none bg-white/5 hover:bg-white/10 border border-white/20 text-white px-5 py-3 rounded-xl flex justify-center items-center gap-2 transition-all duration-300 font-bold text-xs uppercase tracking-wider"
                     >
-                      <Github size={18} />
-                      <span>Source Code</span>
+                      <Github size={16} />
+                      <span>Source</span>
                     </a>
                   )}
                 </div>
@@ -227,10 +238,10 @@ export default function ProjectModal({ isOpen, onClose, title, details }: Projec
                   smooth
                   to="/contact#top"
                   onClick={onClose}
-                  className="w-full sm:w-auto group flex items-center justify-center gap-2 text-[#00e5ff] font-bold uppercase tracking-wider px-6 py-3 rounded-xl border border-[#00e5ff]/30 hover:bg-[#00e5ff]/10 transition-all duration-300"
+                  className="w-full sm:w-auto group flex items-center justify-center gap-2 text-[#00e5ff] font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl border border-[#00e5ff]/30 hover:bg-[#00e5ff]/10 transition-all duration-300"
                 >
                   Book Something Similar
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </HashLink>
               </section>
 

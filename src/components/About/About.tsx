@@ -5,6 +5,7 @@ import { FaSpotify, FaGithub, FaLaptopCode } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
 import { useInView } from "motion/react";
 import { useLanguage } from "../../context/LanguageContext";
+import SEOHead from "../SEO/SEOHead";
 
 const AnimatedCounter = ({ end, duration = 2 }: { end: number, duration?: number }) => {
   const [count, setCount] = useState(0);
@@ -33,8 +34,67 @@ const AnimatedCounter = ({ end, duration = 2 }: { end: number, duration?: number
 
 export default function About() {
   const { t } = useLanguage();
+
+  const aboutSchema = [
+    {
+      "@type": "ProfilePage",
+      "@id": "https://www.buildwithtobi.online/about#profile",
+      "name": "About Tobiloba Akala (BuildWithTobi)",
+      "url": "https://www.buildwithtobi.online/about",
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://www.buildwithtobi.online/#person",
+        "name": "Tobiloba Akala",
+        "alternateName": "BuildWithTobi",
+        "jobTitle": "Web Developer & Frontend Specialist",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Lagos (UNILAG)"
+        },
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "Web Performance",
+          "Tailwind CSS",
+          "Full-Stack Development",
+          "UI/UX Engineering"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lagos",
+          "addressCountry": "NG"
+        }
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.buildwithtobi.online/about#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.buildwithtobi.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About",
+          "item": "https://www.buildwithtobi.online/about"
+        }
+      ]
+    }
+  ];
+
   return (
     <div className="relative pt-32 pb-16 min-h-screen">
+      <SEOHead
+        title="About Tobiloba Akala | Web Developer & Frontend Specialist"
+        description="Learn more about Tobiloba Akala (BuildWithTobi) - Computer Science student at UNILAG, frontend engineer, tech stack, and background in building production web applications."
+        canonicalPath="/about"
+        keywords="About Tobiloba Akala, BuildWithTobi biography, Frontend Developer Nigeria, UNILAG Computer Science, React Engineer Nigeria"
+        jsonLd={aboutSchema}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-16">
           <div className="lg:w-1/2 text-white text-lg">
@@ -97,6 +157,8 @@ export default function About() {
             <img
               src="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/src/Assets/about.png"
               alt="about"
+              width={400}
+              height={400}
               className="w-full max-w-md object-contain"
               loading="lazy"
               decoding="async"

@@ -1,6 +1,6 @@
 import { useState, useEffect, ReactNode } from "react";
 import { HashLink } from "react-router-hash-link";
-import { Home, User, Briefcase, MessageSquareQuote, FileText, LayoutGrid, Newspaper, Globe } from "lucide-react";
+import { Home, User, Briefcase, MessageSquareQuote, FileText, LayoutGrid, Newspaper, Globe, Layers } from "lucide-react";
 import { motion } from "motion/react";
 import ChromeButton from "./ui/chrome-button";
 import { useLanguage } from "../context/LanguageContext";
@@ -99,14 +99,15 @@ export default function Navbar() {
           </div>
 
           {/* Desktop menu */}
-          <div className="hidden lg:flex items-center space-x-0.5 xl:space-x-1.5 bg-white/5 border border-white/5 rounded-full px-1.5 py-1">
-            <NavItem to="/#top" icon={<Home size={15} />} text={t('nav.home')} />
-            <NavItem to="/about#top" icon={<User size={15} />} text={t('nav.about')} />
-            <NavItem to="/projects#top" icon={<LayoutGrid size={15} />} text={t('nav.projects')} />
-            <NavItem to="/experience#top" icon={<Briefcase size={15} />} text="Experience" />
-            <NavItem to="/testimonials#top" icon={<MessageSquareQuote size={15} />} text="Testimonials" />
-            <NavItem to="/resume#top" icon={<FileText size={15} />} text={t('nav.resume')} />
-            <NavItem to="/blog#top" icon={<Newspaper size={15} />} text={t('nav.blogs')} />
+          <div className="hidden lg:flex items-center space-x-0.5 xl:space-x-1 bg-white/5 border border-white/5 rounded-full px-1.5 py-1">
+            <NavItem to="/#top" icon={<Home size={14} />} text={t('nav.home')} />
+            <NavItem to="/services#top" icon={<Layers size={14} />} text="Services" />
+            <NavItem to="/about#top" icon={<User size={14} />} text={t('nav.about')} />
+            <NavItem to="/projects#top" icon={<LayoutGrid size={14} />} text={t('nav.projects')} />
+            <NavItem to="/experience#top" icon={<Briefcase size={14} />} text="Experience" />
+            <NavItem to="/testimonials#top" icon={<MessageSquareQuote size={14} />} text="Testimonials" />
+            <NavItem to="/resume#top" icon={<FileText size={14} />} text={t('nav.resume')} />
+            <NavItem to="/blog#top" icon={<Newspaper size={14} />} text={t('nav.blogs')} />
           </div>
 
           {/* Right Action buttons */}
