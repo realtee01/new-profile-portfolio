@@ -13,8 +13,7 @@ import {
   ChevronDown, 
   ExternalLink, 
   MapPin, 
-  Layers, 
-  Sparkles 
+  Layers 
 } from "lucide-react";
 import SEOHead from "../SEO/SEOHead";
 import ChromeButton from "../ui/chrome-button";

@@ -6,7 +6,6 @@ import {
   Github, 
   CheckCircle2, 
   Layers, 
-  Sparkles, 
   Zap, 
   ShieldCheck, 
   ArrowRight,
@@ -237,7 +236,7 @@ export default function ProjectCaseStudy() {
             {/* The Solution */}
             <section className="bg-[#151421]/60 backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5">
               <div className="flex items-center gap-2.5 text-[#00e5ff] text-xs font-bold uppercase tracking-wider mb-3">
-                <Sparkles size={16} /> 02. The Solution
+                <Layers size={16} /> 02. The Solution
               </div>
               <h2 className="text-2xl font-serif font-bold text-white mb-4">
                 Engineering Approach & Implementation

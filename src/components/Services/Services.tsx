@@ -10,7 +10,6 @@ import {
   ArrowRight, 
   ExternalLink, 
   ChevronDown, 
-  Sparkles, 
   Layers 
 } from "lucide-react";
 import SEOHead from "../SEO/SEOHead";
@@ -189,7 +188,7 @@ export default function Services() {
           {/* Header */}
           <div className="text-center max-w-4xl mx-auto mb-20">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm text-[#00e5ff] mb-6 backdrop-blur-md">
-              <Sparkles size={14} />
+              <Layers size={14} />
               <span>Full-Stack Engineering & High-Converting Web Design</span>
             </div>
 

@@ -38,33 +38,18 @@ export default function About() {
   const aboutSchema = [
     {
       "@type": "ProfilePage",
-      "@id": "https://www.buildwithtobi.online/about#profile",
-      "name": "About Tobiloba Akala (BuildWithTobi)",
+      "@id": "https://www.buildwithtobi.online/about#webpage",
       "url": "https://www.buildwithtobi.online/about",
-      "mainEntity": {
+      "name": "About Tobiloba Akala | Web Developer & Frontend Specialist",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://www.buildwithtobi.online/#website"
+      },
+      "about": {
         "@type": "Person",
-        "@id": "https://www.buildwithtobi.online/#person",
-        "name": "Tobiloba Akala",
-        "alternateName": "BuildWithTobi",
-        "jobTitle": "Web Developer & Frontend Specialist",
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "University of Lagos (UNILAG)"
-        },
-        "knowsAbout": [
-          "React",
-          "TypeScript",
-          "Web Performance",
-          "Tailwind CSS",
-          "Full-Stack Development",
-          "UI/UX Engineering"
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Lagos",
-          "addressCountry": "NG"
-        }
-      }
+        "@id": "https://www.buildwithtobi.online/#person"
+      },
+      "inLanguage": "en-US"
     },
     {
       "@type": "BreadcrumbList",
@@ -120,8 +105,7 @@ export default function About() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-[#c770f0]">👉</span> listening and vibing to music
-            
-            </li>
+              </li>
             </ul>
 
             <div className="mb-8">
@@ -154,15 +138,21 @@ export default function About() {
             <footer className="text-[#c770f0] mt-2">— Tobiloba</footer>
           </div>
           <div className="lg:w-1/2 flex justify-center">
-            <img
-              src="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/src/Assets/about.png"
-              alt="about"
-              width={400}
-              height={400}
-              className="w-full max-w-md object-contain"
-              loading="lazy"
-              decoding="async"
-            />
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#00e5ff] to-[#c770f0] rounded-3xl blur-lg opacity-40 group-hover:opacity-75 transition duration-1000"></div>
+              <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/10 bg-[#151421] p-3 shadow-2xl">
+                <img 
+                  src="https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_800/v1780309581/refined_profile_picture_keiybp.png"
+                  alt="Tobiloba Akala - Web Developer"
+                  width={380}
+                  height={440}
+                  className="w-full max-w-[340px] sm:max-w-[380px] h-[380px] sm:h-[440px] object-cover object-top rounded-2xl transition duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
