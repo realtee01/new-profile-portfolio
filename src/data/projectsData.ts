@@ -45,6 +45,9 @@ const nexchat3Img = "https://plus.unsplash.com/premium_photo-1733342554594-102b8
 const forzchainImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/forzchain.jpg";
 const pixelCleanImg = "https://plus.unsplash.com/premium_photo-1726079247228-993af4c05db8?q=80&w=870&auto=format&fit=crop";
 const calcImg = "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/calc.jpg";
+const stratixImg = "https://assets-global.website-files.com/657ae5887e3fd0deaad2fe44/657ae5887e3fd0deaad2feaf_Abstract%20Background.webp";
+const looyaLyteImg = "https://res.cloudinary.com/dw8jtwbka/image/upload/v1786798336/Screenshot_2026-08-15_132750_mjzxt7.png";
+const lumiereImg = "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80";
 
 /**
  * MANDATORY RULE: "CineScope" must ALWAYS remain the very first item in the projectsData array!
@@ -82,36 +85,6 @@ export const projectsData: ProjectItem[] = [
     }
   },
   {
-    id: 17,
-    slug: "peak-echo-digitals",
-    title: "Peak Echo Digitals",
-    description: "A modern digital agency platform designed to amplify brand presence with dynamic showcases, performance marketing funnels, and robust service offerings.",
-    imgPath: peakEchoImg,
-    ghLink: "https://github.com/realtee01",
-    demoLink: "https://peak-echo-digitals.vercel.app",
-    category: "Landing Page",
-    featured: true,
-    metrics: "100% Mobile Responsive | +45% Inquiry Conversion",
-    clientOrContext: "Digital Marketing & Brand Agency",
-    year: "2025 - Present",
-    details: {
-      problem: "A growing digital marketing agency needed a striking, high-authority online presence to showcase client portfolios, package services transparently, and capture qualified prospective leads.",
-      solution: "Developed a sleek, high-performance landing page that highlights their strategic expertise, past case studies, and core digital growth offerings with conversion-oriented CTAs.",
-      role: "Frontend Developer & Technical Strategist",
-      toolsUsed: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
-      whyTools: "React and Vite for zero-lag client-side navigation, Tailwind for rapid responsive breakpoints, and Framer Motion for subtle, trust-building entry transitions.",
-      features: [
-        "Dynamic service showcase cards with clear target audience breakdowns",
-        "Interactive agency portfolio gallery with category filtering",
-        "Integrated consultation request funnel with client validation",
-        "Mobile-first responsive typography and touch-friendly navigation"
-      ],
-      challenges: "Balancing high-density visual design and interactive cards with strict asset compression to ensure sub-2-second load times on mobile 4G networks.",
-      result: "Created a modern agency platform that increased lead generation and improved brand authority in digital marketing communications.",
-      architecture: "Clean component hierarchy separating presentational layout modules from interactive form state, ensuring rapid loading and maintainability."
-    }
-  },
-  {
     id: 16,
     slug: "julios-pizza",
     title: "Julio's Pizza",
@@ -120,6 +93,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01",
     demoLink: "https://juliopizzat.vercel.app",
     category: "Web App",
+    featured: true,
     metrics: "Real-Time Cart Calculation | 0s Layout Shifts",
     clientOrContext: "Food & Hospitality Business",
     year: "2025",
@@ -149,6 +123,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01",
     demoLink: "https://riad-dentist-care.vercel.app/",
     category: "Landing Page",
+    featured: true,
     metrics: "Accessible WCAG AA | Streamlined Patient Intake",
     clientOrContext: "Healthcare & Dental Clinic",
     year: "2025",
@@ -178,6 +153,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01",
     demoLink: "https://tribe-fitness-six.vercel.app/",
     category: "Landing Page",
+    featured: true,
     metrics: "High-Energy UX | Instant Class Discovery",
     clientOrContext: "Fitness & Wellness Brand",
     year: "2025",
@@ -199,33 +175,96 @@ export const projectsData: ProjectItem[] = [
     }
   },
   {
-    id: 13,
-    slug: "makeup-booking-platform",
-    title: "Make-Up Booking Platform",
-    description: "A digital booking platform and CMS for beauty professionals, eliminating booking conflicts and centralizing portfolio showcases with real-time scheduling.",
-    imgPath: makeupBookingImg,
+    id: 20,
+    slug: "lumiere-cosmetics",
+    title: "Lumière — Luxury Cosmetics",
+    description: "An ultra-luxurious e-commerce cosmetics showcase featuring responsive shade selection, dynamic formulation breakdowns, editorial typography, and masterclass enrollment.",
+    imgPath: lumiereImg,
     ghLink: "https://github.com/realtee01",
-    demoLink: "https://make-up-online-booking.vercel.app/",
+    demoLink: "https://toby-demolumiere.vercel.app/",
+    category: "E-commerce",
+    featured: true,
+    metrics: "Editorial Luxury Aesthetic | Dynamic Shade Selectors",
+    clientOrContext: "Luxury Beauty & Cosmetics Brand",
+    year: "2026",
+    details: {
+      problem: "High-end luxury beauty brands require an online presence that translates in-store sensory elegance, ingredient purity, and customized shade matching into a frictionless digital shopping experience.",
+      solution: "Engineered a high-fashion digital beauty experience combining high-resolution product photography, interactive shade and formula explorers, editorial typography (Cormorant Garamond), and smooth customer acquisition funnels.",
+      role: "Lead Frontend Engineer & Digital Designer",
+      toolsUsed: ["React", "TypeScript", "Tailwind CSS", "Motion", "Vite"],
+      whyTools: "React and Vite for instantaneous state updates and client-side page rendering, Cormorant Garamond typography paired with Tailwind CSS for editorial elegance, and Motion for fluid 60fps luxury transitions.",
+      features: [
+        "Interactive product catalog with custom shade previews and ingredient highlights",
+        "Lumière Circle loyalty and exclusive masterclass digital invitation flow",
+        "Fluid cart and product quick-view modal interactions with 0 layout shifts",
+        "Responsive, mobile-optimized editorial layouts for high-intent social media traffic",
+        "Accessible WCAG-compliant high-contrast typography and subtle ambient backdrops"
+      ],
+      challenges: "Balancing editorial photography and high-density product visuals with rapid mobile load times and smooth layout animations across all viewports.",
+      result: "Elevated direct-to-consumer brand prestige and delivered an intuitive luxury cosmetics browsing journey tailored for modern beauty shoppers.",
+      architecture: "Component-driven React architecture with decoupled product collections, reactive state managers, and hardware-accelerated motion transforms."
+    }
+  },
+  {
+    id: 18,
+    slug: "stratix",
+    title: "Stratix - Sales & Strategy Platform",
+    description: "A high-conversion sales and marketing agency platform engineered with an interactive client strategy portal, responsive Lookout AI companion, and multi-step consultation booking flow.",
+    imgPath: stratixImg,
+    ghLink: "https://github.com/realtee01/stratix",
+    demoLink: "https://stratix-ruddy.vercel.app/",
     category: "Landing Page",
     featured: true,
-    metrics: "30% Reduction in Booking Friction | Built-in Admin CMS",
-    clientOrContext: "Beauty & Personal Care Sector",
-    year: "2025",
+    metrics: "100% Mobile Responsive | Interactive Client Portal",
+    clientOrContext: "B2B Sales & Marketing Solutions Agency",
+    year: "2026",
     details: {
-      problem: "Beauty professionals lose hours manually coordinating bookings via WhatsApp, Instagram DMs, and paper planners, causing double bookings and missed appointments.",
-      solution: "Engineered a full-stack booking system providing direct client self-scheduling, package customizations, live portfolio galleries, and an easy-to-use admin dashboard.",
-      role: "Full-Stack Engineer",
-      toolsUsed: ["React", "Tailwind CSS", "Supabase", "Vite", "Motion"],
-      whyTools: "React for interactive multi-step date pickers, Supabase for relational booking tables and authentication, and Motion for smooth, luxurious transitions.",
+      problem: "B2B businesses struggle with generic agency websites that lack proof, interactive engagement, and tangible deliverables, resulting in poor lead qualification and low booking conversion rates.",
+      solution: "Engineered a high-leverage strategy-first agency platform featuring an interactive Client Strategy Portal with a responsive companion avatar, dynamic service deep-dive modal drawers, a 4-phase delivery roadmap, and an intelligent consultation intake workflow.",
+      role: "Lead Frontend Engineer & UI/UX Architect",
+      toolsUsed: ["React 19", "TypeScript", "Tailwind CSS v4", "Motion", "Vite 6", "Lucide React"],
+      whyTools: "React 19 and Vite 6 for instantaneous client-side rendering, Tailwind CSS v4 for customized dark obsidian/emerald design tokens, and Motion for fluid 60fps layout animations and interactive modal transitions.",
       features: [
-        "Interactive calendar availability picker",
-        "Dynamic service selection with real-time price tallying",
-        "Admin dashboard for managing bookings and updating portfolio images",
-        "Automated booking confirmation summary view"
+        "Interactive Client Strategy Portal with responsive Lookout companion that reacts to user interactions and inputs",
+        "Multi-step consultation intake questionnaire with timeline selection, team sizing, and live client validation",
+        "Categorized service architecture with smooth drawer sheets for deep-dive deliverables",
+        "Dynamic transformation matrix contrasting legacy business bottlenecks with Stratix frameworks",
+        "Custom obsidian (#060f0a) and neon emerald (#00f5a0) design system with Blanka geometric typography"
       ],
-      challenges: "Building a flexible backend with Supabase that allows non-technical staff to customize services and upload gallery photos without editing code.",
-      result: "Decreased client scheduling friction by 30% and enabled beauty artists to professionally showcase their work and secure upfront deposits.",
-      architecture: "Supabase PostgreSQL backend with Row Level Security (RLS), paired with a responsive client-side React booking engine."
+      challenges: "Crafting a responsive, GPU-accelerated client portal experience with interactive avatar dynamics while maintaining sub-second Time to Interactive (TTI) and zero layout shifts across mobile and desktop displays.",
+      result: "Delivered a high-converting digital platform that elevated brand authority, provided prospective clients with an interactive trial of the agency portal, and automated strategic lead capture.",
+      architecture: "Modular component structure separating presentational agency sections from stateful booking workflows and interactive canvas-grade companion animations."
+    }
+  },
+  {
+    id: 19,
+    slug: "looya-lyte",
+    title: "Looya Lyte - Official Creator & Booking Platform",
+    description: "The official digital platform and event booking portal for celebrated Nigerian comedian, actor, filmmaker, and live event hype man Looya Lyte (Taofeeq Awokunle), featuring media showcases and scheduling.",
+    imgPath: looyaLyteImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://looya-lyte.vercel.app/",
+    category: "Landing Page",
+    featured: true,
+    metrics: "100/100 Mobile Usability | Direct Event Booking Funnel",
+    clientOrContext: "Taofeeq Awokunle (Looya Lyte Entertainment)",
+    year: "2026",
+    details: {
+      problem: "A high-profile entertainer and live event personality needed a centralized, authoritative digital presence to handle high-volume event booking inquiries, organize viral comedy skits, and manage brand collaboration requests without relying on fragmented social media direct messages.",
+      solution: "Architected and deployed a striking, high-energy official portfolio and booking platform with high-priority media preloading, responsive media gallery, video showcases, and a streamlined event booking intake flow.",
+      role: "Frontend Engineer & Technical Partner",
+      toolsUsed: ["React", "TypeScript", "Tailwind CSS", "Motion", "Cloudinary CDN", "Vite"],
+      whyTools: "Vite and React for rapid load times, Tailwind CSS for a bold black and gold entertainment aesthetic, Cloudinary for optimized media transformations and fast global CDN asset delivery, and Motion for dramatic stage-like entrance effects.",
+      features: [
+        "High-priority LCP preloaded hero cutout showcasing creator branding with ambient stage lighting",
+        "Direct event and MC booking inquiry funnel with date selection and event type categorization",
+        "Curated media showcase featuring viral comedy skits, filmography, and live stage appearances",
+        "Comprehensive biography section tracing his journey across African entertainment and cinema",
+        "Mobile-optimized touch gallery and responsive navigation tailored for fast social media inbound traffic"
+      ],
+      challenges: "Optimizing heavy multi-media assets (high-res photography and video embeds) so that visitors coming directly from Instagram and TikTok experience instant page loads without mobile data strain.",
+      result: "Unified the entertainer's brand footprint, increased direct booking inquiries by providing event promoters with an instant media kit, and achieved flawless mobile responsiveness.",
+      architecture: "High-efficiency React architecture utilizing Cloudinary automated responsive srcSet delivery and isolated interactive booking forms."
     }
   },
   {
@@ -237,6 +276,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01",
     demoLink: "https://blank-canvas-spark-7410.vercel.app/",
     category: "Web App",
+    featured: true,
     metrics: "60 FPS Image Reveals | Progressive Blur Caching",
     clientOrContext: "Creative Visual Artist",
     year: "2025",
@@ -258,34 +298,93 @@ export const projectsData: ProjectItem[] = [
     }
   },
   {
-    id: 1,
-    slug: "roitech-ai-learniq",
-    title: "Roitech AI & LearnIQ",
-    description: "Accessible AI-driven education platform featuring automated audio transcription, intelligent lecture summarization, and interactive study modules.",
-    imgPath: cinescopeImg,
-    inProgress: true,
+    id: 3,
+    slug: "nexchat3",
+    title: "Nexchat3",
+    description: "A cutting-edge Web3 communication platform combining decentralized wallet authentication with real-time encrypted messaging and immersive 3D/canvas animations.",
+    imgPath: nexchat3Img,
     ghLink: "https://github.com/realtee01",
-    demoLink: "",
-    category: "Web App",
+    demoLink: "https://nexus3-bay.vercel.app/",
+    category: "Web3",
     featured: true,
-    metrics: "In Active Development | 24-Week Engineering Roadmap",
-    clientOrContext: "Roitech AI Engineering Team",
-    year: "2026 - Present",
+    metrics: "Decentralized Auth | Real-Time Messaging",
+    clientOrContext: "Web3 & Decentralized Social App",
+    year: "2025",
     details: {
-      problem: "University students and learners face cognitive overload when parsing long lectures, resulting in fragmented notes and inefficient study habits.",
-      solution: "Architecting LearnIQ within the Roitech AI ecosystem—an accessible platform converting raw audio and lecture notes into summarized outlines, flashcards, and adaptive quizzes.",
-      role: "Lead Full-Stack Engineering Intern",
-      toolsUsed: ["React", "Tailwind CSS", "OpenAI APIs", "PostgreSQL", "Framer Motion"],
-      whyTools: "React for modular interface components, OpenAI API for natural language extraction, and PostgreSQL for relational study deck synchronization.",
+      problem: "Traditional chat platforms lack Web3 wallet native integrations, while early crypto dApps suffer from rigid, unattractive user interfaces.",
+      solution: "Built a futuristic Web3 chat platform combining wallet-based authentication with real-time peer messaging and cyber-aesthetic fluid animations.",
+      role: "Full-Stack Engineer & Web3 Integrator",
+      toolsUsed: ["React", "Firebase", "Ethers.js", "Framer Motion"],
+      whyTools: "Firebase for instant WebSocket chat syncing, Ethers.js for secure EVM wallet handshakes, and Framer Motion for immersive particle animations.",
       features: [
-        "AI-driven lecture transcription and audio-to-text digestion",
-        "Automated flashcard generation with spaced-repetition logic",
-        "Interactive quiz builder assessing comprehension",
-        "Accessible, high-contrast user interface tailored for inclusive learning"
+        "EVM wallet connection (MetaMask, WalletConnect)",
+        "Real-time channels and direct messaging",
+        "Decentralized profile displays with ENS resolution",
+        "Interactive futuristic UI with particle canvas backdrops"
       ],
-      challenges: "Designing reliable client state machines to handle long-running AI streaming responses gracefully without blocking user interactions.",
-      result: "Currently leading full-stack architecture toward MVP release, receiving positive preliminary feedback for its clean note ecosystem.",
-      architecture: "Modular React component architecture with resilient API polling, streaming chunk parsers, and persistent state."
+      challenges: "Seamlessly bridging blockchain wallet signatures with standard WebSocket session tokens without confusing non-crypto users.",
+      result: "An innovative real-time application praised in developer communities for its visual polish and seamless wallet onboarding.",
+      architecture: "Event-driven WebSocket messaging layer with cryptographic signature verification for user session authorization."
+    }
+  },
+  {
+    id: 17,
+    slug: "peak-echo-digitals",
+    title: "Peak Echo Digitals",
+    description: "A modern digital agency platform designed to amplify brand presence with dynamic showcases, performance marketing funnels, and robust service offerings.",
+    imgPath: peakEchoImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://peak-echo-digitals.vercel.app",
+    category: "Landing Page",
+    featured: false,
+    metrics: "100% Mobile Responsive | +45% Inquiry Conversion",
+    clientOrContext: "Digital Marketing & Brand Agency",
+    year: "2025 - Present",
+    details: {
+      problem: "A growing digital marketing agency needed a striking, high-authority online presence to showcase client portfolios, package services transparently, and capture qualified prospective leads.",
+      solution: "Developed a sleek, high-performance landing page that highlights their strategic expertise, past case studies, and core digital growth offerings with conversion-oriented CTAs.",
+      role: "Frontend Developer & Technical Strategist",
+      toolsUsed: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
+      whyTools: "React and Vite for zero-lag client-side navigation, Tailwind for rapid responsive breakpoints, and Framer Motion for subtle, trust-building entry transitions.",
+      features: [
+        "Dynamic service showcase cards with clear target audience breakdowns",
+        "Interactive agency portfolio gallery with category filtering",
+        "Integrated consultation request funnel with client validation",
+        "Mobile-first responsive typography and touch-friendly navigation"
+      ],
+      challenges: "Balancing high-density visual design and interactive cards with strict asset compression to ensure sub-2-second load times on mobile 4G networks.",
+      result: "Created a modern agency platform that increased lead generation and improved brand authority in digital marketing communications.",
+      architecture: "Clean component hierarchy separating presentational layout modules from interactive form state, ensuring rapid loading and maintainability."
+    }
+  },
+  {
+    id: 13,
+    slug: "makeup-booking-platform",
+    title: "Make-Up Booking Platform",
+    description: "A digital booking platform and CMS for beauty professionals, eliminating booking conflicts and centralizing portfolio showcases with real-time scheduling.",
+    imgPath: makeupBookingImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://make-up-online-booking.vercel.app/",
+    category: "Landing Page",
+    featured: false,
+    metrics: "30% Reduction in Booking Friction | Built-in Admin CMS",
+    clientOrContext: "Beauty & Personal Care Sector",
+    year: "2025",
+    details: {
+      problem: "Beauty professionals lose hours manually coordinating bookings via WhatsApp, Instagram DMs, and paper planners, causing double bookings and missed appointments.",
+      solution: "Engineered a full-stack booking system providing direct client self-scheduling, package customizations, live portfolio galleries, and an easy-to-use admin dashboard.",
+      role: "Full-Stack Engineer",
+      toolsUsed: ["React", "Tailwind CSS", "Supabase", "Vite", "Motion"],
+      whyTools: "React for interactive multi-step date pickers, Supabase for relational booking tables and authentication, and Motion for smooth, luxurious transitions.",
+      features: [
+        "Interactive calendar availability picker",
+        "Dynamic service selection with real-time price tallying",
+        "Admin dashboard for managing bookings and updating portfolio images",
+        "Automated booking confirmation summary view"
+      ],
+      challenges: "Building a flexible backend with Supabase that allows non-technical staff to customize services and upload gallery photos without editing code.",
+      result: "Decreased client scheduling friction by 30% and enabled beauty artists to professionally showcase their work and secure upfront deposits.",
+      architecture: "Supabase PostgreSQL backend with Row Level Security (RLS), paired with a responsive client-side React booking engine."
     }
   },
   {
@@ -297,7 +396,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01",
     demoLink: "https://nextclean.vercel.app",
     category: "Landing Page",
-    featured: true,
+    featured: false,
     metrics: "Sub-1.2s Load Time on 4G | Instant Quote Calculator",
     clientOrContext: "Lagos Facility Care & Cleaning Business",
     year: "2025",
@@ -319,6 +418,36 @@ export const projectsData: ProjectItem[] = [
     }
   },
   {
+    id: 5,
+    slug: "trendy-transit",
+    title: "Trendy Transit",
+    description: "A modern fashion e-commerce storefront featuring dynamic product catalogs, fluid cart drawer management, and a streamlined checkout flow.",
+    imgPath: trendyTransitImg,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://trendy-transit.vercel.app/",
+    category: "E-commerce",
+    featured: false,
+    metrics: "Sub-Second Cart Drawer | Zero Lag Navigation",
+    clientOrContext: "Fashion & Retail E-Commerce",
+    year: "2025",
+    details: {
+      problem: "Small apparel brands often struggle with clunky e-commerce platforms that lag on mobile devices and lead to high cart abandonment.",
+      solution: "Developed a lightweight, high-performance fashion shopping interface with dynamic collection filtering, size selectors, and an instant slide-out cart.",
+      role: "Full-Stack Developer",
+      toolsUsed: ["Next.js", "Tailwind CSS", "Supabase"],
+      whyTools: "Next.js for lightning-fast product pages, Supabase for order history and inventory sync, and Tailwind for minimal aesthetic styling.",
+      features: [
+        "Dynamic category filtering and instant price sort",
+        "Slide-out animated shopping cart drawer with live subtotal",
+        "Product variant pickers (sizes, colors)",
+        "Mobile-optimized checkout and payment flow preparation"
+      ],
+      challenges: "Synchronizing cart state across client sessions while preventing unnecessary re-renders during rapid item adjustments.",
+      result: "Delivered an e-commerce shopping experience that reduced checkout friction and improved product browsing speed.",
+      architecture: "React context-based cart engine with local storage hydration and Supabase product catalog integration."
+    }
+  },
+  {
     id: 9,
     slug: "koti-restaurant",
     title: "Koti Restaurant",
@@ -327,6 +456,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01",
     demoLink: "https://koti-gray.vercel.app/",
     category: "Landing Page",
+    featured: false,
     metrics: "Luxury Aesthetics | Online Table Bookings",
     clientOrContext: "Hospitality & Fine Dining",
     year: "2025",
@@ -356,6 +486,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01",
     demoLink: "https://relay-properties.vercel.app/",
     category: "Landing Page",
+    featured: false,
     metrics: "Multi-Filter Search | Responsive Property Cards",
     clientOrContext: "Real Estate & Property Management Group",
     year: "2025",
@@ -385,6 +516,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01/heritage-kitchen",
     demoLink: "https://heriatage-kitchen.vercel.app/",
     category: "Landing Page",
+    featured: false,
     metrics: "Editorial Typography | 100% Mobile Ready",
     clientOrContext: "Heritage Culinary Brand",
     year: "2025",
@@ -406,64 +538,6 @@ export const projectsData: ProjectItem[] = [
     }
   },
   {
-    id: 5,
-    slug: "trendy-transit",
-    title: "Trendy Transit",
-    description: "A modern fashion e-commerce storefront featuring dynamic product catalogs, fluid cart drawer management, and a streamlined checkout flow.",
-    imgPath: trendyTransitImg,
-    ghLink: "https://github.com/realtee01",
-    demoLink: "https://trendy-transit.vercel.app/",
-    category: "E-commerce",
-    metrics: "Sub-Second Cart Drawer | Zero Lag Navigation",
-    clientOrContext: "Fashion & Retail E-Commerce",
-    year: "2025",
-    details: {
-      problem: "Small apparel brands often struggle with clunky e-commerce platforms that lag on mobile devices and lead to high cart abandonment.",
-      solution: "Developed a lightweight, high-performance fashion shopping interface with dynamic collection filtering, size selectors, and an instant slide-out cart.",
-      role: "Full-Stack Developer",
-      toolsUsed: ["Next.js", "Tailwind CSS", "Supabase"],
-      whyTools: "Next.js for lightning-fast product pages, Supabase for order history and inventory sync, and Tailwind for minimal aesthetic styling.",
-      features: [
-        "Dynamic category filtering and instant price sort",
-        "Slide-out animated shopping cart drawer with live subtotal",
-        "Product variant pickers (sizes, colors)",
-        "Mobile-optimized checkout and payment flow preparation"
-      ],
-      challenges: "Synchronizing cart state across client sessions while preventing unnecessary re-renders during rapid item adjustments.",
-      result: "Delivered an e-commerce shopping experience that reduced checkout friction and improved product browsing speed.",
-      architecture: "React context-based cart engine with local storage hydration and Supabase product catalog integration."
-    }
-  },
-  {
-    id: 3,
-    slug: "nexchat3",
-    title: "Nexchat3",
-    description: "A cutting-edge Web3 communication platform combining decentralized wallet authentication with real-time encrypted messaging and immersive 3D/canvas animations.",
-    imgPath: nexchat3Img,
-    ghLink: "https://github.com/realtee01",
-    demoLink: "https://nexus3-bay.vercel.app/",
-    category: "Web3",
-    metrics: "Decentralized Auth | Real-Time Messaging",
-    clientOrContext: "Web3 & Decentralized Social App",
-    year: "2025",
-    details: {
-      problem: "Traditional chat platforms lack Web3 wallet native integrations, while early crypto dApps suffer from rigid, unattractive user interfaces.",
-      solution: "Built a futuristic Web3 chat platform combining wallet-based authentication with real-time peer messaging and cyber-aesthetic fluid animations.",
-      role: "Full-Stack Engineer & Web3 Integrator",
-      toolsUsed: ["React", "Firebase", "Ethers.js", "Framer Motion"],
-      whyTools: "Firebase for instant WebSocket chat syncing, Ethers.js for secure EVM wallet handshakes, and Framer Motion for immersive particle animations.",
-      features: [
-        "EVM wallet connection (MetaMask, WalletConnect)",
-        "Real-time channels and direct messaging",
-        "Decentralized profile displays with ENS resolution",
-        "Interactive futuristic UI with particle canvas backdrops"
-      ],
-      challenges: "Seamlessly bridging blockchain wallet signatures with standard WebSocket session tokens without confusing non-crypto users.",
-      result: "An innovative real-time application praised in developer communities for its visual polish and seamless wallet onboarding.",
-      architecture: "Event-driven WebSocket messaging layer with cryptographic signature verification for user session authorization."
-    }
-  },
-  {
     id: 4,
     slug: "forzchain",
     title: "Forzchain",
@@ -472,6 +546,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01",
     demoLink: "https://forzchain-v-2.vercel.app",
     category: "Web3",
+    featured: false,
     metrics: "Immutable On-Chain Auditing | Role-Based Access",
     clientOrContext: "Supply Chain & Logistics Protocol",
     year: "2025",
@@ -501,6 +576,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01",
     demoLink: "https://pixel-clean-ai-pi.vercel.app/",
     category: "Web App",
+    featured: false,
     metrics: "Intelligent Background Removal | Zero Image Artifacts",
     clientOrContext: "Creator Tools & AI Web Utilities",
     year: "2025",
@@ -522,6 +598,37 @@ export const projectsData: ProjectItem[] = [
     }
   },
   {
+    id: 1,
+    slug: "roitech-ai-learniq",
+    title: "Roitech AI & LearnIQ",
+    description: "Accessible AI-driven education platform featuring automated audio transcription, intelligent lecture summarization, and interactive study modules.",
+    imgPath: cinescopeImg,
+    inProgress: true,
+    ghLink: "https://github.com/realtee01",
+    demoLink: "",
+    category: "Web App",
+    featured: false,
+    metrics: "In Active Development | 24-Week Engineering Roadmap",
+    clientOrContext: "Roitech AI Engineering Team",
+    year: "2026 - Present",
+    details: {
+      problem: "University students and learners face cognitive overload when parsing long lectures, resulting in fragmented notes and inefficient study habits.",
+      solution: "Architecting LearnIQ within the Roitech AI ecosystem—an accessible platform converting raw audio and lecture notes into summarized outlines, flashcards, and adaptive quizzes.",
+      role: "Lead Full-Stack Engineering Intern",
+      toolsUsed: ["React", "Tailwind CSS", "OpenAI APIs", "PostgreSQL", "Framer Motion"],
+      whyTools: "React for modular interface components, OpenAI API for natural language extraction, and PostgreSQL for relational study deck synchronization.",
+      features: [
+        "AI-driven lecture transcription and audio-to-text digestion",
+        "Automated flashcard generation with spaced-repetition logic",
+        "Interactive quiz builder assessing comprehension",
+        "Accessible, high-contrast user interface tailored for inclusive learning"
+      ],
+      challenges: "Designing reliable client state machines to handle long-running AI streaming responses gracefully without blocking user interactions.",
+      result: "Currently leading full-stack architecture toward MVP release, receiving positive preliminary feedback for its clean note ecosystem.",
+      architecture: "Modular React component architecture with resilient API polling, streaming chunk parsers, and persistent state."
+    }
+  },
+  {
     id: 12,
     slug: "cgpa-calculator",
     title: "CGPA Calculator",
@@ -530,6 +637,7 @@ export const projectsData: ProjectItem[] = [
     ghLink: "https://github.com/realtee01",
     demoLink: "https://cgpa-calculator-tobiloba.vercel.app",
     category: "Web App",
+    featured: false,
     metrics: "5,000+ Student Computations | Offline Local Storage",
     clientOrContext: "Academic Utility & Student Tool",
     year: "2025",

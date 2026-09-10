@@ -9,6 +9,7 @@ import { Code2, Cpu, Globe, Rocket, Zap } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
 import { useLanguage } from "../../context/LanguageContext";
 import SEOHead from "../SEO/SEOHead";
+import homeLogo from "../../home-main.svg";
 
 export default function Home() {
   const { t } = useLanguage();
@@ -178,6 +179,18 @@ export default function Home() {
 
                 {/* Central Focus Element */}
                 <div className="absolute inset-[25%] sm:inset-[15%] rounded-full bg-gradient-to-tr from-[#c770f0]/20 to-[#00e5ff]/20 blur-2xl animate-pulse z-0"></div>
+
+                {/* Central Developer Workspace SVG Illustration */}
+                <div className="absolute inset-0 flex items-center justify-center z-10 p-2 sm:p-4">
+                  <div className="relative group flex flex-col items-center">
+                    <img
+                      src={homeLogo}
+                      alt="Full-Stack Developer Workspace - Tobiloba Akala"
+                      className="w-full max-h-[280px] sm:max-h-[330px] md:max-h-[360px] object-contain drop-shadow-[0_15px_35px_rgba(0,229,255,0.25)] transition-transform duration-700 hover:scale-105"
+                      loading="eager"
+                    />
+                  </div>
+                </div>
 
                 {/* Floating Elements */}
                 {/* Code Card */}

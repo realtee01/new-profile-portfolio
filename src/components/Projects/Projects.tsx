@@ -76,9 +76,9 @@ export default function Projects() {
     <>
       <SEOHead
         title="Web Engineering Portfolio & Case Studies | Tobiloba Akala"
-        description="Explore 17+ production web applications, high-converting landing pages, and full-stack software case studies engineered by Tobiloba Akala (BuildWithTobi)."
+        description="Explore 19+ production web applications, high-converting landing pages, and full-stack software case studies engineered by Tobiloba Akala (BuildWithTobi)."
         canonicalPath="/projects"
-        keywords="web development portfolio, React case studies, frontend engineer portfolio, CineScope, Peak Echo Digitals, NextClean, Make-Up Booking Platform, Tobiloba Akala projects, BuildWithTobi"
+        keywords="web development portfolio, React case studies, frontend engineer portfolio, CineScope, Stratix, Looya Lyte, Peak Echo Digitals, NextClean, Make-Up Booking Platform, Tobiloba Akala projects, BuildWithTobi"
         jsonLd={projectsSchema}
       />
 

@@ -239,7 +239,7 @@ export default function WebDeveloperNigeria() {
               <div className="text-xs sm:text-sm text-gray-400 font-medium">Mobile 4G Load Time</div>
             </div>
             <div className="bg-[#151421]/80 backdrop-blur-md p-6 rounded-2xl border border-white/5 text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-white font-serif mb-1">17+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-white font-serif mb-1">19+</div>
               <div className="text-xs sm:text-sm text-gray-400 font-medium">Delivered Web Projects</div>
             </div>
             <div className="bg-[#151421]/80 backdrop-blur-md p-6 rounded-2xl border border-white/5 text-center">
@@ -372,7 +372,7 @@ export default function WebDeveloperNigeria() {
                 </p>
               </div>
               <Link to="/projects" className="text-[#00e5ff] font-medium text-sm inline-flex items-center gap-1.5 hover:underline whitespace-nowrap">
-                Browse All 17+ Projects <ArrowRight size={16} />
+                Browse All 19+ Projects <ArrowRight size={16} />
               </Link>
             </div>
 

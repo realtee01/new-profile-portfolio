@@ -5,6 +5,8 @@ import { ArrowLeft, Clock, Calendar, Tag, User, ArrowRight } from "lucide-react"
 import SEOHead from "../SEO/SEOHead";
 import ChromeButton from "../ui/chrome-button";
 
+const TOBI_PHOTO = "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_200/v1780309581/refined_profile_picture_keiybp.png";
+
 export default function BlogPost() {
   const { id } = useParams();
   const blog = blogData.find((b) => b.id === id);
@@ -131,14 +133,22 @@ export default function BlogPost() {
 
             {/* Author bar */}
             <div className="flex items-center gap-3 pb-8 mb-8 border-b border-white/10">
-              <img 
-                src={blog.author?.avatar || "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"} 
-                alt={blog.author?.name || "Tobiloba Akala"} 
-                className="w-11 h-11 rounded-full object-cover border border-[#00e5ff]/40"
-              />
+              <div className="relative">
+                <img 
+                  src={blog.author?.avatar || TOBI_PHOTO} 
+                  alt={blog.author?.name || "Tobiloba Akala"} 
+                  className="w-11 h-11 rounded-full object-cover border border-[#00e5ff]/40 bg-[#171324]"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-[#130f1e]" />
+              </div>
               <div>
-                <div className="text-sm font-semibold text-white">
-                  {blog.author?.name || "Tobiloba Akala"}
+                <div className="text-sm font-semibold text-white flex items-center gap-1.5">
+                  <span>{blog.author?.name || "Tobiloba Akala"}</span>
+                  <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 text-[#00e5ff]" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="7" fill="#00e5ff" fillOpacity="0.2" stroke="#00e5ff" strokeWidth="1.5"/>
+                    <path d="M5 8.2L7 10.2L11 5.8" stroke="#00e5ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
                 <div className="text-xs text-gray-400">
                   {blog.author?.role || "Web Developer & Frontend Specialist"} • Lagos, Nigeria
@@ -181,13 +191,23 @@ export default function BlogPost() {
 
             {/* Author Bio Box */}
             <div className="bg-gradient-to-r from-[#1b1a2e] to-[#151421] border border-white/10 rounded-2xl p-6 sm:p-8 mb-16 flex flex-col sm:flex-row items-center gap-6">
-              <img 
-                src="https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png" 
-                alt="Tobiloba Akala" 
-                className="w-20 h-20 rounded-2xl object-cover border-2 border-[#00e5ff]/50 flex-shrink-0"
-              />
+              <div className="relative shrink-0">
+                <img 
+                  src={TOBI_PHOTO} 
+                  alt="Tobiloba Akala" 
+                  className="w-20 h-20 rounded-2xl object-cover border-2 border-[#00e5ff]/50 bg-[#151221]"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-[#130f1e]" />
+              </div>
               <div>
-                <h3 className="text-lg font-bold text-white mb-1">Written by Tobiloba Akala (BuildWithTobi)</h3>
+                <h3 className="text-lg font-bold text-white mb-1 flex items-center gap-2">
+                  <span>Written by Tobiloba Akala</span>
+                  <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4 text-[#00e5ff]" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="7" fill="#00e5ff" fillOpacity="0.2" stroke="#00e5ff" strokeWidth="1.5"/>
+                    <path d="M5 8.2L7 10.2L11 5.8" stroke="#00e5ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </h3>
                 <p className="text-gray-300 text-sm font-light leading-relaxed mb-3">
                   Frontend engineer and digital builder based in Lagos, Nigeria. Specializing in high-converting React applications, Core Web Vitals optimization, and modern web architectures.
                 </p>

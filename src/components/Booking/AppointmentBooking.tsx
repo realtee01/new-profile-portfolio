@@ -31,12 +31,50 @@ export default function AppointmentBooking() {
             className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 sm:p-12 shadow-2xl relative overflow-hidden flex flex-col items-center justify-center min-h-[400px]"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#c770f0]/5 to-[#00e5ff]/5 pointer-events-none" />
-            <div className="flex gap-4 mb-6">
-              <div className="w-16 h-16 bg-white/10 border border-white/20 rounded-full flex items-center justify-center text-[#c770f0] backdrop-blur-sm">
-                <MessageSquare size={28} />
+            {/* Interactive Direct Connect & Consultation SVG Illustration */}
+            <div className="flex items-center gap-4 mb-6 relative">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
+                <svg viewBox="0 0 120 120" className="w-full h-full drop-shadow-[0_0_25px_rgba(0,229,255,0.4)]">
+                  <defs>
+                    <linearGradient id="consultGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#c770f0" />
+                      <stop offset="100%" stopColor="#00e5ff" />
+                    </linearGradient>
+                    <linearGradient id="consultBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#1e1833" />
+                      <stop offset="100%" stopColor="#0d0a17" />
+                    </linearGradient>
+                  </defs>
+                  
+                  {/* Orbiting dashed accent ring */}
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="url(#consultGrad)" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5" />
+                  <circle cx="60" cy="60" r="46" fill="url(#consultBg)" stroke="url(#consultGrad)" strokeWidth="2" />
+                  
+                  {/* Speech bubble & code conversation glyph */}
+                  <path d="M42 42 h36 a6 6 0 0 1 6 6 v18 a6 6 0 0 1 -6 6 h-16 l-8 7 v-7 h-12 a6 6 0 0 1 -6 -6 v-18 a6 6 0 0 1 6 -6 z" fill="#151224" stroke="#00e5ff" strokeWidth="1.8" strokeLinejoin="round" />
+                  
+                  {/* Live audio & code frequency waveforms */}
+                  <line x1="49" y1="56" x2="49" y2="56" stroke="#c770f0" strokeWidth="3" strokeLinecap="round" />
+                  <line x1="55" y1="52" x2="55" y2="60" stroke="#00e5ff" strokeWidth="3" strokeLinecap="round" />
+                  <line x1="60" y1="48" x2="60" y2="64" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
+                  <line x1="65" y1="52" x2="65" y2="60" stroke="#00e5ff" strokeWidth="3" strokeLinecap="round" />
+                  <line x1="71" y1="56" x2="71" y2="56" stroke="#c770f0" strokeWidth="3" strokeLinecap="round" />
+                </svg>
+                
+                {/* Live Availability Signal */}
+                <span
+                  className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-400 border-2 border-[#130f1e] shadow-[0_0_10px_#34d399] animate-pulse"
+                  title="Live • Available for Consultation"
+                />
               </div>
-              <div className="w-16 h-16 bg-white/10 border border-white/20 rounded-full flex items-center justify-center text-[#00e5ff] backdrop-blur-sm">
-                <Phone size={28} />
+
+              <div className="flex flex-col gap-2">
+                <div className="w-10 h-10 bg-white/10 border border-white/20 rounded-full flex items-center justify-center text-[#c770f0] backdrop-blur-sm shadow-md hover:scale-110 transition-transform">
+                  <MessageSquare size={18} />
+                </div>
+                <div className="w-10 h-10 bg-white/10 border border-white/20 rounded-full flex items-center justify-center text-[#00e5ff] backdrop-blur-sm shadow-md hover:scale-110 transition-transform">
+                  <Phone size={18} />
+                </div>
               </div>
             </div>
             <h3 className="text-white text-xl font-semibold mb-2 text-center relative z-10">Start a Conversation</h3>

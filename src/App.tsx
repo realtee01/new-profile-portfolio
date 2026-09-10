@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import Particle from "./components/Particle";
+import WelcomeOfferModal from "./components/WelcomeOffer/WelcomeOfferModal";
 import Home from "./components/Home/Home";
 
 // Route-level code-splitting with React.lazy
@@ -37,6 +38,7 @@ export default function App() {
         <div id="scroll" className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
           <ScrollToTop />
+          <WelcomeOfferModal />
           <main className="flex-grow">
             <Suspense fallback={<PageLoadingFallback />}>
               <Routes>

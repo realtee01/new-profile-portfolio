@@ -1,3 +1,5 @@
+const TOBI_PHOTO = "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_200/v1780309581/refined_profile_picture_keiybp.png";
+
 export interface BlogPostItem {
   id: string;
   title: string;
@@ -26,7 +28,7 @@ export const blogData: BlogPostItem[] = [
     author: {
       name: "Tobiloba Akala",
       role: "Web Developer & Frontend Specialist",
-      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+      avatar: TOBI_PHOTO
     },
     content: [
       "When building web applications in Nigeria, developer laptops connected to high-speed fiber rarely represent the real conditions of end users. The average visitor in Lagos, Abuja, or Ibadan accesses the web via mobile devices on fluctuating 3G or 4G connections. If an e-commerce platform or SaaS app takes 6 seconds to become interactive, bounce rates skyrocket above 60%.",
@@ -47,7 +49,7 @@ export const blogData: BlogPostItem[] = [
     author: {
       name: "Tobiloba Akala",
       role: "Web Developer & Frontend Specialist",
-      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+      avatar: TOBI_PHOTO
     },
     content: [
       "One of the most frequent questions business owners and founders in Nigeria ask is: 'Should we build our business website on WordPress or invest in a custom React application?' The truth is that both tools have their place, but selecting the wrong one can lead to expensive rebuilds and missed revenue.",
@@ -67,7 +69,7 @@ export const blogData: BlogPostItem[] = [
     author: {
       name: "Tobiloba Akala",
       role: "Web Developer & Frontend Specialist",
-      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+      avatar: TOBI_PHOTO
     },
     content: [
       "There is often a significant disconnect between a static Figma artboard and a living, responsive web application. A design file shows the ideal desktop screen at 1440px, but production code must gracefully scale across 360px budget phones, 768px tablets, and 4K ultra-wide monitors.",
@@ -87,7 +89,7 @@ export const blogData: BlogPostItem[] = [
     author: {
       name: "Tobiloba Akala",
       role: "Web Developer & Frontend Specialist",
-      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+      avatar: TOBI_PHOTO
     },
     content: [
       "A stunning visual design means nothing if prospective clients cannot figure out what you do within five seconds of landing on your page. Many business websites suffer from high bounce rates not because their services are inadequate, but because their frontend architecture introduces cognitive friction.",
@@ -107,7 +109,7 @@ export const blogData: BlogPostItem[] = [
     author: {
       name: "Tobiloba Akala",
       role: "Web Developer & Frontend Specialist",
-      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+      avatar: TOBI_PHOTO
     },
     content: [
       "Scheduling and appointment management is the lifeblood of service-based businesses. When building custom booking solutions (like the Make-Up Booking Platform and Dental Care systems), the core challenge lies in synchronizing real-time availability while maintaining a dead-simple booking flow for clients.",
@@ -126,7 +128,7 @@ export const blogData: BlogPostItem[] = [
     author: {
       name: "Tobiloba Akala",
       role: "Web Developer & Frontend Specialist",
-      avatar: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png"
+      avatar: TOBI_PHOTO
     },
     content: [
       "React continues to advance at a rapid pace. With the introduction of the React Compiler, developers gain out-of-the-box performance optimizations without manual `useMemo` or `useCallback` boilerplate.",
