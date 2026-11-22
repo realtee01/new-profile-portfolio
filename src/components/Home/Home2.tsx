@@ -1,216 +1,222 @@
-import { useState } from "react";
-import { AiFillGithub } from "react-icons/ai";
-import { FaWhatsapp, FaPhone, FaLinkedin } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { MousePointerClick, ShoppingBag, CalendarDays, Blocks, LineChart, BrainCircuit, TabletSmartphone, TrendingUp, Maximize, RefreshCw, Server } from "lucide-react";
-import Tilt from "react-parallax-tilt";
+import { ArrowUpRight } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
-import MagneticDock from "../ui/magnetic-dock";
-import ChromeButton from "../ui/chrome-button";
+import { Link } from "react-router-dom";
 
-const services = [
+const engineeringServices = [
   {
-    icon: <MousePointerClick className="text-[#00e5ff] w-6 h-6" />,
-    title: "High-Converting Websites",
-    desc: "Modern, responsive websites built to attract more customers and convert visitors into leads.",
-    perfectFor: "Service businesses, contractors, dentists, agencies, etc.",
+    num: "01",
+    title: "Custom React & Next.js Web Apps",
+    desc: "Scalable SaaS platforms, dashboards, and internal tools built with clean TypeScript and zero sluggishness.",
+    perfectFor: "Startups & product teams",
   },
   {
-    icon: <ShoppingBag className="text-[#c770f0] w-6 h-6" />,
-    title: "E-commerce Websites & Growth Engines",
-    desc: "Custom storefronts designed to maximize average order value and automate sales 24/7.",
-    perfectFor: "DTC brands, online retailers, local business owners, etc.",
+    num: "02",
+    title: "Booking & Appointment Systems",
+    desc: "Frictionless scheduling flows with real-time slot locking, WhatsApp alerts, and Paystack / Stripe checkout.",
+    perfectFor: "Clinics, salons & consultants",
   },
   {
-    icon: <CalendarDays className="text-[#00e5ff] w-6 h-6" />,
-    title: "Booking & Appointment Sites",
-    desc: "Seamless booking platforms to easily manage schedules, client appointments, and payments.",
-    perfectFor: "Clinics, consultants, salons, dentists, etc.",
+    num: "03",
+    title: "AI Workflows & Automations",
+    desc: "Smart lead-capture assistants and automated customer workflows that reply while you sleep.",
+    perfectFor: "Agencies & service brands",
   },
   {
-    icon: <Blocks className="text-[#c770f0] w-6 h-6" />,
-    title: "Custom Web Applications",
-    desc: "Scalable SaaS platforms and internal tools to streamline operations and save hundreds of hours.",
-    perfectFor: "Startups, growing enterprises, etc.",
-  },
-  {
-    icon: <LineChart className="text-[#00e5ff] w-6 h-6" />,
-    title: "Admin Dashboards",
-    desc: "Powerful, secure administrative panels to manage users, content, and visualize business data.",
-    perfectFor: "Business owners, platform managers, etc.",
-  },
-  {
-    icon: <BrainCircuit className="text-[#c770f0] w-6 h-6" />,
-    title: "AI Automation & Agents",
-    desc: "Intelligent workflows and receptionists that capture leads and handle customer support automatically.",
-    perfectFor: "Agencies, real estate, clinics, contractors, etc.",
-  },
-  {
-    icon: <TabletSmartphone className="text-[#00e5ff] w-6 h-6" />,
+    num: "04",
     title: "Mobile App Development",
-    desc: "Fast, scalable, and intuitive mobile applications built for both iOS and Android platforms.",
-    perfectFor: "Product-led companies, startups, etc.",
+    desc: "Fast, responsive iOS & Android experiences engineered with modern cross-platform architecture.",
+    perfectFor: "Product-led businesses",
+  },
+];
+
+const growthServices = [
+  {
+    num: "01",
+    title: "High-Converting Business Websites",
+    desc: "Editorial storefronts and landing pages built to earn trust immediately and turn visitors into booked calls.",
+    perfectFor: "Founders, contractors & agencies",
   },
   {
-    icon: <TrendingUp className="text-[#c770f0] w-6 h-6" />,
-    title: "SEO & AEO Visibility",
-    desc: "Optimizing your platform for Google and Answer Engines (like ChatGPT & Gemini) to maximize organic reach.",
-    perfectFor: "Content-driven brands, local businesses, etc.",
+    num: "02",
+    title: "E-Commerce Storefronts",
+    desc: "Fast, mobile-first shopping experiences engineered to increase checkout completion and average order value.",
+    perfectFor: "DTC brands & retailers",
   },
   {
-    icon: <Maximize className="text-[#00e5ff] w-6 h-6" />,
-    title: "Mobile Responsive Design",
-    desc: "Crafting flawless user experiences that adapt perfectly across phones, tablets, and desktop displays.",
-    perfectFor: "Any modern web application, etc.",
+    num: "03",
+    title: "Website Redesign & Speed Rebuild",
+    desc: "Taking slow, dated sites and re-engineering them to hit 95+ Core Web Vitals and climb organic search.",
+    perfectFor: "Growing businesses",
   },
   {
-    icon: <RefreshCw className="text-[#c770f0] w-6 h-6" />,
-    title: "Website Redesign & Rebuild",
-    desc: "Transforming outdated interfaces into premium, modern platforms with an emphasis on conversion optimization.",
-    perfectFor: "Established businesses, local business owners, etc.",
+    num: "04",
+    title: "Technical SEO & Answer-Engine Readiness",
+    desc: "Semantic HTML, structured JSON-LD schema, and clean metadata so Google and AI tools cite your brand first.",
+    perfectFor: "Content & local brands",
   },
-  {
-    icon: <Server className="text-[#00e5ff] w-6 h-6" />,
-    title: "Domain & Hosting Services",
-    desc: "End-to-end setup of custom domains, secure SSL certificates, and high-performance cloud hosting architecture.",
-    perfectFor: "New projects, migrations, etc.",
-  }
 ];
 
 export default function Home2() {
-  const [revealed, setRevealed] = useState(false);
-
   return (
-    <div className="py-16 relative z-10" id="about">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-12 items-center">
-          <div className="lg:w-2/3 text-white">
-            <h2 className="text-sm font-sans tracking-widest text-[#00e5ff] uppercase mb-4 text-center lg:text-left font-semibold">
-              A Bit About Me
+    <div className="py-20 md:py-28 relative z-10 border-t border-[#E5E2DC] bg-white" id="about">
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-8">
+        {/* Personable Editorial Story Spread (Olivia-inspired) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-20 border-b border-[#E5E2DC]">
+          <div className="lg:col-span-5">
+            <div className="text-xs font-medium text-[#86837C] mb-3">
+              02. A Bit About Me
+            </div>
+            <h2 className="font-serif text-3xl sm:text-5xl font-semibold text-[#141413] leading-[1.1] tracking-tight mb-6">
+              Good software should feel like a great conversation.
             </h2>
-            <h3 className="text-3xl md:text-5xl font-serif font-bold mb-8 text-white leading-tight text-center lg:text-left">
-              Building products that look premium and perform flawlessly.
-            </h3>
-            <div className="text-lg leading-relaxed mb-6 space-y-6 text-gray-300 font-light max-w-3xl">
-              <p>
-                I'm Tobiloba Akala, a Full-stack Developer and Computer Science student at the University of Lagos. I create solutions to businesses and brands by bridging the gap between rigorous engineering principles and thoughtful, polished design.
-              </p>
-              <p>
-                I don't just write code—I focus on the entire product experience. From architecting scalable React systems to crafting immersive <span className="text-white font-medium">3D experiences</span> and <span className="text-white font-medium">fluid animations</span>, every detail matters.
-              </p>
-              <p>
-                Instead of just learning frameworks, I learned the platform. My foundation in core web APIs and JavaScript allows me to build robust applications with React, Next.js, and Tailwind that consistently hit 95+ performance scores.
-              </p>
-              <p>
-                Beyond the interface, I focus on building <span className="text-[#c770f0] font-medium">AI-Readable</span> applications—utilizing semantic HTML and structured data to ensure products are cited and surfaced correctly by modern answer engines.
-              </p>
-              <p>
-                Whether you're an early-stage startup or scaling a complex SaaS tool, I design and write code to get you to market faster, without sacrificing quality.
-              </p>
+            <p className="font-serif italic text-lg text-[#575550]">
+              Clear, fast, and respectful of your visitor&apos;s time.
+            </p>
+          </div>
+
+          <div className="lg:col-span-7 space-y-5 text-[#575550] text-base sm:text-[17px] leading-relaxed">
+            <p>
+              I&apos;m <strong className="text-[#141413] font-semibold">Tobiloba Akala</strong>, a
+              full-stack developer and Computer Science student at the University of Lagos. I started
+              building websites because I hated watching genuinely great businesses lose customers to
+              slow, confusing web pages.
+            </p>
+            <p>
+              Instead of just stacking frameworks on top of templates, I learned the web platform
+              from the ground up. That lets me ship React, Next.js, and Tailwind CSS products that
+              regularly score <span className="font-mono text-[#141413] font-medium">95+</span> on
+              Core Web Vitals—even on busy mobile networks.
+            </p>
+            <p>
+              Off the clock, you&apos;ll find me deep in a game, writing engineering notes, or
+              listening to an overly curated coding playlist. Whether you&apos;re launching a new
+              product or fixing an old site, I keep the process calm, transparent, and fast.
+            </p>
+
+            <div className="pt-4 flex flex-wrap items-center gap-6">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#141413] hover:text-[#1D4ED8] transition-colors"
+              >
+                <span>Read my full story &amp; stack</span>
+                <ArrowUpRight size={15} />
+              </Link>
+              <Link
+                to="/resume"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-[#575550] hover:text-[#141413] transition-colors"
+              >
+                <span>View Resume / CV</span>
+                <ArrowUpRight size={15} />
+              </Link>
             </div>
-
-            <div className="mt-16 mb-8 pt-10 border-t border-white/5">
-                <h2 className="text-3xl font-serif font-bold text-gradient mb-8 tracking-wide">⚙️ Services & Capabilities</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
-                  {services.map((s, i) => (
-                    <div key={i} className="bg-[#151421]/60 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/5 hover:-translate-y-1 hover:border-[#00e5ff]/30 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,229,255,0.1)] group flex flex-col h-full">
-                      <div className="bg-white/5 w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#00e5ff]/10 transition-colors">
-                        {s.icon}
-                      </div>
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#00e5ff] group-hover:to-[#c770f0] transition-colors">{s.title}</h3>
-                      <p className="text-gray-300 leading-relaxed font-light mb-6 flex-grow">
-                        {s.desc}
-                      </p>
-                      
-                      <div className="space-y-3 mb-8 pt-4 border-t border-white/5">
-                        <div className="flex justify-between items-center text-sm">
-                          <span className="text-gray-400">Perfect for</span>
-                          <span className="text-[#00e5ff] font-medium text-right max-w-[60%]">{s.perfectFor}</span>
-                        </div>
-                      </div>
-
-                      <HashLink smooth to="/contact#top" className="w-full text-center bg-white/5 hover:bg-white/10 text-white font-medium py-3 rounded-xl transition-colors border border-white/10 text-sm uppercase tracking-wider group-hover:border-[#c770f0]/30 group-hover:text-[#c770f0]">
-                        Get a Custom Quote
-                      </HashLink>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          <div className="lg:w-1/3 flex justify-center">
-            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.05} transitionSpeed={2500}>
-              <div className="relative group animate-[updown_2.5s_ease-in-out_infinite]">
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#00e5ff] to-[#c770f0] rounded-2xl blur opacity-60 transition duration-1000"></div>
-                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.5)]">
-                  <img 
-                    src="https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_600/v1780309581/refined_profile_picture_keiybp.png"
-                    alt="Tobiloba Akala - Web Developer"
-                    width={288}
-                    height={320}
-                    className="w-72 h-80 object-cover transform transition duration-700 scale-100 hover:scale-105 object-top"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                
-                {/* Floating Cards */}
-                <div className="absolute -left-2 sm:-left-10 top-12 sm:top-16 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#00e5ff]/30 shadow-[0_0_15px_rgba(0,229,255,0.2)] opacity-100 transition-all duration-500 delay-100 translate-y-0 z-20 pointer-events-none">
-                  <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#00e5ff] animate-pulse"></div>
-                    Full-stack Dev
-                  </span>
-                </div>
-                
-                <div className="absolute -right-2 sm:-right-8 bottom-20 sm:bottom-24 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-[#c770f0]/30 shadow-[0_0_15px_rgba(199,112,240,0.2)] opacity-100 transition-all duration-500 delay-200 translate-y-0 z-20 pointer-events-none">
-                  <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#c770f0] animate-[pulse_2s_ease-in-out_infinite]"></div>
-                    Creative Engine
-                  </span>
-                </div>
-
-                <div className="absolute left-[5%] sm:left-[10%] -bottom-2 sm:-bottom-4 bg-[#1b1a2ea9] backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-white/20 shadow-lg opacity-100 transition-all duration-500 delay-300 translate-y-0 z-20 pointer-events-none">
-                  <span className="text-white text-xs sm:text-sm font-semibold flex items-center gap-1.5 sm:gap-2">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-400"></div>
-                    Available
-                  </span>
-                </div>
-
-                {/* Floating Card Click-to-Reveal */}
-                <div 
-                  onClick={() => setRevealed(!revealed)}
-                  className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/40 backdrop-blur-md border border-white/10 text-white/90 text-[10px] sm:text-xs px-3 py-1.5 rounded-full cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-white/30 z-30 whitespace-nowrap shadow-xl flex items-center gap-2"
-                >
-                  <div className={`w-1.5 h-1.5 rounded-full ${revealed ? 'bg-[#c770f0]' : 'bg-[#00e5ff] animate-[pulse_2s_ease-in-out_infinite]'}`}></div>
-                  {revealed ? "Web developer" : "Click me to reveal what I am"}
-                </div>
-              </div>
-            </Tilt>
           </div>
         </div>
 
-        <div className="mt-24 text-center">
-          <h1 className="text-4xl font-serif font-bold text-white mb-4 tracking-wider">FIND ME ON</h1>
-          <p className="text-white mb-8 text-lg font-light tracking-wide">
-            Feel free to <span className="text-[#00e5ff] font-medium">connect</span> with me
-          </p>
-          <div className="mb-12">
-            <MagneticDock 
-              links={[
-                { href: "https://github.com/realtee01", icon: <AiFillGithub className="w-8 h-8" color="white" /> },
-                { href: "https://ng.linkedin.com/in/tobiloba-akala-35448a38b", icon: <FaLinkedin className="w-7 h-7" color="#c770f0" /> },
-                { href: "https://x.com/realtee1111101", icon: <FaXTwitter className="w-7 h-7" color="#00e5ff" /> },
-                { href: "https://wa.me/2347032533869", icon: <FaWhatsapp className="w-8 h-8" color="#c770f0" /> },
-                { href: "tel:+2347032533869", icon: <FaPhone className="w-7 h-7" color="#00e5ff" /> }
-              ]} 
-            />
+        {/* Two-Bucket Editorial "What I Do" Services Section (Olivia-inspired) */}
+        <div className="pt-20">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+            <div>
+              <div className="text-xs font-medium text-[#86837C] mb-3">
+                03. What I Do
+              </div>
+              <h2 className="font-serif text-3xl sm:text-5xl font-semibold text-[#141413] tracking-tight">
+                Two ways I help teams ship.
+              </h2>
+            </div>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1D4ED8] hover:text-[#1E40AF] transition-colors whitespace-nowrap"
+            >
+              <span>Explore full service breakdown</span>
+              <ArrowUpRight size={15} />
+            </Link>
           </div>
-          <ChromeButton
-            to="/contact#top"
-            className="mt-4"
-          >
-            Contact Me
-          </ChromeButton>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Bucket 1: Engineering & Applications */}
+            <div>
+              <div className="pb-4 mb-2 border-b border-[#141413] flex items-baseline justify-between">
+                <h3 className="font-serif text-2xl font-semibold text-[#141413]">
+                  Product &amp; Web Engineering
+                </h3>
+                <span className="font-mono text-xs text-[#86837C]">04 capabilities</span>
+              </div>
+              <div className="divide-y divide-[#E5E2DC]">
+                {engineeringServices.map((item) => (
+                  <div key={item.num} className="py-6 group">
+                    <div className="flex items-baseline justify-between gap-4 mb-2">
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-mono text-xs text-[#86837C] tabular-nums">
+                          {item.num}.
+                        </span>
+                        <h4 className="font-semibold text-base sm:text-lg text-[#141413] group-hover:text-[#1D4ED8] transition-colors">
+                          {item.title}
+                        </h4>
+                      </div>
+                    </div>
+                    <p className="text-sm text-[#575550] leading-relaxed pl-7 mb-2">
+                      {item.desc}
+                    </p>
+                    <p className="text-xs text-[#86837C] pl-7">
+                      Best for: <span className="text-[#141413]">{item.perfectFor}</span>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bucket 2: Conversion Websites & Growth */}
+            <div>
+              <div className="pb-4 mb-2 border-b border-[#141413] flex items-baseline justify-between">
+                <h3 className="font-serif text-2xl font-semibold text-[#141413]">
+                  Websites &amp; Conversion Growth
+                </h3>
+                <span className="font-mono text-xs text-[#86837C]">04 capabilities</span>
+              </div>
+              <div className="divide-y divide-[#E5E2DC]">
+                {growthServices.map((item) => (
+                  <div key={item.num} className="py-6 group">
+                    <div className="flex items-baseline justify-between gap-4 mb-2">
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-mono text-xs text-[#86837C] tabular-nums">
+                          {item.num}.
+                        </span>
+                        <h4 className="font-semibold text-base sm:text-lg text-[#141413] group-hover:text-[#1D4ED8] transition-colors">
+                          {item.title}
+                        </h4>
+                      </div>
+                    </div>
+                    <p className="text-sm text-[#575550] leading-relaxed pl-7 mb-2">
+                      {item.desc}
+                    </p>
+                    <p className="text-xs text-[#86837C] pl-7">
+                      Best for: <span className="text-[#141413]">{item.perfectFor}</span>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Direct Booking Strip */}
+          <div className="mt-12 p-7 sm:p-10 rounded-2xl bg-[#F8F7F4] border border-[#E5E2DC] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div>
+              <h3 className="font-serif text-2xl font-semibold text-[#141413] mb-1.5">
+                Have a brief in mind—or just a rough idea?
+              </h3>
+              <p className="text-sm text-[#575550]">
+                Tell me what you&apos;re trying to achieve and I&apos;ll send back a clear timeline and honest quote.
+              </p>
+            </div>
+            <HashLink
+              smooth
+              to="/contact#top"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#141413] text-white text-sm font-medium hover:bg-[#1D4ED8] transition-colors whitespace-nowrap shrink-0"
+            >
+              <span>Request a Custom Quote</span>
+              <ArrowUpRight size={15} />
+            </HashLink>
+          </div>
         </div>
       </div>
     </div>

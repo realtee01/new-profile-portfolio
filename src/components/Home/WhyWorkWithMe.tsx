@@ -1,131 +1,128 @@
-import React from "react";
 import { motion } from "motion/react";
 import { HashLink } from "react-router-hash-link";
-import { 
-  TrendingUp, 
-  Search, 
-  Zap, 
-  Layers, 
-  Smartphone, 
-  Target 
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export default function WhyWorkWithMe() {
   const reasons = [
-    { 
-      icon: <TrendingUp className="text-[#00e5ff]" size={20} />, 
-      title: "Business-First Approach", 
-      desc: "Every design decision is made to improve conversions, not just look pretty." 
+    {
+      num: "01",
+      title: "Business-First Craft",
+      desc: "Every layout and interaction is designed to earn trust and drive conversions—not just win design-twitter likes.",
     },
-    { 
-      icon: <Search className="text-[#c770f0]" size={20} />, 
-      title: "SEO-Friendly Architecture", 
-      desc: "Built with semantic HTML and best practices so customers can find you." 
+    {
+      num: "02",
+      title: "Sub-Second Speed",
+      desc: "Optimized for 95+ Core Web Vitals so mobile visitors on 3G/4G networks never bounce waiting for heavy assets.",
     },
-    { 
-      icon: <Zap className="text-[#00e5ff]" size={20} />, 
-      title: "Lightning Fast Performance", 
-      desc: "Optimized for 90+ Core Web Vitals to prevent bounce rates." 
+    {
+      num: "03",
+      title: "Search & AI Readable",
+      desc: "Semantic HTML and clean JSON-LD schema so both Google and modern AI assistants surface your business.",
     },
-    { 
-      icon: <Layers className="text-[#c770f0]" size={20} />, 
-      title: "Scalable Technologies", 
-      desc: "Built on React, Next.js, and modern tools that grow with your business." 
+    {
+      num: "04",
+      title: "Clean, Ownable Code",
+      desc: "Built on React, Next.js, and TypeScript with 100% repository ownership handed over on completion.",
     },
-    { 
-      icon: <Smartphone className="text-[#00e5ff]" size={20} />, 
-      title: "Mobile Optimized", 
-      desc: "Flawless experiences on phones, tablets, and desktops." 
-    },
-    { 
-      icon: <Target className="text-[#c770f0]" size={20} />, 
-      title: "Lead Generation Focus", 
-      desc: "Integrated forms, booking systems, and CRM connections." 
-    }
   ];
 
   return (
-    <div className="py-24 relative z-10 border-t border-white/5 bg-[#0a0a0a]/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div className="py-20 md:py-28 relative z-10 border-t border-[#E5E2DC]">
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="lg:col-span-5"
           >
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">
-              Why Partner With Me?
-            </h2>
-            <p className="text-gray-300 text-lg font-light mb-8 leading-relaxed">
-              I don't just build websites; I engineer digital growth engines. By bridging the gap between premium design and rigorous engineering, I deliver platforms that perform flawlessly and drive actual business results.
-            </p>
-            <div className="flex gap-4">
-              <HashLink smooth to="/contact#top" className="bg-gradient-to-r from-[#c770f0] to-[#00e5ff] text-[#0c0513] font-bold px-8 py-3 rounded-full hover:opacity-90 transition-all shadow-[0_0_15px_rgba(0,229,255,0.3)]">
-                Start Your Project
-              </HashLink>
+            <div className="text-xs font-medium text-[#86837C] mb-3">
+              06. Why Partner With Me
             </div>
+            <h2 className="font-serif text-3xl sm:text-5xl font-semibold text-[#141413] leading-[1.1] tracking-tight mb-6">
+              Engineered for real growth, not vanity metrics.
+            </h2>
+            <p className="text-[#575550] text-base leading-relaxed mb-8">
+              By bridging editorial taste with rigorous computer science fundamentals, I deliver
+              digital platforms that feel effortless to use and measurably lift business inquiries.
+            </p>
 
-            {/* Digital Growth Engine SVG Illustration */}
-            <div className="mt-10 p-5 rounded-2xl bg-[#151424]/60 border border-white/10 backdrop-blur-md">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-gray-300 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Engineering & Conversion Performance Matrix
+            {/* Editorial Performance Curve Diagram */}
+            <div className="p-6 rounded-2xl bg-white border border-[#E5E2DC] mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs font-medium text-[#575550]">
+                  Speed &amp; Conversion Trajectory
                 </span>
-                <span className="text-[11px] font-mono text-[#00e5ff]">99.8% Reliability</span>
+                <span className="text-xs font-mono text-[#1D4ED8] tabular-nums">
+                  98+ Lighthouse
+                </span>
               </div>
-              <svg viewBox="0 0 400 110" className="w-full h-auto overflow-visible">
+              <svg viewBox="0 0 400 105" className="w-full h-auto overflow-visible" role="img" aria-label="Performance and conversion growth curve">
                 <defs>
-                  <linearGradient id="whyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#c770f0" stopOpacity="0.8" />
-                    <stop offset="50%" stopColor="#00e5ff" stopOpacity="0.9" />
-                    <stop offset="100%" stopColor="#34d399" stopOpacity="1" />
-                  </linearGradient>
-                  <linearGradient id="whyArea" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#00e5ff" stopOpacity="0.25" />
-                    <stop offset="100%" stopColor="#00e5ff" stopOpacity="0" />
+                  <linearGradient id="editorialArea" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#1D4ED8" stopOpacity="0.14" />
+                    <stop offset="100%" stopColor="#1D4ED8" stopOpacity="0" />
                   </linearGradient>
                 </defs>
-                {/* Grid lines */}
-                <line x1="20" y1="20" x2="380" y2="20" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
-                <line x1="20" y1="55" x2="380" y2="55" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
-                <line x1="20" y1="90" x2="380" y2="90" stroke="rgba(255,255,255,0.06)" strokeDasharray="4 4" />
-                
-                {/* Area fill */}
-                <path d="M20 85 Q 90 75, 140 50 T 265 38 T 380 18 L 380 100 L 20 100 Z" fill="url(#whyArea)" />
-                
-                {/* Growth Curve */}
-                <path d="M20 85 Q 90 75, 140 50 T 265 38 T 380 18" fill="none" stroke="url(#whyGrad)" strokeWidth="3" strokeLinecap="round" />
-                
-                {/* Data nodes */}
-                <circle cx="20" cy="85" r="4" fill="#c770f0" stroke="#151424" strokeWidth="2" />
-                <circle cx="140" cy="50" r="4.5" fill="#00e5ff" stroke="#151424" strokeWidth="2" />
-                <circle cx="265" cy="38" r="4.5" fill="#00e5ff" stroke="#151424" strokeWidth="2" />
-                <circle cx="380" cy="18" r="5" fill="#34d399" stroke="#151424" strokeWidth="2" />
+                <line x1="16" y1="22" x2="384" y2="22" stroke="#E5E2DC" strokeDasharray="3 4" />
+                <line x1="16" y1="56" x2="384" y2="56" stroke="#E5E2DC" strokeDasharray="3 4" />
+                <line x1="16" y1="90" x2="384" y2="90" stroke="#E5E2DC" />
+
+                <path
+                  d="M16 84 Q 100 74, 155 52 T 275 34 T 384 16 L 384 90 L 16 90 Z"
+                  fill="url(#editorialArea)"
+                />
+                <path
+                  d="M16 84 Q 100 74, 155 52 T 275 34 T 384 16"
+                  fill="none"
+                  stroke="#1D4ED8"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+                <circle cx="16" cy="84" r="3.5" fill="#141413" />
+                <circle cx="155" cy="52" r="3.5" fill="#1D4ED8" />
+                <circle cx="275" cy="34" r="3.5" fill="#1D4ED8" />
+                <circle cx="384" cy="16" r="4" fill="#141413" />
               </svg>
-              <div className="flex justify-between text-[10px] text-gray-400 mt-2 font-mono">
-                <span>Architecture Setup</span>
+              <div className="flex justify-between text-[11px] text-[#86837C] mt-3 font-mono">
+                <span>Architecture</span>
                 <span>Sub-Second Load</span>
-                <span>Conversion Scale</span>
+                <span>Higher Conversion</span>
               </div>
             </div>
+
+            <HashLink
+              smooth
+              to="/contact#top"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#141413] text-white text-sm font-medium hover:bg-[#1D4ED8] transition-colors"
+            >
+              <span>Start Your Project</span>
+              <ArrowUpRight size={15} />
+            </HashLink>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Right Column: Clean 2x2 Grid */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {reasons.map((reason, idx) => (
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                key={reason.num}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-[#00e5ff]/40 transition-all duration-300 hover:-translate-y-1"
+                transition={{ duration: 0.35, delay: idx * 0.06 }}
+                className="bg-white border border-[#E5E2DC] rounded-2xl p-7"
               >
-                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
-                  {reason.icon}
+                <div className="font-mono text-xs text-[#86837C] tabular-nums mb-4">
+                  {reason.num}
                 </div>
-                <h3 className="text-white font-semibold mb-2">{reason.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{reason.desc}</p>
+                <h3 className="font-serif text-xl font-semibold text-[#141413] mb-2.5">
+                  {reason.title}
+                </h3>
+                <p className="text-sm text-[#575550] leading-relaxed">
+                  {reason.desc}
+                </p>
               </motion.div>
             ))}
           </div>

@@ -37,16 +37,16 @@ export default function ScrollToTop() {
         <motion.button
           id="scroll-to-top-btn"
           onClick={scrollToTop}
-          initial={{ opacity: 0, scale: 0.5, y: 50 }}
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.5, y: 50 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="fixed bottom-8 right-8 z-[9999] flex h-12 w-12 items-center justify-center rounded-full bg-[#1b1a2ea9] text-white shadow-[0_8px_30px_rgba(199,112,240,0.3)] backdrop-blur-md border border-white/10 hover:border-[#00e5ff] hover:text-[#00e5ff] hover:shadow-[0_0_20px_rgba(0,229,255,0.4)] cursor-pointer transition-all duration-300 group"
+          exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          className="fixed bottom-8 right-8 z-[9999] flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#141413] shadow-[0_8px_24px_-8px_rgba(20,20,19,0.2)] border border-[#E5E2DC] hover:bg-[#141413] hover:text-[#F8F7F4] hover:border-[#141413] cursor-pointer transition-colors duration-200 group"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="h-5 w-5 stroke-[2.5] transition-transform duration-300 group-hover:-translate-y-0.5" />
+          <ArrowUp className="h-4 w-4 stroke-[2] transition-transform duration-200 group-hover:-translate-y-0.5" />
         </motion.button>
       )}
     </AnimatePresence>

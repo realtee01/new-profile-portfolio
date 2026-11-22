@@ -1,122 +1,102 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { useLanguage } from "../../context/LanguageContext";
-import AppointmentBooking from "../Booking/AppointmentBooking";
+import { Mail, MessageCircle, ArrowRight, Copy, Check } from "lucide-react";
 import SEOHead from "../SEO/SEOHead";
+import { SparkleMark } from "../ui/EditorialPrimitives";
+import { useTheme } from "../../context/ThemeContext";
+import { BrandsAndContactSection } from "../Editorial/EditorialSections";
+
+const QUICK_TEMPLATES = [
+  {
+    label: "Frontend Web App",
+    text: "Hi Tobi! I'm looking for a frontend developer to build a React / TypeScript web application. Here is a quick overview: [brief context].\nTimeline: [timeline] · Budget range: [budget].",
+  },
+  {
+    label: "Website Redesign",
+    text: "Hi Tobi! I want to redesign and speed up my existing website so it converts better on mobile and desktop. Current site: [URL].\nTimeline: [timeline] · Budget range: [budget].",
+  },
+  {
+    label: "Product / Team Role",
+    text: "Hi Tobi! We're hiring a frontend engineer for [team / product] and would love to discuss a role or contract. Here are the details: [role summary].",
+  },
+];
 
 export default function Contact() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
+  const { reduceMotion } = useTheme();
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { t } = useLanguage();
+  const [copied, setCopied] = useState(false);
 
   const contactSchema = [
     {
       "@type": "ContactPage",
       "@id": "https://www.buildwithtobi.online/contact#contact",
-      "name": "Contact Tobiloba Akala (BuildWithTobi)",
-      "url": "https://www.buildwithtobi.online/contact",
-      "mainEntity": {
+      name: "Contact Tobiloba Akala (BuildWithTobi)",
+      url: "https://www.buildwithtobi.online/contact",
+      mainEntity: {
         "@type": "Person",
         "@id": "https://www.buildwithtobi.online/#person",
-        "name": "Tobiloba Akala",
-        "email": "tobilobaakala@gmail.com",
-        "telephone": "+2347032533869",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Lagos",
-          "addressCountry": "NG"
-        }
-      }
+        name: "Tobiloba Akala",
+        email: "tobilobaakala@gmail.com",
+        telephone: "+2347032533869",
+      },
     },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.buildwithtobi.online/contact#breadcrumbs",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.buildwithtobi.online/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Contact",
-          "item": "https://www.buildwithtobi.online/contact"
-        }
-      ]
-    }
   ];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleCopyEmail = () => {
+    navigator.clipboard?.writeText("tobilobaakala@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user types
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof typeof errors]) {
-      setErrors(prev => ({ ...prev, [name]: "" }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const validate = () => {
-    let isValid = true;
-    const newErrors = { name: "", email: "", message: "" };
-
+    let valid = true;
+    const next = { name: "", email: "", message: "" };
     if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-      isValid = false;
+      next.name = "Please enter your name.";
+      valid = false;
     }
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-      isValid = false;
+    if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) {
+      next.email = "Please enter a valid email address.";
+      valid = false;
     }
     if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-      isValid = false;
+      next.message = "Please include a short note about your project.";
+      valid = false;
     }
-
-    setErrors(newErrors);
-    return isValid;
+    setErrors(next);
+    return valid;
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!validate()) {
-      return;
-    }
-    
+    if (!validate()) return;
+
     setIsSubmitting(true);
-    
     try {
-      const response = await fetch("https://formspree.io/f/xaqlbalq", {
+      await fetch("https://formspree.io/f/xaqlbalq", {
         method: "POST",
         headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
-      
-      if (response.ok) {
-        navigate("/thank-you");
-      } else {
-        // Handle error if needed or assume user can try again
-        navigate("/thank-you");
-      }
-    } catch (error) {
+      navigate("/thank-you");
+    } catch {
       navigate("/thank-you");
     } finally {
       setIsSubmitting(false);
@@ -124,175 +104,182 @@ export default function Contact() {
   };
 
   return (
-    <div className="relative pt-32 pb-16 min-h-screen flex flex-col items-center">
+    <div id="top" className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-5 sm:px-8 lg:px-12">
       <SEOHead
-        title="Contact Tobiloba Akala | Hire Web Developer in Nigeria"
-        description="Get in touch with Tobiloba Akala (BuildWithTobi) for frontend development, custom React web applications, and web performance optimization."
+        title="Contact Tobiloba Akala | Hire a Web Developer"
+        description="Send a project brief or book a call with Tobiloba Akala (BuildWithTobi) for frontend engineering, React web apps, and high-converting websites."
         canonicalPath="/contact"
-        keywords="Contact Tobiloba Akala, Hire Web Developer Nigeria, BuildWithTobi contact, frontend consultant Lagos"
+        keywords="Contact Tobiloba Akala, Hire Frontend Developer Nigeria, React Developer Lagos"
         jsonLd={contactSchema}
       />
-      <AppointmentBooking />
-      
-      {/* FINAL CTA SECTION */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mb-24">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-gradient-to-br from-[#c770f0]/10 to-[#00e5ff]/10 border border-white/10 rounded-3xl p-10 md:p-16 text-center relative overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-[#06020c]/60 backdrop-blur-md -z-10" />
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6 tracking-wide">
-            Ready to Turn More Visitors Into Customers?
-          </h2>
-          <p className="text-gray-300 text-lg font-light tracking-wide max-w-2xl mx-auto mb-10 leading-relaxed">
-            Whether you're launching a new business or upgrading an existing website, I'll help you create an experience that builds trust, attracts customers, and grows your business.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <button
-              onClick={() => {
-                const form = document.getElementById('contact-form');
-                if (form) {
-                  form.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="w-full sm:w-auto bg-gradient-to-r from-[#c770f0] to-[#00e5ff] text-[#0c0513] hover:opacity-90 px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all shadow-[0_0_20px_rgba(0,229,255,0.2)] hover:shadow-[0_0_30px_rgba(0,229,255,0.4)]"
-            >
-              Start a Project
-            </button>
-            <button
-              onClick={() => navigate('/projects')}
-              className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all"
-            >
-              View Portfolio
-            </button>
-          </div>
-        </motion.div>
-      </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full" id="contact-form">
+      <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.45 }}
+          className="mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6 tracking-wide">
-            {t('contact.title1')} <span className="text-gradient">{t('contact.title2')}</span>
+          <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--ink-muted)] mb-5">
+            <SparkleMark className="w-3 h-3 text-[var(--accent)]" />
+            <span>Contact</span>
+          </div>
+
+          <h1 className="font-editorial font-black text-[clamp(3rem,7.2vw,5.2rem)] leading-[0.95] tracking-[-0.03em] text-[var(--ink)] mb-5 text-balance">
+            Tell me what you&apos;re{" "}
+            <span className="italic text-[var(--accent)]">building.</span>
           </h1>
-          <p className="text-gray-300 text-lg font-light tracking-wide max-w-xl mx-auto">
-            Got a project? A brief? Just want to talk code? I'm here.
+
+          <p className="text-base sm:text-lg text-[var(--ink-muted)] max-w-xl leading-relaxed">
+            Share a quick brief below or email me directly. I reply personally
+            within 24 hours with honest timelines and next steps.
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-white/5 backdrop-blur-md border border-[rgba(200,137,230,0.3)] rounded-2xl p-8 md:p-12 shadow-2xl"
-        >
-          <form 
-            className="space-y-6"
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Brief Form */}
+          <form
             onSubmit={handleSubmit}
+            noValidate
+            className="lg:col-span-7 bg-[var(--surface-card)]/90 border border-white/85 rounded-3xl p-6 sm:p-8 shadow-[var(--shadow-paper)] space-y-5"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-2.5">
+                Quick Start Templates
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {QUICK_TEMPLATES.map((tpl) => (
+                  <button
+                    key={tpl.label}
+                    type="button"
+                    onClick={() =>
+                      setFormData((prev) => ({ ...prev, message: tpl.text }))
+                    }
+                    className="px-3.5 py-1.5 rounded-full text-xs font-semibold border border-[var(--border-hairline)] bg-white/75 hover:border-[var(--ink)] text-[var(--ink)] transition-colors cursor-pointer whitespace-nowrap"
+                  >
+                    {tpl.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                <input 
-                  name="name" 
-                  id="name"
-                  type="text" 
-                  placeholder="Enter your Full name" 
+                <label htmlFor="contact-name" className="block text-xs font-bold text-[var(--ink)] mb-1.5">
+                  Name
+                </label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  type="text"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full bg-[#06020c]/50 border ${errors.name ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
+                  placeholder="Your name"
+                  className="w-full px-4 py-3 rounded-xl bg-white/85 border border-[var(--border-hairline)] focus:border-[var(--ink)] focus:outline-none text-sm text-[var(--ink)]"
                 />
-                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                {errors.name && (
+                  <p className="text-xs text-rose-700 font-medium mt-1">{errors.name}</p>
+                )}
               </div>
+
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                <input 
-                  name="email" 
-                  id="email"
-                  type="email" 
-                  placeholder="example@email.com" 
+                <label htmlFor="contact-email" className="block text-xs font-bold text-[var(--ink)] mb-1.5">
+                  Email
+                </label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full bg-[#06020c]/50 border ${errors.email ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors`} 
+                  placeholder="you@domain.com"
+                  className="w-full px-4 py-3 rounded-xl bg-white/85 border border-[var(--border-hairline)] focus:border-[var(--ink)] focus:outline-none text-sm text-[var(--ink)]"
                 />
-                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                {errors.email && (
+                  <p className="text-xs text-rose-700 font-medium mt-1">{errors.email}</p>
+                )}
               </div>
             </div>
+
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Brief Overview</label>
-              <textarea 
-                name="message" 
-                id="message"
-                placeholder="How can I help you?" 
-                rows={5} 
+              <label htmlFor="contact-message" className="block text-xs font-bold text-[var(--ink)] mb-1.5">
+                Project Brief
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows={5}
                 value={formData.message}
                 onChange={handleChange}
-                className={`w-full bg-[#06020c]/50 border ${errors.message ? 'border-red-500' : 'border-[rgba(200,137,230,0.2)]'} rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#00e5ff] transition-colors resize-none mb-4`}
-              ></textarea>
-              {errors.message && <p className="text-red-500 text-xs mt-1 mb-2">{errors.message}</p>}
-              
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                <span className="text-sm font-medium text-gray-300">Quick start with a template:</span>
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setFormData(prev => ({ 
-                        ...prev, 
-                        message: "Hi! I'm looking to build a new mobile app. Here is a bit about what I need: [brief context].\nMy budget is around [budget], and my target launch date is [timeline]." 
-                      }));
-                      if (errors.message) setErrors(prev => ({ ...prev, message: "" }));
-                    }}
-                    className="flex items-center gap-2 text-xs bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 py-1.5 px-3 rounded-full transition-colors"
-                  >
-                    <span>📱</span> Mobile App
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setFormData(prev => ({ 
-                        ...prev, 
-                        message: "Hi! I'm looking to build a new website. Here is a bit about what I need: [brief context].\nMy budget is around [budget], and my target launch date is [timeline]." 
-                      }));
-                      if (errors.message) setErrors(prev => ({ ...prev, message: "" }));
-                    }}
-                    className="flex items-center gap-2 text-xs bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 py-1.5 px-3 rounded-full transition-colors"
-                  >
-                    <span>💻</span> Website
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setFormData(prev => ({ 
-                        ...prev, 
-                        message: "Hi! I'm looking to build a custom project. Here is a bit about what I need: [brief context].\nMy budget is around [budget], and my target launch date is [timeline]." 
-                      }));
-                      if (errors.message) setErrors(prev => ({ ...prev, message: "" }));
-                    }}
-                    className="flex items-center gap-2 text-xs bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 py-1.5 px-3 rounded-full transition-colors"
-                  >
-                    <span>✨</span> Custom Project
-                  </button>
-                </div>
-              </div>
+                placeholder="What are we building, and when do you want to launch?"
+                className="w-full px-4 py-3 rounded-xl bg-white/85 border border-[var(--border-hairline)] focus:border-[var(--ink)] focus:outline-none text-sm text-[var(--ink)] resize-y"
+              />
+              {errors.message && (
+                <p className="text-xs text-rose-700 font-medium mt-1">{errors.message}</p>
+              )}
             </div>
-            <button 
-              type="submit" 
+
+            <button
+              type="submit"
               disabled={isSubmitting}
-              className={`w-full bg-white text-[#0d0d12] hover:bg-gray-200 py-4 rounded-xl text-sm tracking-widest uppercase font-bold flex items-center justify-center gap-2 group transition-colors shadow-[0_0_20px_rgba(255,255,255,0.1)] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-[var(--ink)] text-white text-sm font-semibold hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-60 whitespace-nowrap"
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'} 
-              {!isSubmitting && <span className="group-hover:translate-x-1 transition-transform">→</span>}
+              <span>{isSubmitting ? "Sending..." : "Send Brief"}</span>
+              <ArrowRight size={15} />
             </button>
           </form>
-        </motion.div>
+
+          {/* Direct Channels Sidebar */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="rounded-3xl bg-[var(--surface-card)]/85 border border-white/85 p-6 shadow-[var(--shadow-paper)]">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-2">
+                <Mail size={14} className="text-[var(--accent)]" />
+                <span>Direct Email</span>
+              </div>
+              <a
+                href="mailto:tobilobaakala@gmail.com"
+                className="font-editorial text-xl font-black text-[var(--ink)] underline underline-offset-4 hover:text-[var(--accent)] transition-colors break-all"
+              >
+                tobilobaakala@gmail.com
+              </a>
+              <div className="mt-4">
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[var(--border-hairline)] bg-white/80 hover:border-[var(--ink)] text-xs font-semibold text-[var(--ink)] transition-colors cursor-pointer"
+                >
+                  {copied ? <Check size={13} /> : <Copy size={13} />}
+                  <span>{copied ? "Copied to clipboard" : "Copy email"}</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="rounded-3xl bg-[var(--surface-card)]/85 border border-white/85 p-6 shadow-[var(--shadow-paper)]">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-2">
+                <MessageCircle size={14} className="text-[var(--accent)]" />
+                <span>Fastest Response</span>
+              </div>
+              <p className="text-sm text-[var(--ink-muted)] leading-relaxed mb-4">
+                Prefer a quick chat before writing a full brief? Reach me
+                directly on WhatsApp.
+              </p>
+              <a
+                href="https://wa.me/2347032533869"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-[var(--border-strong)] text-xs font-bold text-[var(--ink)] hover:bg-[var(--ink)] hover:text-white transition-colors"
+              >
+                <span>Open WhatsApp</span>
+                <ArrowRight size={13} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Brands & Direct Contact Sticker Cloud (Reference Screenshot 2) */}
+      <div className="mt-14 sm:mt-20 border-t border-dashed border-[var(--border-hairline)]">
+        <BrandsAndContactSection />
       </div>
     </div>
   );

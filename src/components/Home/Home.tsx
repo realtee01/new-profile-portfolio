@@ -1,263 +1,447 @@
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import Type from "./Type";
-import Home2 from "./Home2";
-import ReferralSection from "./ReferralSection";
-import ProcessSection from "./ProcessSection";
-import SocialProof from "./SocialProof";
-import WhyWorkWithMe from "./WhyWorkWithMe";
-import { Code2, Cpu, Globe, Rocket, Zap } from "lucide-react";
-import { HashLink } from "react-router-hash-link";
-import { useLanguage } from "../../context/LanguageContext";
+import { ArrowRight, Disc3, ExternalLink } from "lucide-react";
 import SEOHead from "../SEO/SEOHead";
-import homeLogo from "../../home-main.svg";
+import ProjectModal from "../Projects/ProjectModal";
+import { projectsData, ProjectItem } from "../../data/projectsData";
+import { useTheme } from "../../context/ThemeContext";
+import {
+  SparkleMark,
+  StickerPortrait,
+  TOBI_PHOTOS,
+} from "../ui/EditorialPrimitives";
+import {
+  BrandStickerMarquee,
+  BrandsAndContactSection,
+  ByTheNumbersShowcase,
+  CINESCOPE_PREVIEW_VIDEO,
+  DarkPortfolioCarousel,
+  ReferencesSection,
+} from "../Editorial/EditorialSections";
+
+const SCRAP_PATHS = [
+  // Organic hand-cut uneven paper scraps with tiny corner snips matching Screenshot 1
+  "M6,4 L24,1 L48,5 L74,2 L95,7 L93,28 L97,52 L94,81 L97,114 L77,118 L51,114 L26,119 L3,115 L7,88 L2,58 L6,30 Z",
+  "M3,7 L28,3 L56,7 L82,2 L97,6 L94,35 L98,66 L93,95 L96,117 L71,113 L45,119 L19,114 L4,118 L6,86 L2,53 L6,25 Z",
+  "M5,3 L26,8 L52,2 L79,7 L98,3 L94,27 L98,59 L95,91 L98,116 L80,113 L54,118 L27,113 L2,117 L5,87 L2,54 L6,24 Z",
+  "M4,6 L30,2 L58,6 L85,3 L96,8 L93,33 L97,64 L94,94 L97,115 L74,119 L47,113 L21,118 L3,113 L6,82 L3,49 L7,21 Z",
+  "M7,3 L31,7 L59,2 L84,6 L97,4 L94,31 L98,62 L93,93 L97,118 L72,114 L43,119 L18,114 L4,117 L7,85 L3,51 L6,22 Z",
+  "M4,5 L25,2 L53,7 L78,2 L98,6 L95,30 L98,61 L94,90 L98,116 L76,113 L49,118 L24,114 L3,118 L6,89 L2,56 L5,26 Z",
+  "M6,2 L29,6 L57,3 L83,7 L96,3 L93,34 L97,65 L94,95 L96,116 L70,119 L44,113 L19,117 L4,113 L6,84 L2,52 L5,23 Z",
+  "M3,6 L27,2 L54,6 L81,2 L98,7 L94,32 L98,63 L94,92 L97,117 L75,113 L48,118 L22,113 L2,116 L6,86 L3,53 L5,24 Z",
+];
+
+const CUTOUT_LETTERS = [
+  { char: "T", variant: "paper", tileTilt: "-2.4deg", charTilt: "-1.5deg", scrap: 0 },
+  { char: "O", variant: "cream", tileTilt: "2.1deg", charTilt: "1.5deg", scrap: 1 },
+  { char: "B", variant: "ink", tileTilt: "-2.2deg", charTilt: "2deg", scrap: 2 },
+  { char: "I", variant: "paper", tileTilt: "1.8deg", charTilt: "-1.2deg", scrap: 3 },
+  { char: "L", variant: "cream", tileTilt: "-1.9deg", charTilt: "1.8deg", scrap: 4 },
+  { char: "O", variant: "ink-cyan", tileTilt: "2.3deg", charTilt: "-1.5deg", scrap: 5 },
+  { char: "B", variant: "paper", tileTilt: "-1.6deg", charTilt: "1deg", scrap: 6 },
+  { char: "A", variant: "ink", tileTilt: "2.1deg", charTilt: "-2deg", scrap: 7 },
+] as const;
+
+const SPOTIFY_URL =
+  "https://open.spotify.com/playlist/0Ymw2v0SbK6btauZEL9lRz?si=a1dfa08a37954282";
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { openBooking, reduceMotion, visitorName, reopenWelcome, mood } = useTheme();
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [videoFailed, setVideoFailed] = useState(false);
+  const [previewImgError, setPreviewImgError] = useState(false);
+  const featuredVideoRef = useRef<HTMLVideoElement>(null);
+
+  // CineScope is guaranteed to be index 0 per project order rule
+  const featuredProject = projectsData[0];
+
+  // Pause or resume the looping Featured Build preview video when Reduce Motion toggles
+  useEffect(() => {
+    const vid = featuredVideoRef.current;
+    if (!vid) return;
+    if (reduceMotion) {
+      vid.pause();
+    } else {
+      vid.play().catch(() => {});
+    }
+  }, [reduceMotion]);
 
   const homeSchema = [
     {
       "@type": "Person",
       "@id": "https://www.buildwithtobi.online/#person",
-      "name": "Tobiloba Akala",
-      "alternateName": ["BuildWithTobi", "Tobi Akala"],
-      "url": "https://www.buildwithtobi.online/",
-      "image": "https://res.cloudinary.com/dw8jtwbka/image/upload/v1780309581/refined_profile_picture_keiybp.png",
-      "jobTitle": "Web Developer & Frontend Specialist",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "BuildWithTobi",
-        "url": "https://www.buildwithtobi.online/"
-      },
-      "address": {
+      name: "Tobiloba Akala",
+      alternateName: ["BuildWithTobi", "Tobi Akala"],
+      url: "https://www.buildwithtobi.online/",
+      image:
+        "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_800/v1780309581/refined_profile_picture_keiybp.png",
+      jobTitle: "Web Developer & Frontend Specialist",
+      address: {
         "@type": "PostalAddress",
-        "addressLocality": "Lagos",
-        "addressCountry": "NG"
+        addressLocality: "Lagos",
+        addressCountry: "NG",
       },
-      "sameAs": [
+      sameAs: [
         "https://github.com/realtee01",
-        "https://twitter.com/realtee1111101",
-        "https://linkedin.com/in/tobiloba-akala-027581242"
+        "https://x.com/realtee1111101",
+        "https://ng.linkedin.com/in/tobiloba-akala-35448a38b",
       ],
-      "knowsAbout": [
-        "React",
-        "TypeScript",
-        "Next.js",
-        "Tailwind CSS",
-        "Web Performance",
-        "Core Web Vitals",
-        "Supabase",
-        "Frontend Engineering"
-      ]
     },
     {
       "@type": "WebSite",
       "@id": "https://www.buildwithtobi.online/#website",
-      "url": "https://www.buildwithtobi.online/",
-      "name": "BuildWithTobi | Tobiloba Akala Portfolio",
-      "author": {
-        "@id": "https://www.buildwithtobi.online/#person"
-      },
-      "inLanguage": "en-US"
-    }
+      url: "https://www.buildwithtobi.online/",
+      name: "BuildWithTobi | Tobiloba Akala Portfolio",
+      author: { "@id": "https://www.buildwithtobi.online/#person" },
+      inLanguage: "en-US",
+    },
+  ];
+
+  const quickNavCards = [
+    {
+      kicker: "Web Apps & Case Studies",
+      title: "Work",
+      to: "/projects",
+      thumb:
+        "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795390033/83d76c380d986c7d61fbd071eae09c06_e7xdxx.png",
+      thumbBg: "#f5f3f6",
+      fit: "contain" as const,
+    },
+    {
+      kicker: "Story, Stack & CV",
+      title: "About",
+      to: "/about",
+      thumb: TOBI_PHOTOS.balcony,
+      thumbBg: "var(--bg-band)",
+      fit: "cover" as const,
+    },
+    {
+      kicker: "Writing & Notes",
+      title: "Journal",
+      to: "/blog",
+      thumb:
+        "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795389946/b38ed4bb874e04b873d044c2fdda37d2_njgiln.png",
+      thumbBg: "#f5f3f6",
+      fit: "contain" as const,
+    },
   ];
 
   return (
-    <section className="overflow-hidden">
+    <div className="relative overflow-x-clip">
+      <section className="relative pt-24 sm:pt-28 pb-10 sm:pb-14 px-4 sm:px-8 lg:px-12">
       <SEOHead
         title="Tobiloba Akala | Web Developer & Frontend Specialist (BuildWithTobi)"
-        description="Official portfolio of Tobiloba Akala (BuildWithTobi) - Web Developer & Frontend Specialist in Nigeria. Engineering high-converting websites and scalable React web applications."
+        description="Official portfolio of Tobiloba Akala (BuildWithTobi) - Web Developer & Frontend Specialist in Lagos, Nigeria. Engineering high-converting websites and scalable React web applications."
         canonicalPath="/"
-        keywords="Tobiloba Akala, BuildWithTobi, Web Developer Nigeria, Frontend Developer Lagos, React Developer Nigeria, Software Engineer Nigeria, Portfolio"
+        keywords="Tobiloba Akala, BuildWithTobi, Web Developer Nigeria, Frontend Developer Lagos, React Developer Nigeria, Software Engineer Portfolio"
         jsonLd={homeSchema}
       />
-      <div className="relative pt-32 pb-8 md:pt-48 md:pb-20 min-h-screen flex items-center" id="home">
-        
-        {/* Advanced Background Gradients */}
-        <div className="absolute top-1/4 -left-20 w-64 h-64 md:w-96 md:h-96 bg-[#c770f0]/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-1/4 -right-20 w-64 h-64 md:w-96 md:h-96 bg-[#00e5ff]/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse delay-700"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-8 lg:mt-0">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-16 xl:gap-24 w-full">
-            
-            {/* Left Content - Text */}
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left"
-            >
+      <div className="max-w-[1360px] mx-auto">
+        {/* Hand-Cut Paper Scrap Ransom-Note Name Banner matching Reference Screenshot 1 */}
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-4 sm:grid-cols-8 gap-1.5 sm:gap-2.5 lg:gap-3 max-w-[1140px] mx-auto pt-2 sm:pt-4"
+          aria-label="Tobiloba"
+        >
+          {CUTOUT_LETTERS.map((item, idx) => {
+            const isDark = item.variant === "ink" || item.variant === "ink-cyan";
+            const paperFill = isDark
+              ? "#151216"
+              : item.variant === "cream"
+              ? "var(--surface-cream)"
+              : "#f2eff2";
+
+            const letterColor =
+              item.variant === "ink-cyan"
+                ? mood === "mono"
+                  ? "#f4f3ef"
+                  : "#67e8f9"
+                : item.variant === "ink"
+                ? "var(--cutout-black-letter)"
+                : "var(--ink)";
+
+            return (
               <motion.div
-                initial={{ opacity: 1, scale: 0.8 }}
-                animate={{ opacity: 1, scale: [0.95, 1.05, 0.95] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-sm font-bold mb-6 backdrop-blur-sm shadow-[0_0_15px_rgba(0,229,255,0.3)] z-50 relative"
+                key={`${item.char}-${idx}`}
+                whileHover={reduceMotion ? undefined : { y: -5, rotate: 0, scale: 1.03 }}
+                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                style={{ transform: `rotate(${item.tileTilt})` }}
+                className="relative aspect-[5/6] flex items-center justify-center select-none drop-shadow-[0_10px_18px_rgba(24,19,26,0.16)]"
               >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00e5ff] opacity-75 duration-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00e5ff] animate-[pulse_1s_ease-in-out_infinite]"></span>
+                {/* Organic Hand-Torn Paper Scrap SVG Backdrop */}
+                <svg
+                  viewBox="0 0 100 120"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full overflow-visible"
+                >
+                  <path d={SCRAP_PATHS[item.scrap]} fill={paperFill} />
+                </svg>
+
+                {/* Chunky Rounded Retro Cutout Letter */}
+                <span
+                  style={{
+                    color: letterColor,
+                    transform: `rotate(${item.charTilt})`,
+                  }}
+                  className="relative z-10 font-cutout font-normal text-[clamp(2.85rem,7.8vw,6.6rem)] leading-none tracking-tight block"
+                >
+                  {item.char}
                 </span>
-                Available
               </motion.div>
+            );
+          })}
+        </motion.div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-8 sm:mb-12 tracking-tight leading-tight drop-shadow-[0_4px_8px_rgba(0,0,0,1)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] [-webkit-text-stroke:2px_rgba(0,0,0,0.6)]">
-                {t('home.greeting')} <span className="wave" role="img" aria-labelledby="wave">👋🏻</span>
-              </h1>
-
-              <h1 className="flex flex-col text-[14vw] leading-[0.9] sm:leading-[0.9] sm:text-8xl md:text-[8rem] lg:text-9xl font-black mb-8 sm:mb-16 tracking-tighter uppercase text-white font-serif overflow-hidden py-2" style={{wordBreak: "break-word"}}>
-                <span className="block mb-2 sm:mb-4 font-bold text-2xl sm:text-4xl md:text-5xl text-gray-300 tracking-normal normal-case font-sans">
-                  {t('home.im')}
-                </span>
-                
-                <span className="flex flex-wrap items-center justify-center lg:justify-start gap-x-4 sm:gap-x-6 z-10">
-                  <span className="block text-white drop-shadow-[0_4px_24px_rgba(0,229,255,0.4)] relative whitespace-nowrap">
-                    TOBILOBA
-                  </span>
-                  
-                  <span className="relative inline-block w-fit whitespace-nowrap">
-                    <span className="absolute left-[0.06em] top-[0.06em] text-transparent [-webkit-text-stroke:1px_#c770f0] sm:[-webkit-text-stroke:2px_#c770f0] -z-10 select-none">
-                      AKALA
-                    </span>
-                    <span className="text-[#00e5ff] relative z-10">
-                      AKALA
-                    </span>
-                  </span>
-                </span>
-              </h1>
-
-              <div className="text-lg sm:text-3xl md:text-4xl font-mono font-medium text-[#00e5ff] min-h-[50px] sm:min-h-[80px] md:min-h-[5rem] w-full flex justify-center lg:justify-start mt-4 sm:mt-8 mb-10 md:mb-8">
-                <Type />
-              </div>
-
-              <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 1 }}
-                className="text-gray-300 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed mb-10 block font-light tracking-wide font-sans md:px-4 lg:px-0"
-              >
-                {t('home.description')}
-              </motion.p>
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-                className="flex flex-wrap justify-center lg:justify-start gap-5 md:gap-8 mt-6 md:mt-10"
-              >
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <HashLink 
-                    smooth
-                    to="/projects#top" 
-                    className="inline-block bg-white text-[#0d0d12] hover:bg-gray-200 font-semibold py-3 md:py-3.5 px-8 rounded-full shadow-[0_10px_20px_-5px_rgba(255,255,255,0.2)] uppercase tracking-widest text-sm transition-colors"
-                  >
-                    View My Works
-                  </HashLink>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <HashLink 
-                    smooth
-                    to="/contact#top" 
-                    className="inline-block bg-transparent text-white font-semibold py-3 md:py-3.5 px-8 rounded-full border border-white/30 backdrop-blur-md hover:bg-white/10 transition-colors uppercase tracking-widest text-sm"
-                  >
-                    {t('home.connect')}
-                  </HashLink>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-
-            {/* Right Content - Premium Visuals */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="w-full lg:w-[45%] relative flex flex-col justify-center items-center mt-12 lg:mt-0"
+        {/* Main 3-Column Asymmetric Editorial Composition */}
+        <div className="relative grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-6 mt-6 lg:-mt-8 mb-12 sm:mb-14">
+          {/* Left Column: Personalized Handwritten Greeting + Value Proposition + CTAs */}
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-4 order-2 lg:order-1 max-w-md mx-auto lg:mx-0 text-center lg:text-left"
+          >
+            <button
+              type="button"
+              onClick={reopenWelcome}
+              title="Click to update your name"
+              className="font-hand text-3xl sm:text-[38px] font-bold text-[var(--accent)] -rotate-2 mb-3 leading-none hover:opacity-80 transition-opacity cursor-pointer inline-block bg-transparent border-0 p-0"
             >
-              <div className="relative w-full aspect-[4/3] sm:aspect-square max-w-[450px]">
-                {/* Main Abstract Container */}
-                <div className="absolute inset-4 sm:inset-0 bg-gradient-to-br from-[#c770f0]/10 to-[#00e5ff]/10 rounded-[2.5rem] sm:rounded-[3rem] border border-white/5 backdrop-blur-[2px] overflow-hidden z-0">
-                  <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,229,255,0.05),transparent_70%)]"></div>
+              {visitorName ? `hi ${visitorName},` : "hey there,"}
+            </button>
+
+            <h1 className="text-[19px] sm:text-[21px] font-bold text-[var(--ink)] tracking-tight leading-snug mb-3 text-balance">
+              I build web apps people actually use.
+            </h1>
+
+            <p className="text-[15px] text-[var(--ink-muted)] leading-relaxed mb-7">
+              React, TypeScript, Next.js and the architecture behind it. Startups,
+              founders and agencies trust me to ship fast, conversion-focused
+              products that score 98+ out of the box.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ink)] text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-sm whitespace-nowrap shrink-0"
+              >
+                <span>See the work</span>
+                <ArrowRight size={15} />
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => openBooking("Web App / MVP")}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-strong)] bg-transparent text-[var(--ink)] text-sm font-semibold hover:bg-[var(--ink)]/5 transition-colors cursor-pointer whitespace-nowrap shrink-0"
+              >
+                <span>Book a call</span>
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Center Column: Overlapping True Silhouette Die-Cut Sticker Portrait */}
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.96, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.04, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-4 order-1 lg:order-2 flex justify-center relative z-10 lg:-mt-4"
+          >
+            <StickerPortrait
+              src={TOBI_PHOTOS.heroCutout}
+              alt="Tobiloba Akala - Frontend & Full-Stack Web Developer"
+              className="w-[300px] h-[390px] sm:w-[350px] sm:h-[455px] lg:w-[390px] lg:h-[495px] hover:-translate-y-1 transition-transform duration-300"
+              tilt="-0.8deg"
+            />
+          </motion.div>
+
+          {/* Right Column: Tilted CineScope Live Preview Card + Now Playing Spotify Widget */}
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-4 order-3 flex flex-col items-center lg:items-end gap-5"
+          >
+            {/* Tilted Featured Build Phone/Card Preview (CineScope) */}
+            {featuredProject && (
+              <button
+                type="button"
+                onClick={() => setSelectedProject(featuredProject)}
+                className="group relative w-[230px] sm:w-[248px] bg-[#161218] rounded-[1.85rem] p-3 border-[4px] border-white shadow-[0_20px_38px_-14px_rgba(24,19,26,0.34)] rotate-[3deg] hover:rotate-0 hover:-translate-y-1 transition-all duration-300 text-left cursor-pointer"
+                aria-label={`Open ${featuredProject.title} case study`}
+              >
+                <div className="relative aspect-[9/11] rounded-[1.25rem] overflow-hidden bg-[#1e1824] flex flex-col justify-between p-3.5">
+                  {!videoFailed ? (
+                    <>
+                      <video
+                        ref={featuredVideoRef}
+                        src={CINESCOPE_PREVIEW_VIDEO}
+                        poster={featuredProject.imgPath}
+                        autoPlay={!reduceMotion}
+                        muted
+                        playsInline
+                        loop
+                        preload="auto"
+                        onTimeUpdate={(e) => {
+                          if (e.currentTarget.currentTime >= 5.5) {
+                            e.currentTarget.currentTime = 0;
+                            e.currentTarget.play().catch(() => {});
+                          }
+                        }}
+                        onError={() => setVideoFailed(true)}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#120d16]/95 via-[#120d16]/45 via-45% to-[#120d16]/20" />
+                    </>
+                  ) : !previewImgError && featuredProject.imgPath ? (
+                    <>
+                      <img
+                        src={featuredProject.imgPath}
+                        alt={`${featuredProject.title} Featured Build`}
+                        referrerPolicy="no-referrer"
+                        onError={() => setPreviewImgError(true)}
+                        className="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#120d16] via-[#120d16]/45 via-45% to-transparent" />
+                    </>
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#2a1834] via-[#18131a] to-[#0f2930]" />
+                  )}
+
+                  {/* Top Badge inside Dark Frame */}
+                  <div className="relative z-10 inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-white text-[#18131A] text-[10px] font-bold uppercase tracking-[0.14em]">
+                    <SparkleMark className="w-2.5 h-2.5 text-[var(--accent)]" />
+                    <span>Featured Build</span>
+                  </div>
+
+                  {/* Bottom Details inside Frame */}
+                  <div className="relative z-10 text-white">
+                    <p className="font-mono text-[10px] text-[#00e5ff] mb-1 tabular-nums">
+                      01 · 98 Lighthouse
+                    </p>
+                    <p className="font-editorial text-xl font-black leading-tight mb-1">
+                      {featuredProject.title}
+                    </p>
+                    <p className="text-[11px] text-white/80 leading-snug line-clamp-2 mb-2.5">
+                      Real-time cinematic discovery app with &lt;400ms search.
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-white group-hover:text-[#00e5ff] transition-colors">
+                      <span>Inspect case study</span>
+                      <ArrowRight size={12} />
+                    </span>
+                  </div>
                 </div>
+              </button>
+            )}
 
-                {/* Central Focus Element */}
-                <div className="absolute inset-[25%] sm:inset-[15%] rounded-full bg-gradient-to-tr from-[#c770f0]/20 to-[#00e5ff]/20 blur-2xl animate-pulse z-0"></div>
-
-                {/* Central Developer Workspace SVG Illustration */}
-                <div className="absolute inset-0 flex items-center justify-center z-10 p-2 sm:p-4">
-                  <div className="relative group flex flex-col items-center">
-                    <img
-                      src={homeLogo}
-                      alt="Full-Stack Developer Workspace - Tobiloba Akala"
-                      className="w-full max-h-[280px] sm:max-h-[330px] md:max-h-[360px] object-contain drop-shadow-[0_15px_35px_rgba(0,229,255,0.25)] transition-transform duration-700 hover:scale-105"
-                      loading="eager"
-                    />
-                  </div>
-                </div>
-
-                {/* Floating Elements */}
-                {/* Code Card */}
-                <motion.div 
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-0 sm:top-[10%] left-0 sm:-left-[10%] w-56 sm:w-72 bg-[#1b1a2ea9] backdrop-blur-xl border border-white/10 rounded-2xl p-4 sm:p-5 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] z-30"
-                >
-                  <div className="flex gap-1.5 mb-3 sm:mb-4">
-                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-                  </div>
-                  <div className="font-mono text-[10px] sm:text-sm space-y-2">
-                    <p className="text-[#c770f0]">const <span className="text-white">Profile</span> = () =&gt; &#123;</p>
-                    <p className="pl-3 sm:pl-4 text-gray-400 lowercase">return (</p>
-                    <p className="pl-6 sm:pl-8 text-[#00e5ff]">&lt;Hero name="Tobiloba" /&gt;</p>
-                    <p className="pl-3 sm:pl-4 text-gray-400 lowercase">);</p>
-                    <p className="text-[#c770f0]">&#125;;</p>
-                  </div>
-                </motion.div>
-
-                {/* Performance Stat Card */}
-                <motion.div 
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-4 sm:bottom-[10%] right-0 sm:-right-[5%] w-44 sm:w-56 bg-[#1b1a2ea9] sm:bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 sm:p-6 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] z-40"
-                >
-                  <div className="flex items-center gap-3 mb-2 sm:mb-3">
-                    <div className="p-1.5 sm:p-2 bg-[#00e5ff]/20 rounded-lg text-[#00e5ff]">
-                      <Zap size={20} />
-                    </div>
-                    <span className="text-white font-bold text-base sm:text-lg tracking-wide">100%</span>
-                  </div>
-                  <p className="text-gray-400 text-[10px] sm:text-xs uppercase font-bold tracking-widest">Core Web Vitals</p>
-                </motion.div>
-
-                {/* Tech Icons orbiting */}
-                <motion.div 
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-4 sm:inset-0 pointer-events-none z-20"
-                >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#1b1a2ea9] sm:bg-white/5 border border-white/10 rounded-xl backdrop-blur-md text-[#c770f0] shadow-lg">
-                    <Code2 size={20} className="sm:w-6 sm:h-6" />
-                  </div>
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 p-2 sm:p-3 bg-[#1b1a2ea9] sm:bg-white/5 border border-white/10 rounded-xl backdrop-blur-md text-[#00e5ff] shadow-lg">
-                    <Cpu size={20} className="sm:w-6 sm:h-6" />
-                  </div>
-                  <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#1b1a2ea9] sm:bg-white/5 border border-white/10 rounded-xl backdrop-blur-md text-white/50 shadow-lg">
-                    <Globe size={20} className="sm:w-6 sm:h-6" />
-                  </div>
-                  <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 p-2 sm:p-3 bg-[#1b1a2ea9] sm:bg-white/5 border border-white/10 rounded-xl backdrop-blur-md text-[#c770f0]/70 shadow-lg">
-                    <Rocket size={20} className="sm:w-6 sm:h-6" />
-                  </div>
-                </motion.div>
+            {/* Crisp Ink-Bordered Spotify NOW PLAYING Card */}
+            <a
+              href={SPOTIFY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-full max-w-[270px] bg-[var(--surface-card)]/90 border-[1.5px] border-[var(--border-strong)] rounded-2xl p-3 flex items-center gap-3.5 shadow-[var(--shadow-paper)] hover:-translate-y-0.5 transition-transform"
+            >
+              <div className="w-12 h-12 rounded-xl bg-[#18131A] flex items-center justify-center text-[#c770f0] shrink-0 relative overflow-hidden">
+                <Disc3 className={`w-7 h-7 ${reduceMotion ? "" : "animate-vinyl"}`} />
               </div>
-            </motion.div>
-
-          </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--accent)]">
+                  Now Playing
+                </p>
+                <p className="text-sm font-bold text-[var(--ink)] truncate">
+                  Coding &amp; Focus Mode
+                </p>
+                <p className="text-[11px] text-[var(--ink-muted)] truncate flex items-center gap-1">
+                  <span>Spotify · Tobi&apos;s rotation</span>
+                  <ExternalLink size={10} className="opacity-70 group-hover:opacity-100" />
+                </p>
+              </div>
+            </a>
+          </motion.div>
         </div>
+
+        {/* Bottom 3 Horizontal Frosted-Paper Quick-Navigation Cards */}
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto"
+        >
+          {quickNavCards.map((card) => (
+            <Link
+              key={card.title}
+              to={card.to}
+              className="group flex items-center justify-between gap-4 p-3.5 sm:p-4 rounded-[1.35rem] bg-[var(--surface-card)]/82 hover:bg-[var(--surface-card)] border border-white/85 shadow-[var(--shadow-paper)] transition-all duration-200 hover:-translate-y-0.5"
+            >
+              <div className="flex items-center gap-3.5 min-w-0">
+                <div
+                  className="w-12 h-12 rounded-xl overflow-hidden shrink-0 flex items-center justify-center border border-black/5"
+                  style={{ backgroundColor: card.thumbBg }}
+                >
+                  <img
+                    src={card.thumb}
+                    alt={card.title}
+                    referrerPolicy="no-referrer"
+                    className={
+                      card.fit === "contain"
+                        ? "w-full h-full object-contain p-1"
+                        : "w-full h-full object-cover object-top"
+                    }
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ink-soft)] truncate">
+                    {card.kicker}
+                  </p>
+                  <p className="font-editorial text-2xl font-black text-[var(--ink)] leading-tight group-hover:text-[var(--accent)] transition-colors">
+                    {card.title}
+                  </p>
+                </div>
+              </div>
+
+              <span className="w-9 h-9 rounded-full border border-[var(--border-hairline)] group-hover:border-[var(--ink)] group-hover:bg-[var(--ink)] group-hover:text-white text-[var(--ink)] flex items-center justify-center transition-colors shrink-0">
+                <ArrowRight size={15} />
+              </span>
+            </Link>
+          ))}
+        </motion.div>
       </div>
-      <Home2 />
-      <SocialProof />
-      <ProcessSection />
-      <WhyWorkWithMe />
-      <ReferralSection />
-    </section>
+      </section>
+
+      {/* Dark Torn-Paper Horizontal Portfolio Carousel ("The portfolio") */}
+      <DarkPortfolioCarousel onSelectProject={(project) => setSelectedProject(project)} />
+
+      {/* Dark Full-Bleed Client & Project Sticker Ribbon Marquee */}
+      <BrandStickerMarquee />
+
+      {/* "Production, By The Numbers" Overlapping Device Mockups + 2x2 Metrics */}
+      <ByTheNumbersShowcase />
+
+      {/* "References — What they say" Stacked Editorial Quote Cards */}
+      <ReferencesSection layout="stacked" showHeading />
+
+      {/* "Brands and Contact — Let's talk" Floating Sticker Cloud + Oversized Email */}
+      <BrandsAndContactSection />
+
+      {/* Immersive Case Study Modal directly accessible from Hero Featured Build & Portfolio Carousel */}
+      <ProjectModal
+        isOpen={selectedProject !== null}
+        onClose={() => setSelectedProject(null)}
+        title={selectedProject?.title || ""}
+        details={selectedProject?.details || null}
+        slug={selectedProject?.slug}
+        imgPath={selectedProject?.imgPath}
+        category={selectedProject?.category}
+        year={selectedProject?.year}
+        metrics={selectedProject?.metrics}
+        clientOrContext={selectedProject?.clientOrContext}
+        demoLink={selectedProject?.demoLink}
+        ghLink={selectedProject?.ghLink}
+      />
+    </div>
   );
 }

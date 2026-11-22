@@ -1,228 +1,279 @@
 @import "tailwindcss";
 
 @theme {
-  --color-violet-primary: #c770f0;
-  --color-violet-dark: #623686;
-  --color-cyan-primary: #00e5ff;
-  --color-bg-dark: #1b1a2ea9;
-  --color-bg-darker: #121212;
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-hand: "Caveat", cursive;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-body {
-  margin: 0;
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #1e1a20;
-  color: white;
-  overflow-x: hidden;
-  min-height: 100vh;
-  text-rendering: optimizeLegibility;
+/* =========================================================
+   TACTILE PAPER-COLLAGE EDITORIAL MOOD TOKENS
+   Harmonizing the reference zine aesthetic with Tobi's TA brand
+   ========================================================= */
+
+:root,
+[data-mood="violet"] {
+  --bg-paper: #eae6ea;
+  --bg-band: #e6c6e7;
+  --surface-card: #f6f4f6;
+  --surface-card-alpha: rgba(246, 244, 246, 0.72);
+  --surface-cream: #efe9d8;
+  --ink: #1a131b;
+  --ink-muted: #5a505c;
+  --ink-soft: #7f7382;
+  --accent: #a62d96;
+  --accent-soft: #e69ae6;
+  --accent-brand-a: #c770f0;
+  --accent-brand-b: #00e5ff;
+  --cutout-black-letter: #e89be8;
+  --border-hairline: rgba(26, 19, 27, 0.13);
+  --border-strong: rgba(26, 19, 27, 0.85);
+  --shadow-paper: 0 12px 32px -12px rgba(26, 19, 27, 0.14);
+}
+
+[data-mood="cyan"] {
+  --bg-paper: #e8ecef;
+  --bg-band: #cbe4f5;
+  --surface-card: #f5f8fa;
+  --surface-card-alpha: rgba(245, 248, 250, 0.74);
+  --surface-cream: #e5eff4;
+  --ink: #111824;
+  --ink-muted: #4b5a6b;
+  --ink-soft: #6e7f91;
+  --accent: #0b728c;
+  --accent-soft: #7dd3fc;
+  --accent-brand-a: #c770f0;
+  --accent-brand-b: #00e5ff;
+  --cutout-black-letter: #7ee8fa;
+  --border-hairline: rgba(17, 24, 36, 0.13);
+  --border-strong: rgba(17, 24, 36, 0.85);
+  --shadow-paper: 0 12px 32px -12px rgba(17, 24, 36, 0.14);
+}
+
+[data-mood="mono"] {
+  --bg-paper: #eeedea;
+  --bg-band: #e1dfd9;
+  --surface-card: #f8f7f5;
+  --surface-card-alpha: rgba(248, 247, 245, 0.78);
+  --surface-cream: #e8e5dc;
+  --ink: #151514;
+  --ink-muted: #56544f;
+  --ink-soft: #7d7a73;
+  --accent: #272524;
+  --accent-soft: #d4d1c9;
+  --accent-brand-a: #c770f0;
+  --accent-brand-b: #00e5ff;
+  --cutout-black-letter: #f5f4f0;
+  --border-hairline: rgba(21, 21, 20, 0.14);
+  --border-strong: rgba(21, 21, 20, 0.88);
+  --shadow-paper: 0 12px 32px -12px rgba(21, 21, 20, 0.12);
 }
 
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 96px;
+  background-color: var(--bg-paper);
+  color: var(--ink);
 }
 
-/* Scrollbar */
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--bg-paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Tactile fine paper texture overlay (SVG fractal noise) */
+.paper-grain {
+  position: relative;
+}
+
+.paper-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* Tinted paper band surface with subtle mottled paper warmth */
+.paper-band {
+  background-color: var(--bg-band);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.25) 0%, transparent 55%),
+    radial-gradient(circle at 80% 75%, rgba(26, 19, 27, 0.04) 0%, transparent 50%);
+  transition: background-color 0.35s ease;
+}
+
+/* Subtle paper cutout polygon edges for ransom-style hero letters */
+.cutout-tile-a {
+  clip-path: polygon(2% 1%, 98% 0%, 100% 97%, 96% 100%, 1% 98%, 0% 4%);
+}
+.cutout-tile-b {
+  clip-path: polygon(0% 3%, 97% 0%, 100% 99%, 3% 97%, 0% 94%);
+}
+.cutout-tile-c {
+  clip-path: polygon(1% 0%, 99% 2%, 98% 98%, 0% 100%, 2% 48%);
+}
+
+/* Chunky editorial display styling */
+.font-editorial {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+.font-cutout {
+  font-family: "Caprasimo", var(--font-display), Georgia, serif;
+}
+
+.font-hand {
+  font-family: var(--font-hand);
+}
+
+/* Custom minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #2d1950;
+  background: var(--bg-paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(119, 53, 136, 0.5);
-  border-radius: 12px;
+  background: rgba(26, 19, 27, 0.22);
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00e5ff;
+  background: var(--accent);
 }
 
-#scroll {
-  min-height: 100vh;
-}
-
-.purple {
-  color: #c770f0 !important;
-}
-
-.text-gradient {
-  background: linear-gradient(to right, #c770f0, #00e5ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  display: inline-block;
-}
-
-.project-card-view {
-  box-shadow: 0 4px 5px 3px rgba(119, 53, 136, 0.2) !important;
-  color: white !important;
-  background-color: rgba(27, 26, 46, 0.5) !important;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(200, 137, 230, 0.2) !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
-  height: 100% !important;
-  will-change: transform;
-}
-.project-card-view:hover {
-  transform: translateY(-8px) !important;
-  box-shadow: 0 10px 20px 5px rgba(0, 229, 255, 0.2) !important;
-  border: 1px solid rgba(0, 229, 255, 0.5) !important;
-}
-
-.btn-primary {
-  color: #fff !important;
-  background-color: #623686 !important;
-  border: 1px solid #623686 !important;
-  transition: all 0.3s ease !important;
-}
-.btn-primary:hover {
-  background-color: transparent !important;
-  border-color: #00e5ff !important;
-  color: #00e5ff !important;
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4) !important;
-}
-
-.tech-icons {
-  font-size: 4.5em !important;
-  margin: 15px !important;
-  padding: 10px !important;
-  opacity: 0.93 !important;
-  border: 1.7px solid rgba(200, 137, 230, 0.3) !important;
-  vertical-align: middle !important;
-  text-align: center !important;
-  border-radius: 8px !important;
-  display: table !important;
-  box-shadow: 4px 5px 4px 3px rgba(89, 4, 168, 0.137) !important;
-  background-color: rgba(255, 255, 255, 0.03) !important;
-  backdrop-filter: blur(5px);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
-}
-.tech-icons:hover {
-  transform: scale(1.05) !important;
-  border: 2.2px solid #00e5ff !important;
-  box-shadow: 0 0 20px rgba(0, 229, 255, 0.3) !important;
-  color: #00e5ff !important;
-}
-
-.home-about-social-icon {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  font-size: 1.2em;
-  line-height: 2em;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transition: transform 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-.home-about-social-icon:hover {
-  color: #00e5ff;
-  border-color: #00e5ff;
-  box-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
-  background: rgba(0, 229, 255, 0.1);
-}
-
-/* GPU-Accelerated Keyframes */
-@keyframes updown {
-  0% {
-    transform: translate3d(0, -12px, 0);
+/* Slow vinyl spin */
+@keyframes vinyl-spin {
+  from {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translate3d(0, 12px, 0);
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-vinyl {
+  animation: vinyl-spin 12s linear infinite;
+}
+
+/* True Silhouette Die-Cut Paper Sticker Outlines (for transparent PNG cutouts) */
+.sticker-outline-white {
+  filter:
+    drop-shadow(3px 0 0 #faf7f0)
+    drop-shadow(-3px 0 0 #faf7f0)
+    drop-shadow(0 3px 0 #faf7f0)
+    drop-shadow(0 -3px 0 #faf7f0)
+    drop-shadow(2.2px 2.2px 0 #faf7f0)
+    drop-shadow(-2.2px -2.2px 0 #faf7f0)
+    drop-shadow(2.2px -2.2px 0 #faf7f0)
+    drop-shadow(-2.2px 2.2px 0 #faf7f0);
+}
+
+.sticker-outline-violet {
+  filter:
+    drop-shadow(3px 0 0 #d946ef)
+    drop-shadow(-3px 0 0 #d946ef)
+    drop-shadow(0 3px 0 #d946ef)
+    drop-shadow(0 -3px 0 #d946ef)
+    drop-shadow(2.2px 2.2px 0 #d946ef)
+    drop-shadow(-2.2px -2.2px 0 #d946ef)
+    drop-shadow(2.2px -2.2px 0 #d946ef)
+    drop-shadow(-2.2px 2.2px 0 #d946ef);
+}
+
+.sticker-outline-cyan {
+  filter:
+    drop-shadow(3px 0 0 #38bdf8)
+    drop-shadow(-3px 0 0 #38bdf8)
+    drop-shadow(0 3px 0 #38bdf8)
+    drop-shadow(0 -3px 0 #38bdf8)
+    drop-shadow(2.2px 2.2px 0 #38bdf8)
+    drop-shadow(-2.2px -2.2px 0 #38bdf8)
+    drop-shadow(2.2px -2.2px 0 #38bdf8)
+    drop-shadow(-2.2px 2.2px 0 #38bdf8)
+    drop-shadow(0 16px 24px rgba(24, 19, 26, 0.24));
+}
+
+.sticker-lift {
+  filter: drop-shadow(0 16px 24px rgba(24, 19, 26, 0.22));
+}
+
+/* Dark textured charcoal paper band for The Portfolio horizontal carousel */
+.dark-paper-band {
+  background-color: #242327;
+  background-image:
+    radial-gradient(circle at 18% 15%, rgba(255, 255, 255, 0.04) 0%, transparent 48%),
+    radial-gradient(circle at 82% 85%, rgba(199, 112, 240, 0.06) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='dn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23dn)' opacity='0.09'/%3E%3C/svg%3E");
+}
+
+/* Smooth infinite marquee for brand sticker ribbon */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(0, -12px, 0);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
-@keyframes updown-hue {
-  0% {
-    transform: translate3d(0, -10px, 0);
-  }
-  50% {
-    transform: translate3d(0, 10px, 0);
-  }
-  100% {
-    transform: translate3d(0, -10px, 0);
-  }
-}
-
-.wave {
-  animation-name: wave-animation;
-  animation-duration: 2.1s;
-  animation-iteration-count: infinite;
-  transform-origin: 70% 70%;
-  display: inline-block;
-  will-change: transform;
-}
-
-@keyframes wave-animation {
-  0% { transform: rotate(0.0deg) }
-  10% { transform: rotate(14.0deg) }
-  20% { transform: rotate(-8.0deg) }
-  30% { transform: rotate(14.0deg) }
-  40% { transform: rotate(-4.0deg) }
-  50% { transform: rotate(10.0deg) }
-  60% { transform: rotate(0.0deg) }
-  100% { transform: rotate(0.0deg) }
-}
-
-.animate-updown-hue {
-  animation: updown-hue 3s ease-in-out infinite;
-  will-change: transform;
-}
-
-/* Navbar logo responsive max-width adjustments */
-.navbar-logo-wrapper {
+.animate-marquee {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  width: max-content;
+  animation: marquee-scroll 34s linear infinite;
+  will-change: transform;
 }
 
-.navbar-logo-svg {
-  width: 100%;
-  height: auto;
+.marquee-wrap:hover .animate-marquee {
+  animation-play-state: paused;
 }
 
-@media (max-width: 380px) {
-  .navbar-logo-wrapper {
-    max-width: 2.25rem;
-  }
+/* Hide scrollbars cleanly for swipeable carousels */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-@media (min-width: 381px) and (max-width: 639px) {
-  .navbar-logo-wrapper {
-    max-width: 2.5rem;
-  }
+/* Respect user Reduced Motion toggle & OS setting */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
 }
 
-@media (min-width: 640px) and (max-width: 1023px) {
-  .navbar-logo-wrapper {
-    max-width: 2.75rem;
-  }
+.reduce-motion .animate-marquee {
+  animation: none !important;
 }
 
-@media (min-width: 1024px) {
-  .navbar-logo-wrapper {
-    max-width: 3rem;
-  }
-}
-
-/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .animate-marquee {
+    animation: none !important;
   }
 }

@@ -1,68 +1,80 @@
-import React from "react";
 import { motion } from "motion/react";
-import { Search, PenTool, Figma, Code2, Bug, Rocket, Headphones } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
 
 export default function ProcessSection() {
   const steps = [
-    { icon: <Search />, title: "Discovery", desc: "Understanding your business goals, target audience, and project requirements." },
-    { icon: <PenTool />, title: "Planning", desc: "Creating user journeys, site maps, and defining the core technical architecture." },
-    { icon: <Figma />, title: "UI/UX Design", desc: "Designing high-fidelity mockups with premium aesthetics and conversion focus." },
-    { icon: <Code2 />, title: "Development", desc: "Building the solution with clean, scalable, and performance-optimized code." },
-    { icon: <Bug />, title: "Testing", desc: "Rigorous QA testing across devices and browsers to ensure a flawless experience." },
-    { icon: <Rocket />, title: "Launch", desc: "Deploying the project to production and monitoring for smooth performance." },
-    { icon: <Headphones />, title: "Support", desc: "Ongoing maintenance, updates, and strategic advice to keep you growing." }
+    {
+      num: "01",
+      title: "Discovery & Strategy",
+      desc: "We align on your business goals, audience, and what success actually looks like before writing a single line of code.",
+    },
+    {
+      num: "02",
+      title: "Editorial UI & Architecture",
+      desc: "Clean wireframes, refined typography, and a lean component structure mapped out for effortless mobile and desktop flow.",
+    },
+    {
+      num: "03",
+      title: "Clean Full-Stack Engineering",
+      desc: "Building with React, Next.js, TypeScript, and modern backends—with weekly staging links so you never guess what's happening.",
+    },
+    {
+      num: "04",
+      title: "QA, Launch & Support",
+      desc: "Real-device testing, 95+ Core Web Vitals optimization, SEO schema setup, and calm post-launch support as you grow.",
+    },
   ];
 
   return (
-    <div className="py-24 relative z-10 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">
-            My Proven Process
-          </h2>
-          <p className="text-gray-300 text-lg font-light max-w-2xl mx-auto">
-            A structured approach to turn your vision into a high-performing digital reality.
-          </p>
-        </motion.div>
+    <div className="py-20 md:py-28 relative z-10 border-t border-[#E5E2DC] bg-white">
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+          <div className="max-w-2xl">
+            <div className="text-xs font-medium text-[#86837C] mb-3">
+              05. How We Work
+            </div>
+            <h2 className="font-serif text-3xl sm:text-5xl font-semibold text-[#141413] tracking-tight mb-4">
+              Simple process, zero drama.
+            </h2>
+            <p className="text-[#575550] text-base leading-relaxed">
+              Four clear stages from your initial brief to a live, high-performing digital product.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+          <HashLink
+            smooth
+            to="/contact#top"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#CFCBC2] bg-[#F8F7F4] text-[#141413] text-sm font-medium hover:border-[#141413] transition-colors whitespace-nowrap self-start md:self-end"
+          >
+            <span>Start a conversation</span>
+            <ArrowUpRight size={15} />
+          </HashLink>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((step, idx) => (
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              key={step.num}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-[#151421]/60 backdrop-blur-md p-6 rounded-2xl border border-white/5 hover:-translate-y-2 hover:border-[#c770f0]/30 transition-all duration-300"
+              transition={{ duration: 0.35, delay: idx * 0.06 }}
+              className="bg-[#F8F7F4] border border-[#E5E2DC] rounded-2xl p-7 flex flex-col justify-between"
             >
-              <div className="text-[#00e5ff] mb-4">
-                {step.icon}
+              <div>
+                <div className="font-mono text-xs text-[#1D4ED8] tabular-nums mb-6">
+                  {step.num}
+                </div>
+                <h3 className="font-serif text-xl font-semibold text-[#141413] mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-[#575550] leading-relaxed">
+                  {step.desc}
+                </p>
               </div>
-              <h3 className="text-white text-lg font-semibold mb-2 flex items-center gap-2">
-                <span className="text-[#c770f0] text-sm">0{idx + 1}.</span> {step.title}
-              </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: steps.length * 0.1 }}
-            className="bg-gradient-to-br from-[#c770f0]/10 to-[#00e5ff]/10 backdrop-blur-md p-6 rounded-2xl border border-[#00e5ff]/30 flex flex-col justify-center items-center text-center"
-          >
-            <h3 className="text-white text-xl font-semibold mb-4">Ready to start?</h3>
-            <HashLink smooth to="/contact#top" className="bg-white text-black px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-gray-200 transition-colors">
-              Message Me
-            </HashLink>
-          </motion.div>
         </div>
       </div>
     </div>

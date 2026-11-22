@@ -1,22 +1,27 @@
 import { useParams, Link } from "react-router-dom";
 import { blogData } from "./blogData";
 import { motion } from "motion/react";
-import { ArrowLeft, Clock, Calendar, Tag, User, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import SEOHead from "../SEO/SEOHead";
-import ChromeButton from "../ui/chrome-button";
-
-const TOBI_PHOTO = "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_200/v1780309581/refined_profile_picture_keiybp.png";
+import { TOBI_AVATAR_URL } from "../ui/EditorialPrimitives";
+import { useTheme } from "../../context/ThemeContext";
 
 export default function BlogPost() {
   const { id } = useParams();
+  const { openBooking, reduceMotion } = useTheme();
   const blog = blogData.find((b) => b.id === id);
 
   if (!blog) {
     return (
-      <div className="pt-32 pb-16 min-h-screen flex flex-col items-center justify-center text-white px-4">
-        <h2 className="text-3xl font-bold mb-4">Blog article not found.</h2>
-        <Link to="/blog" className="text-[#00e5ff] hover:underline flex items-center gap-2">
-          <ArrowLeft size={18} /> Return to Engineering Blog
+      <div className="pt-36 pb-24 min-h-screen flex flex-col items-center justify-center px-5 text-center">
+        <h2 className="font-editorial font-black text-3xl text-[var(--ink)] mb-4">
+          Article not found.
+        </h2>
+        <Link
+          to="/blog"
+          className="text-[var(--accent)] hover:underline inline-flex items-center gap-2 text-sm font-semibold"
+        >
+          <ArrowLeft size={16} /> Return to Journal
         </Link>
       </div>
     );
@@ -26,56 +31,19 @@ export default function BlogPost() {
     {
       "@type": "BlogPosting",
       "@id": `https://www.buildwithtobi.online/blog/${blog.id}#article`,
-      "headline": blog.title,
-      "description": blog.excerpt,
-      "image": blog.image,
-      "datePublished": blog.date,
-      "dateModified": blog.date,
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": `https://www.buildwithtobi.online/blog/${blog.id}`
-      },
-      "author": {
+      headline: blog.title,
+      description: blog.excerpt,
+      image: blog.image,
+      datePublished: blog.date,
+      dateModified: blog.date,
+      author: {
         "@type": "Person",
         "@id": "https://www.buildwithtobi.online/#person",
-        "name": blog.author?.name || "Tobiloba Akala",
-        "jobTitle": blog.author?.role || "Web Developer & Frontend Specialist",
-        "url": "https://www.buildwithtobi.online/"
+        name: blog.author?.name || "Tobiloba Akala",
       },
-      "publisher": {
-        "@type": "Organization",
-        "name": "BuildWithTobi",
-        "url": "https://www.buildwithtobi.online/"
-      },
-      "keywords": blog.tags?.join(", ") || "Web Development, React, Frontend"
     },
-    {
-      "@type": "BreadcrumbList",
-      "@id": `https://www.buildwithtobi.online/blog/${blog.id}#breadcrumbs`,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.buildwithtobi.online/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Blog",
-          "item": "https://www.buildwithtobi.online/blog"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": blog.title,
-          "item": `https://www.buildwithtobi.online/blog/${blog.id}`
-        }
-      ]
-    }
   ];
 
-  // Related articles
   const otherArticles = blogData.filter((b) => b.id !== blog.id).slice(0, 2);
 
   return (
@@ -91,154 +59,126 @@ export default function BlogPost() {
         jsonLd={postSchema}
       />
 
-      <section className="pt-32 pb-20 min-h-screen relative z-10 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Breadcrumbs */}
-          <nav aria-label="Breadcrumbs" className="mb-8 flex items-center gap-2 text-xs sm:text-sm text-gray-400">
-            <Link to="/" className="hover:text-[#00e5ff] transition-colors">Home</Link>
-            <span>/</span>
-            <Link to="/blog" className="hover:text-[#00e5ff] transition-colors">Blog</Link>
-            <span>/</span>
-            <span className="text-[#00e5ff] font-medium line-clamp-1">{blog.title}</span>
-          </nav>
-
-          <Link 
-            to="/blog" 
-            className="inline-flex items-center gap-2 text-xs sm:text-sm text-gray-400 hover:text-[#00e5ff] transition-colors mb-6 font-medium"
+      <section className="pt-28 sm:pt-36 pb-20 px-5 sm:px-8 relative z-10">
+        <div className="max-w-3xl mx-auto">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--ink-muted)] hover:text-[var(--accent)] transition-colors mb-8"
           >
-            <ArrowLeft size={16} /> Back to all articles
+            <ArrowLeft size={14} /> Back to Journal
           </Link>
-          
-          <motion.article
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Meta tags header */}
-            <div className="flex flex-wrap items-center gap-3 text-xs text-gray-400 mb-4">
-              <span className="bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30 px-3 py-1 rounded-full flex items-center gap-1.5 font-semibold">
-                <Calendar size={12} /> {blog.date}
-              </span>
-              {blog.readTime && (
-                <span className="bg-white/5 border border-white/10 px-3 py-1 rounded-full flex items-center gap-1.5">
-                  <Clock size={12} /> {blog.readTime}
-                </span>
-              )}
-            </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight tracking-wide">
+          <motion.article
+            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <p className="font-mono text-xs text-[var(--ink-soft)] mb-3 tabular-nums">
+              {blog.date}
+              {blog.readTime ? ` · ${blog.readTime}` : ""}
+            </p>
+
+            <h1 className="font-editorial font-black text-3xl sm:text-5xl text-[var(--ink)] mb-7 leading-[1.05] tracking-tight">
               {blog.title}
             </h1>
 
-            {/* Author bar */}
-            <div className="flex items-center gap-3 pb-8 mb-8 border-b border-white/10">
-              <div className="relative">
-                <img 
-                  src={blog.author?.avatar || TOBI_PHOTO} 
-                  alt={blog.author?.name || "Tobiloba Akala"} 
-                  className="w-11 h-11 rounded-full object-cover border border-[#00e5ff]/40 bg-[#171324]"
-                  referrerPolicy="no-referrer"
-                />
-                <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-[#130f1e]" />
-              </div>
+            <div className="flex items-center gap-3.5 pb-7 mb-8 border-b border-dashed border-[var(--border-hairline)]">
+              <img
+                src={blog.author?.avatar || TOBI_AVATAR_URL}
+                alt={blog.author?.name || "Tobiloba Akala"}
+                className="w-11 h-11 rounded-full object-cover object-top border border-[var(--border-hairline)]"
+                referrerPolicy="no-referrer"
+              />
               <div>
-                <div className="text-sm font-semibold text-white flex items-center gap-1.5">
-                  <span>{blog.author?.name || "Tobiloba Akala"}</span>
-                  <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 text-[#00e5ff]" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="8" cy="8" r="7" fill="#00e5ff" fillOpacity="0.2" stroke="#00e5ff" strokeWidth="1.5"/>
-                    <path d="M5 8.2L7 10.2L11 5.8" stroke="#00e5ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                <div className="text-sm font-bold text-[var(--ink)]">
+                  {blog.author?.name || "Tobiloba Akala"}
                 </div>
-                <div className="text-xs text-gray-400">
-                  {blog.author?.role || "Web Developer & Frontend Specialist"} • Lagos, Nigeria
+                <div className="text-xs text-[var(--ink-muted)]">
+                  {blog.author?.role || "Frontend Developer"} · Lagos, Nigeria
                 </div>
               </div>
             </div>
 
-            {/* Banner image */}
-            <div className="w-full h-64 sm:h-96 rounded-2xl mb-10 overflow-hidden shadow-2xl border border-white/10 bg-black/40">
-              <img 
-                src={blog.image} 
-                alt={blog.title} 
-                className="w-full h-full object-cover" 
-                referrerPolicy="no-referrer"
-              />
+            <div className="rounded-3xl p-2 bg-white/85 border border-[var(--border-hairline)] shadow-[var(--shadow-paper)] mb-10">
+              <div className="aspect-[16/9] rounded-2xl overflow-hidden bg-[var(--bg-band)]/45">
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
             </div>
-            
-            {/* Article Content */}
-            <div className="bg-[#151421]/80 backdrop-blur-md border border-white/5 rounded-3xl p-6 sm:p-10 shadow-xl space-y-6 text-gray-200 text-base sm:text-lg leading-relaxed font-light mb-12">
+
+            <div className="bg-[var(--surface-card)]/90 border border-white/85 rounded-3xl p-6 sm:p-10 space-y-6 text-[var(--ink)]/90 text-base sm:text-[17px] leading-[1.85] shadow-[var(--shadow-paper)] mb-10">
               {blog.content.map((paragraph, index) => (
-                <p key={index} className="leading-relaxed">
-                  {paragraph}
-                </p>
+                <p key={index}>{paragraph}</p>
               ))}
             </div>
 
-            {/* Article Tags */}
             {blog.tags && blog.tags.length > 0 && (
-              <div className="flex flex-wrap items-center gap-2 mb-12">
-                <span className="text-xs font-semibold text-gray-400 flex items-center gap-1 mr-2">
-                  <Tag size={12} /> Tags:
-                </span>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-12 text-xs font-mono text-[var(--ink-soft)]">
+                <span className="uppercase tracking-[0.12em]">Topics:</span>
                 {blog.tags.map((tag, idx) => (
-                  <span key={idx} className="bg-white/5 border border-white/10 px-3 py-1 rounded-lg text-xs text-[#00e5ff]">
+                  <span key={idx} className="text-[var(--ink-muted)]">
                     #{tag}
                   </span>
                 ))}
               </div>
             )}
 
-            {/* Author Bio Box */}
-            <div className="bg-gradient-to-r from-[#1b1a2e] to-[#151421] border border-white/10 rounded-2xl p-6 sm:p-8 mb-16 flex flex-col sm:flex-row items-center gap-6">
-              <div className="relative shrink-0">
-                <img 
-                  src={TOBI_PHOTO} 
-                  alt="Tobiloba Akala" 
-                  className="w-20 h-20 rounded-2xl object-cover border-2 border-[#00e5ff]/50 bg-[#151221]"
-                  referrerPolicy="no-referrer"
-                />
-                <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-[#130f1e]" />
-              </div>
+            <div className="paper-band border border-[var(--border-hairline)] rounded-3xl p-6 sm:p-8 mb-14 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <img
+                src={TOBI_AVATAR_URL}
+                alt="Tobiloba Akala"
+                className="w-16 h-16 rounded-2xl object-cover object-top border-2 border-white shrink-0"
+                referrerPolicy="no-referrer"
+              />
               <div>
-                <h3 className="text-lg font-bold text-white mb-1 flex items-center gap-2">
-                  <span>Written by Tobiloba Akala</span>
-                  <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4 text-[#00e5ff]" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="8" cy="8" r="7" fill="#00e5ff" fillOpacity="0.2" stroke="#00e5ff" strokeWidth="1.5"/>
-                    <path d="M5 8.2L7 10.2L11 5.8" stroke="#00e5ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                <h3 className="font-editorial font-black text-xl text-[var(--ink)] mb-1">
+                  Written by Tobiloba Akala
                 </h3>
-                <p className="text-gray-300 text-sm font-light leading-relaxed mb-3">
-                  Frontend engineer and digital builder based in Lagos, Nigeria. Specializing in high-converting React applications, Core Web Vitals optimization, and modern web architectures.
+                <p className="text-[var(--ink-muted)] text-sm leading-relaxed mb-3">
+                  Web developer &amp; frontend specialist in Lagos, Nigeria
+                  building fast React applications and conversion-driven sites.
                 </p>
-                <Link to="/contact" className="text-[#00e5ff] text-xs font-semibold inline-flex items-center gap-1 hover:underline">
-                  Hire Tobi for your next project <ArrowRight size={12} />
-                </Link>
+                <button
+                  type="button"
+                  onClick={() => openBooking("Web App / MVP")}
+                  className="text-[var(--accent)] text-xs font-bold inline-flex items-center gap-1 hover:underline cursor-pointer"
+                >
+                  <span>Work with Tobi</span>
+                  <ArrowUpRight size={13} />
+                </button>
               </div>
             </div>
 
-            {/* Next Articles */}
             {otherArticles.length > 0 && (
-              <div className="border-t border-white/10 pt-10">
-                <h3 className="text-xl font-serif font-bold text-white mb-6">Related Articles</h3>
+              <div className="border-t border-dashed border-[var(--border-hairline)] pt-10">
+                <p className="font-mono text-xs uppercase tracking-[0.16em] text-[var(--ink-soft)] mb-6">
+                  Continue Reading
+                </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {otherArticles.map((rel) => (
                     <Link
                       key={rel.id}
                       to={`/blog/${rel.id}`}
-                      className="bg-[#151421]/60 p-6 rounded-2xl border border-white/5 hover:border-[#00e5ff]/40 transition-all group"
+                      className="bg-[var(--surface-card)]/90 p-6 rounded-2xl border border-white/85 hover:border-[var(--accent)] transition-colors group shadow-[var(--shadow-paper)]"
                     >
-                      <span className="text-[11px] font-semibold text-[#00e5ff] block mb-1">{rel.date}</span>
-                      <h4 className="text-base font-bold text-white group-hover:text-[#00e5ff] transition-colors mb-2 line-clamp-2">
+                      <span className="font-mono text-[11px] text-[var(--ink-soft)] block mb-2 tabular-nums">
+                        {rel.date}
+                      </span>
+                      <h4 className="font-editorial font-black text-lg text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors mb-2 line-clamp-2">
                         {rel.title}
                       </h4>
-                      <p className="text-xs text-gray-400 font-light line-clamp-2">{rel.excerpt}</p>
+                      <p className="text-xs text-[var(--ink-muted)] leading-relaxed line-clamp-2">
+                        {rel.excerpt}
+                      </p>
                     </Link>
                   ))}
                 </div>
               </div>
             )}
-
           </motion.article>
         </div>
       </section>

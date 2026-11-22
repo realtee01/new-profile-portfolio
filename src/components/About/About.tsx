@@ -1,219 +1,335 @@
-import Techstack from "./Techstack";
-import Toolstack from "./Toolstack";
-import LaptopTerminal from "./LaptopTerminal";
-import { FaSpotify, FaGithub, FaLaptopCode } from "react-icons/fa";
-import { useEffect, useState, useRef } from "react";
-import { useInView } from "motion/react";
-import { useLanguage } from "../../context/LanguageContext";
+import { Link } from "react-router-dom";
+import { motion } from "motion/react";
+import { Download } from "lucide-react";
 import SEOHead from "../SEO/SEOHead";
+import { useTheme } from "../../context/ThemeContext";
+import {
+  SparkleMark,
+  StickerPortrait,
+  CurvedArrow,
+  TOBI_PHOTOS,
+  RESUME_PDF_URL,
+} from "../ui/EditorialPrimitives";
+import {
+  ExperienceTrackRecordSection,
+  ReferencesSection,
+  SkillsAndEducationSection,
+} from "../Editorial/EditorialSections";
 
-const AnimatedCounter = ({ end, duration = 2 }: { end: number, duration?: number }) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+const QUICK_FACTS = [
+  { label: "Based in", value: "Lagos, Nigeria" },
+  { label: "Doing this since", value: "2023 — 3+ yrs · 35+ deployed builds" },
+  { label: "Right now", value: "B.Sc. CS @ UNILAG & PeakEcho Digitals" },
+  { label: "Off screen", value: "Gaming, tech writing, music & travel" },
+];
 
-  useEffect(() => {
-    if (isInView) {
-      let startTimestamp: number | null = null;
-      const step = (timestamp: number) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        // Easing function for smoother animation (easeOutExpo)
-        const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
-        const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-        setCount(Math.floor(easeProgress * end));
-        if (progress < 1) {
-          window.requestAnimationFrame(step);
-        }
-      };
-      window.requestAnimationFrame(step);
-    }
-  }, [isInView, end, duration]);
+const FRONTEND_CAPABILITIES = [
+  {
+    num: "01",
+    title: "React & Next.js web apps",
+    desc: "Fast, modular interfaces engineered for real users and clean maintenance.",
+  },
+  {
+    num: "02",
+    title: "TypeScript component systems",
+    desc: "Strict type safety and scalable design tokens that hold up as teams grow.",
+  },
+  {
+    num: "03",
+    title: "Conversion-focused websites",
+    desc: "Editorial visual hierarchy designed to earn trust and drive bookings.",
+  },
+  {
+    num: "04",
+    title: "Fluid motion & craft",
+    desc: "Compositor-smooth interactions that feel physical without slowing anything down.",
+  },
+  {
+    num: "05",
+    title: "Core Web Vitals & technical SEO",
+    desc: "98+ Lighthouse performance, sub-second loads, and structured metadata.",
+  },
+];
 
-  return <span ref={ref}>{count}</span>;
-};
+const FULLSTACK_CAPABILITIES = [
+  {
+    num: "01",
+    title: "Custom SaaS & product MVPs",
+    desc: "Taking product ideas from Figma or rough notes straight into production.",
+  },
+  {
+    num: "02",
+    title: "Supabase & Firebase backends",
+    desc: "Auth, relational databases, Row-Level Security, and real-time sync.",
+  },
+  {
+    num: "03",
+    title: "Booking & payment workflows",
+    desc: "Concurrency-safe scheduling and seamless checkout experiences.",
+  },
+  {
+    num: "04",
+    title: "API & data layer architecture",
+    desc: "Debounced search, smart caching, resilient error states, zero jank.",
+  },
+  {
+    num: "05",
+    title: "Speed audits & rebuilds",
+    desc: "Turning sluggish legacy sites into crisp, modern web applications.",
+  },
+];
 
 export default function About() {
-  const { t } = useLanguage();
+  const { reduceMotion } = useTheme();
 
   const aboutSchema = [
     {
       "@type": "ProfilePage",
       "@id": "https://www.buildwithtobi.online/about#webpage",
-      "url": "https://www.buildwithtobi.online/about",
-      "name": "About Tobiloba Akala | Web Developer & Frontend Specialist",
-      "isPartOf": {
-        "@type": "WebSite",
-        "@id": "https://www.buildwithtobi.online/#website"
-      },
-      "about": {
-        "@type": "Person",
-        "@id": "https://www.buildwithtobi.online/#person"
-      },
-      "inLanguage": "en-US"
+      url: "https://www.buildwithtobi.online/about",
+      name: "About Tobiloba Akala | Web Developer & Frontend Specialist",
+      about: { "@id": "https://www.buildwithtobi.online/#person" },
+      inLanguage: "en-US",
     },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.buildwithtobi.online/about#breadcrumbs",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.buildwithtobi.online/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "About",
-          "item": "https://www.buildwithtobi.online/about"
-        }
-      ]
-    }
   ];
 
   return (
-    <div className="relative pt-32 pb-16 min-h-screen">
+    <div className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-5 sm:px-8 lg:px-12">
       <SEOHead
         title="About Tobiloba Akala | Web Developer & Frontend Specialist"
-        description="Learn more about Tobiloba Akala (BuildWithTobi) - Computer Science student at UNILAG, frontend engineer, tech stack, and background in building production web applications."
+        description="Learn about Tobiloba Akala (BuildWithTobi) — Computer Science student at UNILAG and full-stack frontend engineer in Lagos building production web apps."
         canonicalPath="/about"
-        keywords="About Tobiloba Akala, BuildWithTobi biography, Frontend Developer Nigeria, UNILAG Computer Science, React Engineer Nigeria"
+        keywords="About Tobiloba Akala, BuildWithTobi, Frontend Developer Lagos, UNILAG Computer Science, React Engineer Nigeria"
         jsonLd={aboutSchema}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-16">
-          <div className="lg:w-1/2 text-white text-lg">
-            <h1 className="text-4xl sm:text-5xl font-serif font-bold mb-8 text-center lg:text-left tracking-wide">
-              {t('about.title1')} <strong className="text-gradient">{t('about.title2')}</strong>
-            </h1>
-            <p className="text-justify leading-relaxed mb-4 text-gray-200 font-light">
-              I'm <span className="text-white font-medium">Tobiloba Akala</span>, a full-stack developer based in <span className="text-white font-medium">Lagos, Nigeria.</span> I focus on creating polished, high-performance digital solutions to businesses and brands worldwide.
-              <br /><br />
-              Currently pursuing a B.Sc. in Computer Science at the University of Lagos, I balance theoretical knowledge with practical, production-level engineering. I use these principles to actively build modern tools, open-source projects, and client applications.
-              <br /><br />
-              When I'm not writing code or optimizing web performance, you can usually find me:
-            </p>
-            <ul className="list-none space-y-2 mb-8">
-              <li className="flex items-center gap-2">
-                <span className="text-[#c770f0]">👉</span> Playing Games
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-[#c770f0]">👉</span> Writing Tech Blogs
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-[#c770f0]">👉</span> Travelling
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-[#c770f0]">👉</span> listening and vibing to music
-              </li>
-            </ul>
 
-            <div className="mb-8">
-              <a 
-                href="https://open.spotify.com/playlist/0Ymw2v0SbK6btauZEL9lRz?si=a1dfa08a37954282" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="flex items-center gap-4 bg-[#1b1a2ea9] border border-[#1DB954]/30 hover:border-[#1DB954]/80 p-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(29,185,84,0.15)] hover:shadow-[0_0_20px_rgba(29,185,84,0.3)] group max-w-sm backdrop-blur-sm"
-              >
-                <div className="relative flex-shrink-0">
-                  <div className="absolute inset-0 bg-[#1DB954] blur-md opacity-20 group-hover:opacity-40 transition-opacity rounded-full"></div>
-                  <FaSpotify className="relative text-[#1DB954] text-5xl group-hover:scale-105 transition-transform duration-300" />
-                </div>
-                <div>
-                  <h3 className="text-white font-bold group-hover:text-[#1DB954] transition-colors line-clamp-1">Coding & Focus Mode</h3>
-                  <p className="text-gray-400 text-sm mt-0.5 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#1DB954] animate-[pulse_2s_ease-in-out_infinite]"></span>
-                    My favorite playlist
+      <div className="max-w-6xl mx-auto">
+        {/* Top Split Editorial Bio + Annotated Sticker Portrait (Reference 8) */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 items-start gap-14 lg:gap-10 pb-16 sm:pb-24">
+          {/* Left Column: Hi, I'm Tobiloba + Story Card + 2x2 Quick Facts */}
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6"
+          >
+            <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--ink-muted)] mb-5">
+              <SparkleMark className="w-3 h-3 text-[var(--accent)]" />
+              <span>About</span>
+            </div>
+
+            <h1 className="font-editorial font-black text-[clamp(3.3rem,8vw,5.8rem)] leading-[0.92] tracking-[-0.03em] text-[var(--ink)] mb-7">
+              Hi, I&apos;m
+              <br />
+              <span className="italic text-[var(--accent)]">Tobiloba.</span>
+            </h1>
+
+            <p className="text-base sm:text-[17px] text-[var(--ink-muted)] leading-relaxed max-w-lg mb-9">
+              A full-stack web developer and frontend specialist with a sharp eye
+              for craft and speed. I design interfaces, write clean TypeScript,
+              architect backends, and ship digital products that turn visitors
+              into customers. Currently studying Computer Science at UNILAG.
+            </p>
+
+            {/* Taped "how it started" Editorial Story Card */}
+            <div className="relative bg-[var(--surface-card)]/85 border border-white/85 rounded-2xl p-6 sm:p-7 shadow-[var(--shadow-paper)] mb-6">
+              <span className="inline-block -mt-10 mb-2 px-3 py-0.5 bg-[var(--bg-band)] text-[var(--ink)] font-hand text-xl font-bold -rotate-2 shadow-xs">
+                how it started
+              </span>
+              <p className="text-sm sm:text-[15px] text-[var(--ink-muted)] leading-relaxed">
+                It started with curiosity—inspecting websites late at night and
+                rebuilding layouts from scratch just to see how they worked.
+                Then a friend needed a site. Then founders and agencies reached
+                out. Years later, turning rough ideas into fast, resilient web
+                applications is still my favorite thing to do.
+              </p>
+            </div>
+
+            {/* 2x2 Subtle Bordered Quick Facts Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-9">
+              {QUICK_FACTS.map((fact) => (
+                <div
+                  key={fact.label}
+                  className="rounded-2xl border border-[var(--border-hairline)] bg-white/35 px-4 py-3.5"
+                >
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-1">
+                    {fact.label}
+                  </p>
+                  <p className="text-sm font-semibold text-[var(--ink)] leading-snug">
+                    {fact.value}
                   </p>
                 </div>
-                <div className="ml-auto text-gray-500 group-hover:text-white transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </div>
+              ))}
+            </div>
+
+            {/* Download CV + See the Work Action Pair (Reference 4) */}
+            <div className="flex flex-wrap items-center gap-3.5">
+              <a
+                href={RESUME_PDF_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Tobiloba_Akala_Frontend_Developer_Resume.pdf"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ink)] text-white text-sm font-semibold hover:opacity-90 transition-opacity whitespace-nowrap"
+              >
+                <span>Download CV</span>
+                <Download size={15} />
               </a>
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-strong)] bg-transparent text-[var(--ink)] text-sm font-semibold hover:bg-[var(--ink)]/5 transition-colors whitespace-nowrap"
+              >
+                <span>See the work</span>
+              </Link>
             </div>
+          </motion.div>
 
-            <p className="text-[#c770f0] italic opacity-80">
-              "Build. Ship. Repeat."
-            </p>
-            <footer className="text-[#c770f0] mt-2">— Tobiloba</footer>
-          </div>
-          <div className="lg:w-1/2 flex justify-center">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#00e5ff] to-[#c770f0] rounded-3xl blur-lg opacity-40 group-hover:opacity-75 transition duration-1000"></div>
-              <div className="relative rounded-3xl overflow-hidden ring-1 ring-white/10 bg-[#151421] p-3 shadow-2xl">
-                <img 
-                  src="https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_800/v1780309581/refined_profile_picture_keiybp.png"
-                  alt="Tobiloba Akala - Web Developer"
-                  width={380}
-                  height={440}
-                  className="w-full max-w-[340px] sm:max-w-[380px] h-[380px] sm:h-[440px] object-cover object-top rounded-2xl transition duration-700 group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
-                />
+          {/* Right Column: "What I do" + Sticker Portrait with Handwritten Curved Arrows */}
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 flex flex-col items-center lg:pt-8"
+          >
+            <h2 className="font-editorial font-black text-4xl sm:text-5xl text-[var(--ink)] tracking-tight mb-8 text-center">
+              What I do
+            </h2>
 
-                {/* Floating Verified Engineer SVG Badge */}
-                <div className="absolute bottom-6 left-6 right-6 bg-[#1b1a2ee6] backdrop-blur-md p-2.5 rounded-xl border border-[#00e5ff]/40 shadow-[0_4px_20px_rgba(0,0,0,0.6)] flex items-center gap-3">
-                  <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-[#c770f0]/30 to-[#00e5ff]/30 border border-cyan-400/60 flex items-center justify-center text-[#00e5ff] shadow-[0_0_15px_rgba(0,229,255,0.35)] shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-[#00e5ff]">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                      <path d="m9 12 2 2 4-4"/>
-                    </svg>
-                    <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#130f1e]" />
-                  </div>
-                  <div className="text-left flex-1 min-w-0">
-                    <div className="text-xs font-semibold text-white truncate flex items-center gap-1.5">
-                      <span>Tobiloba Akala</span>
-                      <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 text-[#00e5ff]" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="8" cy="8" r="7" fill="#00e5ff" fillOpacity="0.2" stroke="#00e5ff" strokeWidth="1.5"/>
-                        <path d="M5 8.2L7 10.2L11 5.8" stroke="#00e5ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <div className="text-[10px] text-[#00e5ff] truncate">Verified Full-Stack Lead Engineer</div>
-                  </div>
-                </div>
+            <div className="relative flex items-center justify-center w-full max-w-[520px] py-4">
+              {/* Top-Left Annotation */}
+              <div className="hidden sm:flex items-center gap-1.5 absolute left-0 top-[26%] z-20 text-[var(--accent)]">
+                <span className="font-hand text-2xl font-bold -rotate-3 whitespace-nowrap">
+                  architects the UI
+                </span>
+                <CurvedArrow direction="right" className="w-11 h-5" />
               </div>
+
+              {/* Bottom-Left Annotation */}
+              <div className="hidden sm:flex items-center gap-1.5 absolute left-2 bottom-[20%] z-20 text-[var(--accent)]">
+                <span className="font-hand text-2xl font-bold rotate-2 whitespace-nowrap">
+                  debugs till 2am
+                </span>
+                <CurvedArrow direction="right" className="w-11 h-5" />
+              </div>
+
+              {/* Top-Right Annotation */}
+              <div className="hidden sm:flex items-center gap-1.5 absolute right-0 top-[14%] z-20 text-[var(--accent)]">
+                <CurvedArrow direction="left" className="w-11 h-5" />
+                <span className="font-hand text-2xl font-bold rotate-2 whitespace-nowrap">
+                  ships full-stack MVPs
+                </span>
+              </div>
+
+              {/* Mid-Right Annotation */}
+              <div className="hidden sm:flex items-center gap-1.5 absolute right-0 bottom-[32%] z-20 text-[var(--accent)]">
+                <CurvedArrow direction="left" className="w-11 h-5" />
+                <span className="font-hand text-2xl font-bold -rotate-2 whitespace-nowrap">
+                  obsesses over speed
+                </span>
+              </div>
+
+              {/* Central Silhouette Sticker Portrait */}
+              <StickerPortrait
+                src={TOBI_PHOTOS.aboutCutout}
+                alt="Tobiloba Akala - What I do"
+                className="w-[290px] h-[370px] sm:w-[340px] sm:h-[430px]"
+                tilt="1deg"
+              />
+            </div>
+
+            {/* Mobile-only clean inline summary of the handwritten callouts */}
+            <p className="sm:hidden font-hand text-2xl text-[var(--accent)] text-center mt-4 leading-snug">
+              architects the UI · ships full-stack MVPs · obsesses over speed · debugs till 2am
+            </p>
+          </motion.div>
+        </section>
+
+        {/* Capabilities Ledger: "What I do, properly" (Reference 4) */}
+        <section
+          id="capabilities"
+          className="pt-14 sm:pt-20 border-t border-dashed border-[var(--border-hairline)]"
+        >
+          <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--ink-muted)] mb-4">
+            <SparkleMark className="w-3 h-3 text-[var(--accent)]" />
+            <span>The Full List</span>
+          </div>
+
+          <h2 className="font-editorial font-black text-[clamp(2.6rem,6.5vw,4.8rem)] leading-[0.98] tracking-[-0.03em] text-[var(--ink)] mb-12 sm:mb-16">
+            What I do, properly
+          </h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Column 1: Frontend & UI Craft */}
+            <div>
+              <div className="flex items-baseline justify-between gap-4 pb-3 border-b-2 border-[var(--ink)] mb-2">
+                <h3 className="font-editorial font-black text-2xl sm:text-3xl text-[var(--ink)]">
+                  Frontend &amp; UI Craft
+                </h3>
+                <span className="font-mono text-xs text-[var(--ink-muted)] tabular-nums">
+                  05 things
+                </span>
+              </div>
+
+              <ol className="divide-y divide-[var(--border-hairline)]">
+                {FRONTEND_CAPABILITIES.map((item) => (
+                  <li key={item.num} className="py-5 flex items-baseline gap-5">
+                    <span className="font-mono text-xs font-semibold text-[var(--ink-soft)] tabular-nums shrink-0">
+                      {item.num}
+                    </span>
+                    <div>
+                      <h4 className="text-base font-bold text-[var(--ink)] mb-1">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm text-[var(--ink-muted)] leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            {/* Column 2: Full-Stack & Product */}
+            <div>
+              <div className="flex items-baseline justify-between gap-4 pb-3 border-b-2 border-[var(--ink)] mb-2">
+                <h3 className="font-editorial font-black text-2xl sm:text-3xl text-[var(--ink)]">
+                  Full-Stack &amp; Product
+                </h3>
+                <span className="font-mono text-xs text-[var(--ink-muted)] tabular-nums">
+                  05 things
+                </span>
+              </div>
+
+              <ol className="divide-y divide-[var(--border-hairline)]">
+                {FULLSTACK_CAPABILITIES.map((item) => (
+                  <li key={item.num} className="py-5 flex items-baseline gap-5">
+                    <span className="font-mono text-xs font-semibold text-[var(--ink-soft)] tabular-nums shrink-0">
+                      {item.num}
+                    </span>
+                    <div>
+                      <h4 className="text-base font-bold text-[var(--ink)] mb-1">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm text-[var(--ink-muted)] leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
-        </div>
+        </section>
+      </div>
 
-        {/* Stats Section */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-24 px-4">
-          <div className="bg-[#151421] border border-white/5 backdrop-blur-sm p-6 rounded-2xl w-full md:w-64 flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-[#00e5ff]/30 hover:shadow-[0_10px_30px_-10px_rgba(0,229,255,0.2)]">
-            <div className="bg-[#00e5ff]/10 p-4 rounded-full text-[#00e5ff]">
-              <FaLaptopCode className="text-3xl" />
-            </div>
-            <div className="text-4xl font-bold text-white flex items-center">
-              <AnimatedCounter end={30} duration={2} />+
-            </div>
-            <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">{t('about.projects')}</p>
-          </div>
-          
-          <div className="bg-[#151421] border border-white/5 backdrop-blur-sm p-6 rounded-2xl w-full md:w-64 flex flex-col items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 hover:border-[#c770f0]/30 hover:shadow-[0_10px_30px_-10px_rgba(199,112,240,0.2)]">
-            <div className="bg-[#c770f0]/10 p-4 rounded-full text-[#c770f0]">
-              <FaGithub className="text-3xl" />
-            </div>
-            <div className="text-4xl font-bold text-white flex items-center">
-              <AnimatedCounter end={500} duration={2.5} />+
-            </div>
-            <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">{t('about.contributions')}</p>
-          </div>
-        </div>
+      {/* Professional Experience & Updated CV Track Record directly under What I do */}
+      <div className="mt-10 sm:mt-16">
+        <ExperienceTrackRecordSection />
+      </div>
 
-        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white text-center mb-12 tracking-wide">
-          Professional <strong className="text-gradient">Skillset</strong>
-        </h1>
-        <LaptopTerminal />
-        <Techstack />
-
-        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-white text-center mt-24 mb-12 tracking-wide">
-          <strong className="text-gradient">Tools</strong> I use
-        </h1>
-        <Toolstack />
-        
-        <div className="text-center mt-8 text-gray-400 font-medium text-lg">
-          And many more...
-        </div>
+      {/* 3-Column Client References Grid + 2-Column Skills & Schooled (Reference Screenshot 7) */}
+      <div className="border-t border-dashed border-[var(--border-hairline)]">
+        <ReferencesSection layout="grid" showHeading={false} />
+        <SkillsAndEducationSection />
       </div>
     </div>
   );

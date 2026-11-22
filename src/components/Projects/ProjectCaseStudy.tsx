@@ -1,369 +1,258 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
-import { 
-  ArrowLeft, 
-  ExternalLink, 
-  Github, 
-  CheckCircle2, 
-  Layers, 
-  Zap, 
-  ShieldCheck, 
-  ArrowRight,
-  Calendar,
-  User,
-  Wrench
-} from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Check, ArrowUpRight } from "lucide-react";
 import SEOHead from "../SEO/SEOHead";
-import ChromeButton from "../ui/chrome-button";
 import { projectsData } from "../../data/projectsData";
+import { useTheme } from "../../context/ThemeContext";
+import { SparkleMark } from "../ui/EditorialPrimitives";
 
 export default function ProjectCaseStudy() {
   const { slug } = useParams<{ slug: string }>();
+  const { openBooking } = useTheme();
   const project = projectsData.find((p) => p.slug === slug);
 
   if (!project) {
     return <Navigate to="/projects" replace />;
   }
 
-  // Schema for Case Study / Software Application / Creative Work
+  const relatedProjects = projectsData
+    .filter((p) => p.slug !== project.slug)
+    .slice(0, 3);
+
   const caseStudySchema = [
     {
       "@type": "SoftwareApplication",
       "@id": `https://www.buildwithtobi.online/projects/${project.slug}#app`,
-      "name": project.title,
-      "description": project.description,
-      "applicationCategory": project.category === "Web App" ? "WebApplication" : "BusinessApplication",
-      "operatingSystem": "All modern web browsers",
-      "author": {
-        "@id": "https://www.buildwithtobi.online/#person"
-      },
-      "image": project.imgPath,
-      "url": project.demoLink || `https://www.buildwithtobi.online/projects/${project.slug}`,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
+      name: project.title,
+      description: project.description,
+      applicationCategory:
+        project.category === "Web App" ? "WebApplication" : "BusinessApplication",
+      operatingSystem: "All modern web browsers",
+      author: { "@id": "https://www.buildwithtobi.online/#person" },
+      image: project.imgPath,
+      url:
+        project.demoLink ||
+        `https://www.buildwithtobi.online/projects/${project.slug}`,
     },
-    {
-      "@type": "BreadcrumbList",
-      "@id": `https://www.buildwithtobi.online/projects/${project.slug}#breadcrumbs`,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.buildwithtobi.online/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Projects",
-          "item": "https://www.buildwithtobi.online/projects"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": project.title,
-          "item": `https://www.buildwithtobi.online/projects/${project.slug}`
-        }
-      ]
-    }
   ];
-
-  // Related projects (exclude current)
-  const relatedProjects = projectsData.filter((p) => p.slug !== project.slug).slice(0, 3);
 
   return (
     <>
       <SEOHead
-        title={`${project.title} Case Study | Web Engineering by Tobiloba Akala`}
-        description={`Explore the engineering case study for ${project.title}: Problem, architecture, tech stack (${project.details.toolsUsed.join(", ")}), challenges, and results.`}
+        title={`${project.title} Case Study | Tobiloba Akala`}
+        description={`Frontend engineering case study for ${project.title}: Problem, solution, tech stack (${project.details.toolsUsed.join(", ")}), and outcomes.`}
         canonicalPath={`/projects/${project.slug}`}
         ogImage={project.imgPath}
-        keywords={`${project.title}, ${project.title} case study, React case study, ${project.details.toolsUsed.join(", ")}, Tobiloba Akala project, BuildWithTobi`}
+        keywords={`${project.title}, frontend case study, ${project.details.toolsUsed.join(", ")}, Tobiloba Akala`}
         jsonLd={caseStudySchema}
       />
 
-      <div className="relative pt-32 pb-24 min-h-screen text-white">
-        {/* Background glow */}
-        <div className="absolute top-20 left-1/3 w-96 h-96 bg-[#00e5ff]/10 rounded-full blur-[140px] pointer-events-none"></div>
-        <div className="absolute top-80 right-1/4 w-96 h-96 bg-[#c770f0]/10 rounded-full blur-[140px] pointer-events-none"></div>
-
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          {/* Top Breadcrumb & Back */}
-          <div className="flex items-center justify-between gap-4 mb-8">
-            <nav aria-label="Breadcrumbs" className="flex items-center gap-2 text-xs sm:text-sm text-gray-400">
-              <Link to="/" className="hover:text-[#00e5ff] transition-colors">Home</Link>
-              <span>/</span>
-              <Link to="/projects" className="hover:text-[#00e5ff] transition-colors">Projects</Link>
-              <span>/</span>
-              <span className="text-[#00e5ff] font-medium">{project.title}</span>
-            </nav>
-
-            <Link 
-              to="/projects" 
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-gray-300 hover:text-white transition-colors"
+      <div className="relative pt-28 sm:pt-36 pb-20 px-5 sm:px-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Top Breadcrumb */}
+          <div className="flex items-center justify-between gap-4 mb-10 text-xs sm:text-sm text-[var(--ink-muted)]">
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-1.5 text-[var(--ink)] hover:text-[var(--accent)] font-semibold transition-colors"
             >
-              <ArrowLeft size={16} /> Back to Gallery
+              <ArrowLeft size={15} /> Back to Work
             </Link>
+            <span className="font-mono tabular-nums">{project.year || "2026"}</span>
           </div>
 
-          {/* Project Header */}
+          {/* Monograph Header */}
           <div className="mb-10">
-            <div className="flex flex-wrap items-center gap-2.5 mb-4">
-              <span className="bg-[#00e5ff]/10 text-[#00e5ff] border border-[#00e5ff]/30 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-                {project.category}
-              </span>
-              {project.year && (
-                <span className="bg-white/5 border border-white/10 text-xs text-gray-300 px-3 py-1 rounded-full flex items-center gap-1">
-                  <Calendar size={12} /> {project.year}
-                </span>
-              )}
+            <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--ink-muted)] mb-3">
+              <SparkleMark className="w-3 h-3 text-[var(--accent)]" />
+              <span>{project.category}</span>
               {project.clientOrContext && (
-                <span className="bg-white/5 border border-white/10 text-xs text-gray-300 px-3 py-1 rounded-full flex items-center gap-1">
-                  <User size={12} /> {project.clientOrContext}
-                </span>
+                <>
+                  <span aria-hidden="true">·</span>
+                  <span>{project.clientOrContext}</span>
+                </>
               )}
               {project.metrics && (
-                <span className="bg-[#c770f0]/10 text-[#c770f0] border border-[#c770f0]/30 text-xs font-medium px-3 py-1 rounded-full flex items-center gap-1">
-                  <Zap size={12} /> {project.metrics}
-                </span>
+                <>
+                  <span aria-hidden="true">·</span>
+                  <span className="font-mono font-semibold text-[var(--accent)] tabular-nums">
+                    {project.metrics}
+                  </span>
+                </>
               )}
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
+            <h1 className="font-editorial font-black text-4xl sm:text-6xl text-[var(--ink)] tracking-tight leading-[0.98] mb-5">
               {project.title}
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-300 font-light leading-relaxed mb-8">
+            <p className="text-lg sm:text-xl text-[var(--ink-muted)] leading-relaxed mb-8">
               {project.description}
             </p>
 
-            {/* Action buttons */}
-            <div className="flex flex-wrap items-center gap-4">
-              {project.demoLink ? (
+            <div className="flex flex-wrap items-center gap-3.5">
+              {project.demoLink && (
                 <a
                   href={project.demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#00e5ff] to-[#c770f0] text-[#151421] font-bold text-sm hover:opacity-95 transition-all shadow-[0_0_20px_rgba(0,229,255,0.3)]"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ink)] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
                 >
-                  Launch Live Demo <ExternalLink size={16} />
+                  <span>Visit Live Site</span>
+                  <ExternalLink size={15} />
                 </a>
-              ) : project.inProgress ? (
-                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-xs font-semibold">
-                  ⚡ In Active Development
-                </span>
-              ) : null}
-
+              )}
               {project.ghLink && (
                 <a
                   href={project.ghLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/15 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-medium text-sm transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-strong)] bg-white/60 text-[var(--ink)] text-sm font-semibold hover:bg-[var(--ink)]/5 transition-colors"
                 >
-                  <Github size={16} /> View Source Code
+                  <Github size={15} />
+                  <span>View Source</span>
                 </a>
               )}
             </div>
           </div>
 
-          {/* Hero Banner / Screenshot */}
+          {/* Framed Preview */}
           {project.imgPath && (
-            <div className="rounded-3xl overflow-hidden border border-white/10 bg-black/40 mb-16 shadow-2xl">
-              <img 
-                src={project.imgPath} 
-                alt={`${project.title} user interface preview`} 
-                className="w-full max-h-[520px] object-cover"
-                loading="eager"
-              />
+            <div className="rounded-3xl p-2 bg-white/85 border border-[var(--border-hairline)] shadow-[var(--shadow-paper)] mb-12">
+              <div className="rounded-2xl overflow-hidden bg-[#18131A]">
+                <img
+                  src={project.imgPath}
+                  alt={`${project.title} interface preview`}
+                  className="w-full max-h-[520px] object-cover"
+                  loading="eager"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
             </div>
           )}
 
-          {/* Key Specifications Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            <div className="bg-[#151421]/80 backdrop-blur-md p-6 rounded-2xl border border-white/5">
-              <div className="text-xs uppercase font-semibold text-gray-400 tracking-wider mb-2">
-                Engineering Role
+          {/* Specification Strip */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 py-7 mb-14 border-y border-dashed border-[var(--border-hairline)]">
+            <div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-1">
+                Role
               </div>
-              <div className="text-lg font-bold text-white">
+              <div className="text-sm font-bold text-[var(--ink)]">
                 {project.details.role}
               </div>
             </div>
-
-            <div className="bg-[#151421]/80 backdrop-blur-md p-6 rounded-2xl border border-white/5">
-              <div className="text-xs uppercase font-semibold text-gray-400 tracking-wider mb-2">
-                Core Technologies
+            <div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-1">
+                Technologies
               </div>
-              <div className="flex flex-wrap gap-1.5 mt-1">
-                {project.details.toolsUsed.map((tool, idx) => (
-                  <span key={idx} className="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-xs text-[#00e5ff] font-medium">
-                    {tool}
-                  </span>
-                ))}
+              <div className="text-sm text-[var(--ink)]">
+                {project.details.toolsUsed.join(" · ")}
               </div>
             </div>
-
-            <div className="bg-[#151421]/80 backdrop-blur-md p-6 rounded-2xl border border-white/5">
-              <div className="text-xs uppercase font-semibold text-gray-400 tracking-wider mb-2">
-                Context / Benchmark
+            <div>
+              <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-1">
+                Context
               </div>
-              <div className="text-sm font-medium text-gray-200">
-                {project.clientOrContext || "Production Application"}
+              <div className="text-sm text-[var(--ink)]">
+                {project.clientOrContext || "Production Build"}
               </div>
             </div>
           </div>
 
-          {/* Deep Case Study Body */}
-          <div className="space-y-12 mb-20 text-gray-200 font-light">
-            
-            {/* The Problem */}
-            <section className="bg-[#151421]/60 backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5">
-              <div className="flex items-center gap-2.5 text-[#c770f0] text-xs font-bold uppercase tracking-wider mb-3">
-                <ShieldCheck size={16} /> 01. The Challenge & Context
-              </div>
-              <h2 className="text-2xl font-serif font-bold text-white mb-4">
-                The Problem
+          {/* Narrative */}
+          <div className="space-y-12 mb-16">
+            <section>
+              <p className="font-mono text-xs text-[var(--ink-soft)] mb-2">
+                01. The Problem
+              </p>
+              <h2 className="font-editorial text-2xl sm:text-3xl font-black text-[var(--ink)] mb-3">
+                What needed solving
               </h2>
-              <p className="text-base sm:text-lg leading-relaxed text-gray-300">
+              <p className="text-base text-[var(--ink-muted)] leading-relaxed">
                 {project.details.problem}
               </p>
             </section>
 
-            {/* The Solution */}
-            <section className="bg-[#151421]/60 backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5">
-              <div className="flex items-center gap-2.5 text-[#00e5ff] text-xs font-bold uppercase tracking-wider mb-3">
-                <Layers size={16} /> 02. The Solution
-              </div>
-              <h2 className="text-2xl font-serif font-bold text-white mb-4">
-                Engineering Approach & Implementation
+            <section className="pt-10 border-t border-dashed border-[var(--border-hairline)]">
+              <p className="font-mono text-xs text-[var(--ink-soft)] mb-2">
+                02. The Solution
+              </p>
+              <h2 className="font-editorial text-2xl sm:text-3xl font-black text-[var(--ink)] mb-3">
+                Engineering approach
               </h2>
-              <p className="text-base sm:text-lg leading-relaxed text-gray-300 mb-6">
+              <p className="text-base text-[var(--ink-muted)] leading-relaxed mb-6">
                 {project.details.solution}
               </p>
-
               {project.details.architecture && (
-                <div className="p-4 rounded-xl bg-black/40 border border-white/5 text-sm text-gray-300 leading-relaxed">
-                  <strong className="text-white block mb-1">Architecture Note:</strong>
-                  {project.details.architecture}
+                <div className="p-6 rounded-2xl bg-[var(--surface-card)] border border-white/85 shadow-[var(--shadow-paper)]">
+                  <div className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--accent)] mb-1.5">
+                    Architecture Note
+                  </div>
+                  <p className="text-sm text-[var(--ink-muted)] leading-relaxed">
+                    {project.details.architecture}
+                  </p>
                 </div>
               )}
             </section>
 
-            {/* Why These Tools */}
-            <section className="bg-[#151421]/60 backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5">
-              <div className="flex items-center gap-2.5 text-green-400 text-xs font-bold uppercase tracking-wider mb-3">
-                <Wrench size={16} /> 03. Technology Selection
-              </div>
-              <h2 className="text-2xl font-serif font-bold text-white mb-4">
-                Why These Specific Tools?
-              </h2>
-              <p className="text-base sm:text-lg leading-relaxed text-gray-300">
-                {project.details.whyTools}
+            <section className="pt-10 border-t border-dashed border-[var(--border-hairline)]">
+              <p className="font-mono text-xs text-[var(--ink-soft)] mb-2">
+                03. Key Deliverables
               </p>
-            </section>
-
-            {/* Key Features Breakdown */}
-            <section className="bg-[#151421]/60 backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5">
-              <div className="flex items-center gap-2.5 text-[#00e5ff] text-xs font-bold uppercase tracking-wider mb-3">
-                <Layers size={16} /> 04. Functional Capabilities
-              </div>
-              <h2 className="text-2xl font-serif font-bold text-white mb-6">
-                Key Features & Engineering Highlights
+              <h2 className="font-editorial text-2xl sm:text-3xl font-black text-[var(--ink)] mb-5">
+                What shipped
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {project.details.features.map((feat, idx) => (
-                  <div key={idx} className="flex items-start gap-3 bg-black/30 p-4 rounded-xl border border-white/5">
-                    <CheckCircle2 size={18} className="text-[#00e5ff] flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-gray-200">{feat}</span>
-                  </div>
+              <ul className="space-y-3">
+                {project.details.features.map((feat, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm sm:text-base">
+                    <Check size={17} className="text-[var(--accent)] shrink-0 mt-1" />
+                    <span className="text-[var(--ink)] leading-relaxed">{feat}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </section>
 
-            {/* Technical Challenges & Solutions */}
-            <section className="bg-[#151421]/60 backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/5">
-              <div className="flex items-center gap-2.5 text-yellow-400 text-xs font-bold uppercase tracking-wider mb-3">
-                <Zap size={16} /> 05. Obstacles Overcome
-              </div>
-              <h2 className="text-2xl font-serif font-bold text-white mb-4">
-                Key Engineering Challenge
-              </h2>
-              <p className="text-base sm:text-lg leading-relaxed text-gray-300">
-                {project.details.challenges}
+            <section className="paper-band rounded-3xl p-7 sm:p-9 border border-[var(--border-hairline)]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)] mb-2">
+                Outcome
               </p>
-            </section>
-
-            {/* The Result & Measurable Outcome */}
-            <section className="bg-gradient-to-r from-[#151421] to-[#1b1a2e] p-8 sm:p-10 rounded-3xl border border-[#00e5ff]/20 shadow-xl">
-              <div className="flex items-center gap-2.5 text-[#00e5ff] text-xs font-bold uppercase tracking-wider mb-3">
-                <CheckCircle2 size={16} /> 06. The Outcome
-              </div>
-              <h2 className="text-2xl font-serif font-bold text-white mb-4">
-                Business & Technical Result
-              </h2>
-              <p className="text-base sm:text-lg leading-relaxed text-white font-normal">
+              <p className="font-editorial text-xl sm:text-2xl font-bold text-[var(--ink)] leading-snug mb-6">
                 {project.details.result}
               </p>
+              <button
+                type="button"
+                onClick={() => openBooking(`Similar to ${project.title}`)}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ink)] text-white text-sm font-semibold hover:opacity-90 transition-opacity cursor-pointer"
+              >
+                <span>Build something similar</span>
+                <ArrowUpRight size={15} />
+              </button>
             </section>
-
           </div>
 
-          {/* Related Projects Section */}
-          <div className="mb-20">
-            <h2 className="text-2xl font-serif font-bold text-white mb-6">
-              Explore More Case Studies
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* More Selected Projects */}
+          <div className="pt-12 border-t border-dashed border-[var(--border-hairline)]">
+            <h3 className="font-editorial text-2xl font-black text-[var(--ink)] mb-6">
+              More selected work
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {relatedProjects.map((rel) => (
                 <Link
-                  key={rel.slug}
+                  key={rel.id}
                   to={`/projects/${rel.slug}`}
-                  className="bg-[#151421]/80 backdrop-blur-md p-6 rounded-2xl border border-white/5 hover:border-[#00e5ff]/40 transition-all group flex flex-col justify-between"
+                  className="group rounded-2xl bg-[var(--surface-card)]/90 border border-white/85 hover:border-[var(--accent)] p-5 transition-colors shadow-[var(--shadow-paper)]"
                 >
-                  <div>
-                    <div className="text-[11px] font-semibold text-[#00e5ff] uppercase tracking-wider mb-1">
-                      {rel.category}
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#00e5ff] transition-colors">
-                      {rel.title}
-                    </h3>
-                    <p className="text-gray-400 text-xs font-light line-clamp-2 mb-4">
-                      {rel.description}
-                    </p>
-                  </div>
-                  <div className="text-xs font-semibold text-white inline-flex items-center gap-1 pt-3 border-t border-white/5">
-                    View Case Study <ArrowRight size={12} className="text-[#00e5ff]" />
-                  </div>
+                  <p className="font-mono text-[11px] text-[var(--ink-soft)] mb-1.5">
+                    {rel.category}
+                  </p>
+                  <p className="font-editorial text-lg font-black text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors mb-1.5">
+                    {rel.title}
+                  </p>
+                  <p className="text-xs text-[var(--ink-muted)] line-clamp-2">
+                    {rel.description}
+                  </p>
                 </Link>
               ))}
             </div>
           </div>
-
-          {/* Bottom Conversion CTA */}
-          <div className="rounded-3xl bg-[#151421]/90 border border-white/10 p-8 sm:p-12 text-center">
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-4">
-              Need a Similar High-Performance Solution?
-            </h2>
-            <p className="text-gray-300 text-sm sm:text-base font-light mb-8 max-w-xl mx-auto">
-              Let's discuss how modern React engineering and clean architecture can elevate your product.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <ChromeButton to="/contact#top" className="!py-3 !px-8 text-sm uppercase tracking-wider font-bold">
-                Discuss Your Project
-              </ChromeButton>
-              <Link 
-                to="/services" 
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 hover:border-white/30 bg-white/5 text-white font-medium text-sm transition-all"
-              >
-                Explore Services & Capabilities <ArrowRight size={16} />
-              </Link>
-            </div>
-          </div>
-
         </div>
       </div>
     </>
