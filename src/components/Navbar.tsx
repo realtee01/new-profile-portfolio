@@ -39,7 +39,7 @@ const MOOD_OPTIONS: {
 ];
 
 const SPOTIFY_URL =
-  "https://open.spotify.com/playlist/0Ymw2v0SbK6btauZEL9lRz?si=a1dfa08a37954282";
+  "https://open.spotify.com/playlist/37i9dQZF1DXdl8xYyG9Dm1?si=Jar_msbbQ1Gg3i5-XXiH8g&utm_source=copy-link&pi=tJP3I8PnRL2h3";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
