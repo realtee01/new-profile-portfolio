@@ -194,17 +194,23 @@ export function DarkPortfolioCarousel({
                 type="button"
                 onClick={() => scrollByCard("left")}
                 aria-label="Scroll portfolio left"
-                className="w-11 h-11 rounded-full border border-white/35 bg-white/[0.04] hover:bg-white hover:text-[#18131A] text-white flex items-center justify-center transition-colors cursor-pointer"
+                className="group btn-anim-aesthetic-dark w-11 h-11 rounded-full border border-white/35 bg-white/[0.04] text-white flex items-center justify-center cursor-pointer"
               >
-                <ArrowLeft size={16} />
+                <ArrowLeft
+                  size={16}
+                  className="relative z-10 transition-transform duration-300 group-hover:-translate-x-0.5"
+                />
               </button>
               <button
                 type="button"
                 onClick={() => scrollByCard("right")}
                 aria-label="Scroll portfolio right"
-                className="w-11 h-11 rounded-full border border-white/35 bg-white/[0.04] hover:bg-white hover:text-[#18131A] text-white flex items-center justify-center transition-colors cursor-pointer"
+                className="group btn-anim-aesthetic-dark w-11 h-11 rounded-full border border-white/35 bg-white/[0.04] text-white flex items-center justify-center cursor-pointer"
               >
-                <ArrowRight size={16} />
+                <ArrowRight
+                  size={16}
+                  className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5"
+                />
               </button>
             </div>
           </div>

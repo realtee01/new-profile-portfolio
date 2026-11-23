@@ -69,16 +69,21 @@ export default function Footer() {
                 <button
                   type="button"
                   onClick={() => openBooking("Web App / MVP")}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ink)] text-white text-sm font-semibold hover:opacity-90 transition-opacity cursor-pointer whitespace-nowrap"
+                  className="group btn-anim-aesthetic inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ink)] text-white text-sm font-semibold cursor-pointer whitespace-nowrap"
                 >
-                  <span>Book a quick call</span>
-                  <span aria-hidden="true">→</span>
+                  <span className="relative z-10">Book a quick call</span>
+                  <span
+                    aria-hidden="true"
+                    className="relative z-10 inline-block transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
                 </button>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-strong)] bg-transparent text-[var(--ink)] text-sm font-semibold hover:bg-[var(--ink)]/5 transition-colors whitespace-nowrap"
+                  className="group btn-anim-aesthetic inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-strong)] bg-transparent text-[var(--ink)] text-sm font-semibold whitespace-nowrap"
                 >
-                  <span>Project brief form</span>
+                  <span className="relative z-10">Project brief form</span>
                 </Link>
               </div>
 
@@ -134,8 +139,8 @@ export default function Footer() {
 
             {/* Right Annotated Silhouette Sticker Portrait */}
             <div className="relative flex items-center justify-start lg:justify-end gap-2 self-start lg:self-end">
-              <div className="hidden sm:flex flex-col items-end -mr-4 -mt-14">
-                <span className="font-hand text-2xl font-semibold text-[var(--ink)] -rotate-6 whitespace-nowrap">
+              <div className="hidden sm:flex flex-col items-end -mr-6 -mt-24">
+                <span className="font-hand text-2xl sm:text-[26px] font-semibold text-[var(--ink)] -rotate-6 whitespace-nowrap">
                   yes, he replies to emails
                 </span>
                 <CurvedArrow direction="down-right" className="w-16 h-10 text-[var(--ink)] mt-0.5" />
@@ -143,7 +148,8 @@ export default function Footer() {
               <StickerPortrait
                 src={TOBI_PHOTOS.footerCutout}
                 alt="Tobiloba Akala - Available for projects"
-                className="w-56 h-68 sm:w-64 sm:h-76 shrink-0"
+                variant="precut"
+                className="w-72 h-[350px] sm:w-80 sm:h-[400px] lg:w-[360px] lg:h-[445px] shrink-0 hover:-translate-y-1 transition-transform duration-300"
                 tilt="2deg"
               />
             </div>

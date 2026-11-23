@@ -1,10 +1,13 @@
-const TOBI_PHOTO = "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_200/v1780309581/refined_profile_picture_keiybp.png";
+import { TOBI_AVATAR_URL } from "../ui/EditorialPrimitives";
+
+const TOBI_PHOTO = TOBI_AVATAR_URL;
 
 export interface BlogPostItem {
   id: string;
   title: string;
   date: string;
   readTime: string;
+  category?: "AI & Context" | "Supabase" | "Automation" | "Frontend & Web";
   tags: string[];
   excerpt: string;
   image: string;
@@ -18,10 +21,138 @@ export interface BlogPostItem {
 
 export const blogData: BlogPostItem[] = [
   {
+    id: "context-engineering-vs-prompt-engineering",
+    title: "Context Engineering Is the New Prompt Engineering: Designing Reliable AI Systems",
+    date: "November 14, 2026",
+    readTime: "8 min read",
+    category: "AI & Context",
+    tags: ["Context Engineering", "Prompt Engineering", "AI Systems", "LLMs"],
+    excerpt: "Why clever phrasing alone breaks in production—and how assembling the right state, retrieval chunks, tool schemas, and token budgets makes AI features actually dependable.",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: TOBI_PHOTO
+    },
+    content: [
+      "Early on in the LLM wave, everyone treated AI reliability like a copywriting puzzle. If a model hallucinated or missed an edge case, the instinct was to tack another ALL-CAPS sentence onto the system prompt. In real production apps, that breaks down fast. Most AI failures aren't wording bugs—they are context bugs.",
+      "Context engineering is the discipline of dynamically assembling everything the model sees at inference time: concise system instructions, relevant user history, freshly retrieved database records, strictly typed tool definitions, and clear output schemas. Instead of asking a model to guess from a vague paragraph, you engineer a clean, deterministic working memory for every single request.",
+      "One of the biggest mistakes teams make is context stuffing—dumping 40 pages of raw JSON, redundant chat turns, and stale docs into the window just because a model supports 200k+ tokens. Long, noisy context degrades reasoning accuracy, spikes latency, and quietly burns API budgets. High-signal, trimmed context consistently outperforms massive uncurated dumps.",
+      "In practice, I structure context pipelines in four layers: (1) stable role & guardrail rules, (2) compact session summary rather than raw transcript sprawl, (3) top-k verified records fetched just-in-time from Postgres or APIs, and (4) explicit refusal instructions for when required facts are missing. When the model is allowed to say 'I don't have enough data to verify that,' hallucination rates plummet.",
+      "Treat your context window like RAM in a traditional application. Decide deliberately what gets loaded in, what gets compressed, and what gets evicted—and suddenly your AI features behave like predictable software rather than a slot machine."
+    ]
+  },
+  {
+    id: "supabase-production-rls-edge-functions",
+    title: "Mastering Supabase in Production: Row-Level Security, Edge Functions & Realtime at Scale",
+    date: "October 26, 2026",
+    readTime: "7 min read",
+    category: "Supabase",
+    tags: ["Supabase", "PostgreSQL", "Row-Level Security", "Backend"],
+    excerpt: "Battle-tested Postgres patterns for shipping secure multi-user web apps on Supabase—from fast indexed RLS policies to webhook-safe Edge Functions.",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: TOBI_PHOTO
+    },
+    content: [
+      "Supabase makes it effortless to go from idea to a working Postgres database with Auth and Realtime in an afternoon. The trap is treating prototype shortcuts as production architecture—like leaving Row-Level Security (RLS) disabled or writing policies that silently trigger full table scans on every query.",
+      "Rule number one in production Supabase: enable RLS on every public table and index every column referenced inside your policies. Wrapping `auth.uid()` inside `(select auth.uid())` allows Postgres to evaluate the user ID once per statement instead of once per row, turning sluggish 800ms dashboard queries into sub-15ms responses.",
+      "For sensitive operations—verifying Paystack or Stripe webhooks, issuing signed URLs, or calling third-party AI APIs—move execution out of the client and into Supabase Edge Functions. Keep your service role key strictly server-side, validate incoming webhook signatures first, and write idempotent upsert logic so retried webhook deliveries never create duplicate orders or bookings.",
+      "When using Supabase Realtime for live booking calendars or collaborative dashboards, subscribe narrowly with column filters instead of listening to whole tables. Pair that with optimistic React UI updates and you get an app that feels instantaneously live while keeping database connection pools calm and predictable."
+    ]
+  },
+  {
+    id: "resilient-ai-automation-workflows",
+    title: "Building Resilient AI Automation Workflows That Don't Break at 2 AM",
+    date: "September 29, 2026",
+    readTime: "7 min read",
+    category: "Automation",
+    tags: ["AI Automation", "Workflows", "Full-Stack", "Reliability"],
+    excerpt: "How to pair deterministic code—queues, schema validation, and idempotency keys—with LLM reasoning steps to automate client ops safely.",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: TOBI_PHOTO
+    },
+    content: [
+      "Demo-day AI automations always look magical: an email arrives, an agent reads it, updates a CRM, drafts a quote, and schedules a calendar invite. Then you deploy it for a real business and a single malformed JSON response or rate-limit hiccup breaks the entire chain silently.",
+      "The secret to reliable AI automation is knowing where to use deterministic code and where to use an LLM. Never ask an LLM to compute invoice totals, check slot collisions, or format database keys—let TypeScript and SQL handle deterministic rules. Reserve the model strictly for fuzzy human tasks: classifying intent, extracting structured fields from messy WhatsApp or email messages, and drafting tailored replies.",
+      "Every LLM boundary in an automation pipeline should sit behind a strict runtime validator like Zod. If the model's output misses a required field or falls outside an allowed enum, trigger a targeted retry with the validation error fed back—or route the job to a human-in-the-loop review queue rather than corrupting downstream tables.",
+      "Finally, bake in idempotency keys and dead-letter logging from day one. When a webhook fires twice or an upstream API times out at 2 AM, an idempotent workflow recovers cleanly without double-emailing a client or charging a card twice."
+    ]
+  },
+  {
+    id: "structured-prompt-engineering-for-developers",
+    title: "Structured Prompt Engineering for Developers: Typed Schemas, Few-Shot Evals & Guardrails",
+    date: "August 21, 2026",
+    readTime: "6 min read",
+    category: "AI & Context",
+    tags: ["Prompt Engineering", "TypeScript", "AI Engineering", "Evals"],
+    excerpt: "Stop tweaking prompts by gut feel. Learn how to treat prompts like versioned API contracts backed by JSON schemas and lightweight regression evals.",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: TOBI_PHOTO
+    },
+    content: [
+      "Most developers write TypeScript with strict null checks and automated tests—then toss an unversioned, freeform prompt string into an API call and hope for the best. Good prompt engineering for software engineers looks a lot more like interface design than creative writing.",
+      "Start by separating concerns inside every prompt: (1) Role and domain boundaries, (2) Explicit constraints and edge-case rules, (3) Two to four high-leverage few-shot examples covering tricky inputs—not just happy paths—and (4) Enforced structured output via native JSON Schema / response schemas so your React frontend always receives predictable keys.",
+      "Whenever you fix a weird edge case in a prompt, save that exact failing input into a tiny JSON eval file in your repo. Even a 25-case regression suite run in CI catches 90% of accidental regressions when you refactor instructions or upgrade to a newer model checkpoint.",
+      "Clean, modular prompts paired with strict output schemas turn messy natural language into composable UI building blocks—letting you render smart filters, summaries, and inline suggestions without fragile regex parsing."
+    ]
+  },
+  {
+    id: "hybrid-search-supabase-pgvector-context",
+    title: "Hybrid Search with Supabase pgvector: Feeding Cleaner Context to AI Agents",
+    date: "July 11, 2026",
+    readTime: "8 min read",
+    category: "Supabase",
+    tags: ["Supabase", "pgvector", "Context Engineering", "RAG"],
+    excerpt: "Why pure vector similarity misses exact product codes and names—and how combining Postgres Full-Text Search with pgvector + RRF inside one RPC fixes retrieval.",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: TOBI_PHOTO
+    },
+    content: [
+      "Semantic vector search feels like magic when a user searches for 'fast movie discovery app' and finds 'CineScope' even without matching keywords. Yet pure vector search has a well-known blind spot: exact identifiers like error codes, SKUs, invoice numbers, and brand names often rank poorly because embeddings smooth over literal spelling.",
+      "Because Supabase runs on full PostgreSQL, you don't need a separate third-party vector database to solve this. You can store `pgvector` embeddings alongside a generated `tsvector` full-text search column in the exact same table—keeping permissions, joins, and RLS policies unified.",
+      "Using a single Postgres SQL function (RPC), you run both a keyword search (`websearch_to_tsquery`) and a cosine-distance vector query (`<=>`) in parallel, then merge their top candidates with Reciprocal Rank Fusion (RRF). RRF rewards documents that score well semantically AND contain exact keyword hits, without fragile score-normalization math.",
+      "Add metadata pre-filtering (like `tenant_id`, `category`, or `updated_at`) before scoring, and you get sub-50ms retrieval that hands your AI agent crisp, grounded citations every time—all from the same Supabase project already powering your app."
+    ]
+  },
+  {
+    id: "shipping-faster-with-ai-coding-agents",
+    title: "Shipping 3x Faster with AI Coding Agents Without Accumulating Technical Debt",
+    date: "May 30, 2026",
+    readTime: "6 min read",
+    category: "Automation",
+    tags: ["Tech", "AI Automation", "Developer Workflow", "TypeScript"],
+    excerpt: "Practical engineering habits—architecture briefs, repo context files, strict linting, and tight diffs—that keep AI-assisted codebases fast and maintainable.",
+    image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1000&auto=format&fit=crop",
+    author: {
+      name: "Tobiloba Akala",
+      role: "Web Developer & Frontend Specialist",
+      avatar: TOBI_PHOTO
+    },
+    content: [
+      "AI coding assistants have permanently changed how fast a solo engineer or small product team can ship. Scaffolding API routes, writing Tailwind layouts, and generating migration scripts now take minutes instead of hours. The catch? Without strong engineering guardrails, you can also generate three times as much bloated, inconsistent code.",
+      "The highest-leverage habit I've adopted is context-first delegation: before generating code, I maintain a crisp repository instruction file documenting naming conventions, folder boundaries, design tokens, and non-negotiable rules (like routing conventions and state boundaries). Giving the assistant clear architectural context immediately eliminates repetitive cleanup.",
+      "Second, work in small, verifiable slices. Instead of asking an agent to 'build the entire dashboard and auth flow,' break the work into schema definition, typed data layer, and composable UI primitives. Run `tsc --noEmit` and automated checks after every slice so type errors never compound across files.",
+      "AI amplifies the clarity of the engineer steering it. When you bring sharp product intuition, performance discipline, and strict code review standards to the table, AI agents become a genuine force multiplier for shipping polished software."
+    ]
+  },
+  {
     id: "optimizing-react-performance-nigerian-networks",
     title: "Optimizing React Web Applications for Variable Bandwidth Networks in Nigeria: Practical Strategies",
     date: "February 20, 2026",
     readTime: "6 min read",
+    category: "Frontend & Web",
     tags: ["Performance", "React", "Web Development Nigeria", "Core Web Vitals"],
     excerpt: "Discover practical frontend techniques to ensure your React applications load in under 1.5 seconds on 3G/4G cellular networks across Lagos and beyond.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",

@@ -6,6 +6,7 @@ interface BlogCardProps {
   title: string;
   date: string;
   readTime?: string;
+  topic?: string;
   excerpt: string;
   image: string;
   link: string;
@@ -15,6 +16,7 @@ export default function BlogCard({
   title,
   date,
   readTime,
+  topic,
   excerpt,
   image,
   link,
@@ -41,10 +43,17 @@ export default function BlogCard({
       </div>
 
       <div className="px-3.5 pt-4 pb-3 flex flex-col flex-grow">
-        <p className="font-mono text-[11px] text-[var(--ink-soft)] mb-2.5 tabular-nums">
-          {date}
-          {readTime ? ` · ${readTime}` : ""}
-        </p>
+        <div className="flex items-center justify-between gap-2 mb-2.5">
+          <p className="font-mono text-[11px] text-[var(--ink-soft)] tabular-nums">
+            {date}
+            {readTime ? ` · ${readTime}` : ""}
+          </p>
+          {topic && (
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-[var(--accent)] shrink-0">
+              {topic}
+            </span>
+          )}
+        </div>
 
         <h2 className="font-editorial text-xl font-black text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors mb-2.5 leading-snug line-clamp-2">
           {title}

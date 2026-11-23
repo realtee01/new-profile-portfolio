@@ -216,18 +216,21 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
               <Link
                 to="/projects"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ink)] text-white text-sm font-semibold hover:opacity-90 transition-opacity shadow-sm whitespace-nowrap shrink-0"
+                className="group btn-anim-blue inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ink)] text-white text-sm font-semibold shadow-sm whitespace-nowrap shrink-0"
               >
-                <span>See the work</span>
-                <ArrowRight size={15} />
+                <span className="relative z-10">See the work</span>
+                <ArrowRight
+                  size={15}
+                  className="relative z-10 transition-transform duration-300 group-hover:translate-x-1"
+                />
               </Link>
 
               <button
                 type="button"
                 onClick={() => openBooking("Web App / MVP")}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-strong)] bg-transparent text-[var(--ink)] text-sm font-semibold hover:bg-[var(--ink)]/5 transition-colors cursor-pointer whitespace-nowrap shrink-0"
+                className="group btn-anim-blue inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-strong)] bg-transparent text-[var(--ink)] text-sm font-semibold cursor-pointer whitespace-nowrap shrink-0"
               >
-                <span>Book a call</span>
+                <span className="relative z-10">Book a call</span>
               </button>
             </div>
           </motion.div>
@@ -326,21 +329,24 @@ export default function Home() {
               href={SPOTIFY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group w-full max-w-[270px] bg-[var(--surface-card)]/90 border-[1.5px] border-[var(--border-strong)] rounded-2xl p-3 flex items-center gap-3.5 shadow-[var(--shadow-paper)] hover:-translate-y-0.5 transition-transform"
+              className="group btn-anim-blue w-full max-w-[270px] bg-[var(--surface-card)]/90 border-[1.5px] border-[var(--border-strong)] rounded-2xl p-3 flex items-center gap-3.5 shadow-[var(--shadow-paper)]"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#18131A] flex items-center justify-center text-[#c770f0] shrink-0 relative overflow-hidden">
+              <div className="relative z-10 w-12 h-12 rounded-xl bg-[#18131A] group-hover:bg-white/20 flex items-center justify-center text-[#c770f0] group-hover:text-white shrink-0 overflow-hidden transition-colors duration-300">
                 <Disc3 className={`w-7 h-7 ${reduceMotion ? "" : "animate-vinyl"}`} />
               </div>
-              <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--accent)]">
+              <div className="relative z-10 min-w-0 flex-1">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--accent)] group-hover:text-sky-200 transition-colors duration-300">
                   Now Playing
                 </p>
-                <p className="text-sm font-bold text-[var(--ink)] truncate">
+                <p className="text-sm font-bold text-[var(--ink)] group-hover:text-white truncate transition-colors duration-300">
                   Coding &amp; Focus Mode
                 </p>
-                <p className="text-[11px] text-[var(--ink-muted)] truncate flex items-center gap-1">
+                <p className="text-[11px] text-[var(--ink-muted)] group-hover:text-white/85 truncate flex items-center gap-1 transition-colors duration-300">
                   <span>Spotify · Tobi&apos;s rotation</span>
-                  <ExternalLink size={10} className="opacity-70 group-hover:opacity-100" />
+                  <ExternalLink
+                    size={10}
+                    className="opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
+                  />
                 </p>
               </div>
             </a>

@@ -15,8 +15,8 @@ export const TOBI_PHOTOS = {
   // Width-capped transparent WebP/auto cutout — senior authority cover for About "What I do"
   aboutCutout:
     "https://res.cloudinary.com/dw8jtwbka/image/upload/e_trim,w_560,c_limit,f_auto,q_auto:good/v1795377503/photo_2026-11-22_20-17-51-removebg-preview_gvb1xf.png",
-  // 32KB Retina WebP studio transparent cutout of Tobi's charcoal suit portrait — cover for Footer CTA
-  footerCutout: "/assets/tobi-footer-hq.webp",
+  // 51KB Retina WebP studio cutout with thick smooth die-cut warm-white paper border — cover for Footer CTA
+  footerCutout: "/assets/tobi-footer-hq.webp?v=2",
   // Lightweight 280px balcony portrait — ideal for framed avatars & quick-nav thumbnails
   balcony:
     "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto:good,w_280,c_limit/v1795377539/photo_2026-11-22_20-17-48_huii8y.jpg",
@@ -166,7 +166,7 @@ export function StickerPortrait({
   alt?: string;
   className?: string;
   imgClassName?: string;
-  variant?: "classic" | "duo-outline";
+  variant?: "classic" | "duo-outline" | "precut";
   tilt?: string;
   priority?: boolean;
 }) {
@@ -210,11 +210,13 @@ export function StickerPortrait({
           src={src}
           alt={alt}
           priority={priority}
-          maxWidth={660}
+          maxWidth={700}
           wrapperClassName="w-full h-full flex items-end justify-center"
           placeholderClassName="bg-transparent"
           onError={() => setFailed(true)}
-          className={`block sticker-outline-white ${imgClassName}`}
+          className={`block ${
+            variant === "precut" ? "sticker-precut-lift" : "sticker-outline-white"
+          } ${imgClassName}`}
         />
       )}
     </div>
