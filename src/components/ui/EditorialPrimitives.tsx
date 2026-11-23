@@ -1,24 +1,25 @@
 import { useId, useState } from "react";
+import { LazyImage } from "./LazyMedia";
 
 /**
  * Curated portrait & transparent background-removed cutout collection for Tobiloba Akala.
- * Uses Cloudinary e_trim on transparent PNGs so empty headroom is trimmed cleanly
- * around Tobi's silhouette for razor-sharp die-cut sticker outlines.
+ * Uses ultra-lightweight WebP assets (32KB–76KB) and width-capped Cloudinary f_auto transforms
+ * for instant mobile loading and silky 60fps scrolling.
  */
 export const TOBI_PHOTOS = {
-  // Ultra-high-resolution studio remastered crimson native attire + fila cutout — centerpiece for Home Hero
-  heroCutout: "/assets/tobi-hero-hq.png",
-  // Full-body standing shades & dark navy shirt cutout — editorial cover for Work page
+  // 76KB Retina WebP studio remastered crimson native attire + fila cutout — centerpiece for Home Hero
+  heroCutout: "/assets/tobi-hero-hq.webp",
+  // Width-capped transparent WebP/auto cutout — editorial cover for Work page
   workCutout:
-    "https://res.cloudinary.com/dw8jtwbka/image/upload/e_trim,f_png,q_auto/v1795377503/photo_2026-11-22_20-17-48__2_-removebg-preview_v3a08d.png",
-  // Crisp white shirt & red tie smiling cutout — senior authority cover for About "What I do"
+    "https://res.cloudinary.com/dw8jtwbka/image/upload/e_trim,w_560,c_limit,f_auto,q_auto:good/v1795377503/photo_2026-11-22_20-17-48__2_-removebg-preview_v3a08d.png",
+  // Width-capped transparent WebP/auto cutout — senior authority cover for About "What I do"
   aboutCutout:
-    "https://res.cloudinary.com/dw8jtwbka/image/upload/e_trim,f_png,q_auto/v1795377503/photo_2026-11-22_20-17-51-removebg-preview_gvb1xf.png",
-  // Studio-quality transparent cutout of Tobi's tailored charcoal suit portrait — cover for Footer CTA
-  footerCutout: "/assets/tobi-footer-hq.png",
-  // Lifestyle balcony portrait in shades — ideal for framed avatars & quick-nav thumbnails
+    "https://res.cloudinary.com/dw8jtwbka/image/upload/e_trim,w_560,c_limit,f_auto,q_auto:good/v1795377503/photo_2026-11-22_20-17-51-removebg-preview_gvb1xf.png",
+  // 32KB Retina WebP studio transparent cutout of Tobi's charcoal suit portrait — cover for Footer CTA
+  footerCutout: "/assets/tobi-footer-hq.webp",
+  // Lightweight 280px balcony portrait — ideal for framed avatars & quick-nav thumbnails
   balcony:
-    "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_600/v1795377539/photo_2026-11-22_20-17-48_huii8y.jpg",
+    "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto:good,w_280,c_limit/v1795377539/photo_2026-11-22_20-17-48_huii8y.jpg",
 };
 
 export const TOBI_PORTRAIT_URL = TOBI_PHOTOS.heroCutout;
@@ -159,6 +160,7 @@ export function StickerPortrait({
   imgClassName = "w-full h-full object-contain object-bottom",
   variant = "classic",
   tilt = "0deg",
+  priority = false,
 }: {
   src?: string;
   alt?: string;
@@ -166,6 +168,7 @@ export function StickerPortrait({
   imgClassName?: string;
   variant?: "classic" | "duo-outline";
   tilt?: string;
+  priority?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
 
@@ -190,27 +193,29 @@ export function StickerPortrait({
       {variant === "duo-outline" ? (
         <div className="w-full h-full flex items-end justify-center sticker-outline-cyan">
           <div className="w-full h-full flex items-end justify-center sticker-outline-violet">
-            <img
+            <LazyImage
               src={src}
               alt={alt}
-              referrerPolicy="no-referrer"
+              priority={priority}
+              maxWidth={560}
+              wrapperClassName="w-full h-full flex items-end justify-center"
+              placeholderClassName="bg-transparent"
               onError={() => setFailed(true)}
               className={`block sticker-outline-white ${imgClassName}`}
             />
           </div>
         </div>
       ) : (
-        <div className="w-full h-full flex items-end justify-center sticker-lift">
-          <div className="w-full h-full flex items-end justify-center sticker-outline-white">
-            <img
-              src={src}
-              alt={alt}
-              referrerPolicy="no-referrer"
-              onError={() => setFailed(true)}
-              className={`block sticker-outline-white ${imgClassName}`}
-            />
-          </div>
-        </div>
+        <LazyImage
+          src={src}
+          alt={alt}
+          priority={priority}
+          maxWidth={660}
+          wrapperClassName="w-full h-full flex items-end justify-center"
+          placeholderClassName="bg-transparent"
+          onError={() => setFailed(true)}
+          className={`block sticker-outline-white ${imgClassName}`}
+        />
       )}
     </div>
   );

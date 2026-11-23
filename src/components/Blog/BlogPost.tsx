@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import SEOHead from "../SEO/SEOHead";
 import { TOBI_AVATAR_URL } from "../ui/EditorialPrimitives";
+import { LazyImage } from "../ui/LazyMedia";
 import { useTheme } from "../../context/ThemeContext";
 
 export default function BlogPost() {
@@ -83,12 +84,14 @@ export default function BlogPost() {
             </h1>
 
             <div className="flex items-center gap-3.5 pb-7 mb-8 border-b border-dashed border-[var(--border-hairline)]">
-              <img
-                src={blog.author?.avatar || TOBI_AVATAR_URL}
-                alt={blog.author?.name || "Tobiloba Akala"}
-                className="w-11 h-11 rounded-full object-cover object-top border border-[var(--border-hairline)]"
-                referrerPolicy="no-referrer"
-              />
+              <div className="w-11 h-11 rounded-full overflow-hidden border border-[var(--border-hairline)] shrink-0">
+                <LazyImage
+                  src={blog.author?.avatar || TOBI_AVATAR_URL}
+                  alt={blog.author?.name || "Tobiloba Akala"}
+                  maxWidth={120}
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
               <div>
                 <div className="text-sm font-bold text-[var(--ink)]">
                   {blog.author?.name || "Tobiloba Akala"}
@@ -101,11 +104,12 @@ export default function BlogPost() {
 
             <div className="rounded-3xl p-2 bg-white/85 border border-[var(--border-hairline)] shadow-[var(--shadow-paper)] mb-10">
               <div className="aspect-[16/9] rounded-2xl overflow-hidden bg-[var(--bg-band)]/45">
-                <img
+                <LazyImage
                   src={blog.image}
                   alt={blog.title}
+                  priority
+                  maxWidth={960}
                   className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
                 />
               </div>
             </div>
@@ -128,12 +132,14 @@ export default function BlogPost() {
             )}
 
             <div className="paper-band border border-[var(--border-hairline)] rounded-3xl p-6 sm:p-8 mb-14 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-              <img
-                src={TOBI_AVATAR_URL}
-                alt="Tobiloba Akala"
-                className="w-16 h-16 rounded-2xl object-cover object-top border-2 border-white shrink-0"
-                referrerPolicy="no-referrer"
-              />
+              <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white shrink-0">
+                <LazyImage
+                  src={TOBI_AVATAR_URL}
+                  alt="Tobiloba Akala"
+                  maxWidth={160}
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
               <div>
                 <h3 className="font-editorial font-black text-xl text-[var(--ink)] mb-1">
                   Written by Tobiloba Akala

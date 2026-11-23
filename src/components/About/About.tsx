@@ -229,6 +229,7 @@ export default function About() {
 
               {/* Central Silhouette Sticker Portrait */}
               <StickerPortrait
+                priority
                 src={TOBI_PHOTOS.aboutCutout}
                 alt="Tobiloba Akala - What I do"
                 className="w-[290px] h-[370px] sm:w-[340px] sm:h-[430px]"

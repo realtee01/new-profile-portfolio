@@ -4,6 +4,7 @@ import { X, ArrowUpRight, ExternalLink, Github, BookOpen, Check } from "lucide-r
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import { SparkleMark } from "../ui/EditorialPrimitives";
+import { LazyImage } from "../ui/LazyMedia";
 
 export interface ProjectDetailsData {
   industry?: string;
@@ -151,11 +152,12 @@ export default function ProjectModal({
               {/* Rich Media Hero Preview */}
               {imgPath && !imgFailed ? (
                 <div className="rounded-2xl overflow-hidden border border-[var(--border-hairline)] bg-[var(--bg-paper)] aspect-[16/8]">
-                  <img
+                  <LazyImage
                     src={imgPath}
                     alt={`${title} interface preview`}
+                    priority
+                    maxWidth={960}
                     className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
                     onError={() => setImgFailed(true)}
                   />
                 </div>

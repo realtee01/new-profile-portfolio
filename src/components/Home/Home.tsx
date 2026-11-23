@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight, Disc3, ExternalLink } from "lucide-react";
@@ -11,6 +11,7 @@ import {
   StickerPortrait,
   TOBI_PHOTOS,
 } from "../ui/EditorialPrimitives";
+import { LazyImage, LazyVideo } from "../ui/LazyMedia";
 import {
   BrandStickerMarquee,
   BrandsAndContactSection,
@@ -50,22 +51,9 @@ export default function Home() {
   const { openBooking, reduceMotion, visitorName, reopenWelcome, mood } = useTheme();
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [videoFailed, setVideoFailed] = useState(false);
-  const [previewImgError, setPreviewImgError] = useState(false);
-  const featuredVideoRef = useRef<HTMLVideoElement>(null);
 
   // CineScope is guaranteed to be index 0 per project order rule
   const featuredProject = projectsData[0];
-
-  // Pause or resume the looping Featured Build preview video when Reduce Motion toggles
-  useEffect(() => {
-    const vid = featuredVideoRef.current;
-    if (!vid) return;
-    if (reduceMotion) {
-      vid.pause();
-    } else {
-      vid.play().catch(() => {});
-    }
-  }, [reduceMotion]);
 
   const homeSchema = [
     {
@@ -256,6 +244,7 @@ export default function Home() {
               alt="Tobiloba Akala - Frontend & Full-Stack Web Developer"
               className="w-[300px] h-[390px] sm:w-[350px] sm:h-[455px] lg:w-[390px] lg:h-[495px] hover:-translate-y-1 transition-transform duration-300"
               tilt="-0.8deg"
+              priority
             />
           </motion.div>
 
@@ -277,34 +266,28 @@ export default function Home() {
                 <div className="relative aspect-[9/11] rounded-[1.25rem] overflow-hidden bg-[#1e1824] flex flex-col justify-between p-3.5">
                   {!videoFailed ? (
                     <>
-                      <video
-                        ref={featuredVideoRef}
+                      <LazyVideo
                         src={CINESCOPE_PREVIEW_VIDEO}
                         poster={featuredProject.imgPath}
-                        autoPlay={!reduceMotion}
-                        muted
-                        playsInline
-                        loop
-                        preload="auto"
-                        onTimeUpdate={(e) => {
-                          if (e.currentTarget.currentTime >= 5.5) {
-                            e.currentTarget.currentTime = 0;
-                            e.currentTarget.play().catch(() => {});
-                          }
-                        }}
+                        eager
+                        reduceMotion={reduceMotion}
+                        loopEndSeconds={5.5}
                         onError={() => setVideoFailed(true)}
                         className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#120d16]/95 via-[#120d16]/45 via-45% to-[#120d16]/20" />
                     </>
-                  ) : !previewImgError && featuredProject.imgPath ? (
+                  ) : featuredProject.imgPath ? (
                     <>
-                      <img
+                      <LazyImage
                         src={featuredProject.imgPath}
                         alt={`${featuredProject.title} Featured Build`}
-                        referrerPolicy="no-referrer"
-                        onError={() => setPreviewImgError(true)}
-                        className="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-500"
+                        maxWidth={480}
+                        wrapperClassName="absolute inset-0 w-full h-full"
+                        className="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-500"
+                        fallback={
+                          <div className="absolute inset-0 bg-gradient-to-br from-[#2a1834] via-[#18131a] to-[#0f2930]" />
+                        }
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#120d16] via-[#120d16]/45 via-45% to-transparent" />
                     </>
@@ -382,10 +365,12 @@ export default function Home() {
                   className="w-12 h-12 rounded-xl overflow-hidden shrink-0 flex items-center justify-center border border-black/5"
                   style={{ backgroundColor: card.thumbBg }}
                 >
-                  <img
+                  <LazyImage
                     src={card.thumb}
                     alt={card.title}
-                    referrerPolicy="no-referrer"
+                    maxWidth={160}
+                    wrapperClassName="w-full h-full"
+                    placeholderClassName="bg-black/[0.04]"
                     className={
                       card.fit === "contain"
                         ? "w-full h-full object-contain p-1"

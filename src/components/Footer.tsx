@@ -26,7 +26,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative z-10 mt-12">
+    <footer className="cv-auto relative z-10 mt-12">
       {/* Organic Torn-Paper Edge Transition */}
       <TornEdge fill="var(--bg-band)" />
 

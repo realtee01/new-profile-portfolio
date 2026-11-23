@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
+import { LazyImage } from "../ui/LazyMedia";
 
 interface BlogCardProps {
   title: string;
@@ -19,30 +19,25 @@ export default function BlogCard({
   image,
   link,
 }: BlogCardProps) {
-  const [imgFailed, setImgFailed] = useState(false);
-
   return (
     <Link
       to={link}
       className="group bg-[var(--surface-card)]/90 hover:bg-[var(--surface-card)] border border-white/85 hover:border-[var(--accent)]/60 rounded-[1.5rem] overflow-hidden shadow-[var(--shadow-paper)] transition-all duration-200 hover:-translate-y-1 flex flex-col h-full p-2.5"
     >
       <div className="overflow-hidden aspect-[16/10] rounded-[1.1rem] bg-[var(--bg-band)]/45">
-        {!imgFailed ? (
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
-            referrerPolicy="no-referrer"
-            loading="lazy"
-            onError={() => setImgFailed(true)}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center p-5 text-center">
-            <span className="font-editorial text-xl font-black text-[var(--ink)]">
-              {title}
-            </span>
-          </div>
-        )}
+        <LazyImage
+          src={image}
+          alt={title}
+          maxWidth={640}
+          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+          fallback={
+            <div className="w-full h-full flex items-center justify-center p-5 text-center">
+              <span className="font-editorial text-xl font-black text-[var(--ink)]">
+                {title}
+              </span>
+            </div>
+          }
+        />
       </div>
 
       <div className="px-3.5 pt-4 pb-3 flex flex-col flex-grow">

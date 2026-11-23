@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import BookingModal from "./components/Booking/BookingModal";
 import WelcomeNameModal from "./components/Welcome/WelcomeNameModal";
 import Home from "./components/Home/Home";
 import { ThemeProvider } from "./context/ThemeContext";
+
+const BookingModal = lazy(() => import("./components/Booking/BookingModal"));
 
 const About = lazy(() => import("./components/About/About"));
 const Projects = lazy(() => import("./components/Projects/Projects"));
@@ -35,7 +36,9 @@ export default function App() {
           <Navbar />
           <ScrollToTop />
           <WelcomeNameModal />
-          <BookingModal />
+          <Suspense fallback={null}>
+            <BookingModal />
+          </Suspense>
           <main className="flex-grow">
             <Suspense fallback={<PageLoadingFallback />}>
               <Routes>

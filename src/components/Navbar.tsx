@@ -55,7 +55,10 @@ export default function Navbar() {
   }, [location.pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 18);
+    const onScroll = () => {
+      const next = window.scrollY > 18;
+      setScrolled((prev) => (prev === next ? prev : next));
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -91,8 +94,8 @@ export default function Navbar() {
         aria-label="Primary Navigation"
         className={`flex items-center gap-2 sm:gap-2.5 pl-2.5 pr-2 py-1.5 rounded-full border transition-all duration-300 ${
           scrolled || menuOpen
-            ? "bg-[var(--surface-card)]/95 border-[var(--border-hairline)] shadow-[0_14px_34px_-10px_rgba(24,19,26,0.22)] backdrop-blur-md"
-            : "bg-[var(--surface-card)]/85 border-white/80 shadow-[0_10px_28px_-10px_rgba(24,19,26,0.16)] backdrop-blur-md"
+            ? "bg-[var(--surface-card)]/96 md:bg-[var(--surface-card)]/92 border-[var(--border-hairline)] shadow-[0_14px_34px_-10px_rgba(24,19,26,0.22)] md:backdrop-blur-md"
+            : "bg-[var(--surface-card)]/94 md:bg-[var(--surface-card)]/85 border-white/80 shadow-[0_10px_28px_-10px_rgba(24,19,26,0.16)] md:backdrop-blur-md"
         }`}
       >
         {/* Zone 1: Brand Wordmark + Preserved TA Logo */}
@@ -162,6 +165,10 @@ export default function Navbar() {
             <img
               src={TOBI_AVATAR_URL}
               alt="Tobi vinyl avatar"
+              width={20}
+              height={20}
+              loading="eager"
+              decoding="async"
               referrerPolicy="no-referrer"
               className="w-5 h-5 rounded-full object-cover object-top"
             />

@@ -15,13 +15,13 @@ import {
   BrandStickerMarquee,
   ReferencesSection,
 } from "../Editorial/EditorialSections";
+import { LazyImage } from "../ui/LazyMedia";
 
 const CATEGORIES = ["All", "Web App", "Landing Page", "Web3", "E-commerce"] as const;
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [failedImgs, setFailedImgs] = useState<Record<number, boolean>>({});
   const { openBooking, reduceMotion, visitorName } = useTheme();
 
   // CineScope remains index 0 in projectsData and first in "All" & "Web App"
@@ -145,6 +145,7 @@ export default function Projects() {
                 variant="duo-outline"
                 className="w-[270px] h-[390px] sm:w-[310px] sm:h-[440px]"
                 tilt="1.5deg"
+                priority
               />
             </div>
           </div>
@@ -195,18 +196,16 @@ export default function Projects() {
               {filteredProjects.map((project, index) => {
                 const indexLabel = String(index + 1).padStart(2, "0");
                 const totalLabel = String(filteredProjects.length).padStart(2, "0");
-                const imgBroken = failedImgs[project.id];
 
                 return (
                   <motion.article
-                    layout={!reduceMotion}
                     key={project.id}
-                    initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                    initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    exit={reduceMotion ? undefined : { opacity: 0, y: 12 }}
-                    viewport={{ once: true, amount: 0.12 }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="scroll-mt-28"
+                    exit={reduceMotion ? undefined : { opacity: 0 }}
+                    viewport={{ once: true, amount: 0.08 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className="scroll-mt-28 cv-auto"
                   >
                     {/* Header Row: 01/19 + Bold Editorial Title */}
                     <div className="flex flex-wrap items-baseline justify-between gap-4 mb-5">
@@ -241,30 +240,25 @@ export default function Projects() {
                           aria-label={`Inspect ${project.title} case study`}
                         >
                           <div className="relative aspect-[16/11] rounded-[1.1rem] overflow-hidden bg-[#18131A]">
-                            {project.imgPath && !imgBroken ? (
-                              <img
-                                src={project.imgPath}
-                                alt={`${project.title} interface preview`}
-                                referrerPolicy="no-referrer"
-                                loading={index < 2 ? "eager" : "lazy"}
-                                onError={() =>
-                                  setFailedImgs((prev) => ({
-                                    ...prev,
-                                    [project.id]: true,
-                                  }))
-                                }
-                                className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
-                              />
-                            ) : (
-                              <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#231929] to-[#12161f] text-white">
-                                <span className="font-mono text-xs text-[#00e5ff] mb-2">
-                                  {project.category}
-                                </span>
-                                <span className="font-editorial text-2xl font-black">
-                                  {project.title}
-                                </span>
-                              </div>
-                            )}
+                            <LazyImage
+                              src={project.imgPath}
+                              alt={`${project.title} interface preview`}
+                              priority={index === 0}
+                              maxWidth={720}
+                              wrapperClassName="w-full h-full"
+                              placeholderClassName="bg-[#231c29]"
+                              className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
+                              fallback={
+                                <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#231929] to-[#12161f] text-white">
+                                  <span className="font-mono text-xs text-[#00e5ff] mb-2">
+                                    {project.category}
+                                  </span>
+                                  <span className="font-editorial text-2xl font-black">
+                                    {project.title}
+                                  </span>
+                                </div>
+                              }
+                            />
 
                             {/* Hover Reveal Prompt */}
                             <div className="absolute inset-0 bg-[#18131A]/0 group-hover:bg-[#18131A]/35 transition-colors flex items-end justify-end p-4">
@@ -277,9 +271,9 @@ export default function Projects() {
                         </button>
                       </div>
 
-                      {/* Translucent Frosted Editorial Brief Card (Matches Refs 3 & 5) */}
+                      {/* Crisp Editorial Brief Card (Zero mobile backdrop-blur scroll overhead) */}
                       <div className="md:col-span-6">
-                        <div className="rounded-2xl bg-white/55 backdrop-blur-sm border border-white/75 p-6 sm:p-7 space-y-4">
+                        <div className="rounded-2xl bg-white/75 border border-white/85 p-6 sm:p-7 space-y-4">
                           <div>
                             <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ink-soft)] mb-1">
                               {project.category} · The Brief

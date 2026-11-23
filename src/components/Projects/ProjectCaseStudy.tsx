@@ -4,6 +4,7 @@ import SEOHead from "../SEO/SEOHead";
 import { projectsData } from "../../data/projectsData";
 import { useTheme } from "../../context/ThemeContext";
 import { SparkleMark } from "../ui/EditorialPrimitives";
+import { LazyImage } from "../ui/LazyMedia";
 
 export default function ProjectCaseStudy() {
   const { slug } = useParams<{ slug: string }>();
@@ -117,13 +118,13 @@ export default function ProjectCaseStudy() {
           {/* Framed Preview */}
           {project.imgPath && (
             <div className="rounded-3xl p-2 bg-white/85 border border-[var(--border-hairline)] shadow-[var(--shadow-paper)] mb-12">
-              <div className="rounded-2xl overflow-hidden bg-[#18131A]">
-                <img
+              <div className="rounded-2xl overflow-hidden bg-[#18131A] aspect-[16/9]">
+                <LazyImage
                   src={project.imgPath}
                   alt={`${project.title} interface preview`}
-                  className="w-full max-h-[520px] object-cover"
-                  loading="eager"
-                  referrerPolicy="no-referrer"
+                  priority
+                  maxWidth={960}
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>

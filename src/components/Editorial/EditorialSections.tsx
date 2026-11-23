@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Download, Film, Play } from "lucide-react";
 import { ProjectItem, projectsData } from "../../data/projectsData";
 import { useTheme } from "../../context/ThemeContext";
 import { RESUME_PDF_URL, SparkleMark, TornEdge } from "../ui/EditorialPrimitives";
+import { LazyImage, LazyVideo } from "../ui/LazyMedia";
 
 export const CINESCOPE_PREVIEW_VIDEO =
   "https://res.cloudinary.com/dw8jtwbka/video/upload/v1795386063/Screen_Recording_2026-11-22_231714_yvo1g3.mp4";
@@ -152,7 +153,6 @@ export function DarkPortfolioCarousel({
   onSelectProject: (project: ProjectItem) => void;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [failedImgs, setFailedImgs] = useState<Record<number, boolean>>({});
   const { reduceMotion } = useTheme();
 
   // CineScope is guaranteed index 0 in projectsData
@@ -216,7 +216,6 @@ export function DarkPortfolioCarousel({
           >
             {showcaseProjects.map((project, index) => {
               const isCinescope = index === 0;
-              const imgBroken = failedImgs[project.id];
 
               return (
                 <button
@@ -226,37 +225,28 @@ export function DarkPortfolioCarousel({
                   aria-label={`Inspect ${project.title} case study`}
                   className="group relative w-[230px] sm:w-[260px] lg:w-[272px] aspect-[9/14] rounded-[1.35rem] overflow-hidden shrink-0 snap-start bg-[#17151b] border border-white/12 text-left cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
-                  {/* Visual Media: CineScope gets crisp looping preview video, others get full-bleed cover */}
+                  {/* Visual Media: CineScope uses viewport-aware LazyVideo; others use IntersectionObserver LazyImage */}
                   {isCinescope && !reduceMotion ? (
-                    <video
+                    <LazyVideo
                       src={CINESCOPE_PREVIEW_VIDEO}
                       poster={project.imgPath}
-                      autoPlay
-                      muted
-                      playsInline
-                      loop
-                      preload="metadata"
-                      onTimeUpdate={(e) => {
-                        if (e.currentTarget.currentTime >= 5.5) {
-                          e.currentTarget.currentTime = 0;
-                          e.currentTarget.play().catch(() => {});
-                        }
-                      }}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : project.imgPath && !imgBroken ? (
-                    <img
-                      src={project.imgPath}
-                      alt={`${project.title} showcase preview`}
-                      referrerPolicy="no-referrer"
-                      loading={index < 4 ? "eager" : "lazy"}
-                      onError={() =>
-                        setFailedImgs((prev) => ({ ...prev, [project.id]: true }))
-                      }
+                      eager={false}
+                      reduceMotion={reduceMotion}
+                      loopEndSeconds={5.5}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#2f1c3d] via-[#1a1622] to-[#0f2b33]" />
+                    <LazyImage
+                      src={project.imgPath}
+                      alt={`${project.title} showcase preview`}
+                      maxWidth={520}
+                      wrapperClassName="absolute inset-0 w-full h-full"
+                      placeholderClassName="bg-[#231f2a]"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fallback={
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#2f1c3d] via-[#1a1622] to-[#0f2b33]" />
+                      }
+                    />
                   )}
 
                   {/* Measured Contrast Scrim */}
@@ -359,7 +349,7 @@ export function BrandStickerMarquee() {
  */
 export function ByTheNumbersShowcase() {
   return (
-    <section className="py-12 sm:py-20 px-5 sm:px-8 lg:px-12 overflow-x-clip">
+    <section className="cv-auto py-12 sm:py-20 px-5 sm:px-8 lg:px-12 overflow-x-clip">
       <div className="max-w-6xl mx-auto">
         {/* Kicker + Massive Editorial Headline */}
         <div className="max-w-3xl mb-10 sm:mb-14">
@@ -593,7 +583,7 @@ export function ReferencesSection({
   showHeading?: boolean;
 }) {
   return (
-    <section className="py-12 sm:py-20 px-5 sm:px-8 lg:px-12">
+    <section className="cv-auto py-12 sm:py-20 px-5 sm:px-8 lg:px-12">
       <div className="max-w-6xl mx-auto">
         {showHeading && (
           <div className="mb-8 sm:mb-10">
@@ -663,7 +653,7 @@ export function ExperienceTrackRecordSection() {
   return (
     <section
       id="experience"
-      className="py-14 sm:py-20 px-5 sm:px-8 lg:px-12 border-t border-dashed border-[var(--border-hairline)]"
+      className="cv-auto py-14 sm:py-20 px-5 sm:px-8 lg:px-12 border-t border-dashed border-[var(--border-hairline)]"
     >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-14">
@@ -777,7 +767,7 @@ export function ExperienceTrackRecordSection() {
  */
 export function SkillsAndEducationSection() {
   return (
-    <section className="py-12 sm:py-16 px-5 sm:px-8 lg:px-12">
+    <section className="cv-auto py-12 sm:py-16 px-5 sm:px-8 lg:px-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
         {/* Left: Toolkit / Skills */}
         <div>
@@ -831,7 +821,7 @@ export function SkillsAndEducationSection() {
  */
 export function BrandsAndContactSection() {
   return (
-    <section className="py-14 sm:py-22 px-5 sm:px-8 lg:px-12">
+    <section className="cv-auto py-14 sm:py-22 px-5 sm:px-8 lg:px-12">
       <div className="max-w-5xl mx-auto">
         <div className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--ink-muted)] mb-4">
           <SparkleMark className="w-3 h-3 text-[var(--accent)]" />
