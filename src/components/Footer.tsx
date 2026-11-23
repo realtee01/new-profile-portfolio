@@ -10,6 +10,7 @@ import {
   TOBI_PHOTOS,
   RESUME_PDF_URL,
 } from "./ui/EditorialPrimitives";
+import { prefetchRoute } from "../utils/lazyWithRetry";
 
 export default function Footer() {
   const { openBooking } = useTheme();
@@ -81,6 +82,8 @@ export default function Footer() {
                 </button>
                 <Link
                   to="/contact"
+                  onMouseEnter={() => prefetchRoute("/contact")}
+                  onTouchStart={() => prefetchRoute("/contact")}
                   className="group btn-anim-aesthetic inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-strong)] bg-transparent text-[var(--ink)] text-sm font-semibold whitespace-nowrap"
                 >
                   <span className="relative z-10">Project brief form</span>
@@ -92,13 +95,28 @@ export default function Footer() {
                 aria-label="Footer Links"
                 className="flex flex-wrap items-center gap-x-6 gap-y-2.5 text-[11px] font-bold tracking-[0.14em] uppercase text-[var(--ink)]"
               >
-                <Link to="/projects" className="hover:text-[var(--accent)] transition-colors whitespace-nowrap">
+                <Link
+                  to="/projects"
+                  onMouseEnter={() => prefetchRoute("/projects")}
+                  onTouchStart={() => prefetchRoute("/projects")}
+                  className="hover:text-[var(--accent)] transition-colors whitespace-nowrap"
+                >
                   Work
                 </Link>
-                <Link to="/about" className="hover:text-[var(--accent)] transition-colors whitespace-nowrap">
+                <Link
+                  to="/about"
+                  onMouseEnter={() => prefetchRoute("/about")}
+                  onTouchStart={() => prefetchRoute("/about")}
+                  className="hover:text-[var(--accent)] transition-colors whitespace-nowrap"
+                >
                   About
                 </Link>
-                <Link to="/blog" className="hover:text-[var(--accent)] transition-colors whitespace-nowrap">
+                <Link
+                  to="/blog"
+                  onMouseEnter={() => prefetchRoute("/blog")}
+                  onTouchStart={() => prefetchRoute("/blog")}
+                  className="hover:text-[var(--accent)] transition-colors whitespace-nowrap"
+                >
                   Journal
                 </Link>
                 <a

@@ -1,21 +1,30 @@
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { MotionConfig } from "motion/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import WelcomeNameModal from "./components/Welcome/WelcomeNameModal";
 import Home from "./components/Home/Home";
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import {
+  lazyWithRetry,
+  routeImporters,
+  RouteErrorBoundary,
+} from "./utils/lazyWithRetry";
 
-const BookingModal = lazy(() => import("./components/Booking/BookingModal"));
+const BookingModal = lazyWithRetry(routeImporters.bookingModal, "bookingModal");
+const WelcomeNameModal = lazyWithRetry(routeImporters.welcomeModal, "welcomeModal");
 
-const About = lazy(() => import("./components/About/About"));
-const Projects = lazy(() => import("./components/Projects/Projects"));
-const ProjectCaseStudy = lazy(() => import("./components/Projects/ProjectCaseStudy"));
-const Blog = lazy(() => import("./components/Blog/Blog"));
-const BlogPost = lazy(() => import("./components/Blog/BlogPost"));
-const Contact = lazy(() => import("./components/Contact/Contact"));
-const ThankYou = lazy(() => import("./components/Contact/ThankYou"));
+const About = lazyWithRetry(routeImporters.about, "about");
+const Projects = lazyWithRetry(routeImporters.projects, "projects");
+const ProjectCaseStudy = lazyWithRetry(
+  routeImporters.projectCaseStudy,
+  "projectCaseStudy"
+);
+const Blog = lazyWithRetry(routeImporters.blog, "blog");
+const BlogPost = lazyWithRetry(routeImporters.blogPost, "blogPost");
+const Contact = lazyWithRetry(routeImporters.contact, "contact");
+const ThankYou = lazyWithRetry(routeImporters.thankYou, "thankYou");
 
 function PageLoadingFallback() {
   return (
@@ -28,40 +37,61 @@ function PageLoadingFallback() {
   );
 }
 
-export default function App() {
+function AppShell() {
+  const { reduceMotion, isBookingOpen, showWelcomeModal } = useTheme();
+
   return (
-    <ThemeProvider>
+    <MotionConfig reducedMotion={reduceMotion ? "always" : "user"}>
       <Router>
-        <div className="paper-grain min-h-screen flex flex-col bg-[var(--bg-paper)] text-[var(--ink)]" id="top">
+        <div
+          className="paper-grain min-h-screen flex flex-col bg-[var(--bg-paper)] text-[var(--ink)]"
+          id="top"
+        >
           <Navbar />
           <ScrollToTop />
-          <WelcomeNameModal />
-          <Suspense fallback={null}>
-            <BookingModal />
-          </Suspense>
-          <main className="flex-grow">
-            <Suspense fallback={<PageLoadingFallback />}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:id" element={<BlogPost />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/thank-you" element={<ThankYou />} />
-                {/* Clean redirects for retired legacy routes */}
-                <Route path="/services" element={<Navigate to="/about#capabilities" replace />} />
-                <Route path="/resume" element={<Navigate to="/about" replace />} />
-                <Route path="/experience" element={<Navigate to="/about" replace />} />
-                <Route path="/testimonials" element={<Navigate to="/projects" replace />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
+          {showWelcomeModal && (
+            <Suspense fallback={null}>
+              <WelcomeNameModal />
             </Suspense>
+          )}
+          {isBookingOpen && (
+            <Suspense fallback={null}>
+              <BookingModal />
+            </Suspense>
+          )}
+          <main className="flex-grow">
+            <RouteErrorBoundary>
+              <Suspense fallback={<PageLoadingFallback />}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:id" element={<BlogPost />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/thank-you" element={<ThankYou />} />
+                  {/* Clean redirects for retired legacy routes */}
+                  <Route path="/services" element={<Navigate to="/about#capabilities" replace />} />
+                  <Route path="/resume" element={<Navigate to="/about" replace />} />
+                  <Route path="/experience" element={<Navigate to="/about" replace />} />
+                  <Route path="/testimonials" element={<Navigate to="/projects" replace />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </Suspense>
+            </RouteErrorBoundary>
           </main>
           <Footer />
         </div>
       </Router>
+    </MotionConfig>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppShell />
     </ThemeProvider>
   );
 }

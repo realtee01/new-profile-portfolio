@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 export type PortfolioMood = "violet" | "cyan" | "mono";
 
@@ -88,18 +95,21 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [reduceMotion]);
 
-  const setMood = (nextMood: PortfolioMood) => setMoodState(nextMood);
-  const setReduceMotion = (val: boolean) => setReduceMotionState(val);
-  const toggleReduceMotion = () => setReduceMotionState((prev) => !prev);
+  const setMood = useCallback((nextMood: PortfolioMood) => setMoodState(nextMood), []);
+  const setReduceMotion = useCallback((val: boolean) => setReduceMotionState(val), []);
+  const toggleReduceMotion = useCallback(
+    () => setReduceMotionState((prev) => !prev),
+    []
+  );
 
-  const openBooking = (initialTopic?: string) => {
+  const openBooking = useCallback((initialTopic?: string) => {
     if (initialTopic) setBookingTopic(initialTopic);
     setIsBookingOpen(true);
-  };
+  }, []);
 
-  const closeBooking = () => setIsBookingOpen(false);
+  const closeBooking = useCallback(() => setIsBookingOpen(false), []);
 
-  const saveVisitorName = (rawName: string) => {
+  const saveVisitorName = useCallback((rawName: string) => {
     const cleaned = rawName.trim().slice(0, 32);
     const formatted = cleaned
       ? cleaned.charAt(0).toUpperCase() + cleaned.slice(1)
@@ -116,40 +126,58 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     } catch {
       // Ignore
     }
-  };
+  }, []);
 
-  const skipWelcome = () => {
+  const skipWelcome = useCallback(() => {
     setShowWelcomeModal(false);
     try {
       localStorage.setItem(VISITOR_SEEN_KEY, "true");
     } catch {
       // Ignore
     }
-  };
+  }, []);
 
-  const reopenWelcome = () => {
+  const reopenWelcome = useCallback(() => {
     setShowWelcomeModal(true);
-  };
+  }, []);
+
+  const contextValue = useMemo<ThemeContextValue>(
+    () => ({
+      mood,
+      setMood,
+      reduceMotion,
+      setReduceMotion,
+      toggleReduceMotion,
+      isBookingOpen,
+      openBooking,
+      closeBooking,
+      bookingTopic,
+      visitorName,
+      showWelcomeModal,
+      saveVisitorName,
+      skipWelcome,
+      reopenWelcome,
+    }),
+    [
+      mood,
+      setMood,
+      reduceMotion,
+      setReduceMotion,
+      toggleReduceMotion,
+      isBookingOpen,
+      openBooking,
+      closeBooking,
+      bookingTopic,
+      visitorName,
+      showWelcomeModal,
+      saveVisitorName,
+      skipWelcome,
+      reopenWelcome,
+    ]
+  );
 
   return (
-    <ThemeContext.Provider
-      value={{
-        mood,
-        setMood,
-        reduceMotion,
-        setReduceMotion,
-        toggleReduceMotion,
-        isBookingOpen,
-        openBooking,
-        closeBooking,
-        bookingTopic,
-        visitorName,
-        showWelcomeModal,
-        saveVisitorName,
-        skipWelcome,
-        reopenWelcome,
-      }}
-    >
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   );

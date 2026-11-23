@@ -5,6 +5,7 @@ import { ProjectItem, projectsData } from "../../data/projectsData";
 import { useTheme } from "../../context/ThemeContext";
 import { RESUME_PDF_URL, SparkleMark, TornEdge } from "../ui/EditorialPrimitives";
 import { LazyImage, LazyVideo } from "../ui/LazyMedia";
+import { prefetchRoute } from "../../utils/lazyWithRetry";
 
 export const CINESCOPE_PREVIEW_VIDEO =
   "https://res.cloudinary.com/dw8jtwbka/video/upload/v1795386063/Screen_Recording_2026-11-22_231714_yvo1g3.mp4";
@@ -168,7 +169,7 @@ export function DarkPortfolioCarousel({
   };
 
   return (
-    <section className="relative mt-10 sm:mt-14">
+    <section className="cv-auto relative mt-10 sm:mt-14">
       <TornEdge fill="#242327" />
 
       <div className="dark-paper-band pt-10 sm:pt-14 pb-16 sm:pb-24 px-5 sm:px-8 lg:px-12 text-[#f6f4f6]">
@@ -264,7 +265,7 @@ export function DarkPortfolioCarousel({
                       {String(index + 1).padStart(2, "0")} · {project.category}
                     </span>
                     {isCinescope && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/55 backdrop-blur-sm border border-white/15 text-[10px] font-semibold text-[#00e5ff]">
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/75 border border-white/15 text-[10px] font-semibold text-[#00e5ff]">
                         <Play size={9} fill="currentColor" />
                         <span>Reel</span>
                       </span>
@@ -299,6 +300,8 @@ export function DarkPortfolioCarousel({
             </p>
             <Link
               to="/projects"
+              onMouseEnter={() => prefetchRoute("/projects")}
+              onTouchStart={() => prefetchRoute("/projects")}
               className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-white hover:text-[var(--cutout-black-letter)] transition-colors whitespace-nowrap"
             >
               <span>See all {projectsData.length} projects</span>
@@ -323,7 +326,7 @@ export function BrandStickerMarquee() {
   return (
     <section
       aria-label="Projects, clients and engineering partners"
-      className="marquee-wrap relative w-full overflow-hidden bg-[#151526] py-5 sm:py-6 border-y border-white/10 my-8 sm:my-12"
+      className="cv-auto marquee-wrap relative w-full overflow-hidden bg-[#151526] py-5 sm:py-6 border-y border-white/10 my-8 sm:my-12"
     >
       <div className="animate-marquee flex items-center gap-3.5 sm:gap-4 px-2">
         {items.map((brand, idx) => (

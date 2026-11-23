@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowRight, Disc3, ExternalLink } from "lucide-react";
 import SEOHead from "../SEO/SEOHead";
-import ProjectModal from "../Projects/ProjectModal";
 import { projectsData, ProjectItem } from "../../data/projectsData";
 import { useTheme } from "../../context/ThemeContext";
+import { lazyWithRetry, prefetchRoute } from "../../utils/lazyWithRetry";
+
+const ProjectModal = lazyWithRetry(
+  () => import("../Projects/ProjectModal"),
+  "projectModal"
+);
 import {
   SparkleMark,
   StickerPortrait,
@@ -158,7 +163,7 @@ export default function Home() {
                 whileHover={reduceMotion ? undefined : { y: -5, rotate: 0, scale: 1.03 }}
                 transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 style={{ transform: `rotate(${item.tileTilt})` }}
-                className="relative aspect-[5/6] flex items-center justify-center select-none drop-shadow-[0_10px_18px_rgba(24,19,26,0.16)]"
+                className="relative aspect-[5/6] flex items-center justify-center select-none drop-shadow-[0_6px_10px_rgba(24,19,26,0.14)] sm:drop-shadow-[0_10px_18px_rgba(24,19,26,0.16)]"
               >
                 {/* Organic Hand-Torn Paper Scrap SVG Backdrop */}
                 <svg
@@ -216,6 +221,8 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
               <Link
                 to="/projects"
+                onMouseEnter={() => prefetchRoute("/projects")}
+                onTouchStart={() => prefetchRoute("/projects")}
                 className="group btn-anim-blue inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--ink)] text-white text-sm font-semibold shadow-sm whitespace-nowrap shrink-0"
               >
                 <span className="relative z-10">See the work</span>
@@ -364,6 +371,9 @@ export default function Home() {
             <Link
               key={card.title}
               to={card.to}
+              onMouseEnter={() => prefetchRoute(card.to)}
+              onTouchStart={() => prefetchRoute(card.to)}
+              onFocus={() => prefetchRoute(card.to)}
               className="group flex items-center justify-between gap-4 p-3.5 sm:p-4 rounded-[1.35rem] bg-[var(--surface-card)]/82 hover:bg-[var(--surface-card)] border border-white/85 shadow-[var(--shadow-paper)] transition-all duration-200 hover:-translate-y-0.5"
             >
               <div className="flex items-center gap-3.5 min-w-0">
@@ -418,21 +428,25 @@ export default function Home() {
       {/* "Brands and Contact — Let's talk" Floating Sticker Cloud + Oversized Email */}
       <BrandsAndContactSection />
 
-      {/* Immersive Case Study Modal directly accessible from Hero Featured Build & Portfolio Carousel */}
-      <ProjectModal
-        isOpen={selectedProject !== null}
-        onClose={() => setSelectedProject(null)}
-        title={selectedProject?.title || ""}
-        details={selectedProject?.details || null}
-        slug={selectedProject?.slug}
-        imgPath={selectedProject?.imgPath}
-        category={selectedProject?.category}
-        year={selectedProject?.year}
-        metrics={selectedProject?.metrics}
-        clientOrContext={selectedProject?.clientOrContext}
-        demoLink={selectedProject?.demoLink}
-        ghLink={selectedProject?.ghLink}
-      />
+      {/* Immersive Case Study Modal loaded on-demand when a project card is clicked */}
+      {selectedProject && (
+        <Suspense fallback={null}>
+          <ProjectModal
+            isOpen={true}
+            onClose={() => setSelectedProject(null)}
+            title={selectedProject.title}
+            details={selectedProject.details || null}
+            slug={selectedProject.slug}
+            imgPath={selectedProject.imgPath}
+            category={selectedProject.category}
+            year={selectedProject.year}
+            metrics={selectedProject.metrics}
+            clientOrContext={selectedProject.clientOrContext}
+            demoLink={selectedProject.demoLink}
+            ghLink={selectedProject.ghLink}
+          />
+        </Suspense>
+      )}
     </div>
   );
 }

@@ -15,9 +15,13 @@ export default defineConfig(({mode}) => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    esbuild: {
+      drop: mode === 'production' ? ['debugger'] : [],
+    },
     build: {
       target: 'esnext',
       cssCodeSplit: true,
+      modulePreload: { polyfill: false },
       chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {

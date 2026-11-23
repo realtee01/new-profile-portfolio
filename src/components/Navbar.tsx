@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Github, Linkedin, Twitter, Disc3, ExternalLink } from "lucide-react";
 import { useTheme, PortfolioMood } from "../context/ThemeContext";
 import { TALogo, SparkleMark, TOBI_AVATAR_URL } from "./ui/EditorialPrimitives";
+import { prefetchRoute } from "../utils/lazyWithRetry";
 
 const NAV_ITEMS = [
   { num: "01", label: "Home", to: "/", note: "start here" },
@@ -239,6 +240,9 @@ export default function Navbar() {
                       <Link
                         to={item.to}
                         onClick={() => setMenuOpen(false)}
+                        onMouseEnter={() => prefetchRoute(item.to)}
+                        onTouchStart={() => prefetchRoute(item.to)}
+                        onFocus={() => prefetchRoute(item.to)}
                         className="group flex items-baseline justify-between gap-4 px-3.5 py-2 -mx-3.5 rounded-2xl hover:bg-[var(--ink)]/[0.065] focus-visible:bg-[var(--ink)]/[0.065] transition-colors"
                       >
                         <div className="flex items-baseline gap-3.5">
