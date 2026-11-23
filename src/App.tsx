@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import { LazyMotion, domAnimation, MotionConfig } from "motion/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -38,55 +37,51 @@ function PageLoadingFallback() {
 }
 
 function AppShell() {
-  const { reduceMotion, isBookingOpen, showWelcomeModal } = useTheme();
+  const { isBookingOpen, showWelcomeModal } = useTheme();
 
   return (
-    <LazyMotion features={domAnimation}>
-      <MotionConfig reducedMotion={reduceMotion ? "always" : "user"}>
-        <Router>
-        <div
-          className="paper-grain min-h-screen flex flex-col bg-[var(--bg-paper)] text-[var(--ink)]"
-          id="top"
-        >
-          <Navbar />
-          <ScrollToTop />
-          {showWelcomeModal && (
-            <Suspense fallback={null}>
-              <WelcomeNameModal />
+    <Router>
+      <div
+        className="paper-grain min-h-screen flex flex-col bg-[var(--bg-paper)] text-[var(--ink)]"
+        id="top"
+      >
+        <Navbar />
+        <ScrollToTop />
+        {showWelcomeModal && (
+          <Suspense fallback={null}>
+            <WelcomeNameModal />
+          </Suspense>
+        )}
+        {isBookingOpen && (
+          <Suspense fallback={null}>
+            <BookingModal />
+          </Suspense>
+        )}
+        <main className="flex-grow">
+          <RouteErrorBoundary>
+            <Suspense fallback={<PageLoadingFallback />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:id" element={<BlogPost />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/thank-you" element={<ThankYou />} />
+                {/* Clean redirects for retired legacy routes */}
+                <Route path="/services" element={<Navigate to="/about#capabilities" replace />} />
+                <Route path="/resume" element={<Navigate to="/about" replace />} />
+                <Route path="/experience" element={<Navigate to="/about" replace />} />
+                <Route path="/testimonials" element={<Navigate to="/projects" replace />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
             </Suspense>
-          )}
-          {isBookingOpen && (
-            <Suspense fallback={null}>
-              <BookingModal />
-            </Suspense>
-          )}
-          <main className="flex-grow">
-            <RouteErrorBoundary>
-              <Suspense fallback={<PageLoadingFallback />}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:id" element={<BlogPost />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/thank-you" element={<ThankYou />} />
-                  {/* Clean redirects for retired legacy routes */}
-                  <Route path="/services" element={<Navigate to="/about#capabilities" replace />} />
-                  <Route path="/resume" element={<Navigate to="/about" replace />} />
-                  <Route path="/experience" element={<Navigate to="/about" replace />} />
-                  <Route path="/testimonials" element={<Navigate to="/projects" replace />} />
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-              </Suspense>
-            </RouteErrorBoundary>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-      </MotionConfig>
-    </LazyMotion>
+          </RouteErrorBoundary>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

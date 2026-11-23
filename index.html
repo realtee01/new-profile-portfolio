@@ -42,25 +42,42 @@
     <meta name="twitter:description" content="Crafting high-performance React web applications, conversion-driven websites, and modern digital interfaces. Based in Lagos, Nigeria." />
     <meta property="twitter:image" content="https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_800/v1780309581/refined_profile_picture_keiybp.png" />
 
-    <!-- Preconnect, DNS-Prefetch & Hero LCP Preload for Mobile Speed -->
+    <!-- Preconnect, DNS-Prefetch & Responsive Hero LCP Preload for 90+ Mobile Speed -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
     <link rel="dns-prefetch" href="https://res.cloudinary.com" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
-    <link rel="preload" as="image" href="/assets/tobi-hero-hq.webp" type="image/webp" fetchpriority="high" />
-
-    <!-- Non-blocking Trimmed Editorial Typography: exact used weights only for fastest FCP -->
     <link
       rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
+      as="image"
+      href="/assets/tobi-hero-hq.webp"
+      imagesrcset="/assets/tobi-hero-mobile.webp 460w, /assets/tobi-hero-hq.webp 643w"
+      imagesizes="(max-width: 640px) 300px, 390px"
+      type="image/webp"
+      fetchpriority="high"
+    />
+
+    <!-- Non-blocking Subsetted Editorial Typography: Caprasimo subset to TOBILA (~2KB) + lean exact weights -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Caprasimo&text=TOBILA&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Caprasimo&text=TOBILA&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
         rel="stylesheet"
       />
     </noscript>

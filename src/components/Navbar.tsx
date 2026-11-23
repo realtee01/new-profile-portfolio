@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { m, AnimatePresence } from "motion/react";
 import { Github, Linkedin, Twitter, Disc3, ExternalLink } from "lucide-react";
 import { useTheme, PortfolioMood } from "../context/ThemeContext";
-import { TALogo, SparkleMark, TOBI_AVATAR_URL } from "./ui/EditorialPrimitives";
+import { TALogo, SparkleMark, TOBI_PHOTOS } from "./ui/EditorialPrimitives";
 import { prefetchRoute } from "../utils/lazyWithRetry";
 
 const NAV_ITEMS = [
@@ -164,12 +163,13 @@ export default function Navbar() {
             }`}
           >
             <img
-              src={TOBI_AVATAR_URL}
+              src={TOBI_PHOTOS.navAvatar}
               alt="Tobi vinyl avatar"
               width={20}
               height={20}
-              loading="eager"
+              loading="lazy"
               decoding="async"
+              fetchPriority="low"
               referrerPolicy="no-referrer"
               className="w-5 h-5 rounded-full object-cover object-top"
             />
@@ -178,55 +178,42 @@ export default function Navbar() {
       </nav>
 
       {/* Mini Now Playing Popover when Vinyl Disc is clicked */}
-      <AnimatePresence>
-        {vinylOpen && (
-          <m.div
-            initial={{ opacity: 0, y: -8, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.96 }}
-            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-2.5 w-[270px] rounded-2xl bg-[var(--surface-card)] border border-[var(--border-strong)] shadow-[var(--shadow-paper)] p-3.5"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-xl bg-[#18131A] flex items-center justify-center text-[#c770f0] shrink-0">
-                <Disc3 className={`w-6 h-6 ${reduceMotion ? "" : "animate-vinyl"}`} />
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-bold tracking-[0.14em] uppercase text-[var(--accent)]">
-                  Now Playing
-                </p>
-                <p className="text-sm font-bold text-[var(--ink)] truncate">
-                  Coding &amp; Focus Mode
-                </p>
-                <p className="text-[11px] text-[var(--ink-muted)] truncate">
-                  Tobi&apos;s Spotify Rotation
-                </p>
-              </div>
+      {vinylOpen && (
+        <div className="nav-pop-in mt-2.5 w-[270px] rounded-2xl bg-[var(--surface-card)] border border-[var(--border-strong)] shadow-[var(--shadow-paper)] p-3.5">
+          <div className="flex items-center gap-3">
+            <div className="w-11 h-11 rounded-xl bg-[#18131A] flex items-center justify-center text-[#c770f0] shrink-0">
+              <Disc3 className={`w-6 h-6 ${reduceMotion ? "" : "animate-vinyl"}`} />
             </div>
-            <a
-              href={SPOTIFY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-[var(--ink)] text-white text-xs font-semibold hover:opacity-90 transition-opacity"
-            >
-              <span>Listen on Spotify</span>
-              <ExternalLink size={12} />
-            </a>
-          </m.div>
-        )}
-      </AnimatePresence>
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] font-bold tracking-[0.14em] uppercase text-[var(--accent)]">
+                Now Playing
+              </p>
+              <p className="text-sm font-bold text-[var(--ink)] truncate">
+                Coding &amp; Focus Mode
+              </p>
+              <p className="text-[11px] text-[var(--ink-muted)] truncate">
+                Tobi&apos;s Spotify Rotation
+              </p>
+            </div>
+          </div>
+          <a
+            href={SPOTIFY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-[var(--ink)] text-white text-xs font-semibold hover:opacity-90 transition-opacity"
+          >
+            <span>Listen on Spotify</span>
+            <ExternalLink size={12} />
+          </a>
+        </div>
+      )}
 
       {/* Torn-Paper Editorial Dropdown Menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <m.div
-            id="editorial-nav-dropdown"
-            initial={{ opacity: 0, y: -10, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.97 }}
-            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-2.5 w-[min(92vw,390px)] relative drop-shadow-[0_22px_40px_rgba(24,19,26,0.2)]"
-          >
+      {menuOpen && (
+        <div
+          id="editorial-nav-dropdown"
+          className="nav-pop-in mt-2.5 w-[min(92vw,390px)] relative drop-shadow-[0_22px_40px_rgba(24,19,26,0.2)]"
+        >
             <div className="bg-[var(--surface-card)] rounded-t-3xl px-6 sm:px-7 pt-6 pb-5 border-x border-t border-white/80">
               {/* Numbered Navigation Links with Pill Hover & Handwritten Side Notes */}
               <ul className="space-y-1 pb-4">
@@ -395,9 +382,8 @@ export default function Navbar() {
                 fill="currentColor"
               />
             </svg>
-          </m.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </header>
   );
 }

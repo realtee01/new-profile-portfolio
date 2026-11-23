@@ -47,6 +47,10 @@ export function optimizeImageUrl(src: string, maxWidth = 720): string {
 
 interface LazyImageProps {
   src?: string;
+  srcSet?: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
   alt: string;
   className?: string;
   wrapperClassName?: string;
@@ -61,11 +65,15 @@ interface LazyImageProps {
 /**
  * React IntersectionObserver-backed lazy image component.
  * - Defers network requests for below-the-fold images until within `rootMargin`.
- * - Uses `decoding="async"` so image decoding never blocks scroll frames on mobile.
- * - Renders a clean zero-CLS placeholder and smooth GPU-composited opacity fade-in.
+ * - Uses `decoding="sync"` for priority LCP images and `decoding="async"` for lazy images.
+ * - Supports responsive `srcSet`/`sizes` and explicit `width`/`height` for zero CLS.
  */
 export function LazyImage({
   src,
+  srcSet,
+  sizes,
+  width,
+  height,
   alt,
   className = "w-full h-full object-cover",
   wrapperClassName = "relative w-full h-full",
@@ -141,9 +149,13 @@ export function LazyImage({
         <img
           ref={imgRef}
           src={optimizedSrc}
+          srcSet={srcSet}
+          sizes={sizes}
+          width={width}
+          height={height}
           alt={alt}
           loading={priority ? "eager" : "lazy"}
-          decoding="async"
+          decoding={priority ? "sync" : "async"}
           fetchPriority={priority ? "high" : "auto"}
           referrerPolicy="no-referrer"
           onLoad={() => setLoaded(true)}
@@ -212,25 +224,51 @@ export function LazyVideo({
   const optimizedVideoSrc = optimizeVideoUrl(src, maxWidth);
 
   const [shouldLoad, setShouldLoad] = useState(false);
-  const [isVisible, setIsVisible] = useState(eager);
+  const [isVisible, setIsVisible] = useState(false);
 
+  // Only allow eager desktop playback AFTER window load + idle; mobile stays strictly viewport-lazy
   useEffect(() => {
-    if (saveData || !eager) return;
-    const ric = (
-      window as Window & {
-        requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-        cancelIdleCallback?: (id: number) => void;
+    if (saveData || !eager || typeof window === "undefined") return;
+    if (window.innerWidth < 1024) return;
+
+    let cancelled = false;
+    let idleId: number | undefined;
+    let timerId: number | undefined;
+
+    const scheduleLoad = () => {
+      if (cancelled) return;
+      const ric = (
+        window as Window & {
+          requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+        }
+      ).requestIdleCallback;
+      if (typeof ric === "function") {
+        idleId = ric(() => {
+          if (!cancelled) setShouldLoad(true);
+        }, { timeout: 1600 });
+      } else {
+        timerId = window.setTimeout(() => {
+          if (!cancelled) setShouldLoad(true);
+        }, 900);
       }
-    ).requestIdleCallback;
-    if (typeof ric === "function") {
-      const id = ric(() => setShouldLoad(true), { timeout: 650 });
-      return () =>
+    };
+
+    if (document.readyState === "complete") {
+      scheduleLoad();
+    } else {
+      window.addEventListener("load", scheduleLoad, { once: true });
+    }
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", scheduleLoad);
+      if (idleId !== undefined) {
         (
           window as Window & { cancelIdleCallback?: (handle: number) => void }
-        ).cancelIdleCallback?.(id);
-    }
-    const timer = window.setTimeout(() => setShouldLoad(true), 350);
-    return () => window.clearTimeout(timer);
+        ).cancelIdleCallback?.(idleId);
+      }
+      if (timerId !== undefined) window.clearTimeout(timerId);
+    };
   }, [eager, saveData]);
 
   useEffect(() => {
@@ -249,17 +287,19 @@ export function LazyVideo({
           loadObserver.disconnect();
         }
       },
-      { rootMargin: "220px 0px" }
+      { rootMargin: "120px 0px" }
     );
 
     const playObserver = new IntersectionObserver(
       (entries) => {
         setIsVisible(Boolean(entries[0]?.isIntersecting));
       },
-      { threshold: 0.15 }
+      { threshold: 0.2 }
     );
 
-    if (!eager) loadObserver.observe(el);
+    // Observe on mobile even if eager=true (card sits below the fold on mobile)
+    const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
+    if (!eager || !isDesktop) loadObserver.observe(el);
     playObserver.observe(el);
 
     return () => {
@@ -283,12 +323,12 @@ export function LazyVideo({
     <video
       ref={videoRef}
       src={shouldLoad && !saveData ? optimizedVideoSrc : undefined}
-      poster={poster ? optimizeImageUrl(poster, 480) : undefined}
+      poster={poster ? optimizeImageUrl(poster, 360) : undefined}
       autoPlay={shouldLoad && isVisible && !reduceMotion && !saveData}
       muted
       playsInline
       loop
-      preload={eager && !saveData ? "metadata" : "none"}
+      preload={shouldLoad && !saveData ? "metadata" : "none"}
       onTimeUpdate={(e) => {
         if (loopEndSeconds > 0 && e.currentTarget.currentTime >= loopEndSeconds) {
           e.currentTarget.currentTime = 0;

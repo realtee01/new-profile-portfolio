@@ -7,8 +7,9 @@ import { LazyImage } from "./LazyMedia";
  * for instant mobile loading and silky 60fps scrolling.
  */
 export const TOBI_PHOTOS = {
-  // 76KB Retina WebP studio remastered crimson native attire + fila cutout — centerpiece for Home Hero
+  // 76KB Desktop / 26KB Mobile Retina WebP studio remastered crimson native attire + fila cutout
   heroCutout: "/assets/tobi-hero-hq.webp",
+  heroCutoutMobile: "/assets/tobi-hero-mobile.webp",
   // Width-capped transparent WebP/auto cutout — editorial cover for Work page
   workCutout:
     "https://res.cloudinary.com/dw8jtwbka/image/upload/e_trim,w_560,c_limit,f_auto,q_auto:good/v1795377503/photo_2026-11-22_20-17-48__2_-removebg-preview_v3a08d.png",
@@ -20,6 +21,9 @@ export const TOBI_PHOTOS = {
   // Lightweight 280px balcony portrait — ideal for framed avatars & quick-nav thumbnails
   balcony:
     "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto:good,w_280,c_limit/v1795377539/photo_2026-11-22_20-17-48_huii8y.jpg",
+  // Tiny 64x64 face-cropped avatar for the 20px Navbar vinyl button (~1.5KB)
+  navAvatar:
+    "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto:good,w_64,h_64,c_fill,g_face/v1795377539/photo_2026-11-22_20-17-48_huii8y.jpg",
 };
 
 export const TOBI_PORTRAIT_URL = TOBI_PHOTOS.heroCutout;
@@ -155,6 +159,10 @@ export function TornEdge({
  */
 export function StickerPortrait({
   src = TOBI_PHOTOS.heroCutout,
+  srcSet,
+  sizes,
+  width,
+  height,
   alt = "Tobiloba Akala",
   className = "",
   imgClassName = "w-full h-full object-contain object-bottom",
@@ -163,6 +171,10 @@ export function StickerPortrait({
   priority = false,
 }: {
   src?: string;
+  srcSet?: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
   alt?: string;
   className?: string;
   imgClassName?: string;
@@ -195,6 +207,10 @@ export function StickerPortrait({
           <div className="w-full h-full flex items-end justify-center sticker-outline-violet">
             <LazyImage
               src={src}
+              srcSet={srcSet}
+              sizes={sizes}
+              width={width}
+              height={height}
               alt={alt}
               priority={priority}
               maxWidth={560}
@@ -208,6 +224,10 @@ export function StickerPortrait({
       ) : (
         <LazyImage
           src={src}
+          srcSet={srcSet}
+          sizes={sizes}
+          width={width}
+          height={height}
           alt={alt}
           priority={priority}
           maxWidth={700}
