@@ -1,6 +1,6 @@
-import { Suspense, useState } from "react";
+import { Suspense, useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { ArrowRight, Disc3, ExternalLink } from "lucide-react";
 import SEOHead from "../SEO/SEOHead";
 import { projectsData, ProjectItem } from "../../data/projectsData";
@@ -52,6 +52,66 @@ const CUTOUT_LETTERS = [
 const SPOTIFY_URL =
   "https://open.spotify.com/playlist/37i9dQZF1DXdl8xYyG9Dm1?si=Jar_msbbQ1Gg3i5-XXiH8g&utm_source=copy-link&pi=tJP3I8PnRL2h3";
 
+const HOME_SCHEMA = [
+  {
+    "@type": "Person",
+    "@id": "https://www.buildwithtobi.online/#person",
+    name: "Tobiloba Akala",
+    alternateName: ["BuildWithTobi", "Tobi Akala"],
+    url: "https://www.buildwithtobi.online/",
+    image:
+      "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_800/v1780309581/refined_profile_picture_keiybp.png",
+    jobTitle: "Web Developer & Frontend Specialist",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Lagos",
+      addressCountry: "NG",
+    },
+    sameAs: [
+      "https://github.com/realtee01",
+      "https://x.com/realtee1111101",
+      "https://ng.linkedin.com/in/tobiloba-akala-35448a38b",
+    ],
+  },
+  {
+    "@type": "WebSite",
+    "@id": "https://www.buildwithtobi.online/#website",
+    url: "https://www.buildwithtobi.online/",
+    name: "BuildWithTobi | Tobiloba Akala Portfolio",
+    author: { "@id": "https://www.buildwithtobi.online/#person" },
+    inLanguage: "en-US",
+  },
+];
+
+const QUICK_NAV_CARDS = [
+  {
+    kicker: "Web Apps & Case Studies",
+    title: "Work",
+    to: "/projects",
+    thumb:
+      "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795390033/83d76c380d986c7d61fbd071eae09c06_e7xdxx.png",
+    thumbBg: "#f5f3f6",
+    fit: "contain" as const,
+  },
+  {
+    kicker: "Story, Stack & CV",
+    title: "About",
+    to: "/about",
+    thumb: TOBI_PHOTOS.balcony,
+    thumbBg: "var(--bg-band)",
+    fit: "cover" as const,
+  },
+  {
+    kicker: "Writing & Notes",
+    title: "Journal",
+    to: "/blog",
+    thumb:
+      "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795389946/b38ed4bb874e04b873d044c2fdda37d2_njgiln.png",
+    thumbBg: "#f5f3f6",
+    fit: "contain" as const,
+  },
+];
+
 export default function Home() {
   const { openBooking, reduceMotion, visitorName, reopenWelcome, mood } = useTheme();
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
@@ -59,66 +119,6 @@ export default function Home() {
 
   // CineScope is guaranteed to be index 0 per project order rule
   const featuredProject = projectsData[0];
-
-  const homeSchema = [
-    {
-      "@type": "Person",
-      "@id": "https://www.buildwithtobi.online/#person",
-      name: "Tobiloba Akala",
-      alternateName: ["BuildWithTobi", "Tobi Akala"],
-      url: "https://www.buildwithtobi.online/",
-      image:
-        "https://res.cloudinary.com/dw8jtwbka/image/upload/f_auto,q_auto,w_800/v1780309581/refined_profile_picture_keiybp.png",
-      jobTitle: "Web Developer & Frontend Specialist",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Lagos",
-        addressCountry: "NG",
-      },
-      sameAs: [
-        "https://github.com/realtee01",
-        "https://x.com/realtee1111101",
-        "https://ng.linkedin.com/in/tobiloba-akala-35448a38b",
-      ],
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.buildwithtobi.online/#website",
-      url: "https://www.buildwithtobi.online/",
-      name: "BuildWithTobi | Tobiloba Akala Portfolio",
-      author: { "@id": "https://www.buildwithtobi.online/#person" },
-      inLanguage: "en-US",
-    },
-  ];
-
-  const quickNavCards = [
-    {
-      kicker: "Web Apps & Case Studies",
-      title: "Work",
-      to: "/projects",
-      thumb:
-        "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795390033/83d76c380d986c7d61fbd071eae09c06_e7xdxx.png",
-      thumbBg: "#f5f3f6",
-      fit: "contain" as const,
-    },
-    {
-      kicker: "Story, Stack & CV",
-      title: "About",
-      to: "/about",
-      thumb: TOBI_PHOTOS.balcony,
-      thumbBg: "var(--bg-band)",
-      fit: "cover" as const,
-    },
-    {
-      kicker: "Writing & Notes",
-      title: "Journal",
-      to: "/blog",
-      thumb:
-        "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795389946/b38ed4bb874e04b873d044c2fdda37d2_njgiln.png",
-      thumbBg: "#f5f3f6",
-      fit: "contain" as const,
-    },
-  ];
 
   return (
     <div className="relative overflow-x-clip">
@@ -128,12 +128,12 @@ export default function Home() {
         description="Official portfolio of Tobiloba Akala (BuildWithTobi) - Web Developer & Frontend Specialist in Lagos, Nigeria. Engineering high-converting websites and scalable React web applications."
         canonicalPath="/"
         keywords="Tobiloba Akala, BuildWithTobi, Web Developer Nigeria, Frontend Developer Lagos, React Developer Nigeria, Software Engineer Portfolio"
-        jsonLd={homeSchema}
+        jsonLd={HOME_SCHEMA}
       />
 
       <div className="max-w-[1360px] mx-auto">
         {/* Hand-Cut Paper Scrap Ransom-Note Name Banner matching Reference Screenshot 1 */}
-        <motion.div
+        <m.div
           initial={reduceMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
@@ -158,12 +158,14 @@ export default function Home() {
                 : "var(--ink)";
 
             return (
-              <motion.div
+              <div
                 key={`${item.char}-${idx}`}
-                whileHover={reduceMotion ? undefined : { y: -5, rotate: 0, scale: 1.03 }}
-                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                style={{ transform: `rotate(${item.tileTilt})` }}
-                className="relative aspect-[5/6] flex items-center justify-center select-none drop-shadow-[0_6px_10px_rgba(24,19,26,0.14)] sm:drop-shadow-[0_10px_18px_rgba(24,19,26,0.16)]"
+                style={{ "--tile-tilt": item.tileTilt } as CSSProperties}
+                className={`relative aspect-[5/6] flex items-center justify-center select-none drop-shadow-[0_6px_10px_rgba(24,19,26,0.14)] sm:drop-shadow-[0_10px_18px_rgba(24,19,26,0.16)] [transform:rotate(var(--tile-tilt))] ${
+                  reduceMotion
+                    ? ""
+                    : "transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:[transform:translateY(-5px)_rotate(0deg)_scale(1.03)]"
+                }`}
               >
                 {/* Organic Hand-Torn Paper Scrap SVG Backdrop */}
                 <svg
@@ -185,15 +187,15 @@ export default function Home() {
                 >
                   {item.char}
                 </span>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </m.div>
 
         {/* Main 3-Column Asymmetric Editorial Composition */}
         <div className="relative grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-6 mt-6 lg:-mt-8 mb-12 sm:mb-14">
           {/* Left Column: Personalized Handwritten Greeting + Value Proposition + CTAs */}
-          <motion.div
+          <m.div
             initial={reduceMotion ? false : { opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -240,10 +242,10 @@ export default function Home() {
                 <span className="relative z-10">Book a call</span>
               </button>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Center Column: Overlapping True Silhouette Die-Cut Sticker Portrait */}
-          <motion.div
+          <m.div
             initial={reduceMotion ? false : { opacity: 0, scale: 0.96, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.04, ease: [0.16, 1, 0.3, 1] }}
@@ -256,10 +258,10 @@ export default function Home() {
               tilt="-0.8deg"
               priority
             />
-          </motion.div>
+          </m.div>
 
           {/* Right Column: Tilted CineScope Live Preview Card + Now Playing Spotify Widget */}
-          <motion.div
+          <m.div
             initial={reduceMotion ? false : { opacity: 0, x: 16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.45, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
@@ -338,17 +340,17 @@ export default function Home() {
               rel="noopener noreferrer"
               className="group btn-anim-blue w-full max-w-[270px] bg-[var(--surface-card)]/90 border-[1.5px] border-[var(--border-strong)] rounded-2xl p-3 flex items-center gap-3.5 shadow-[var(--shadow-paper)]"
             >
-              <div className="relative z-10 w-12 h-12 rounded-xl bg-[#18131A] group-hover:bg-white/20 flex items-center justify-center text-[#c770f0] group-hover:text-white shrink-0 overflow-hidden transition-colors duration-300">
+              <div className="relative z-10 w-12 h-12 rounded-xl bg-[#18131A] flex items-center justify-center text-[#c770f0] group-hover:text-[#e89be8] shrink-0 overflow-hidden transition-colors duration-300">
                 <Disc3 className={`w-7 h-7 ${reduceMotion ? "" : "animate-vinyl"}`} />
               </div>
               <div className="relative z-10 min-w-0 flex-1">
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--accent)] group-hover:text-sky-200 transition-colors duration-300">
+                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--accent)] group-hover:text-[#4a1044] transition-colors duration-300">
                   Now Playing
                 </p>
-                <p className="text-sm font-bold text-[var(--ink)] group-hover:text-white truncate transition-colors duration-300">
+                <p className="text-sm font-bold text-[var(--ink)] group-hover:text-[#1a131b] truncate transition-colors duration-300">
                   Coding &amp; Focus Mode
                 </p>
-                <p className="text-[11px] text-[var(--ink-muted)] group-hover:text-white/85 truncate flex items-center gap-1 transition-colors duration-300">
+                <p className="text-[11px] text-[var(--ink-muted)] group-hover:text-[#1a131b]/80 truncate flex items-center gap-1 transition-colors duration-300">
                   <span>Spotify · Tobi&apos;s rotation</span>
                   <ExternalLink
                     size={10}
@@ -357,17 +359,17 @@ export default function Home() {
                 </p>
               </div>
             </a>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Bottom 3 Horizontal Frosted-Paper Quick-Navigation Cards */}
-        <motion.div
+        <m.div
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
           className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto"
         >
-          {quickNavCards.map((card) => (
+          {QUICK_NAV_CARDS.map((card) => (
             <Link
               key={card.title}
               to={card.to}
@@ -409,7 +411,7 @@ export default function Home() {
               </span>
             </Link>
           ))}
-        </motion.div>
+        </m.div>
       </div>
       </section>
 

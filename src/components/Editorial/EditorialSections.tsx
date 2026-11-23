@@ -1,11 +1,11 @@
-import { useRef } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Download, Film, Play } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Download, Film } from "lucide-react";
 import { ProjectItem, projectsData } from "../../data/projectsData";
 import { useTheme } from "../../context/ThemeContext";
 import { RESUME_PDF_URL, SparkleMark, TornEdge } from "../ui/EditorialPrimitives";
-import { LazyImage, LazyVideo } from "../ui/LazyMedia";
 import { prefetchRoute } from "../../utils/lazyWithRetry";
+import PolaroidLineCarousel, { Slide } from "../ui/polaroid-line-carousel";
 
 export const CINESCOPE_PREVIEW_VIDEO =
   "https://res.cloudinary.com/dw8jtwbka/video/upload/v1795386063/Screen_Recording_2026-11-22_231714_yvo1g3.mp4";
@@ -145,28 +145,35 @@ const EXPERIENCE_HISTORY = [
 ];
 
 /**
- * 1. Dark Torn-Paper Horizontal Portfolio Carousel ("The portfolio")
- *    Matches Reference Screenshot 4 — CineScope is always index 0.
+ * 1. Dark Torn-Paper Polaroid Line Portfolio Carousel ("The portfolio")
+ *    Swinging pegged Polaroid prints on a sagging twine line — CineScope is always index 0.
  */
 export function DarkPortfolioCarousel({
   onSelectProject,
 }: {
   onSelectProject: (project: ProjectItem) => void;
 }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const { reduceMotion } = useTheme();
 
-  // CineScope is guaranteed index 0 in projectsData
-  const showcaseProjects = projectsData.slice(0, 10);
+  // CineScope is guaranteed index 0 in projectsData per Project Order Rule
+  const showcaseProjects = useMemo(() => projectsData.slice(0, 10), []);
 
-  const scrollByCard = (dir: "left" | "right") => {
-    if (!scrollRef.current) return;
-    const distance = Math.min(scrollRef.current.clientWidth * 0.72, 620);
-    scrollRef.current.scrollBy({
-      left: dir === "right" ? distance : -distance,
-      behavior: reduceMotion ? "auto" : "smooth",
-    });
-  };
+  const slides: Slide[] = useMemo(
+    () =>
+      showcaseProjects.map((project, index) => ({
+        id: project.id,
+        image: project.imgPath,
+        video: index === 0 ? CINESCOPE_PREVIEW_VIDEO : undefined,
+        title: project.title,
+        caption: project.description,
+        meta: project.metrics || project.clientOrContext || project.category,
+        badge: index === 0 ? "Reel · 01" : project.category,
+        alt: `${project.title} showcase print`,
+        palette: (["dusk", "alpine", "dawn", "mist"] as const)[index % 4],
+        seed: (index + 1) * 7,
+      })),
+    [showcaseProjects]
+  );
 
   return (
     <section className="cv-auto relative mt-10 sm:mt-14">
@@ -175,11 +182,11 @@ export function DarkPortfolioCarousel({
       <div className="dark-paper-band pt-10 sm:pt-14 pb-16 sm:pb-24 px-5 sm:px-8 lg:px-12 text-[#f6f4f6]">
         <div className="max-w-[1360px] mx-auto">
           {/* Header Row */}
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-8 sm:mb-10">
+          <div className="flex flex-wrap items-end justify-between gap-6 mb-4 sm:mb-6">
             <div>
               <div className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-white/70 mb-3">
                 <SparkleMark className="w-3 h-3 text-[var(--cutout-black-letter)]" />
-                <span>Selected Work · Tap to Inspect</span>
+                <span>Selected Work · Drag the Line or Tap a Print</span>
               </div>
               <h2 className="font-editorial font-black text-[clamp(2.8rem,7vw,5.4rem)] leading-[0.95] tracking-[-0.03em] text-[#f5f3f5]">
                 The{" "}
@@ -189,112 +196,33 @@ export function DarkPortfolioCarousel({
               </h2>
             </div>
 
-            {/* Circular Arrow Controls */}
-            <div className="flex items-center gap-2.5">
-              <button
-                type="button"
-                onClick={() => scrollByCard("left")}
-                aria-label="Scroll portfolio left"
-                className="group btn-anim-aesthetic-dark w-11 h-11 rounded-full border border-white/35 bg-white/[0.04] text-white flex items-center justify-center cursor-pointer"
-              >
-                <ArrowLeft
-                  size={16}
-                  className="relative z-10 transition-transform duration-300 group-hover:-translate-x-0.5"
-                />
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollByCard("right")}
-                aria-label="Scroll portfolio right"
-                className="group btn-anim-aesthetic-dark w-11 h-11 rounded-full border border-white/35 bg-white/[0.04] text-white flex items-center justify-center cursor-pointer"
-              >
-                <ArrowRight
-                  size={16}
-                  className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5"
-                />
-              </button>
-            </div>
+            <p className="font-hand text-xl sm:text-2xl text-[var(--cutout-black-letter)] -rotate-2 select-none hidden sm:block">
+              drag to swing the prints ↔
+            </p>
           </div>
 
-          {/* Horizontal Tall Vertical Cards Track */}
-          <div
-            ref={scrollRef}
-            className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-2 -mx-1 px-1"
-          >
-            {showcaseProjects.map((project, index) => {
-              const isCinescope = index === 0;
-
-              return (
-                <button
-                  key={project.id}
-                  type="button"
-                  onClick={() => onSelectProject(project)}
-                  aria-label={`Inspect ${project.title} case study`}
-                  className="group relative w-[230px] sm:w-[260px] lg:w-[272px] aspect-[9/14] rounded-[1.35rem] overflow-hidden shrink-0 snap-start bg-[#17151b] border border-white/12 text-left cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                >
-                  {/* Visual Media: CineScope uses viewport-aware LazyVideo; others use IntersectionObserver LazyImage */}
-                  {isCinescope && !reduceMotion ? (
-                    <LazyVideo
-                      src={CINESCOPE_PREVIEW_VIDEO}
-                      poster={project.imgPath}
-                      eager={false}
-                      reduceMotion={reduceMotion}
-                      loopEndSeconds={5.5}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : (
-                    <LazyImage
-                      src={project.imgPath}
-                      alt={`${project.title} showcase preview`}
-                      maxWidth={520}
-                      wrapperClassName="absolute inset-0 w-full h-full"
-                      placeholderClassName="bg-[#231f2a]"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      fallback={
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#2f1c3d] via-[#1a1622] to-[#0f2b33]" />
-                      }
-                    />
-                  )}
-
-                  {/* Measured Contrast Scrim */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d0b10]/95 via-[#0d0b10]/35 via-45% to-[#0d0b10]/30" />
-
-                  {/* Top Row: Subtle Index & Live Reel Indicator on CineScope */}
-                  <div className="relative z-10 flex items-center justify-between p-4">
-                    <span className="font-mono text-[11px] font-semibold text-white/85 tabular-nums">
-                      {String(index + 1).padStart(2, "0")} · {project.category}
-                    </span>
-                    {isCinescope && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/75 border border-white/15 text-[10px] font-semibold text-[#00e5ff]">
-                        <Play size={9} fill="currentColor" />
-                        <span>Reel</span>
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Bottom Editorial Title & Metric Overlay */}
-                  <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
-                    <p className="text-[11px] font-mono text-[var(--cutout-black-letter)] truncate mb-1">
-                      {project.metrics || project.clientOrContext || "Production Build"}
-                    </p>
-                    <h3 className="font-editorial font-black text-xl sm:text-2xl text-white leading-tight mb-1.5 group-hover:text-[var(--cutout-black-letter)] transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs text-white/75 line-clamp-2 leading-relaxed mb-3">
-                      {project.description}
-                    </p>
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-white group-hover:translate-x-0.5 transition-transform">
-                      <span>Read case study</span>
-                      <ArrowUpRight size={13} />
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+          {/* Swinging Pegged Polaroid Line Carousel */}
+          <PolaroidLineCarousel
+            slides={slides}
+            height="auto"
+            cardWidth={280}
+            sag={42}
+            swing={1}
+            autoplay={5200}
+            string="#d8c7b2"
+            background="transparent"
+            ink="#f6f4f6"
+            reduceMotion={reduceMotion}
+            actionLabel="Read case study"
+            onSelectSlide={(idx) => {
+              const chosen = showcaseProjects[idx];
+              if (chosen) onSelectProject(chosen);
+            }}
+            ariaLabel="Selected portfolio projects polaroid line carousel"
+          />
 
           {/* Quiet Footer Link inside Dark Band */}
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
             <p className="text-xs sm:text-sm text-white/65">
               Showing 10 featured builds — {projectsData.length} full case studies in the archive.
             </p>

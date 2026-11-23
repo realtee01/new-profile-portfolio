@@ -211,8 +211,27 @@ export function LazyVideo({
     Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
   const optimizedVideoSrc = optimizeVideoUrl(src, maxWidth);
 
-  const [shouldLoad, setShouldLoad] = useState(eager && !saveData);
+  const [shouldLoad, setShouldLoad] = useState(false);
   const [isVisible, setIsVisible] = useState(eager);
+
+  useEffect(() => {
+    if (saveData || !eager) return;
+    const ric = (
+      window as Window & {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+        cancelIdleCallback?: (id: number) => void;
+      }
+    ).requestIdleCallback;
+    if (typeof ric === "function") {
+      const id = ric(() => setShouldLoad(true), { timeout: 650 });
+      return () =>
+        (
+          window as Window & { cancelIdleCallback?: (handle: number) => void }
+        ).cancelIdleCallback?.(id);
+    }
+    const timer = window.setTimeout(() => setShouldLoad(true), 350);
+    return () => window.clearTimeout(timer);
+  }, [eager, saveData]);
 
   useEffect(() => {
     if (saveData) return;

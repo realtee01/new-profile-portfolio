@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { Github, Linkedin, Twitter, Disc3, ExternalLink } from "lucide-react";
 import { useTheme, PortfolioMood } from "../context/ThemeContext";
 import { TALogo, SparkleMark, TOBI_AVATAR_URL } from "./ui/EditorialPrimitives";
@@ -180,7 +180,7 @@ export default function Navbar() {
       {/* Mini Now Playing Popover when Vinyl Disc is clicked */}
       <AnimatePresence>
         {vinylOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -8, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.96 }}
@@ -212,14 +212,14 @@ export default function Navbar() {
               <span>Listen on Spotify</span>
               <ExternalLink size={12} />
             </a>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* Torn-Paper Editorial Dropdown Menu */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
+          <m.div
             id="editorial-nav-dropdown"
             initial={{ opacity: 0, y: -10, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -395,7 +395,7 @@ export default function Navbar() {
                 fill="currentColor"
               />
             </svg>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

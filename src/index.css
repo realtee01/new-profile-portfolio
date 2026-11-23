@@ -107,6 +107,7 @@ body {
   background-image: url("/assets/paper-grain.webp");
   background-repeat: repeat;
   background-size: 128px 128px;
+  transform: translateZ(0);
   contain: strict;
 }
 
@@ -320,23 +321,23 @@ body {
   pointer-events: none;
 }
 
-/* Editorial Animated Blue (First 3 Hero Buttons) */
+/* Website Signature Light Purple Animated Hover (Hero Buttons — replaces blue) */
 .btn-anim-blue::before {
   background-image: linear-gradient(
     115deg,
-    #1d4ed8 0%,
-    #2563eb 32%,
-    #0ea5e9 66%,
-    #3b82f6 100%
+    #e69ae6 0%,
+    #c770f0 34%,
+    #e89be8 68%,
+    #d484f4 100%
   );
   animation: btn-gradient-flow 2.8s ease infinite;
 }
 
 .btn-anim-blue:hover {
-  color: #ffffff;
-  border-color: #2563eb;
+  color: #1a131b;
+  border-color: #c770f0;
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -8px rgba(37, 99, 235, 0.52);
+  box-shadow: 0 14px 28px -8px rgba(199, 112, 240, 0.52);
 }
 
 .btn-anim-blue:hover::before,
@@ -357,69 +358,41 @@ body {
   transform: translateY(0) scale(0.97);
 }
 
-/* Website Aesthetic Animated Hover (Footer CTAs — Mood-Adaptive Violet/Magenta/Cyan) */
+/* Website Signature Light Purple Animated Hover (Footer CTAs) */
 .btn-anim-aesthetic::before {
   background-image: linear-gradient(
     115deg,
-    var(--accent) 0%,
-    var(--accent-brand-a) 38%,
-    #7c3aed 68%,
-    var(--accent-brand-b) 100%
+    #d980f2 0%,
+    #c770f0 36%,
+    #e89be8 70%,
+    #c46be8 100%
   );
   animation: btn-gradient-flow 3s ease infinite;
 }
 
-[data-mood="cyan"] .btn-anim-aesthetic::before {
-  background-image: linear-gradient(
-    115deg,
-    #0b728c 0%,
-    #0ea5e9 40%,
-    #00c2d1 72%,
-    #38bdf8 100%
-  );
-}
-
-[data-mood="mono"] .btn-anim-aesthetic::before {
-  background-image: linear-gradient(
-    115deg,
-    #181716 0%,
-    #3b3735 42%,
-    #6b5b7b 74%,
-    #1f1d1c 100%
-  );
-}
-
 .btn-anim-aesthetic:hover {
-  color: #ffffff;
-  border-color: transparent;
+  color: #1a131b;
+  border-color: #a62d96;
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px -8px rgba(166, 45, 150, 0.45);
+  box-shadow: 0 14px 28px -8px rgba(199, 112, 240, 0.54);
 }
 
-[data-mood="cyan"] .btn-anim-aesthetic:hover {
-  box-shadow: 0 14px 28px -8px rgba(11, 114, 140, 0.48);
-}
-
-[data-mood="mono"] .btn-anim-aesthetic:hover {
-  box-shadow: 0 14px 28px -8px rgba(21, 21, 20, 0.38);
-}
-
-/* Dark Band Website Aesthetic Animated Hover (Carousel Circular Arrows) */
+/* Dark Band Website Signature Light Purple Animated Hover (Carousel Circular Arrows) */
 .btn-anim-aesthetic-dark::before {
   background-image: linear-gradient(
     125deg,
-    var(--accent-brand-a) 0%,
-    var(--accent) 45%,
-    var(--accent-brand-b) 100%
+    #e89be8 0%,
+    #c770f0 48%,
+    #e69ae6 100%
   );
   animation: btn-gradient-flow 2.6s ease infinite;
 }
 
 .btn-anim-aesthetic-dark:hover {
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.65);
+  color: #1a131b;
+  border-color: #e89be8;
   transform: translateY(-2px) scale(1.06);
-  box-shadow: 0 10px 24px -4px rgba(199, 112, 240, 0.55);
+  box-shadow: 0 10px 24px -4px rgba(232, 155, 232, 0.55);
 }
 
 /* Respect user Reduced Motion toggle & OS setting */

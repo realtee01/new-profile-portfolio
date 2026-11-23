@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import { MotionConfig } from "motion/react";
+import { LazyMotion, domAnimation, MotionConfig } from "motion/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -41,8 +41,9 @@ function AppShell() {
   const { reduceMotion, isBookingOpen, showWelcomeModal } = useTheme();
 
   return (
-    <MotionConfig reducedMotion={reduceMotion ? "always" : "user"}>
-      <Router>
+    <LazyMotion features={domAnimation}>
+      <MotionConfig reducedMotion={reduceMotion ? "always" : "user"}>
+        <Router>
         <div
           className="paper-grain min-h-screen flex flex-col bg-[var(--bg-paper)] text-[var(--ink)]"
           id="top"
@@ -84,7 +85,8 @@ function AppShell() {
           <Footer />
         </div>
       </Router>
-    </MotionConfig>
+      </MotionConfig>
+    </LazyMotion>
   );
 }
 

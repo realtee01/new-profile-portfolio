@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "motion/react";
+import { m, AnimatePresence } from "motion/react";
 import { ArrowUp } from "lucide-react";
 
 export default function ScrollToTop() {
@@ -13,14 +13,11 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      const next = window.scrollY > 300;
+      setIsVisible((prev) => (prev === next ? prev : next));
     };
 
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
@@ -34,7 +31,7 @@ export default function ScrollToTop() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.button
+        <m.button
           id="scroll-to-top-btn"
           onClick={scrollToTop}
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -47,7 +44,7 @@ export default function ScrollToTop() {
           aria-label="Scroll to top"
         >
           <ArrowUp className="h-4 w-4 stroke-[2] transition-transform duration-200 group-hover:-translate-y-0.5" />
-        </motion.button>
+        </m.button>
       )}
     </AnimatePresence>
   );
