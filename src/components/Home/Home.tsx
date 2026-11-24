@@ -281,14 +281,13 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Center Column: Primary LCP Hero Sticker Portrait (responsive 26KB mobile WebP / 76KB desktop WebP) */}
+            {/* Center Column: Primary LCP Hero Sticker Portrait (51KB Retina WebP precut silhouette) */}
             <div className="lg:col-span-4 order-1 lg:order-2 flex justify-center relative z-10 lg:-mt-4">
               <StickerPortrait
-                src={TOBI_PHOTOS.heroCutout}
-                srcSet={`${TOBI_PHOTOS.heroCutoutMobile} 460w, ${TOBI_PHOTOS.heroCutout} 643w`}
-                sizes="(max-width: 640px) 300px, 390px"
-                width={643}
-                height={820}
+                src={TOBI_PHOTOS.footerCutout}
+                width={657}
+                height={860}
+                variant="precut"
                 alt="Tobiloba Akala - Frontend & Full-Stack Web Developer"
                 className="w-[300px] h-[390px] sm:w-[350px] sm:h-[455px] lg:w-[390px] lg:h-[495px] hover:-translate-y-1 transition-transform duration-300"
                 tilt="-0.8deg"

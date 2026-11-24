@@ -164,9 +164,13 @@ export default function Footer() {
                 <CurvedArrow direction="down-right" className="w-16 h-10 text-[var(--ink)] mt-0.5" />
               </div>
               <StickerPortrait
-                src={TOBI_PHOTOS.footerCutout}
+                src={TOBI_PHOTOS.heroCutout}
+                srcSet={`${TOBI_PHOTOS.heroCutoutMobile} 460w, ${TOBI_PHOTOS.heroCutout} 643w`}
+                sizes="(max-width: 640px) 288px, 360px"
+                width={643}
+                height={820}
                 alt="Tobiloba Akala - Available for projects"
-                variant="precut"
+                variant="classic"
                 className="w-72 h-[350px] sm:w-80 sm:h-[400px] lg:w-[360px] lg:h-[445px] shrink-0 hover:-translate-y-1 transition-transform duration-300"
                 tilt="2deg"
               />
