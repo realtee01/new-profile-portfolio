@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUp, Check, Copy } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
@@ -12,9 +12,38 @@ import {
 } from "./ui/EditorialPrimitives";
 import { prefetchRoute } from "../utils/lazyWithRetry";
 
+function formatLagosTime(date: Date): string {
+  try {
+    return new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Africa/Lagos",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(date);
+  } catch {
+    return date.toTimeString().slice(0, 5);
+  }
+}
+
 export default function Footer() {
   const { openBooking } = useTheme();
   const [copied, setCopied] = useState(false);
+  const [lagosTime, setLagosTime] = useState(() => formatLagosTime(new Date()));
+
+  useEffect(() => {
+    let intervalId: number | undefined;
+    const syncTime = () => setLagosTime(formatLagosTime(new Date()));
+    const msUntilNextMinute = 60_000 - (Date.now() % 60_000);
+    const timeoutId = window.setTimeout(() => {
+      syncTime();
+      intervalId = window.setInterval(syncTime, 60_000);
+    }, msUntilNextMinute + 50);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (intervalId !== undefined) window.clearInterval(intervalId);
+    };
+  }, []);
 
   const handleCopyEmail = () => {
     navigator.clipboard?.writeText("tobilobaakala@gmail.com");
@@ -174,6 +203,34 @@ export default function Footer() {
                 className="w-72 h-[350px] sm:w-80 sm:h-[400px] lg:w-[360px] lg:h-[445px] shrink-0 hover:-translate-y-1 transition-transform duration-300"
                 tilt="2deg"
               />
+            </div>
+          </div>
+
+          {/* Buildwithtobi & Live Lagos Time Strip */}
+          <div
+            aria-label="Buildwithtobi Local Time"
+            className="py-5 sm:py-6 border-t border-dashed border-[var(--border-hairline)] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1.5"
+          >
+            <span className="font-editorial font-black italic text-lg text-[var(--ink)] tracking-tight whitespace-nowrap">
+              Buildwithtobi
+            </span>
+
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span className="font-mono text-xs text-[var(--ink-muted)] tabular-nums whitespace-nowrap">
+                Local Time{" "}
+                <time className="font-semibold text-[var(--ink)]">
+                  {lagosTime} WAT
+                </time>
+              </span>
+              <span
+                className="hidden sm:inline text-[var(--ink-soft)]"
+                aria-hidden="true"
+              >
+                ·
+              </span>
+              <span className="hidden sm:inline font-mono text-[11px] text-[var(--ink-muted)] tabular-nums whitespace-nowrap">
+                6.5244° N, 3.3792° E
+              </span>
             </div>
           </div>
 
