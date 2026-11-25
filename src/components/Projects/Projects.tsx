@@ -17,14 +17,14 @@ import {
 } from "../Editorial/EditorialSections";
 import { LazyImage } from "../ui/LazyMedia";
 
-const CATEGORIES = ["All", "Web App", "Landing Page", "Web3", "E-commerce"] as const;
+const CATEGORIES = ["All", "SaaS", "Web App", "Landing Page", "Web3", "E-commerce"] as const;
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const { openBooking, reduceMotion, visitorName } = useTheme();
 
-  // CineScope remains index 0 in projectsData and first in "All" & "Web App"
+  // VendorPilot AI is #1 in "All" & "SaaS"; CineScope remains #1 in "Web App"
   const filteredProjects = projectsData.filter((project) => {
     if (activeCategory === "All") return true;
     return project.category === activeCategory;
@@ -56,9 +56,9 @@ export default function Projects() {
     <div className="relative">
       <SEOHead
         title="Work & Case Studies | Tobiloba Akala (BuildWithTobi)"
-        description="Explore 19+ production web applications, high-converting landing pages, and full-stack case studies engineered by Tobiloba Akala (BuildWithTobi)."
+        description="Explore 20+ production SaaS products, web applications, high-converting landing pages, and full-stack case studies engineered by Tobiloba Akala (BuildWithTobi)."
         canonicalPath="/projects"
-        keywords="web development portfolio, React case studies, CineScope, Tobiloba Akala projects, BuildWithTobi"
+        keywords="VendorPilot AI, SaaS portfolio, web development portfolio, React case studies, CineScope, Tobiloba Akala projects, BuildWithTobi"
         jsonLd={projectsSchema}
       />
 
@@ -360,6 +360,7 @@ export default function Projects() {
         details={selectedProject?.details || null}
         slug={selectedProject?.slug}
         imgPath={selectedProject?.imgPath}
+        gallery={selectedProject?.gallery}
         category={selectedProject?.category}
         year={selectedProject?.year}
         metrics={selectedProject?.metrics}

@@ -9,7 +9,13 @@ import { LazyImage } from "../ui/LazyMedia";
 export default function ProjectCaseStudy() {
   const { slug } = useParams<{ slug: string }>();
   const { openBooking } = useTheme();
-  const project = projectsData.find((p) => p.slug === slug);
+  const normalizedParam = (slug || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const project = projectsData.find(
+    (p) =>
+      p.slug === slug ||
+      p.slug.toLowerCase().replace(/[^a-z0-9]/g, "") === normalizedParam ||
+      p.title.toLowerCase().replace(/[^a-z0-9]/g, "") === normalizedParam
+  );
 
   if (!project) {
     return <Navigate to="/projects" replace />;
@@ -26,7 +32,9 @@ export default function ProjectCaseStudy() {
       name: project.title,
       description: project.description,
       applicationCategory:
-        project.category === "Web App" ? "WebApplication" : "BusinessApplication",
+        project.category === "Web App" || project.category === "SaaS"
+          ? "WebApplication"
+          : "BusinessApplication",
       operatingSystem: "All modern web browsers",
       author: { "@id": "https://www.buildwithtobi.online/#person" },
       image: project.imgPath,
@@ -210,6 +218,40 @@ export default function ProjectCaseStudy() {
                 ))}
               </ul>
             </section>
+
+            {project.gallery && project.gallery.length > 1 && (
+              <section className="pt-10 border-t border-dashed border-[var(--border-hairline)]">
+                <p className="font-mono text-xs text-[var(--ink-soft)] mb-2">
+                  04. Product Screens
+                </p>
+                <h2 className="font-editorial text-2xl sm:text-3xl font-black text-[var(--ink)] mb-5">
+                  Interface &amp; brand highlights
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {project.gallery.map((shot, i) => (
+                    <figure
+                      key={i}
+                      className="rounded-2xl p-2 bg-white/85 border border-[var(--border-hairline)] shadow-[var(--shadow-paper)]"
+                    >
+                      <div className="relative rounded-xl overflow-hidden bg-[#0a1414] aspect-[16/9]">
+                        <LazyImage
+                          src={shot.src}
+                          alt={shot.caption}
+                          maxWidth={840}
+                          wrapperClassName="w-full h-full"
+                          className={`w-full h-full object-cover ${
+                            shot.cropBottom ? "object-top scale-[1.06]" : "object-center"
+                          }`}
+                        />
+                      </div>
+                      <figcaption className="px-2 pt-2.5 pb-1 text-xs font-medium text-[var(--ink-muted)]">
+                        {shot.caption}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </section>
+            )}
 
             <section className="paper-band rounded-3xl p-7 sm:p-9 border border-[var(--border-hairline)]">
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--accent)] mb-2">

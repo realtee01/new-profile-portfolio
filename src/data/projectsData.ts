@@ -1,11 +1,17 @@
 import React from "react";
 
+export type ProjectGalleryItem = {
+  src: string;
+  caption: string;
+  cropBottom?: boolean;
+};
+
 export interface ProjectItem {
   id: number;
   slug: string;
   title: string;
   description: string;
-  category: "Web App" | "Landing Page" | "E-commerce" | "Web3";
+  category: "Web App" | "Landing Page" | "E-commerce" | "Web3" | "SaaS";
   featured?: boolean;
   inProgress?: boolean;
   imgPath?: string;
@@ -15,6 +21,7 @@ export interface ProjectItem {
   metrics?: string;
   clientOrContext?: string;
   year?: string;
+  gallery?: ProjectGalleryItem[];
   details: {
     problem: string;
     solution: string;
@@ -53,6 +60,48 @@ const lumiereImg = "https://images.unsplash.com/photo-1596462502278-27bfdc403348
  * MANDATORY RULE: "CineScope" must ALWAYS remain the very first item in the projectsData array!
  */
 export const projectsData: ProjectItem[] = [
+  {
+    id: 21,
+    slug: "vendorpilot",
+    title: "VendorPilot",
+    description: "An advanced B2B SaaS platform engineered for seamless vendor management, procurement workflows, automated vendor vetting, and real-time financial tracking.",
+    imgPath: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795604742/Screenshot_2026-11-25_105017_bnspvw.png",
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://vendorpilot-psi.vercel.app/",
+    category: "SaaS",
+    featured: true,
+    metrics: "99.8% Uptime | Streamlined Procurement & Vetting",
+    clientOrContext: "B2B SaaS & Procurement Platform",
+    year: "2026",
+    gallery: [
+      {
+        src: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795604742/Screenshot_2026-11-25_105017_bnspvw.png",
+        caption: "VendorPilot AI — Main SaaS Dashboard & Procurement Overview",
+      },
+      {
+        src: "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795604742/Screenshot_2026-11-25_105002_hdnmym.png",
+        caption: "VendorPilot Analytics & Workflow Interface",
+        cropBottom: true,
+      },
+    ],
+    details: {
+      problem: "Growing businesses and procurement teams struggle with fragmented vendor communication, manual vetting bottlenecks, tracking compliance documents across spreadsheets, and delayed purchase order approvals.",
+      solution: "Engineered VendorPilot, a comprehensive B2B SaaS platform that centralizes vendor discovery, contract management, compliance tracking, and automated purchase approval pipelines into a lightning-fast, reactive dashboard.",
+      role: "Lead Frontend Engineer & SaaS Architect",
+      toolsUsed: ["React", "TypeScript", "Tailwind CSS", "Vite", "Motion"],
+      whyTools: "React and Vite for instantaneous state transitions and responsive dashboard performance, Tailwind CSS for a polished enterprise SaaS aesthetic, and Motion for smooth micro-interactions.",
+      features: [
+        "Centralized vendor directory with automated compliance and risk scoring",
+        "Streamlined purchase order (PO) creation and multi-stage approval workflows",
+        "Real-time financial tracking, invoice matching, and expenditure analytics",
+        "Secure vendor portal for document uploads and milestone tracking",
+        "Lightning-fast search, filtering, and role-based access permissions"
+      ],
+      challenges: "Designing a high-density enterprise dashboard that remains intuitive, responsive, and uncluttered on both widescreen monitors and mobile tablets.",
+      result: "Delivered a production-grade B2B SaaS solution that reduces vendor onboarding time by 55% and eliminates procurement paperwork bottlenecks.",
+      architecture: "Modular component architecture with robust state management, reactive table filtering, and secure client-side routing."
+    }
+  },
   {
     id: 7,
     slug: "cinescope",
@@ -602,7 +651,7 @@ export const projectsData: ProjectItem[] = [
     slug: "roitech-ai-learniq",
     title: "Roitech AI & LearnIQ",
     description: "Accessible AI-driven education platform featuring automated audio transcription, intelligent lecture summarization, and interactive study modules.",
-    imgPath: cinescopeImg,
+    imgPath: "/assets/roitech-ai-cover.webp",
     inProgress: true,
     ghLink: "https://github.com/realtee01",
     demoLink: "",

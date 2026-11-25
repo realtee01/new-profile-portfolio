@@ -14,6 +14,7 @@ export type LandPalette = "dawn" | "alpine" | "dusk" | "mist";
 export type Slide = {
   id?: string | number;
   image?: string;
+  imageClassName?: string;
   video?: string;
   title?: string;
   caption?: string;
@@ -704,6 +705,7 @@ export default function PolaroidLineCarousel({
                       fetchPriority={isCurrent && inView ? "high" : "low"}
                       referrerPolicy="no-referrer"
                       draggable={false}
+                      className={sl.imageClassName}
                     />
                   ) : null}
 

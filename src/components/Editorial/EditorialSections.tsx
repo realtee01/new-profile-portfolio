@@ -19,6 +19,7 @@ export interface BrandSticker {
 }
 
 export const CLIENT_BRAND_STICKERS: BrandSticker[] = [
+  { name: "VendorPilot AI", monogram: "VP", bg: "#062b22", fg: "#34d399", tilt: "-1.8deg" },
   { name: "CineScope", monogram: "CS", bg: "#8b5cf6", fg: "#ffffff", tilt: "-2.2deg" },
   { name: "Relay Group", monogram: "RG", bg: "#111827", fg: "#00e5ff", tilt: "1.8deg" },
   { name: "Luxe Thread", monogram: "LT", bg: "#0f2922", fg: "#a7f3d0", tilt: "-1.5deg" },
@@ -155,23 +156,35 @@ export function DarkPortfolioCarousel({
 }) {
   const { reduceMotion } = useTheme();
 
-  // CineScope is guaranteed index 0 in projectsData per Project Order Rule
+  // VendorPilot AI is #1 in projectsData; CineScope retains its live video reel by slug
   const showcaseProjects = useMemo(() => projectsData.slice(0, 10), []);
+
+  const VENDORPILOT_GREEN_COVER =
+    "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795604742/Screenshot_2026-11-25_105002_hdnmym.png";
 
   const slides: Slide[] = useMemo(
     () =>
-      showcaseProjects.map((project, index) => ({
-        id: project.id,
-        image: project.imgPath,
-        video: index === 0 ? CINESCOPE_PREVIEW_VIDEO : undefined,
-        title: project.title,
-        caption: project.description,
-        meta: project.metrics || project.clientOrContext || project.category,
-        badge: index === 0 ? "Reel · 01" : project.category,
-        alt: `${project.title} showcase print`,
-        palette: (["dusk", "alpine", "dawn", "mist"] as const)[index % 4],
-        seed: (index + 1) * 7,
-      })),
+      showcaseProjects.map((project, index) => {
+        const isVendorPilot = project.slug === "vendorpilot";
+        return {
+          id: project.id,
+          image: isVendorPilot ? VENDORPILOT_GREEN_COVER : project.imgPath,
+          imageClassName: isVendorPilot ? "object-center scale-[1.16]" : undefined,
+          video: project.slug === "cinescope" ? CINESCOPE_PREVIEW_VIDEO : undefined,
+          title: project.title,
+          caption: project.description,
+          meta: project.metrics || project.clientOrContext || project.category,
+          badge:
+            index === 0
+              ? "SaaS · 01"
+              : project.slug === "cinescope"
+              ? "Reel · 02"
+              : project.category,
+          alt: `${project.title} showcase print`,
+          palette: (["dusk", "alpine", "dawn", "mist"] as const)[index % 4],
+          seed: (index + 1) * 7,
+        };
+      }),
     [showcaseProjects]
   );
 
@@ -224,7 +237,7 @@ export function DarkPortfolioCarousel({
           {/* Quiet Footer Link inside Dark Band */}
           <div className="mt-6 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
             <p className="text-xs sm:text-sm text-white/65">
-              Showing 10 featured builds — {projectsData.length} full case studies in the archive.
+              Showing 15 featured builds — {projectsData.length} full case studies in the archive.
             </p>
             <Link
               to="/projects"

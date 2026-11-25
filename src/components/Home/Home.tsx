@@ -10,7 +10,7 @@ import {
   StickerPortrait,
   TOBI_PHOTOS,
 } from "../ui/EditorialPrimitives";
-import { LazyImage, LazyVideo } from "../ui/LazyMedia";
+import { LazyImage } from "../ui/LazyMedia";
 
 const ProjectModal = lazyWithRetry(
   () => import("../Projects/ProjectModal"),
@@ -21,13 +21,9 @@ const HomeBelowFold = lazyWithRetry(
   "homeBelowFold"
 );
 
-// CineScope is guaranteed first per Project Order Rule — lightweight hero metadata avoids pulling 43KB projectsData synchronously
-const HERO_CINESCOPE_VIDEO =
-  "https://res.cloudinary.com/dw8jtwbka/video/upload/v1795386063/Screen_Recording_2026-11-22_231714_yvo1g3.mp4";
-const HERO_CINESCOPE_POSTER =
-  "https://res.cloudinary.com/dw8jtwbka/video/upload/so_1.0,w_360,c_limit,f_auto,q_auto:good/v1795386063/Screen_Recording_2026-11-22_231714_yvo1g3.jpg";
-const HERO_CINESCOPE_FALLBACK =
-  "https://raw.githubusercontent.com/realtee01/my-portfolio/main/src/assets/cinescope-thumb.jpg";
+// VendorPilot AI is featured #1 — lightweight hero metadata avoids pulling 43KB projectsData synchronously
+const HERO_FEATURED_COVER =
+  "https://res.cloudinary.com/dw8jtwbka/image/upload/v1795604742/Screenshot_2026-11-25_105017_bnspvw.png";
 
 const SCRAP_PATHS = [
   // Organic hand-cut uneven paper scraps with tiny corner snips
@@ -118,7 +114,6 @@ const QUICK_NAV_CARDS = [
 export default function Home() {
   const { openBooking, reduceMotion, visitorName, reopenWelcome, mood } = useTheme();
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const [videoFailed, setVideoFailed] = useState(false);
   const [mountBelowFold, setMountBelowFold] = useState(false);
   const belowFoldSentinelRef = useRef<HTMLDivElement>(null);
 
@@ -154,7 +149,7 @@ export default function Home() {
     };
   }, [mountBelowFold]);
 
-  const handleOpenCineScope = async () => {
+  const handleOpenFeaturedProject = async () => {
     try {
       const { projectsData } = await import("../../data/projectsData");
       if (projectsData[0]) {
@@ -295,45 +290,28 @@ export default function Home() {
               />
             </div>
 
-            {/* Right Column: Tilted CineScope Live Preview Card + Now Playing Spotify Widget */}
+            {/* Right Column: Tilted VendorPilot AI Featured Preview Card + Now Playing Spotify Widget */}
             <div className="lg:col-span-4 order-3 flex flex-col items-center lg:items-end gap-5">
-              {/* Tilted Featured Build Phone/Card Preview (CineScope — always #1) */}
+              {/* Tilted Featured Build Phone/Card Preview (VendorPilot AI — #1 SaaS) */}
               <button
                 type="button"
-                onClick={handleOpenCineScope}
-                className="group relative w-[230px] sm:w-[248px] bg-[#161218] rounded-[1.85rem] p-3 border-[4px] border-white shadow-[0_20px_38px_-14px_rgba(24,19,26,0.34)] rotate-[3deg] hover:rotate-0 hover:-translate-y-1 transition-all duration-300 text-left cursor-pointer"
-                aria-label="Open CineScope case study"
+                onClick={handleOpenFeaturedProject}
+                className="group relative w-[230px] sm:w-[248px] bg-[#0b1517] rounded-[1.85rem] p-3 border-[4px] border-white shadow-[0_20px_38px_-14px_rgba(24,19,26,0.34)] rotate-[3deg] hover:rotate-0 hover:-translate-y-1 transition-all duration-300 text-left cursor-pointer"
+                aria-label="Open VendorPilot AI case study"
               >
-                <div className="relative aspect-[9/11] rounded-[1.25rem] overflow-hidden bg-[#1e1824] flex flex-col justify-between p-3.5">
-                  {!videoFailed ? (
-                    <>
-                      <LazyVideo
-                        src={HERO_CINESCOPE_VIDEO}
-                        poster={HERO_CINESCOPE_POSTER}
-                        eager
-                        reduceMotion={reduceMotion}
-                        loopEndSeconds={5.5}
-                        maxWidth={440}
-                        onError={() => setVideoFailed(true)}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#120d16]/95 via-[#120d16]/45 via-45% to-[#120d16]/20" />
-                    </>
-                  ) : (
-                    <>
-                      <LazyImage
-                        src={HERO_CINESCOPE_FALLBACK}
-                        alt="CineScope Featured Build"
-                        maxWidth={360}
-                        wrapperClassName="absolute inset-0 w-full h-full"
-                        className="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-500"
-                        fallback={
-                          <div className="absolute inset-0 bg-gradient-to-br from-[#2a1834] via-[#18131a] to-[#0f2930]" />
-                        }
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#120d16] via-[#120d16]/45 via-45% to-transparent" />
-                    </>
-                  )}
+                <div className="relative aspect-[9/11] rounded-[1.25rem] overflow-hidden bg-[#0a1416] flex flex-col justify-between p-3.5">
+                  <LazyImage
+                    src={HERO_FEATURED_COVER}
+                    alt="VendorPilot AI SaaS Featured Build"
+                    maxWidth={480}
+                    wrapperClassName="absolute inset-0 w-full h-full"
+                    placeholderClassName="bg-[#0b191b]"
+                    className="w-full h-full object-cover object-right-top opacity-95 group-hover:scale-105 transition-transform duration-500"
+                    fallback={
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#064e3b] via-[#0a191b] to-[#051014]" />
+                    }
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#071113]/95 via-[#071113]/55 via-48% to-[#071113]/20" />
 
                   {/* Top Badge inside Dark Frame */}
                   <div className="relative z-10 inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-white text-[#18131A] text-[10px] font-bold uppercase tracking-[0.14em]">
@@ -343,16 +321,16 @@ export default function Home() {
 
                   {/* Bottom Details inside Frame */}
                   <div className="relative z-10 text-white">
-                    <p className="font-mono text-[10px] text-[#00e5ff] mb-1 tabular-nums">
-                      01 · 98 Lighthouse
+                    <p className="font-mono text-[10px] text-[#34d399] mb-1 tabular-nums">
+                      01 · SaaS Platform
                     </p>
                     <p className="font-editorial text-xl font-black leading-tight mb-1">
-                      CineScope
+                      VendorPilot AI
                     </p>
                     <p className="text-[11px] text-white/80 leading-snug line-clamp-2 mb-2.5">
-                      Real-time cinematic discovery app with &lt;400ms search.
+                      AI cloud ledger tracking sales, margins, stock &amp; receivables.
                     </p>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-white group-hover:text-[#00e5ff] transition-colors">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-white group-hover:text-[#34d399] transition-colors">
                       <span>Inspect case study</span>
                       <ArrowRight size={12} />
                     </span>
@@ -461,6 +439,7 @@ export default function Home() {
             details={selectedProject.details || null}
             slug={selectedProject.slug}
             imgPath={selectedProject.imgPath}
+            gallery={selectedProject.gallery}
             category={selectedProject.category}
             year={selectedProject.year}
             metrics={selectedProject.metrics}

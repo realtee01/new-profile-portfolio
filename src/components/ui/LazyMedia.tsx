@@ -138,11 +138,11 @@ export function LazyImage({
   }
 
   return (
-    <div ref={containerRef} className={wrapperClassName}>
+    <div ref={containerRef} className={`relative ${wrapperClassName}`}>
       {!priority && !loaded && (
         <div
           aria-hidden="true"
-          className={`absolute inset-0 transition-opacity duration-300 ${placeholderClassName}`}
+          className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${placeholderClassName}`}
         />
       )}
       {inView && (

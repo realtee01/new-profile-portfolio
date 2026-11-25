@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ArrowUpRight, ExternalLink, Github, BookOpen, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../context/ThemeContext";
 import { SparkleMark } from "../ui/EditorialPrimitives";
 import { LazyImage } from "../ui/LazyMedia";
+
+import type { ProjectGalleryItem } from "../../data/projectsData";
 
 export interface ProjectDetailsData {
   industry?: string;
@@ -34,6 +37,7 @@ interface ProjectModalProps {
   details: ProjectDetailsData | null;
   slug?: string;
   imgPath?: string;
+  gallery?: ProjectGalleryItem[];
   category?: string;
   year?: string;
   metrics?: string;
@@ -49,6 +53,7 @@ export default function ProjectModal({
   details,
   slug,
   imgPath,
+  gallery,
   category,
   year,
   metrics,
@@ -57,15 +62,27 @@ export default function ProjectModal({
   ghLink,
 }: ProjectModalProps) {
   const [imgFailed, setImgFailed] = useState(false);
+  const scrollBodyRef = useRef<HTMLDivElement>(null);
   const { openBooking } = useTheme();
 
   useEffect(() => {
     setImgFailed(false);
-  }, [imgPath, title]);
+    if (scrollBodyRef.current) {
+      scrollBodyRef.current.scrollTop = 0;
+    }
+  }, [imgPath, title, isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    // Focus scroll region so keyboard Up/Down/PageDown scroll works immediately
+    const focusTimer = window.setTimeout(() => {
+      scrollBodyRef.current?.focus({ preventScroll: true });
+    }, 30);
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -73,17 +90,19 @@ export default function ProjectModal({
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
+      window.clearTimeout(focusTimer);
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);
 
-  if (!details) return null;
+  if (!details || typeof document === "undefined") return null;
 
   const resolvedDemo = demoLink || details.demoLink;
   const resolvedGh = ghLink || details.ghLink;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div
@@ -108,10 +127,10 @@ export default function ProjectModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: 12 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-5xl bg-[var(--surface-card)] border border-[var(--border-strong)] rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] z-10"
+            className="relative w-full max-w-5xl bg-[var(--surface-card)] border border-[var(--border-strong)] rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90dvh] z-10"
           >
             {/* Modal Header */}
-            <div className="flex items-start justify-between gap-6 px-6 sm:px-10 py-6 border-b border-dashed border-[var(--border-hairline)] bg-[var(--bg-paper)]/85">
+            <div className="shrink-0 flex items-start justify-between gap-6 px-6 sm:px-10 py-5 sm:py-6 border-b border-dashed border-[var(--border-hairline)] bg-[var(--bg-paper)]/90">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--ink-muted)] font-medium mb-2">
                   <SparkleMark className="w-3 h-3 text-[var(--accent)]" />
@@ -131,7 +150,7 @@ export default function ProjectModal({
                 </div>
                 <h2
                   id="case-study-modal-title"
-                  className="font-editorial text-3xl sm:text-4xl font-black text-[var(--ink)] tracking-tight leading-tight"
+                  className="font-editorial text-2xl sm:text-4xl font-black text-[var(--ink)] tracking-tight leading-tight"
                 >
                   {title}
                 </h2>
@@ -148,10 +167,14 @@ export default function ProjectModal({
             </div>
 
             {/* Scrollable Body */}
-            <div className="px-6 sm:px-10 py-8 overflow-y-auto flex-grow space-y-9 text-[var(--ink-muted)]">
+            <div
+              ref={scrollBodyRef}
+              tabIndex={-1}
+              className="px-6 sm:px-10 py-8 overflow-y-auto flex-1 min-h-0 overscroll-y-contain touch-pan-y [-webkit-overflow-scrolling:touch] focus:outline-none space-y-9 text-[var(--ink-muted)]"
+            >
               {/* Rich Media Hero Preview */}
               {imgPath && !imgFailed ? (
-                <div className="rounded-2xl overflow-hidden border border-[var(--border-hairline)] bg-[var(--bg-paper)] aspect-[16/8]">
+                <div className="relative rounded-2xl overflow-hidden border border-[var(--border-hairline)] bg-[var(--bg-paper)] aspect-[16/8]">
                   <LazyImage
                     src={imgPath}
                     alt={`${title} interface preview`}
@@ -238,6 +261,39 @@ export default function ProjectModal({
                   </div>
                 </div>
               </section>
+
+              {/* Additional Product Screens when provided */}
+              {gallery && gallery.length > 1 && (
+                <section className="space-y-4">
+                  <h3 className="font-editorial text-lg font-black text-[var(--ink)]">
+                    Interface &amp; Brand Highlights
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {gallery.map((shot, idx) => (
+                      <figure
+                        key={idx}
+                        className="rounded-2xl overflow-hidden border border-[var(--border-hairline)] bg-[var(--bg-paper)]"
+                      >
+                        <div className="relative aspect-[16/9] overflow-hidden bg-[#0a1414]">
+                          <LazyImage
+                            src={shot.src}
+                            alt={shot.caption}
+                            priority
+                            maxWidth={840}
+                            wrapperClassName="w-full h-full"
+                            className={`w-full h-full object-cover ${
+                              shot.cropBottom ? "object-top scale-[1.06]" : "object-center"
+                            }`}
+                          />
+                        </div>
+                        <figcaption className="px-4 py-2.5 text-xs text-[var(--ink-muted)] font-medium">
+                          {shot.caption}
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                </section>
+              )}
 
               {/* Key Deliverables & Outcome */}
               <section className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
@@ -337,6 +393,7 @@ export default function ProjectModal({
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
