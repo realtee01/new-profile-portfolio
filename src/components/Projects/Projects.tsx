@@ -132,6 +132,13 @@ export default function Projects() {
                   </p>
                 </div>
               </div>
+
+              <p className="mt-5 inline-flex items-center gap-2 text-xs text-[var(--ink-soft)]">
+                <SparkleMark className="w-2.5 h-2.5 text-[var(--accent)] shrink-0" />
+                <span>
+                  Some client &amp; agency projects are kept under NDA and available privately on request.
+                </span>
+              </p>
             </div>
 
             {/* Right Duo-Outlined Full-Body Silhouette Cutout + Handwritten Note */}
@@ -347,8 +354,66 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Torn-Paper Exit into Paper Canvas: Client Marquee & What They Say Proof */}
+      {/* Torn-Paper Exit into Paper Canvas: Private NDA Archive Note, Client Marquee & What They Say Proof */}
       <TornEdge fill="var(--bg-paper)" />
+
+      {/* Editorial NDA Colophon Callout */}
+      <section
+        aria-labelledby="nda-archive-heading"
+        className="pt-14 sm:pt-20 pb-6 px-5 sm:px-8 lg:px-12"
+      >
+        <div className="max-w-5xl mx-auto">
+          <div className="rounded-[1.75rem] bg-[var(--surface-card)] border border-[var(--border-hairline)] p-7 sm:p-10">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-dashed border-[var(--border-hairline)]">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.04em] text-[var(--ink-muted)]">
+                <SparkleMark className="w-3.5 h-3.5 text-[var(--accent)] shrink-0" />
+                <span>Private Archive</span>
+                <span aria-hidden="true">·</span>
+                <span>Non-Disclosure</span>
+              </div>
+              <p className="font-hand text-xl sm:text-2xl font-semibold text-[var(--accent)] -rotate-2 leading-none">
+                happy to walk you through them live
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-end pt-6">
+              <div className="md:col-span-8">
+                <h2
+                  id="nda-archive-heading"
+                  className="font-editorial font-black text-2xl sm:text-3xl leading-[1.08] tracking-[-0.02em] text-[var(--ink)] text-balance mb-3"
+                >
+                  Some projects are kept{" "}
+                  <span className="italic text-[var(--accent)]">under NDA.</span>
+                </h2>
+                <p className="text-sm sm:text-[15px] text-[var(--ink-muted)] leading-relaxed max-w-xl">
+                  A number of client dashboards, agency builds, and pre-launch products
+                  aren&apos;t published here due to confidentiality agreements. Selected
+                  architecture notes and private demos can be shared directly during a call.
+                </p>
+                <div className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-xs text-[var(--ink-soft)] tabular-nums">
+                  <span>12+ confidential builds</span>
+                  <span aria-hidden="true">·</span>
+                  <span>Enterprise &amp; agency work</span>
+                  <span aria-hidden="true">·</span>
+                  <span>Private walkthroughs on request</span>
+                </div>
+              </div>
+
+              <div className="md:col-span-4 flex md:justify-end">
+                <button
+                  type="button"
+                  onClick={() => openBooking("Private NDA Walkthrough")}
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[var(--ink)] text-white text-xs sm:text-sm font-semibold hover:opacity-90 transition-opacity cursor-pointer whitespace-nowrap shrink-0"
+                >
+                  <span>Request private walkthrough</span>
+                  <ArrowUpRight size={14} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <BrandStickerMarquee />
       <ReferencesSection layout="stacked" showHeading />
 

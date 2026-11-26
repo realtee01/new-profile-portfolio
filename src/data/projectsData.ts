@@ -134,6 +134,68 @@ export const projectsData: ProjectItem[] = [
     }
   },
   {
+    id: 22,
+    slug: "tally-bank",
+    title: "Tally Bank Co.",
+    description: "A playful, scroll-driven fintech showcase for Tally Bank Co. featuring zero-fee accounts, 4.8% APY vaults, interactive wallet card previews, and a rolling 3D debit centerpiece.",
+    imgPath: "/assets/tally-bank-cover.webp",
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://tallybnk.vercel.app/",
+    category: "Landing Page",
+    featured: true,
+    metrics: "Scroll-Driven Motion | Zero-Fee Accounts & 4.8% APY Vaults",
+    clientOrContext: "Digital Banking & Fintech Brand Showcase",
+    year: "2026",
+    details: {
+      problem: "Consumer fintech landing pages often feel sterile and indistinguishable, struggling to communicate everyday banking benefits like high-yield vaults and zero-fee accounts in a memorable way.",
+      solution: "Engineered a vibrant, scroll-choreographed showcase for Tally Bank Co. combining bold display typography, tactile sticker badges, an interactive wallet drawer, and a smooth rolling debit card animation.",
+      role: "Frontend Engineer & Interactive Motion Developer",
+      toolsUsed: ["React", "TypeScript", "Tailwind CSS", "Motion", "Vite"],
+      whyTools: "React and Vite for snappy client-side rendering, Tailwind CSS for bold neo-brutalist color and border tokens, and GPU-accelerated scroll choreography for smooth 60fps interaction.",
+      features: [
+        "Scroll-driven rolling debit showcase tied directly to viewport progression",
+        "Interactive Story, Vaults, and Cards product walkthrough sections",
+        "Live wallet drawer tracking selected cards and 4.8% APY vault highlights",
+        "Expressive editorial typography pairing Anton, Bricolage Grotesque, and Caveat",
+        "Responsive mobile-first layout tuned for smooth scrolling across devices"
+      ],
+      challenges: "Synchronizing scroll-linked transforms and playful physics animations while keeping paint costs minimal and avoiding layout jank on mid-range mobile screens.",
+      result: "Delivered a standout fintech brand showcase that turns routine banking features into an engaging, tactile web experience.",
+      architecture: "Component-driven React architecture with decoupled scroll-progress state, hardware-accelerated CSS transforms, and lightweight asset loading."
+    }
+  },
+  {
+    id: 23,
+    slug: "duo-play",
+    title: "DUO PLAY",
+    description: "A modern two-player remote mini-game platform where couples and friends spin up private 6-character room codes and jump straight into fast, playful head-to-head rounds with zero downloads.",
+    imgPath: "/assets/duoplay-cover.webp",
+    ghLink: "https://github.com/realtee01",
+    demoLink: "https://duoplaygames.vercel.app/",
+    category: "Web App",
+    featured: true,
+    metrics: "10 Curated Mini-Games | Private 6-Character Rooms",
+    clientOrContext: "Two-Player Remote Mini-Game Platform",
+    year: "2026",
+    details: {
+      problem: "Long-distance couples and friends looking for a quick five-minute rematch are usually forced through heavy app store downloads, account sign-up walls, and cluttered ad-filled lobbies.",
+      solution: "Built DUO PLAY, a browser-native two-player gaming platform with instant nickname setup, private 6-character room codes, dedicated Partner and Friend modes, and 10 curated head-to-head mini-games.",
+      role: "Full-Stack Frontend Engineer & Product Designer",
+      toolsUsed: ["React", "TypeScript", "Tailwind CSS", "Firebase", "Vite"],
+      whyTools: "React and TypeScript for deterministic turn-based and timed game state machines, Firebase for low-latency room synchronization, and Tailwind CSS for a clean, distraction-free tabletop aesthetic.",
+      features: [
+        "Zero-download browser gameplay with instant private 6-character room codes",
+        "Dedicated 'Play With Your Partner' and 'Play With A Friend' quick-launch flows",
+        "Catalog of 10 curated two-player mini-games with interactive playable prototypes",
+        "Clean editorial UI with crisp Bricolage Grotesque and JetBrains Mono typography",
+        "Mobile- and desktop-responsive game boards built for spontaneous rematches"
+      ],
+      challenges: "Designing responsive two-player interfaces and game loops that stay crisp, intuitive, and synchronized across varying screen sizes and mobile network conditions.",
+      result: "Shipped a polished, frictionless social gaming platform that gets two players from landing page to active gameplay in seconds.",
+      architecture: "Modular React game engine separating room lobby routing, shared score state, and isolated mini-game modules for rapid expansion."
+    }
+  },
+  {
     id: 16,
     slug: "julios-pizza",
     title: "Julio's Pizza",
@@ -681,15 +743,15 @@ export const projectsData: ProjectItem[] = [
     id: 12,
     slug: "cgpa-calculator",
     title: "CGPA Calculator",
-    description: "A localized academic grading utility for university students to accurately compute semester GPA and cumulative CGPA according to 5.0 and 4.0 grading scales.",
+    description: "My first project, built as an Axia class student project — a localized academic grading utility for university students to accurately compute semester GPA and cumulative CGPA according to 5.0 and 4.0 grading scales.",
     imgPath: calcImg,
     ghLink: "https://github.com/realtee01",
     demoLink: "https://cgpa-calculator-tobiloba.vercel.app",
     category: "Web App",
     featured: false,
     metrics: "5,000+ Student Computations | Offline Local Storage",
-    clientOrContext: "Academic Utility & Student Tool",
-    year: "2025",
+    clientOrContext: "First Project · Axia Class Student Project",
+    year: "2024",
     details: {
       problem: "University students frequently make calculation errors when projecting cumulative grade points across multiple semesters with differing credit units.",
       solution: "Built a dedicated, zero-friction academic calculator tailored to university grading standards with real-time GPA recalculations and local data persistence.",
