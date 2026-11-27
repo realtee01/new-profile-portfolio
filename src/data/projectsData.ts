@@ -136,32 +136,32 @@ export const projectsData: ProjectItem[] = [
   {
     id: 22,
     slug: "tally-bank",
-    title: "Tally Bank Co.",
-    description: "A playful, scroll-driven fintech showcase for Tally Bank Co. featuring zero-fee accounts, 4.8% APY vaults, interactive wallet card previews, and a rolling 3D debit centerpiece.",
+    title: "Tally",
+    description: "A playful, scroll-driven Web3 banking and DeFi website for Tally featuring zero-fee on-chain accounts, 4.8% APY yield vaults, interactive Web3 wallet card previews, and a rolling 3D debit centerpiece.",
     imgPath: "/assets/tally-bank-cover.webp",
     ghLink: "https://github.com/realtee01",
     demoLink: "https://tallybnk.vercel.app/",
-    category: "Landing Page",
+    category: "Web3",
     featured: true,
-    metrics: "Scroll-Driven Motion | Zero-Fee Accounts & 4.8% APY Vaults",
-    clientOrContext: "Digital Banking & Fintech Brand Showcase",
+    metrics: "Web3 Scroll-Driven Showcase | Zero-Fee Accounts & 4.8% APY Vaults",
+    clientOrContext: "Web3 Digital Banking & DeFi Showcase",
     year: "2026",
     details: {
-      problem: "Consumer fintech landing pages often feel sterile and indistinguishable, struggling to communicate everyday banking benefits like high-yield vaults and zero-fee accounts in a memorable way.",
-      solution: "Engineered a vibrant, scroll-choreographed showcase for Tally Bank Co. combining bold display typography, tactile sticker badges, an interactive wallet drawer, and a smooth rolling debit card animation.",
-      role: "Frontend Engineer & Interactive Motion Developer",
-      toolsUsed: ["React", "TypeScript", "Tailwind CSS", "Motion", "Vite"],
-      whyTools: "React and Vite for snappy client-side rendering, Tailwind CSS for bold neo-brutalist color and border tokens, and GPU-accelerated scroll choreography for smooth 60fps interaction.",
+      problem: "Web3 banking and DeFi platforms often overwhelm everyday users with intimidating technical jargon and sterile dark dashboards, struggling to communicate on-chain accounts, yield vaults, and crypto-backed cards in an approachable way.",
+      solution: "Engineered a vibrant, scroll-choreographed Web3 website for Tally that translates decentralized vaults, zero-fee accounts, and Web3 wallet flows into bold display typography, tactile badges, an interactive wallet drawer, and a rolling debit card centerpiece.",
+      role: "Web3 Frontend Engineer & Interactive Motion Developer",
+      toolsUsed: ["React", "TypeScript", "Tailwind CSS", "Motion", "Web3 UX", "Vite"],
+      whyTools: "React and Vite for snappy client-side rendering, Tailwind CSS for bold neo-brutalist color and border tokens, and GPU-accelerated scroll choreography for smooth 60fps Web3 product storytelling.",
       features: [
-        "Scroll-driven rolling debit showcase tied directly to viewport progression",
-        "Interactive Story, Vaults, and Cards product walkthrough sections",
-        "Live wallet drawer tracking selected cards and 4.8% APY vault highlights",
+        "Scroll-driven rolling debit card centerpiece tied directly to viewport progression",
+        "Interactive Story, Web3 Yield Vaults (4.8% APY), and Cards product walkthroughs",
+        "Live Web3 wallet drawer tracking selected cards, balances, and vault highlights",
         "Expressive editorial typography pairing Anton, Bricolage Grotesque, and Caveat",
-        "Responsive mobile-first layout tuned for smooth scrolling across devices"
+        "Responsive mobile-first layout tuned for smooth Web3 onboarding across devices"
       ],
-      challenges: "Synchronizing scroll-linked transforms and playful physics animations while keeping paint costs minimal and avoiding layout jank on mid-range mobile screens.",
-      result: "Delivered a standout fintech brand showcase that turns routine banking features into an engaging, tactile web experience.",
-      architecture: "Component-driven React architecture with decoupled scroll-progress state, hardware-accelerated CSS transforms, and lightweight asset loading."
+      challenges: "Making Web3 banking concepts and scroll-linked physics animations feel effortless and human while keeping paint costs minimal and avoiding layout jank on mid-range mobile screens.",
+      result: "Delivered a standout Web3 brand experience that demystifies on-chain banking, yield vaults, and wallet interactions into an engaging, tactile website.",
+      architecture: "Component-driven React architecture with decoupled scroll-progress state, interactive wallet drawer state, hardware-accelerated CSS transforms, and lightweight asset loading."
     }
   },
   {
